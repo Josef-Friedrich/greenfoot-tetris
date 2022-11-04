@@ -9,6 +9,8 @@ import greenfoot.*;
 public class TetrisWorld extends World
 {
 
+    static GreenfootSound sound = new GreenfootSound("Korobeiniki.wav");
+
     private static TetrisWorld world = null;
 
     private Points pointView;
@@ -36,6 +38,7 @@ public class TetrisWorld extends World
     public TetrisWorld(int cols, int rows)
     {
         super(cols < 9 ? 9 : cols, (rows < 10 ? 10 : rows) + 2, 20);
+
 
         world = this;
 
@@ -130,6 +133,13 @@ public class TetrisWorld extends World
     {
         addObject(new ScoreBoard(getPoints()), getWidth() / 2, getHeight() / 2);
         Greenfoot.stop();
+    }
+
+    public void started() {
+        if (!sound.isPlaying())
+        {
+            sound.playLoop();
+        }
     }
 
 }

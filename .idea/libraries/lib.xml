@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/lib/greenfoot-3.7.0.jar!/" />
       <root url="jar://$PROJECT_DIR$/lib/bluejcore-3.7.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/threadchecker-3.7.0.jar!/" />
       <root url="file:///usr/share/greenfoot/javafx/lib" />
       <root url="file:///usr/share/greenfoot/stylesheets" />
     </CLASSES>
