@@ -126,6 +126,7 @@ public abstract class Tetromino extends Actor
         {
             b[i].setLocation(b[i].getX() - 1, b[i].getY());
         }
+        SoundPlayer.playBlockMove();
         return true;
     }
 
@@ -168,6 +169,7 @@ public abstract class Tetromino extends Actor
         {
             b[i].setLocation(b[i].getX() + 1, b[i].getY());
         }
+        SoundPlayer.playBlockMove();
         return true;
     }
 
@@ -222,6 +224,7 @@ public abstract class Tetromino extends Actor
                 return false;
             }
         }
+        SoundPlayer.playBlockRotate();
         return true;
     }
 

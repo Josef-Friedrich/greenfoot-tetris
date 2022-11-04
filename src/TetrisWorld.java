@@ -9,8 +9,6 @@ import greenfoot.*;
 public class TetrisWorld extends World
 {
 
-    static GreenfootSound sound = new GreenfootSound("Korobeiniki.wav");
-
     private static TetrisWorld world = null;
 
     private Points pointView;
@@ -72,6 +70,7 @@ public class TetrisWorld extends World
     // changes the current tetromino
     void setCurrentTetromino(Tetromino t)
     {
+        SoundPlayer.playBlockDrop();
         currentTetromino = t;
     }
 
@@ -136,10 +135,7 @@ public class TetrisWorld extends World
     }
 
     public void started() {
-        if (!sound.isPlaying())
-        {
-            sound.playLoop();
-        }
+        SoundPlayer.playKorobeiniki();
     }
 
 }
