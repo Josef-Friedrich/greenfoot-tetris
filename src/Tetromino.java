@@ -28,7 +28,7 @@ public abstract class Tetromino extends Actor
 
     Tetromino(String blockName)
     {
-        // Damit das Vorschaubild nicht angezeigt wird
+        // Damit das Vorschaubild nicht angezeigt wird. Der Tetromino ist ein Behälter für 4 Blöcke. Der Tetromino selber hat kein Bild.
         setImage("blocks/block-blank.png");
         blocks = new Block[4];
         for (int i = 0; i < 4; i++)
@@ -174,7 +174,7 @@ public abstract class Tetromino extends Actor
         return true;
     }
 
-    // right shif possible?
+    // right shift possible?
     boolean isRightOccupied()
     {
         if (getMostRight().getX() == TetrisWorld.getWorld().getWidth() - 1)
