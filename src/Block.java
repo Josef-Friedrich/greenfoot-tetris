@@ -8,8 +8,8 @@ import greenfoot.*;
  */
 public class Block extends Actor
 {
-    Block(String color)
+    Block(String blockName)
     {
-        setImage(color + "-block.png");
+        setImage("blocks/block-" + blockName + ".png");
     }
 }

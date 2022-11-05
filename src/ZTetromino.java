@@ -10,7 +10,7 @@ public class ZTetromino extends Tetromino
 {
     ZTetromino()
     {
-        super("cyan");
+        super("Z");
     }
 
     protected void addedToWorld(World world)
@@ -84,5 +84,4 @@ public class ZTetromino extends Tetromino
     {
         return (int) (Math.random() * (TetrisWorld.getWorld().getWidth() - 2));
     }
-
 }

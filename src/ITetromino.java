@@ -10,7 +10,7 @@ public class ITetromino extends Tetromino
 {
     ITetromino()
     {
-        super("red");
+        super("I_mid");
     }
 
     protected void addedToWorld(World world)

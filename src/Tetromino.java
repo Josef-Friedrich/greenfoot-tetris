@@ -26,13 +26,13 @@ public abstract class Tetromino extends Actor
 
     private int counter; // internal counter
 
-    Tetromino(String color)
+    Tetromino(String blockName)
     {
         setImage("cell.png");
         b = new Block[4];
         for (int i = 0; i < 4; i++)
         {
-            b[i] = new Block(color);
+            b[i] = new Block(blockName);
         }
         counter = 0;
         dead = false;

@@ -10,7 +10,7 @@ public class STetromino extends Tetromino
 {
     STetromino()
     {
-        super("green");
+        super("S");
     }
 
     protected void addedToWorld(World world)

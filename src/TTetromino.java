@@ -10,7 +10,7 @@ public class TTetromino extends Tetromino
 {
     TTetromino()
     {
-        super("brown");
+        super("T");
     }
 
     protected void addedToWorld(World world)

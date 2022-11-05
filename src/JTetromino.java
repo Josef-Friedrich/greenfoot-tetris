@@ -10,7 +10,7 @@ public class JTetromino extends Tetromino
 {
     JTetromino()
     {
-        super("yellow");
+        super("J");
     }
 
     protected void addedToWorld(World world)
