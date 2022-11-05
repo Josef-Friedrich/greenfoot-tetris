@@ -1,13 +1,3 @@
-# Imagemagick commands
-
-## Overlay with colorized transparent layer
-
-    convert background.png -fill green -colorize 30% tinted.png
-
-## Resize without interpolation
-
-    convert background.png -sample 400% tinted.png
-
 https://www.spriters-resource.com/game_boy_gbc/tetris/
 
 Game Boy GBC - Tetris - Block Tiles.png
