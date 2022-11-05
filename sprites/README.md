@@ -13,3 +13,14 @@ Tetris_-_GB_-_Gameplay_3.png
 Tetris_-_GB_-_Gameplay_4.png
 Tetris_-_GB_-_Gameplay_5.png
 Tetris_-_GB_-_Title_Screen.png
+
+https://www.nintendolife.com/games/gameboy/tetris
+
+large-1.jpg
+large-2.jpg
+large-3.jpg
+large-4.jpg
+large-5.jpg
+large-6.jpg
+large-7.jpg
+large-8.jpg
