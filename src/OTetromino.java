@@ -17,10 +17,10 @@ public class OTetromino extends Tetromino
     {
         direction = NORTH;
         int start = genStartX();
-        getWorld().addObject(b[0], start, 0);
-        getWorld().addObject(b[1], start + 1, 0);
-        getWorld().addObject(b[2], start, 1);
-        getWorld().addObject(b[3], start + 1, 1);
+        getWorld().addObject(blocks[0], start, 0);
+        getWorld().addObject(blocks[1], start + 1, 0);
+        getWorld().addObject(blocks[2], start, 1);
+        getWorld().addObject(blocks[3], start + 1, 1);
     }
 
     protected void setDirection()
@@ -33,12 +33,12 @@ public class OTetromino extends Tetromino
 
     protected Block getMostLeft()
     {
-        return b[0];
+        return blocks[0];
     }
 
     protected Block getMostRight()
     {
-        return b[1];
+        return blocks[1];
     }
 
     protected int genStartX()

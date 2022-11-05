@@ -18,7 +18,7 @@ public abstract class Tetromino extends Actor
 
     protected static final int EAST = 3;
 
-    protected Block[] b; // each tetromino consists of four blocks
+    protected Block[] blocks; // each tetromino consists of four blocks
 
     int direction; // direction of the tetromino
 
@@ -30,10 +30,10 @@ public abstract class Tetromino extends Actor
     {
         // Damit das Vorschaubild nicht angezeigt wird
         setImage("blocks/block-blank.png");
-        b = new Block[4];
+        blocks = new Block[4];
         for (int i = 0; i < 4; i++)
         {
-            b[i] = new Block(blockName);
+            blocks[i] = new Block(blockName);
         }
         counter = 0;
         dead = false;
@@ -58,7 +58,7 @@ public abstract class Tetromino extends Actor
     {
         for (int i = 0; i < 4; i++)
         {
-            getWorld().removeObject(b[i]);
+            getWorld().removeObject(blocks[i]);
         }
         dead = true;
     }
@@ -125,7 +125,7 @@ public abstract class Tetromino extends Actor
             return false;
         for (int i = 0; i < 4; i++)
         {
-            b[i].setLocation(b[i].getX() - 1, b[i].getY());
+            blocks[i].setLocation(blocks[i].getX() - 1, blocks[i].getY());
         }
         SoundPlayer.playBlockMove();
         return true;
@@ -142,7 +142,7 @@ public abstract class Tetromino extends Actor
         blocks: for (int i = 0; i < 4; i++)
         {
             java.util.List<Block> list =
-                            world.getObjectsAt(b[i].getX() - 1, b[i].getY(), Block.class);
+                            world.getObjectsAt(blocks[i].getX() - 1, blocks[i].getY(), Block.class);
             if (list.size() == 0)
             {
                 continue;
@@ -153,7 +153,7 @@ public abstract class Tetromino extends Actor
             {
                 if (i == j)
                     continue;
-                if (a == b[j])
+                if (a == blocks[j])
                     continue blocks;
             }
             return true;
@@ -168,7 +168,7 @@ public abstract class Tetromino extends Actor
             return false;
         for (int i = 0; i < 4; i++)
         {
-            b[i].setLocation(b[i].getX() + 1, b[i].getY());
+            blocks[i].setLocation(blocks[i].getX() + 1, blocks[i].getY());
         }
         SoundPlayer.playBlockMove();
         return true;
@@ -185,7 +185,7 @@ public abstract class Tetromino extends Actor
         blocks: for (int i = 0; i < 4; i++)
         {
             java.util.List<Block> list =
-                            world.getObjectsAt(b[i].getX() + 1, b[i].getY(), Block.class);
+                            world.getObjectsAt(blocks[i].getX() + 1, blocks[i].getY(), Block.class);
             if (list.size() == 0)
             {
                 continue;
@@ -196,7 +196,7 @@ public abstract class Tetromino extends Actor
             {
                 if (i == j)
                     continue;
-                if (a == b[j])
+                if (a == blocks[j])
                     continue blocks;
             }
             return true;
@@ -217,7 +217,7 @@ public abstract class Tetromino extends Actor
         TetrisWorld world = TetrisWorld.getWorld();
         for (int i = 0; i < 4; i++)
         {
-            java.util.List<Block> list = world.getObjectsAt(b[i].getX(), b[i].getY(), null);
+            java.util.List<Block> list = world.getObjectsAt(blocks[i].getX(), blocks[i].getY(), null);
             if (list.size() > 1)
             {
                 direction = oldDir;
@@ -246,7 +246,7 @@ public abstract class Tetromino extends Actor
         // falling down
         for (int i = 0; i < 4; i++)
         {
-            b[i].setLocation(b[i].getX(), b[i].getY() + 1);
+            blocks[i].setLocation(blocks[i].getX(), blocks[i].getY() + 1);
         }
         return true;
     }
@@ -267,7 +267,7 @@ public abstract class Tetromino extends Actor
     boolean isBelowFree(int index)
     {
         TetrisWorld world = TetrisWorld.getWorld();
-        java.util.List<Block> list = world.getObjectsAt(b[index].getX(), b[index].getY() + 1, null);
+        java.util.List<Block> list = world.getObjectsAt(blocks[index].getX(), blocks[index].getY() + 1, null);
         if (list.size() == 0)
         {
             return true;
@@ -278,7 +278,7 @@ public abstract class Tetromino extends Actor
         {
             if (i == index)
                 continue;
-            if (a == b[i])
+            if (a == blocks[i])
                 return true;
         }
         return false;
@@ -289,21 +289,21 @@ public abstract class Tetromino extends Actor
     {
         int noOfRows = 0;
         TetrisWorld world = TetrisWorld.getWorld();
-        rows: for (int r = world.getHeight() - 3; r >= 0; r--)
+        rows: for (int row = world.getHeight() - 3; row >= 0; row--)
         {
             for (int c = 0; c < world.getWidth(); c++)
             {
-                java.util.List<Block> blocks = world.getObjectsAt(c, r, Block.class);
+                java.util.List<Block> blocks = world.getObjectsAt(c, row, Block.class);
                 if (blocks.size() == 0)
                 {
                     continue rows; // next row
                 }
             }
             // clear row
-            clearRow(r);
+            clearRow(row);
             noOfRows++;
-            landslide(r);
-            r++;
+            triggerLandslide(row);
+            row++;
         }
         if (noOfRows > 0)
         {
@@ -321,22 +321,36 @@ public abstract class Tetromino extends Actor
         }
     }
 
-    // performs a "landslide" (Erdrutsch)
-    void landslide(int row)
+    /**
+     * Löse einen Erdrutsch (trigger landslide) aus, d. h. scheibe alle Reihen ab einer angegeben Y-Koordinate um eine Position nach unten.
+     *
+     * @param rowY Die Y-Koordinate der Reihe, von der aus die obenliegenden Reihen um eins nach unten gerutscht werden soll.
+     */
+    void triggerLandslide(int rowY)
     {
         TetrisWorld world = TetrisWorld.getWorld();
-        for (int r = row - 1; r >= 0; r--)
+        for (int row = rowY - 1; row >= 0; row--)
         {
-            for (int c = 0; c < world.getWidth(); c++)
+            for (int column = 0; column < world.getWidth(); column++)
             {
-                java.util.List<Block> blocks = world.getObjectsAt(c, r, Block.class);
-                if (blocks.size() > 0)
+                Block block = getBlockAt(column, row);
+                if (block != null)
                 {
-                    Block block = (Block) blocks.get(0);
                     block.setLocation(block.getX(), block.getY() + 1);
                 }
             }
         }
+    }
+
+    Block getBlockAt(int column, int row) {
+        TetrisWorld world = TetrisWorld.getWorld();
+
+        java.util.List<Block> blocks = world.getObjectsAt(column, row, Block.class);
+        if (blocks.size() > 0)
+        {
+            return blocks.get(0);
+        }
+        return null;
     }
 
     // kills the tetromino
@@ -365,7 +379,7 @@ public abstract class Tetromino extends Actor
         for (int i = 0; i < 4; i++)
         {
             java.util.List<Block> list =
-                            world.getObjectsAt(tetro.b[i].getX(), tetro.b[i].getY(), Block.class);
+                            world.getObjectsAt(tetro.blocks[i].getX(), tetro.blocks[i].getY(), Block.class);
             if (list.size() > 1)
             {
                 return true;

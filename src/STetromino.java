@@ -17,10 +17,10 @@ public class STetromino extends Tetromino
     {
         direction = genDirection();
         int start = genStartX();
-        getWorld().addObject(b[0], start, 1);
-        getWorld().addObject(b[1], start + 1, 1);
-        getWorld().addObject(b[2], start + 1, 0);
-        getWorld().addObject(b[3], start + 2, 0);
+        getWorld().addObject(blocks[0], start, 1);
+        getWorld().addObject(blocks[1], start + 1, 1);
+        getWorld().addObject(blocks[2], start + 1, 0);
+        getWorld().addObject(blocks[3], start + 2, 0);
         setDirection();
     }
 
@@ -30,15 +30,15 @@ public class STetromino extends Tetromino
         {
             case NORTH:
             case SOUTH:
-                b[0].setLocation(b[1].getX() - 1, b[1].getY());
-                b[2].setLocation(b[1].getX(), b[1].getY() - 1);
-                b[3].setLocation(b[1].getX() + 1, b[1].getY() - 1);
+                blocks[0].setLocation(blocks[1].getX() - 1, blocks[1].getY());
+                blocks[2].setLocation(blocks[1].getX(), blocks[1].getY() - 1);
+                blocks[3].setLocation(blocks[1].getX() + 1, blocks[1].getY() - 1);
                 break;
             case WEST:
             case EAST:
-                b[0].setLocation(b[1].getX(), b[1].getY() + 1);
-                b[2].setLocation(b[1].getX() - 1, b[1].getY());
-                b[3].setLocation(b[1].getX() - 1, b[1].getY() - 1);
+                blocks[0].setLocation(blocks[1].getX(), blocks[1].getY() + 1);
+                blocks[2].setLocation(blocks[1].getX() - 1, blocks[1].getY());
+                blocks[3].setLocation(blocks[1].getX() - 1, blocks[1].getY() - 1);
                 break;
         }
     }
@@ -49,9 +49,9 @@ public class STetromino extends Tetromino
         {
             case NORTH:
             case SOUTH:
-                return b[0];
+                return blocks[0];
             default: // WEST, EAST
-                return b[2];
+                return blocks[2];
         }
     }
 
@@ -61,9 +61,9 @@ public class STetromino extends Tetromino
         {
             case NORTH:
             case SOUTH:
-                return b[3];
+                return blocks[3];
             default: // WEST, EAST
-                return b[1];
+                return blocks[1];
         }
     }
 
@@ -74,9 +74,9 @@ public class STetromino extends Tetromino
         {
             case NORTH:
             case SOUTH:
-                return b[0].getY() < world.getHeight() - 3;
+                return blocks[0].getY() < world.getHeight() - 3;
             default: // WEST, EAST
-                return b[1].getX() < world.getWidth() - 1;
+                return blocks[1].getX() < world.getWidth() - 1;
         }
     }
 

@@ -19,7 +19,7 @@ public class ITetromino extends Tetromino
         int start = genStartX();
         for (int i = 0; i < 4; i++)
         {
-            getWorld().addObject(b[i], start + i, 2);
+            getWorld().addObject(blocks[i], start + i, 2);
         }
         setDirection();
     }
@@ -34,7 +34,7 @@ public class ITetromino extends Tetromino
                 {
                     if (i == 1)
                         continue;
-                    b[i].setLocation(b[1].getX(), b[1].getY() + 1 - i);
+                    blocks[i].setLocation(blocks[1].getX(), blocks[1].getY() + 1 - i);
                 }
                 break;
 
@@ -44,7 +44,7 @@ public class ITetromino extends Tetromino
                 {
                     if (i == 1)
                         continue;
-                    b[i].setLocation(b[1].getX() - 1 + i, b[1].getY());
+                    blocks[i].setLocation(blocks[1].getX() - 1 + i, blocks[1].getY());
                 }
                 break;
         }
@@ -52,12 +52,12 @@ public class ITetromino extends Tetromino
 
     protected Block getMostLeft()
     {
-        return b[0];
+        return blocks[0];
     }
 
     protected Block getMostRight()
     {
-        return b[3];
+        return blocks[3];
     }
 
     protected boolean isTurnPossible()
@@ -66,9 +66,9 @@ public class ITetromino extends Tetromino
         {
             case NORTH:
             case SOUTH:
-                return b[0].getX() >= 1 && b[3].getX() <= TetrisWorld.getWorld().getWidth() - 3;
+                return blocks[0].getX() >= 1 && blocks[3].getX() <= TetrisWorld.getWorld().getWidth() - 3;
             default: // EAST, WEST
-                return b[0].getY() < TetrisWorld.getWorld().getHeight() - 3;
+                return blocks[0].getY() < TetrisWorld.getWorld().getHeight() - 3;
         }
     }
 
