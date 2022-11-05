@@ -26,5 +26,4 @@ public class Points
     {
         return counter.getValue();
     }
-
 }

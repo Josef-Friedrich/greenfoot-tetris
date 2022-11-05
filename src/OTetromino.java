@@ -26,17 +26,17 @@ public class OTetromino extends Tetromino
     protected void setDirection()
     {}
 
-    protected boolean turnPossible()
+    protected boolean isTurnPossible()
     {
         return false;
     }
 
-    protected Block leftMost()
+    protected Block getMostLeft()
     {
         return b[0];
     }
 
-    protected Block rightMost()
+    protected Block getMostRight()
     {
         return b[1];
     }

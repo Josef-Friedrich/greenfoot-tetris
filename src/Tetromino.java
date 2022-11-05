@@ -28,7 +28,8 @@ public abstract class Tetromino extends Actor
 
     Tetromino(String blockName)
     {
-        setImage("cell.png");
+        // Damit das Vorschaubild nicht angezeigt wird
+        setImage("blocks/block-blank.png");
         b = new Block[4];
         for (int i = 0; i < 4; i++)
         {
@@ -44,13 +45,13 @@ public abstract class Tetromino extends Actor
     abstract protected void setDirection();
 
     // left most block of the tetromino (depending on its direction)
-    abstract protected Block leftMost();
+    abstract protected Block getMostLeft();
 
     // right most block of the tetromino (depending on its direction)
-    abstract protected Block rightMost();
+    abstract protected Block getMostRight();
 
     // is left turn possible?
-    abstract protected boolean turnPossible();
+    abstract protected boolean isTurnPossible();
 
     // deletes the four blocks of a tetromino
     void delete()
@@ -79,7 +80,7 @@ public abstract class Tetromino extends Actor
         boolean keyAction = false;
         if (Greenfoot.isKeyDown("left") && counter < 4)
         {
-            if (left())
+            if (moveLeft())
             {
                 counter++;
                 keyAction = true;
@@ -87,7 +88,7 @@ public abstract class Tetromino extends Actor
         }
         if (Greenfoot.isKeyDown("right") && counter < 4)
         {
-            if (right())
+            if (moveRight())
             {
                 counter++;
                 keyAction = true;
@@ -103,7 +104,7 @@ public abstract class Tetromino extends Actor
         }
         if (Greenfoot.isKeyDown("down") || Greenfoot.isKeyDown(" "))
         {
-            down();
+            slideDownQuick();
             return;
         }
 
@@ -113,14 +114,14 @@ public abstract class Tetromino extends Actor
         }
 
         // one row down
-        oneDown();
+        slideDown();
         counter = 0;
     }
 
     // one column to the left
-    boolean left()
+    boolean moveLeft()
     {
-        if (leftOccupied())
+        if (isLeftOccupied())
             return false;
         for (int i = 0; i < 4; i++)
         {
@@ -131,9 +132,9 @@ public abstract class Tetromino extends Actor
     }
 
     // left shift possible?
-    boolean leftOccupied()
+    boolean isLeftOccupied()
     {
-        if (leftMost().getX() == 0)
+        if (getMostLeft().getX() == 0)
         {
             return true;
         }
@@ -161,9 +162,9 @@ public abstract class Tetromino extends Actor
     }
 
     // one column to the right
-    boolean right()
+    boolean moveRight()
     {
-        if (rightOccupied())
+        if (isRightOccupied())
             return false;
         for (int i = 0; i < 4; i++)
         {
@@ -174,9 +175,9 @@ public abstract class Tetromino extends Actor
     }
 
     // right shif possible?
-    boolean rightOccupied()
+    boolean isRightOccupied()
     {
-        if (rightMost().getX() == TetrisWorld.getWorld().getWidth() - 1)
+        if (getMostRight().getX() == TetrisWorld.getWorld().getWidth() - 1)
         {
             return true;
         }
@@ -206,7 +207,7 @@ public abstract class Tetromino extends Actor
     // change the direction of the tetromino
     boolean turnLeft()
     {
-        if (!turnPossible())
+        if (!isTurnPossible())
         {
             return false;
         }
@@ -229,12 +230,12 @@ public abstract class Tetromino extends Actor
     }
 
     // tetromino slides one row down
-    boolean oneDown()
+    boolean slideDown()
     {
         // checks whether the tetromino is on the bottom row
         for (int i = 0; i < 4; i++)
         {
-            if (!blockFree(i))
+            if (!isBelowFree(i))
             {
                 checkRows();
                 die();
@@ -251,13 +252,19 @@ public abstract class Tetromino extends Actor
     }
 
     // the tetromino is sliding to the bottom row
-    void down()
+    void slideDownQuick()
     {
-        while (oneDown());
+        while (slideDown());
     }
 
-    // is the cell below the block free?
-    boolean blockFree(int index)
+    /**
+     * Überprüfe, ob die Zelle unterhalb des mit der Indexnummer addressierten Blocks frei ist.
+     *
+     * @param index Die Indexnummer des Blocks (0-3)
+     *
+     * @return Wahr, wenn die Zelle unterhalb des Blocks nicht belegt ist, anderfalls falsch.
+     */
+    boolean isBelowFree(int index)
     {
         TetrisWorld world = TetrisWorld.getWorld();
         java.util.List<Block> list = world.getObjectsAt(b[index].getX(), b[index].getY() + 1, null);
@@ -314,7 +321,7 @@ public abstract class Tetromino extends Actor
         }
     }
 
-    // performs a "landslide"
+    // performs a "landslide" (Erdrutsch)
     void landslide(int row)
     {
         TetrisWorld world = TetrisWorld.getWorld();

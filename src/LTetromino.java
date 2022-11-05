@@ -51,7 +51,7 @@ public class LTetromino extends Tetromino
         }
     }
 
-    protected Block leftMost()
+    protected Block getMostLeft()
     {
         switch (direction)
         {
@@ -66,7 +66,7 @@ public class LTetromino extends Tetromino
         }
     }
 
-    protected Block rightMost()
+    protected Block getMostRight()
     {
         switch (direction)
         {
@@ -81,7 +81,7 @@ public class LTetromino extends Tetromino
         }
     }
 
-    protected boolean turnPossible()
+    protected boolean isTurnPossible()
     {
         TetrisWorld world = TetrisWorld.getWorld();
         switch (direction)

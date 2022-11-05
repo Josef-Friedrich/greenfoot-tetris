@@ -50,17 +50,17 @@ public class ITetromino extends Tetromino
         }
     }
 
-    protected Block leftMost()
+    protected Block getMostLeft()
     {
         return b[0];
     }
 
-    protected Block rightMost()
+    protected Block getMostRight()
     {
         return b[3];
     }
 
-    protected boolean turnPossible()
+    protected boolean isTurnPossible()
     {
         switch (direction)
         {
