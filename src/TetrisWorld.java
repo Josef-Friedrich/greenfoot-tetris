@@ -3,11 +3,20 @@ import greenfoot.*;
 /**
  * The world of tetris
  *
+ * Der Bildschirmausschitt des Gameboys ist 160x144 Pixel. Ein Block hat die Größe 8x8.
+ * Der Bildschirmausschnitt lässt sich als mit 20x16 Blöcken ausfüllen. Wir verwenden
+ * Bilder, die um den Faktor 4 vergrößert wurden.
+ *
  * @author Dietrich Boles (University of Oldenburg, Germany)
  * @version 1.0 (15.02.2007)
  */
 public class TetrisWorld extends World
 {
+    private static int BLOCK_SIZE = 32;
+
+    private static int COLS = 20;
+
+    private static int ROWS = 18;
 
     private static TetrisWorld world = null;
 
@@ -24,28 +33,11 @@ public class TetrisWorld extends World
      */
     public TetrisWorld()
     {
-        this(10, 24);
-    }
-
-    /**
-     * Creates a tetris world with "cols" columns and "rows" rows
-     *
-     * @param cols number of columns (>= 9)
-     * @param rows number of rows (>= 10)
-     */
-    public TetrisWorld(int cols, int rows)
-    {
-        super(cols < 9 ? 9 : cols, (rows < 10 ? 10 : rows) + 2, 20);
-
+        super(COLS, ROWS, BLOCK_SIZE);
 
         world = this;
 
-        setBackground("cell.png");
-
-        for (int i = 0; i < cols; i++)
-        {
-            addObject(new Wall(), i, rows);
-        }
+        setBackground("fullscreen/background.png");
 
         this.pointView = new Points();
 
