@@ -1,7 +1,7 @@
-#! /bin/sh
+#! /bin/bash
 
-mkdir out
-
-INPUT="$1"
-
-convert "${INPUT}" -fill green -colorize 30% -sample 400% "out/${INPUT}"
+for FILE in $(find sprites -iname "*.png"); do
+  OUTPUT="${FILE/sprites/out}"
+  mkdir -p "$(dirname ${OUTPUT})"
+  convert "${FILE}" -fill green -colorize 30% -sample 400% "${OUTPUT}"
+done
