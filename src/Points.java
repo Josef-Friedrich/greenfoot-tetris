@@ -14,7 +14,7 @@ public class Points
     {
         TetrisWorld world = TetrisWorld.getWorld();
         counter = new Counter("");
-        world.addObject(counter, world.getWidth() / 2, world.getHeight() - 1);
+        // world.addObject(counter, world.getWidth() / 2, world.getHeight() - 1);
     }
 
     void add(int points)

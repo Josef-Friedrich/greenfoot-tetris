@@ -2,8 +2,8 @@ import greenfoot.*;
 
 /**
  * The world of tetris
- *
- * Der Bildschirmausschitt des Gameboys ist 160x144 Pixel. Ein Block hat die Größe 8x8.
+ * <p>
+ * Der Bildschirmausschnitt des Gameboys ist 160x144 Pixel. Ein Block hat die Größe 8x8.
  * Der Bildschirmausschnitt lässt sich als mit 20x18 Blöcken ausfüllen. Wir verwenden
  * Bilder, die um den Faktor 4 vergrößert wurden.
  *
@@ -12,21 +12,23 @@ import greenfoot.*;
  */
 public class TetrisWorld extends World
 {
-    private static int BLOCK_SIZE = 32;
+    private static final int BLOCK_SIZE = 32;
 
-    private static int COLS = 20;
+    private static final int COLS = 20;
 
-    private static int ROWS = 18;
+    private static final int ROWS = 18;
 
     /**
      * Das Spielfeld hat links einen Abstand zum Bildschirmrand von 2 Blöcken.
      */
-    public static int PLAYFIELD_LEFT_X = 3;
+    public static final int PLAYGROUND_LEFT_X = 3;
 
     /**
      * Das Spielfeld hat rechts einen Abstand zum Bildschirmrand von 8 Blöcken.
      */
-    public static int PLAYFIELD_RIGHT_X = 10;
+    public static final int PLAYGROUND_RIGHT_X = 10;
+    public static final int PLAYGROUND_TOP_Y = 0;
+    public static final int PLAYGROUND_BOTTOM_Y = 17;
 
     private static TetrisWorld world = null;
 

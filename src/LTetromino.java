@@ -51,7 +51,7 @@ public class LTetromino extends Tetromino
         }
     }
 
-    protected Block getMostLeft()
+    protected Block getLeftmost()
     {
         switch (direction)
         {
@@ -66,7 +66,7 @@ public class LTetromino extends Tetromino
         }
     }
 
-    protected Block getMostRight()
+    protected Block getRightmost()
     {
         switch (direction)
         {

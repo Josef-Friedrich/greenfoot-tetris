@@ -12,4 +12,14 @@ public class Block extends Actor
     {
         setImage("blocks/block-" + blockName + ".png");
     }
+    public void moveLeft() {
+        setLocation(getX() - 1, getY());
+    }
+    public void moveRight() {
+        setLocation(getX() + 1, getY());
+    }
+
+    public void moveDown() {
+        setLocation(getX() , getY() + 1);
+    }
 }

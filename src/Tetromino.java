@@ -45,10 +45,26 @@ public abstract class Tetromino extends Actor
     abstract protected void setDirection();
 
     // left most block of the tetromino (depending on its direction)
-    abstract protected Block getMostLeft();
+    abstract protected Block getLeftmost();
 
     // right most block of the tetromino (depending on its direction)
-    abstract protected Block getMostRight();
+    abstract protected Block getRightmost();
+
+    protected Block getBottom() {
+        Block bottom = blocks[0];
+        for (int i = 1; i < 4; i++)
+        {
+            Block block = blocks[i];
+            if (block.getY() > bottom.getY()) {
+                bottom = block;
+            }
+        }
+        return bottom;
+    }
+
+    protected boolean isAtBottom() {
+        return getBottom().getY() == TetrisWorld.PLAYGROUND_BOTTOM_Y;
+    }
 
     // is left turn possible?
     abstract protected boolean isTurnPossible();
@@ -125,7 +141,7 @@ public abstract class Tetromino extends Actor
             return false;
         for (int i = 0; i < 4; i++)
         {
-            blocks[i].setLocation(blocks[i].getX() - 1, blocks[i].getY());
+            blocks[i].moveLeft();
         }
         SoundPlayer.playBlockMove();
         return true;
@@ -134,7 +150,7 @@ public abstract class Tetromino extends Actor
     // left shift possible?
     boolean isLeftOccupied()
     {
-        if (getMostLeft().getX() == 0)
+        if (getLeftmost().getX() == 0)
         {
             return true;
         }
@@ -168,7 +184,7 @@ public abstract class Tetromino extends Actor
             return false;
         for (int i = 0; i < 4; i++)
         {
-            blocks[i].setLocation(blocks[i].getX() + 1, blocks[i].getY());
+            blocks[i].moveRight();
         }
         SoundPlayer.playBlockMove();
         return true;
@@ -177,7 +193,7 @@ public abstract class Tetromino extends Actor
     // right shift possible?
     boolean isRightOccupied()
     {
-        if (getMostRight().getX() == TetrisWorld.getWorld().getWidth() - 1)
+        if (getRightmost().getX() == TetrisWorld.getWorld().getWidth() - 1)
         {
             return true;
         }
@@ -235,7 +251,7 @@ public abstract class Tetromino extends Actor
         // checks whether the tetromino is on the bottom row
         for (int i = 0; i < 4; i++)
         {
-            if (!isBelowFree(i))
+            if (!isBelowFree(i) || getBottom().getY() == TetrisWorld.PLAYGROUND_BOTTOM_Y)
             {
                 checkRows();
                 die();
@@ -246,7 +262,7 @@ public abstract class Tetromino extends Actor
         // falling down
         for (int i = 0; i < 4; i++)
         {
-            blocks[i].setLocation(blocks[i].getX(), blocks[i].getY() + 1);
+            blocks[i].moveDown();
         }
         return true;
     }
@@ -258,16 +274,16 @@ public abstract class Tetromino extends Actor
     }
 
     /**
-     * Überprüfe, ob die Zelle unterhalb des mit der Indexnummer addressierten Blocks frei ist.
+     * Überprüfe, ob die Zelle unterhalb des mit der Indexnummer adressierten Blocks frei ist.
      *
-     * @param index Die Indexnummer des Blocks (0-3)
+     * @param blockIndex Die Indexnummer des Blocks (0-3)
      *
-     * @return Wahr, wenn die Zelle unterhalb des Blocks nicht belegt ist, anderfalls falsch.
+     * @return Wahr, wenn die Zelle unterhalb des Blocks nicht belegt ist, andernfalls falsch.
      */
-    boolean isBelowFree(int index)
+    boolean isBelowFree(int blockIndex)
     {
         TetrisWorld world = TetrisWorld.getWorld();
-        java.util.List<Block> list = world.getObjectsAt(blocks[index].getX(), blocks[index].getY() + 1, null);
+        java.util.List<Block> list = world.getObjectsAt(blocks[blockIndex].getX(), blocks[blockIndex].getY() + 1, null);
         if (list.size() == 0)
         {
             return true;
@@ -276,7 +292,7 @@ public abstract class Tetromino extends Actor
         Actor a = (Actor) list.get(0);
         for (int i = 0; i < 4; i++)
         {
-            if (i == index)
+            if (i == blockIndex)
                 continue;
             if (a == blocks[i])
                 return true;
@@ -287,37 +303,40 @@ public abstract class Tetromino extends Actor
     // checks whether there exists completed rows which can be removed
     void checkRows()
     {
-        int noOfRows = 0;
+        int numberOfClearedRows = 0;
         TetrisWorld world = TetrisWorld.getWorld();
-        rows: for (int row = world.getHeight() - 3; row >= 0; row--)
+        rows: for (int y = world.getHeight() - 3; y >= 0; y--)
         {
-            for (int c = 0; c < world.getWidth(); c++)
+            for (int x = 0; x < world.getWidth(); x++)
             {
-                java.util.List<Block> blocks = world.getObjectsAt(c, row, Block.class);
+                java.util.List<Block> blocks = world.getObjectsAt(x, y, Block.class);
                 if (blocks.size() == 0)
                 {
                     continue rows; // next row
                 }
             }
             // clear row
-            clearRow(row);
-            noOfRows++;
-            triggerLandslide(row);
-            row++;
+            clearRow(y);
+            numberOfClearedRows++;
+            triggerLandslide(y);
+            y++;
         }
-        if (noOfRows > 0)
+        if (numberOfClearedRows > 0)
         {
-            world.newPoints(noOfRows);
+            world.newPoints(numberOfClearedRows);
         }
     }
 
-    // removes the blocks of a row
-    void clearRow(int row)
+
+    /**
+     * removes the blocks of a row
+     */
+    void clearRow(int y)
     {
         TetrisWorld world = TetrisWorld.getWorld();
-        for (int c = 0; c < world.getWidth(); c++)
+        for (int x = 0; x < world.getWidth(); x++)
         {
-            world.removeObjects(world.getObjectsAt(c, row, Block.class));
+            world.removeObjects(world.getObjectsAt(x, y, Block.class));
         }
     }
 
@@ -329,23 +348,23 @@ public abstract class Tetromino extends Actor
     void triggerLandslide(int rowY)
     {
         TetrisWorld world = TetrisWorld.getWorld();
-        for (int row = rowY - 1; row >= 0; row--)
+        for (int y = rowY - 1; y >= 0; y--)
         {
-            for (int column = 0; column < world.getWidth(); column++)
+            for (int x = 0; x < world.getWidth(); x++)
             {
-                Block block = getBlockAt(column, row);
+                Block block = getBlockAt(x, y);
                 if (block != null)
                 {
-                    block.setLocation(block.getX(), block.getY() + 1);
+                    block.moveDown();
                 }
             }
         }
     }
 
-    Block getBlockAt(int column, int row) {
+    Block getBlockAt(int x, int y) {
         TetrisWorld world = TetrisWorld.getWorld();
 
-        java.util.List<Block> blocks = world.getObjectsAt(column, row, Block.class);
+        java.util.List<Block> blocks = world.getObjectsAt(x, y, Block.class);
         if (blocks.size() > 0)
         {
             return blocks.get(0);
