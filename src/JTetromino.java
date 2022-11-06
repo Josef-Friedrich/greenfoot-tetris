@@ -51,33 +51,6 @@ public class JTetromino extends Tetromino
         }
     }
 
-    protected Block getLeftmost()
-    {
-        switch (direction)
-        {
-            case NORTH:
-                return blocks[0];
-            case WEST:
-                return blocks[3];
-            default: // case EAST:
-                return blocks[1];
-        }
-    }
-
-    protected Block getRightmost()
-    {
-        switch (direction)
-        {
-            case NORTH:
-            case WEST:
-                return blocks[1];
-            case SOUTH:
-                return blocks[0];
-            default: // case EAST:
-                return blocks[3];
-        }
-    }
-
     protected boolean isTurnPossible()
     {
         TetrisWorld world = TetrisWorld.getWorld();

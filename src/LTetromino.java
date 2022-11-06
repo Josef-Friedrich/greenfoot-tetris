@@ -51,33 +51,6 @@ public class LTetromino extends Tetromino
         }
     }
 
-    protected Block getLeftmost()
-    {
-        switch (direction)
-        {
-            case NORTH:
-                return blocks[2];
-            case WEST:
-                return blocks[3];
-            default:
-                return blocks[0];
-        }
-    }
-
-    protected Block getRightmost()
-    {
-        switch (direction)
-        {
-            case NORTH:
-            case WEST:
-                return blocks[0];
-            case SOUTH:
-                return blocks[1];
-            default: // case EAST:
-                return blocks[3];
-        }
-    }
-
     protected boolean isTurnPossible()
     {
         TetrisWorld world = TetrisWorld.getWorld();

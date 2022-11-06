@@ -45,10 +45,30 @@ public abstract class Tetromino extends Actor
     abstract protected void setDirection();
 
     // left most block of the tetromino (depending on its direction)
-    abstract protected Block getLeftmost();
+     protected Block getLeftmost() {
+         Block leftmost = blocks[0];
+         for (int i = 1; i < 4; i++)
+         {
+             Block block = blocks[i];
+             if (block.getX() < leftmost.getX()) {
+                 leftmost = block;
+             }
+         }
+         return leftmost;
+     }
 
     // right most block of the tetromino (depending on its direction)
-    abstract protected Block getRightmost();
+     protected Block getRightmost() {
+         Block rightmost = blocks[0];
+         for (int i = 1; i < 4; i++)
+         {
+             Block block = blocks[i];
+             if (block.getX() > rightmost.getX()) {
+                 rightmost = block;
+             }
+         }
+         return rightmost;
+     }
 
     protected Block getBottom() {
         Block bottom = blocks[0];

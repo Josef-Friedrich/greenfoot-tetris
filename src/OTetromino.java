@@ -31,14 +31,4 @@ public class OTetromino extends Tetromino
         return false;
     }
 
-    protected Block getLeftmost()
-    {
-        return blocks[0];
-    }
-
-    protected Block getRightmost()
-    {
-        return blocks[1];
-    }
-
 }
