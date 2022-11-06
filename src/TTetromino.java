@@ -16,7 +16,7 @@ public class TTetromino extends Tetromino
     protected void addedToWorld(World world)
     {
         direction = genDirection();
-        int start = genStartX();
+        int start = genStartX(2);
         getWorld().addObject(blocks[0], start + 1, 0);
         getWorld().addObject(blocks[1], start, 1);
         getWorld().addObject(blocks[2], start + 1, 1);
@@ -61,7 +61,7 @@ public class TTetromino extends Tetromino
                 return blocks[0];
             case SOUTH:
                 return blocks[3];
-            default: // case EAST:
+            default:
                 return blocks[2];
         }
     }
@@ -76,7 +76,7 @@ public class TTetromino extends Tetromino
                 return blocks[2];
             case SOUTH:
                 return blocks[1];
-            default: // case EAST:
+            default:
                 return blocks[0];
         }
     }
@@ -92,14 +92,10 @@ public class TTetromino extends Tetromino
                 return blocks[2].getX() < world.getWidth() - 1;
             case SOUTH:
                 return true;
-            default: // case EAST:
+            default:
                 return blocks[2].getX() >= 1;
         }
     }
 
-    protected int genStartX()
-    {
-        return (int) (Math.random() * (TetrisWorld.getWorld().getWidth() - 2));
-    }
 
 }

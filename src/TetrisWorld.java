@@ -59,6 +59,16 @@ public class TetrisWorld extends World
         currentTetromino = genTetromino();
     }
 
+    public static int getPlaygroundWidth() {
+        // For example TetrisWorld.PLAYGROUND_LEFT_X = 3 and TetrisWorld.PLAYGROUND_RIGHT_X = 10
+        // 1 2 | 3 4 5 6 7 8 9 10 | 11 12 13 14 15 16 17 18
+        // 10 - 3 + 1 = 8
+        return PLAYGROUND_RIGHT_X - PLAYGROUND_LEFT_X + 1;
+    }
+    public static int getPlaygroundHeight() {
+        // 17 - 0 + 1 = 18
+        return PLAYGROUND_BOTTOM_Y - PLAYGROUND_TOP_Y + 1;
+    }
     // returns the current world
     static TetrisWorld getWorld()
     {

@@ -16,7 +16,7 @@ public class ZTetromino extends Tetromino
     protected void addedToWorld(World world)
     {
         direction = genDirection();
-        int start = genStartX();
+        int start = genStartX(2);
         getWorld().addObject(blocks[0], start, 1);
         getWorld().addObject(blocks[1], start + 1, 1);
         getWorld().addObject(blocks[2], start + 1, 2);
@@ -78,10 +78,5 @@ public class ZTetromino extends Tetromino
             default: // WEST, EAST
                 return blocks[1].getX() < world.getWidth() - 1;
         }
-    }
-
-    protected int genStartX()
-    {
-        return (int) (Math.random() * (TetrisWorld.getWorld().getWidth() - 2));
     }
 }

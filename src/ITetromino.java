@@ -16,7 +16,7 @@ public class ITetromino extends Tetromino
     protected void addedToWorld(World world)
     {
         direction = genDirection();
-        int start = genStartX();
+        int start = genStartX(3);
         for (int i = 0; i < 4; i++)
         {
             getWorld().addObject(blocks[i], start + i, 2);
@@ -72,9 +72,5 @@ public class ITetromino extends Tetromino
         }
     }
 
-    protected int genStartX()
-    {
-        return (int) (Math.random() * (TetrisWorld.getWorld().getWidth() - 3));
-    }
 
 }

@@ -16,7 +16,7 @@ public class JTetromino extends Tetromino
     protected void addedToWorld(World world)
     {
         direction = genDirection();
-        int start = genStartX();
+        int start = genStartX(3 ) +1;
         getWorld().addObject(blocks[0], start, 0);
         getWorld().addObject(blocks[1], start, 1);
         getWorld().addObject(blocks[2], start + 1, 1);
@@ -59,8 +59,6 @@ public class JTetromino extends Tetromino
                 return blocks[0];
             case WEST:
                 return blocks[3];
-            case SOUTH:
-                return blocks[1];
             default: // case EAST:
                 return blocks[1];
         }
@@ -71,7 +69,6 @@ public class JTetromino extends Tetromino
         switch (direction)
         {
             case NORTH:
-                return blocks[1];
             case WEST:
                 return blocks[1];
             case SOUTH:
@@ -96,10 +93,4 @@ public class JTetromino extends Tetromino
                 return blocks[2].getY() < world.getHeight() - 3;
         }
     }
-
-    protected int genStartX()
-    {
-        return (int) (Math.random() * (TetrisWorld.getWorld().getWidth() - 3)) + 1;
-    }
-
 }

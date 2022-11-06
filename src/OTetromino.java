@@ -16,7 +16,7 @@ public class OTetromino extends Tetromino
     protected void addedToWorld(World world)
     {
         direction = NORTH;
-        int start = genStartX();
+        int start = genStartX(1);
         getWorld().addObject(blocks[0], start, 0);
         getWorld().addObject(blocks[1], start + 1, 0);
         getWorld().addObject(blocks[2], start, 1);
@@ -41,8 +41,4 @@ public class OTetromino extends Tetromino
         return blocks[1];
     }
 
-    protected int genStartX()
-    {
-        return (int) (Math.random() * (TetrisWorld.getWorld().getWidth() - 1));
-    }
 }

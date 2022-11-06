@@ -150,7 +150,7 @@ public abstract class Tetromino extends Actor
     // left shift possible?
     boolean isLeftOccupied()
     {
-        if (getLeftmost().getX() == 0)
+        if (getLeftmost().getX() == TetrisWorld.PLAYGROUND_LEFT_X - 1)
         {
             return true;
         }
@@ -193,7 +193,7 @@ public abstract class Tetromino extends Actor
     // right shift possible?
     boolean isRightOccupied()
     {
-        if (getRightmost().getX() == TetrisWorld.getWorld().getWidth() - 1)
+        if (getRightmost().getX() == TetrisWorld.PLAYGROUND_RIGHT_X + 1)
         {
             return true;
         }
@@ -307,7 +307,7 @@ public abstract class Tetromino extends Actor
         TetrisWorld world = TetrisWorld.getWorld();
         rows: for (int y = world.getHeight() - 3; y >= 0; y--)
         {
-            for (int x = 0; x < world.getWidth(); x++)
+            for (int x = TetrisWorld.PLAYGROUND_LEFT_X; x <= TetrisWorld.PLAYGROUND_RIGHT_X; x++)
             {
                 java.util.List<Block> blocks = world.getObjectsAt(x, y, Block.class);
                 if (blocks.size() == 0)
@@ -334,7 +334,7 @@ public abstract class Tetromino extends Actor
     void clearRow(int y)
     {
         TetrisWorld world = TetrisWorld.getWorld();
-        for (int x = 0; x < world.getWidth(); x++)
+        for (int x = TetrisWorld.PLAYGROUND_LEFT_X; x <= TetrisWorld.PLAYGROUND_RIGHT_X; x++)
         {
             world.removeObjects(world.getObjectsAt(x, y, Block.class));
         }
@@ -347,10 +347,9 @@ public abstract class Tetromino extends Actor
      */
     void triggerLandslide(int rowY)
     {
-        TetrisWorld world = TetrisWorld.getWorld();
         for (int y = rowY - 1; y >= 0; y--)
         {
-            for (int x = 0; x < world.getWidth(); x++)
+            for (int x = TetrisWorld.PLAYGROUND_LEFT_X; x <= TetrisWorld.PLAYGROUND_RIGHT_X; x++)
             {
                 Block block = getBlockAt(x, y);
                 if (block != null)
@@ -413,11 +412,12 @@ public abstract class Tetromino extends Actor
         return (int) (Math.random() * 4);
     }
 
-    // return the number of digits of a number
-    int length(int number)
+    protected int genStartX(int placeholder)
     {
-        if (number < 10)
-            return 1;
-        return length(number / 10) + 1;
+        // placeholder = 1: allow x's: 3 4 5 6 7 8 9
+        // 3 + (0.77 * (8 - 1)) = 3 + (0.77 * 7) = 3 + int(5,59) = 8
+        // 3 + (0.01 * (8 - 1)) = 3 + (0.01 * 7) = 3 + int(0,07) = 3
+        // 3 + (0.99 * (8 - 1)) = 3 + (0.99 * 7) = 3 + int(6,93) = 9
+        return TetrisWorld.PLAYGROUND_LEFT_X + (int) (Math.random() * (TetrisWorld.getPlaygroundWidth() - placeholder));
     }
 }
