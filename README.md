@@ -1,5 +1,6 @@
-# greenfoot-tetris
-A Tetris clone running on Greenfoot
+# tetris-like-game
+
+A Tetris clone
 
 Longplay
 https://www.youtube.com/watch?v=VNbo1AGqKrI
