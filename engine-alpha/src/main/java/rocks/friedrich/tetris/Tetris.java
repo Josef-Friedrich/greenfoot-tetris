@@ -6,8 +6,9 @@ import ea.Game;
 public class Tetris {
 
     public static void main(String[] args) {
-        Scene scene = new MainScene();
-        Game.start(400, 300, scene);
+        Scene scene = new FirstScreen();
+        // 160x144 x4 -> 640x576
+        Game.start(640, 576, scene);
     }
 
 }

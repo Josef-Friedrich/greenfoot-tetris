@@ -1,5 +1,8 @@
 # tetris-like-game
 
+Der Bildschirmausschnitt des Gameboys ist 160x144 Pixel. Ein Block hat die Größe 8x8.
+Der Bildschirmausschnitt lässt sich als mit 20x18 Blöcken ausfüllen. Wir verwenden
+Bilder, die um den Faktor 4 (640x576) vergrößert wurden.
 
 [mGBA Game Boy Advance Emulator](https://github.com/mgba-emu/mgba)
 
