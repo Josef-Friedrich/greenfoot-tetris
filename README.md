@@ -25,7 +25,7 @@ einstellt wird.[^nitendo.com]
 
 4 Farben
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/Colors.svg)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/Colors.svg)
 
 | deutsch | englisch | hex grün[^gimp-color-picker] |
 |---------|-------|--------|
