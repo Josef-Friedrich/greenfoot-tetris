@@ -1,14 +1,15 @@
-package rocks.friedrich.tetris;
+package rocks.friedrich.tetris.screens;
 
 import ea.Scene;
+import rocks.friedrich.tetris.blocks.Block;
 import ea.Game;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainScene extends Scene {
+public class IngameScene extends Scene {
 
-    public MainScene() {
+    public IngameScene() {
         Block block = new Block("O");
         block.setPosition(0, 0);
         add(block);

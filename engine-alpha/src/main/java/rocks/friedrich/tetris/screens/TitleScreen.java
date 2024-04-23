@@ -1,4 +1,4 @@
-package rocks.friedrich.tetris;
+package rocks.friedrich.tetris.screens;
 
 import ea.Scene;
 import ea.actor.Image;

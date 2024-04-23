@@ -1,13 +1,10 @@
-package rocks.friedrich.tetris;
+package rocks.friedrich.tetris.blocks;
 
 import ea.actor.Image;
 
-/**
- * Represents a block of a tetromino
- */
 public class Block extends Image {
-    Block(String blockName) {
-        super("images/blocks/block-" + blockName + ".png", 60);
+    public Block(String blockName) {
+        super("images/blocks/block-" + blockName + ".png", 32);
     }
 
     public void moveLeft() {
