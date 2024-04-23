@@ -39,4 +39,4 @@ einstellt wird.[^nitendo.com]
 * [canvas_tetris (javascript)](https://github.com/andyp123/canvas_tetris)
 * [js-tetris](https://github.com/az23/js-tetris) (eventuell nicht fertig gestellt)
 
-[^nitendo.com] https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
+[^nitendo.com]: https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
