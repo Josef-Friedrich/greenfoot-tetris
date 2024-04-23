@@ -25,11 +25,13 @@ einstellt wird.[^nitendo.com]
 
 4 Farben
 
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/Colors.svg)
+
 | deutsch | englisch | hex grün[^gimp-color-picker] |
-|---|---| --- |
-| weiß | white | 7f7c15 |
-| hell | light | 5b703e |
-| dunkel| dark | 5d5949 |
+|---------|-------|--------|
+| weiß    | white | 7f7c15 |
+| hell    | light | 5b703e |
+| dunkel  | dark  | 5d5949 |
 | schwarz | black | 344d40 |
 
 ## Bildschirme (`screens`)
