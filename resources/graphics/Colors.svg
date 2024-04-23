@@ -7,7 +7,7 @@
    width="333.68262"
    height="303.33688"
    viewBox="0 0 333.68261 303.33688"
-   sodipodi:docname="T-for-Colorpicker.svg"
+   sodipodi:docname="Colors.svg"
    inkscape:version="1.3.2 (1:1.3.2+202311252150+091e20ef0f)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -26,10 +26,10 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      inkscape:zoom="2.9111396"
-     inkscape:cx="195.4561"
-     inkscape:cy="115.76223"
-     inkscape:window-width="1920"
-     inkscape:window-height="1016"
+     inkscape:cx="213.31852"
+     inkscape:cy="161.4488"
+     inkscape:window-width="3840"
+     inkscape:window-height="1536"
      inkscape:window-x="0"
      inkscape:window-y="27"
      inkscape:window-maximized="1"
@@ -49,28 +49,28 @@
        x="70.873749"
        y="6.9694285" />
     <rect
-       style="fill:#807f13;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
+       style="fill:#aaaa00;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
        id="rect1"
        width="41.438995"
        height="41.438995"
        x="21.845016"
        y="6.5656118" />
     <rect
-       style="fill:#596f3f;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
+       style="fill:#556633;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
        id="rect1-3"
        width="41.438995"
        height="41.438995"
        x="21.845016"
        y="56.29845" />
     <rect
-       style="fill:#3b5647;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
+       style="fill:#335544;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
        id="rect1-1"
        width="41.438995"
        height="41.438995"
        x="21.845016"
        y="106.03129" />
     <rect
-       style="fill:#2c4534;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
+       style="fill:#223322;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
        id="rect1-36"
        width="41.438995"
        height="41.438995"
@@ -79,100 +79,46 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Alegreya;-inkscape-font-specification:Alegreya;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-213.39633"
-       y="57.684555"
+       x="-230.93013"
+       y="31.949207"
        id="text1"><tspan
          sodipodi:role="line"
-         x="-213.39633"
-         y="57.684555"
+         x="-230.93013"
+         y="31.949207"
          id="tspan4"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans">weiß | white | <tspan
-   style="fill:#7f7c15;fill-opacity:1"
-   id="tspan5">7f7c15</tspan></tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans;fill:#aaaa00;fill-opacity:1">weiß | white | #aaaa00 (170,170 ,0)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Alegreya;-inkscape-font-specification:Alegreya;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-204.93761"
-       y="93.661118"
+       x="-215.08243"
+       y="82.233414"
        id="text1-1"><tspan
          sodipodi:role="line"
-         x="-204.93761"
-         y="93.661118"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans"
-         id="tspan8">hell | light | 5b703e</tspan></text>
+         x="-215.08243"
+         y="82.233414"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans;fill:#556633;fill-opacity:1"
+         id="tspan8">hell | light | #556633 (85,102,52)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Alegreya;-inkscape-font-specification:Alegreya;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-203.40477"
-       y="122.36866"
+       x="-227.50154"
+       y="127.89268"
        id="text1-2"><tspan
          sodipodi:role="line"
-         x="-203.40477"
-         y="122.36866"
+         x="-227.50154"
+         y="127.89268"
          id="tspan4-1"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans">dunkel | dark | <tspan
-   style="fill:#5d5949;fill-opacity:1"
-   id="tspan6-6">5d5949</tspan></tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans;fill:#335544;fill-opacity:1">dunkel | dark | #335544 (51,85,68)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Alegreya;-inkscape-font-specification:Alegreya;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-219.76219"
-       y="159.97311"
+       x="-237.30144"
+       y="180.2365"
        id="text1-9"><tspan
          sodipodi:role="line"
-         x="-219.76219"
-         y="159.97311"
+         x="-237.30144"
+         y="180.2365"
          id="tspan4-6"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans">schwarz | black | 344d40</tspan></text>
-    <rect
-       style="fill:#7f7c15;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
-       id="rect1-2"
-       width="41.438995"
-       height="41.438995"
-       x="-26.895481"
-       y="5.9788604" />
-    <rect
-       style="fill:#5b703e;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
-       id="rect1-3-0"
-       width="41.438995"
-       height="41.438995"
-       x="-26.895481"
-       y="55.711697" />
-    <rect
-       style="fill:#5d5949;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
-       id="rect1-1-6"
-       width="41.438995"
-       height="41.438995"
-       x="-26.895481"
-       y="105.44454" />
-    <rect
-       style="fill:#344d40;fill-opacity:1;stroke-width:2.2087;-inkscape-stroke:none"
-       id="rect1-36-1"
-       width="41.438995"
-       height="41.438995"
-       x="-26.895481"
-       y="155.17738" />
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Alegreya;-inkscape-font-specification:Alegreya;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="-26.591711"
-       y="-8.829381"
-       id="text9"><tspan
-         sodipodi:role="line"
-         id="tspan9"
-         x="-26.591711"
-         y="-8.829381"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans">Gimp</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;line-height:1.25;font-family:Alegreya;-inkscape-font-specification:Alegreya;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-       x="31.98859"
-       y="-6.5474777"
-       id="text9-6"><tspan
-         sodipodi:role="line"
-         id="tspan9-5"
-         x="31.98859"
-         y="-6.5474777"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans">Inkscape</tspan></text>
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.3333px;font-family:sans;-inkscape-font-specification:sans;fill:#223322;fill-opacity:1">schwarz | black | #223322 (34,51,34)</tspan></text>
   </g>
 </svg>

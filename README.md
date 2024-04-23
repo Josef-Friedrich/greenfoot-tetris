@@ -34,6 +34,8 @@ einstellt wird.[^nitendo.com]
 | dunkel  | dark  | 5d5949 |
 | schwarz | black | 344d40 |
 
+https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy
+
 ## Bildschirme (`screens`)
 
 `CopyrightScreen`
