@@ -34,24 +34,33 @@ einstellt wird.[^nitendo.com]
 
 ## Bildschirme (`screens`)
 
+`CopyrightScreen`
 
-Tetris - GB - Title Screen.png
-The title screen.
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/CopyrightScreen.png)
 
-Tetris - GB - Gameplay 1.png
-The main menu.
+`TitleScreen`
 
-Tetris - GB - Gameplay 2.png
-The level select for Mode A.
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/TitleScreen.png)
 
-Tetris - GB - Gameplay 3.png
-Playing a game of Tetris.
+`MainMenuScreen`
 
-Tetris - GB - Gameplay 4.png
-Game Over.
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/MainMenuScreen.png)
 
-Tetris - GB - Gameplay 5.png
-Russian dancers reward you for clearing the game.
+`LevelSelectScreen`
+
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/LevelSelectScreen.png)
+
+`IngameScreen`
+
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/IngameScreen.png)
+
+`GameOverScreen`
+
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/GameOverScreen.png)
+
+`RussianDancersScreen`
+
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/RussianDancersScreen.png)
 
 ## Emulation
 
