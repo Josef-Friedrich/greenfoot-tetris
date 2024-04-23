@@ -21,6 +21,38 @@ zu erringen. Der Schwierigkeitsgrad kann erhöht, indem
 die Fallgeschwindigkeit heraufsetzt und mehr Zufalls-Tetriminos
 einstellt wird.[^nitendo.com]
 
+## Farben
+
+4 Farben
+
+| deutsch | englisch | hex grün[^gimp-color-picker] |
+|---|---| --- |
+| weiß | white | 7f7c15 |
+| hell | light | 5b703e  |
+| dunkel| dark | 5d5949 |
+| schwarz | black | 344d40 |
+
+## Bildschirme (`screens`)
+
+
+Tetris - GB - Title Screen.png
+The title screen.
+
+Tetris - GB - Gameplay 1.png
+The main menu.
+
+Tetris - GB - Gameplay 2.png
+The level select for Mode A.
+
+Tetris - GB - Gameplay 3.png
+Playing a game of Tetris.
+
+Tetris - GB - Gameplay 4.png
+Game Over.
+
+Tetris - GB - Gameplay 5.png
+Russian dancers reward you for clearing the game.
+
 ## Emulation
 
 Es gibt eine Vielzahl sogenannter Emulatoren, mit denen der Gameboy
@@ -53,3 +85,4 @@ ROM notwendig, z. B. von
 - [js-tetris](https://github.com/az23/js-tetris) (eventuell nicht fertig gestellt)
 
 [^nitendo.com]: https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
+[^gimp-color-picker]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
