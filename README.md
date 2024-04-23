@@ -60,7 +60,7 @@ einstellt wird.[^nitendo.com]
 
 `RussianDancersScreen`
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/RussianDancersScreen.png)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/RussianDancersScreen.gif)
 
 ## Emulation
 
@@ -80,6 +80,7 @@ ROM notwendig, z. B. von
 ## Allgemeine Informationen über das Spiel
 
 - [englische Wikipedia](<https://en.wikipedia.org/wiki/Tetris_(Game_Boy_video_game)>)
+- [harddrop.com (Tetris Wiki created by Tetris fans for Tetris fans)](https://harddrop.com/wiki/Tetris_%28Game_Boy%29)
 - [Video Game Music Preservation Foundation](<http://www.vgmpf.com/Wiki/index.php?title=Tetris_(GB)>)
 
 ## Youtube-Videos
