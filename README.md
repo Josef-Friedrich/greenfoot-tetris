@@ -28,7 +28,7 @@ einstellt wird.[^nitendo.com]
 | deutsch | englisch | hex grün[^gimp-color-picker] |
 |---|---| --- |
 | weiß | white | 7f7c15 |
-| hell | light | 5b703e  |
+| hell | light | 5b703e |
 | dunkel| dark | 5d5949 |
 | schwarz | black | 344d40 |
 
