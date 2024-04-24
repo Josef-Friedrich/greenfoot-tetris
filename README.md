@@ -21,6 +21,19 @@ zu erringen. Der Schwierigkeitsgrad kann erhöht, indem
 die Fallgeschwindigkeit heraufsetzt und mehr Zufalls-Tetriminos
 einstellt wird.[^nitendo.com]
 
+## Drehung
+
+
+* O-Tetrominos verändern ihr Aussehen nicht, wenn sie sich drehen.
+* I-Tetrominos have two rotations, favoring the lower half when horizontal, and the right half when vertical.
+    J, L, and T pieces have four rotations centered around the middle square of the three square edge.
+    While S and Z pieces have four rotations, they always favor the bottom and right sides of their rotation space (hence the "right handed" aspect of this rotation system.)
+
+
+
+
+[^strategywiki.org] https://strategywiki.org/wiki/Tetris/Rotation_systems
+https://laroldsjubilantjunkyard.com/tutorial/tetris/
 ## Farben
 
 4 Farben
@@ -117,3 +130,4 @@ ROM notwendig, z. B. von
 
 [^nitendo.com]: https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
 [^gimp-color-picker]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
+[^strategywiki.org]: https://strategywiki.org/wiki/Tetris/Rotation_systems
