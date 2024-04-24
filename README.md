@@ -58,6 +58,10 @@ https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/IngameScreen.png)
 
+
+Das Spielfeld ist `8x18` groß. Der linke Rand ist `2` und der rechte
+Rand `10` Blöcke breit.
+
 `GameOverScreen`
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/GameOverScreen.png)
@@ -69,7 +73,11 @@ https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy
 ## Emulation
 
 Es gibt eine Vielzahl sogenannter Emulatoren, mit denen der Gameboy
-simuliert werden kann. Der Emulator
+simuliert werden kann.
+
+### mGBA
+
+Der Emulator
 [mGBA](https://mgba.io/downloads.html) (mini Game Boy Advance) läuft auf
 allen gängigen Desktop-Betriebssystemen und auf einigen Spielekonsolen.
 _mGBA_ ist freie Software und wird unter der [Mozilla Public License
@@ -80,6 +88,15 @@ veröffentlicht. Der Quellcode ist über
 Um das Spiel in einem Emulator laufen zu lassen, ist eine sogenanntes
 ROM notwendig, z. B. von
 [emulatorgames.net](https://www.emulatorgames.net/roms/gameboy/tetris-jue-v11/).
+
+#### Tastenkürzel
+
+- A: X
+- B: Z
+- L: A
+- R: S
+- Start: Enter
+- Select: Backspace
 
 ## Allgemeine Informationen über das Spiel
 
