@@ -1,21 +1,34 @@
 package rocks.friedrich.tetris.blocks;
 
+import ea.Scene;
 import ea.actor.Image;
 
-public class Block extends Image {
-    public Block(String blockName) {
-        super("images/blocks/block-" + blockName + ".png", 32);
+public class Block {
+
+    private Image image;
+
+    private Scene scene;
+
+    public Block(Scene scene, String blockName, int x, int y) {
+        this.scene = scene;
+        image = new Image("images/blocks/block-" + blockName + ".png", 32);
+        image.setPosition(x, y);
+        scene.add(image);
     }
 
     public void moveLeft() {
-        setPosition(getX() - 1, getY());
+        image.setPosition(image.getX() - 1, image.getY());
     }
 
     public void moveRight() {
-        setPosition(getX() + 1, getY());
+        image.setPosition(image.getX() + 1, image.getY());
     }
 
     public void moveDown() {
-        setPosition(getX(), getY() - 1);
+        image.setPosition(image.getX(), image.getY() - 1);
+    }
+
+    public void remove() {
+        scene.remove(image);
     }
 }

@@ -10,9 +10,7 @@ import java.util.TimerTask;
 public class IngameScene extends Scene {
 
     public IngameScene() {
-        Block block = new Block("O");
-        block.setPosition(0, 0);
-        add(block);
+        Block block = new Block(this, "O", 0, 0);
         Game.setDebug(true);
 
         Timer timer = new Timer();
