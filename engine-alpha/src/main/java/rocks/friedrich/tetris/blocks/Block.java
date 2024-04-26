@@ -31,4 +31,8 @@ public class Block {
     public void remove() {
         scene.remove(image);
     }
+
+    public void moveBy(int x, int y) {
+        image.moveBy(x, y);
+    }
 }

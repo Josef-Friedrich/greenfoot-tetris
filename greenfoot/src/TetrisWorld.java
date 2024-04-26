@@ -108,7 +108,7 @@ public class TetrisWorld extends World
                 return new TTetromino();
             case 5:
                 return new STetromino();
-            default: // 6
+            default:
                 return new ZTetromino();
         }
     }
