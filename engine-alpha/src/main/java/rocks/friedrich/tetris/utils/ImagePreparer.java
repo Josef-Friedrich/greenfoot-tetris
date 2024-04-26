@@ -1,5 +1,9 @@
 package rocks.friedrich.tetris.utils;
 
+import rocks.friedrich.tetris.color.ColorSchema;
+import rocks.friedrich.tetris.color.GrayColorSchema;
+import rocks.friedrich.tetris.color.GreenColorSchema;
+
 import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -12,10 +16,10 @@ import javax.imageio.ImageIO;
 /**
  * https://stackoverflow.com/a/62507011
  */
-public class ImageUpscaler {
+public class ImagePreparer {
 
     private static String getFilePath(String pathname) {
-        return ImageUpscaler.class.getClassLoader().getResource(pathname).getFile();
+        return ImagePreparer.class.getClassLoader().getResource(pathname).getFile();
     }
 
     private static File getFile(String pathname) {
@@ -33,32 +37,38 @@ public class ImageUpscaler {
     /**
      * https://stackoverflow.com/a/4216635
      */
-    public static BufferedImage scale(BufferedImage before, int scale) {
-        int w = before.getWidth();
-        int h = before.getHeight();
-        BufferedImage after = new BufferedImage(w * scale, h * scale, BufferedImage.TYPE_INT_ARGB);
+    public static BufferedImage scale(BufferedImage image, int scale) {
+        BufferedImage after = new BufferedImage(image.getWidth() * scale, image.getHeight() * scale,
+                BufferedImage.TYPE_INT_ARGB);
         AffineTransform at = new AffineTransform();
         at.scale(scale, scale);
         AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        after = scaleOp.filter(before, after);
-        return after;
+        return scaleOp.filter(image, after);
     }
 
     /**
      * https://codereview.stackexchange.com/a/146611
      */
-    public static BufferedImage changeColors(BufferedImage image, Color from, Color to) {
+    public static BufferedImage changeColorSchema(BufferedImage image) {
+        ColorSchema from = new GrayColorSchema();
+        ColorSchema to = new GreenColorSchema();
+
         int w = image.getWidth();
         int h = image.getHeight();
         int[] rgb = image.getRGB(0, 0, w, h, null, 0, w);
         for (int i = 0; i < rgb.length; i++) {
-            if (rgb[i] == from.getRGB()) {
-                rgb[i] = to.getRGB();
+            if (rgb[i] == from.white().getRGB()) {
+                rgb[i] = to.white().getRGB();
+            } else if (rgb[i] == from.light().getRGB()) {
+                rgb[i] = to.light().getRGB();
+            } else if (rgb[i] == from.dark().getRGB()) {
+                rgb[i] = to.dark().getRGB();
+            } else if (rgb[i] == from.black().getRGB()) {
+                rgb[i] = to.black().getRGB();
             }
         }
         image.setRGB(0, 0, w, h, rgb, 0, w);
         return image;
-
     }
 
 }
