@@ -8,12 +8,18 @@ import java.awt.event.KeyEvent;
 
 public class TetrominoDebugScreen extends Scene implements KeyListener {
 
-    private Tetromino t;
-    private Tetromino i;
+    Tetromino[] t;
 
     public TetrominoDebugScreen() {
-        t = createTetromino("T", -1, 0);
-        i = createTetromino("I", 3, 0);
+        t = new Tetromino[7];
+        t[0] = createTetromino("L", -5, 5);
+        t[1] = createTetromino("J", 0, 5);
+        t[2] = createTetromino("I", 5, 5);
+        t[3] = createTetromino("O", 0, 0);
+        t[4] = createTetromino("Z", -5, -5);
+        t[5] = createTetromino("S", 0, -5);
+        t[6] = createTetromino("T", 5, -5);
+
     }
 
     private Tetromino createTetromino(String name, int x, int y) {
@@ -41,25 +47,27 @@ public class TetrominoDebugScreen extends Scene implements KeyListener {
     public void onKeyDown(KeyEvent keyEvent) {
         switch (keyEvent.getKeyCode()) {
             case KeyEvent.VK_LEFT:
-                t.moveLeft();
-                i.moveLeft();
+                for (Tetromino i : t) {
+                    i.moveLeft();
+                }
                 break;
 
             case KeyEvent.VK_RIGHT:
-                t.moveRight();
-                i.moveRight();
-
+                for (Tetromino i : t) {
+                    i.moveRight();
+                }
                 break;
 
             case KeyEvent.VK_DOWN:
-                t.moveDown();
-                i.moveDown();
-
+                for (Tetromino i : t) {
+                    i.moveDown();
+                }
                 break;
 
             case KeyEvent.VK_SPACE:
-                t.rotate();
-                i.rotate();
+                for (Tetromino i : t) {
+                    i.rotate();
+                }
                 break;
         }
     }
