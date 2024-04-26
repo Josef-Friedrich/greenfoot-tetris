@@ -17,15 +17,15 @@ public class Block {
     }
 
     public void moveLeft() {
-        image.setPosition(image.getX() - 1, image.getY());
+        image.moveBy(-1, 0);
     }
 
     public void moveRight() {
-        image.setPosition(image.getX() + 1, image.getY());
+        image.moveBy(1, 0);
     }
 
     public void moveDown() {
-        image.setPosition(image.getX(), image.getY() - 1);
+        image.moveBy(0, -1);
     }
 
     public void remove() {
