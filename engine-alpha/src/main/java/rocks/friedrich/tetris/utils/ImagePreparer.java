@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
 import java.util.HashMap;
 
 /**
- * https://stackoverflow.com/a/62507011
+ * Bereitet Bilder für die Verwendung in Tetris vor.
  */
 public class ImagePreparer {
 
@@ -38,6 +38,17 @@ public class ImagePreparer {
         ImageIO.write(image, "png", new File(pathname));
     }
 
+    /**
+     * Gibt ein vergrößertes und eingefärbtes Bild zurück.
+     *
+     * Dieser Methode ist außerdem ein Zwischenspeicher (Cache) vorgeschaltet.
+     * Wird zweimal das gleiche Bild angefordert, wird das Bild beim zweiten Mal
+     * aus dem Cache geladen und nicht neu berechnet.
+     *
+     * @param pathname Der relative Pfad zu {@code src/main/resources}.
+     *
+     * @return Das vergrößerte und eingefärbtes Bild.
+     */
     public static BufferedImage get(String pathname) {
         if (cache.containsKey(pathname)) {
             return cache.get(pathname);
@@ -54,7 +65,9 @@ public class ImagePreparer {
     }
 
     /**
-     * https://stackoverflow.com/a/4216635
+     * Vergrößert ein Bild, indem die Pixel vervielfacht werden.
+     *
+     * @see https://stackoverflow.com/a/4216635
      */
     public static BufferedImage scale(BufferedImage image, int scale) {
         System.out.println("Scaling image by " + scale);
@@ -67,7 +80,20 @@ public class ImagePreparer {
     }
 
     /**
-     * https://codereview.stackexchange.com/a/146611
+     * Ändert die Farben eines Bildes.
+     *
+     * Die Ausgangsbilder haben als Farben vier verschiedene Grautöne bzw. zwei
+     * Grautöne und schwarz und weiß. Mit Hilfe dieser Methode ist es möglich, die
+     * Bilder z. B. grünlich einzufärben, sodass sie dem klassischen Gameboy-Farben
+     * ähneln. So müssen nicht für ein bestimmtes Farbschema entscheiden und dann
+     * viele Bilddateien erstellen, die dann wieder geändert werden müssten, wenn
+     * wir ein anderes Fahrschema nutzen wollen.
+     *
+     * @see https://codereview.stackexchange.com/a/146611
+     *
+     * @param image Das Bild, dessen Farben geändert werden sollen.
+     *
+     * @return Das Bild mit den geänderten Farben.
      */
     public static BufferedImage changeColorSchema(BufferedImage image) {
         ColorSchema from = new GrayColorSchema();

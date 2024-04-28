@@ -11,7 +11,7 @@ public class Block {
 
     public Block(Scene scene, String blockName, int x, int y) {
         this.scene = scene;
-        image = new ImageActor("images/blocks/Block-" + blockName + ".png");
+        image = new ImageActor("blocks/" + blockName + ".png");
         image.setPosition(x, y);
         scene.add(image);
     }
