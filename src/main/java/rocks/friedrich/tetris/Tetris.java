@@ -37,6 +37,16 @@ public class Tetris
      */
     public static boolean DEBUG = false;
 
+    /**
+     * Das Spielfeld hat links einen Abstand zum Bildschirmrand von 2 Blöcken.
+     */
+    public static final int PLAYGROUND_LEFT_X = 3;
+
+    /**
+     * Das Spielfeld hat rechts einen Abstand zum Bildschirmrand von 8 Blöcken.
+     */
+    public static final int PLAYGROUND_RIGHT_X = 10;
+
     public static void start(Scene scene, boolean debug)
     {
         scene.getCamera().setZoom(Tetris.SCALE * Tetris.BLOCK_SIZE);
