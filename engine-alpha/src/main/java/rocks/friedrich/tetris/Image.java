@@ -1,30 +1,35 @@
-package rocks.friedrich.tetris.utils;
-
-import rocks.friedrich.tetris.Tetris;
-import rocks.friedrich.tetris.color.ColorSchema;
-import rocks.friedrich.tetris.color.GrayColorSchema;
-import rocks.friedrich.tetris.color.GreenColorSchema;
+package rocks.friedrich.tetris;
 
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import java.util.HashMap;
+import rocks.friedrich.tetris.color.ColorSchema;
+import rocks.friedrich.tetris.color.GrayColorSchema;
+import rocks.friedrich.tetris.color.GreenColorSchema;
 
 /**
+ * Eine Spezialisierung von {@link Image}.
+ *
  * Bereitet Bilder für die Verwendung in Tetris vor.
  */
-public class ImagePreparer
+public class Image extends rocks.friedrich.engine_omega.actor.Image
 {
+    public Image(String pathname)
+    {
+        super(Image.get(pathname), Tetris.SCALE * Tetris.BLOCK_SIZE);
+    }
+
     private static final HashMap<String, BufferedImage> cache = new HashMap<>();
 
     private static String getFilePath(String pathname)
     {
-        return ImagePreparer.class.getClassLoader().getResource(pathname)
+        return Image.class.getClassLoader().getResource(pathname)
                 .getFile();
     }
 

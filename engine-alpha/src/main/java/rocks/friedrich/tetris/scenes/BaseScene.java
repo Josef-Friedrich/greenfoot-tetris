@@ -1,6 +1,6 @@
-package rocks.friedrich.tetris.screens;
+package rocks.friedrich.tetris.scenes;
 
-public class BaseScreen
+public class BaseScene
 {
     public static final int BLOCK_SIZE = 32;
 

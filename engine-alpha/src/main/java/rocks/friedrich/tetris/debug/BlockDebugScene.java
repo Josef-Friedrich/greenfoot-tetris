@@ -7,18 +7,18 @@ import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.tetris.blocks.Block;
 
-public class BlockDebugScreen extends Scene implements KeyListener
+public class BlockDebugScene extends Scene implements KeyListener
 {
     Block block;
 
-    public BlockDebugScreen()
+    public BlockDebugScene()
     {
         block = new Block(this, "J", 0, 0);
     }
 
     public static void main(String[] args)
     {
-        Scene scene = new BlockDebugScreen();
+        Scene scene = new BlockDebugScene();
         // 160x144 x4 -> 640x576
         Game.setDebug(true);
         Game.start(640, 576, scene);

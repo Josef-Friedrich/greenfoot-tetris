@@ -6,13 +6,13 @@ import rocks.friedrich.tetris.Tetris;
 import rocks.friedrich.tetris.tetrominos.*;
 import java.awt.event.KeyEvent;
 
-public class TetrominoDebugScreen extends Scene implements KeyListener
+public class TetrominoDebugScene extends Scene implements KeyListener
 {
     private boolean DEBUG = true;
 
     Tetromino[] t;
 
-    public TetrominoDebugScreen()
+    public TetrominoDebugScene()
     {
         t = new Tetromino[7];
         t[0] = createTetromino("L", -5, 5);
@@ -91,7 +91,7 @@ public class TetrominoDebugScreen extends Scene implements KeyListener
 
     public static void main(String[] args)
     {
-        Scene scene = new TetrominoDebugScreen();
+        Scene scene = new TetrominoDebugScene();
         Tetris.start(scene, true);
     }
 }

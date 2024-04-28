@@ -1,4 +1,4 @@
-package rocks.friedrich.tetris.screens;
+package rocks.friedrich.tetris.scenes;
 
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.tetris.blocks.Block;

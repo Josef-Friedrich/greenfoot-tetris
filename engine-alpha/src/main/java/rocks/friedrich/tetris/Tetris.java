@@ -1,7 +1,7 @@
 package rocks.friedrich.tetris;
 
 import rocks.friedrich.engine_omega.Scene;
-import rocks.friedrich.tetris.screens.CopyrightScreen;
+import rocks.friedrich.tetris.scenes.CopyrightScene;
 import rocks.friedrich.engine_omega.Game;
 
 public class Tetris
@@ -52,7 +52,7 @@ public class Tetris
 
     public static void main(String[] args)
     {
-        Scene scene = new CopyrightScreen();
+        Scene scene = new CopyrightScene();
         Game.start(BLOCK_SIZE * WIDTH * SCALE, BLOCK_SIZE * HEIGHT * SCALE,
                 scene);
     }
