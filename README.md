@@ -1,5 +1,8 @@
 # Tetris auf dem Gameboy
 
+Nachbau des Spiels Tetris auf dem klassischem Gameboy mit Hilfe von Java und
+der Engine Alpha.
+
 ## Bildschirmauflösung
 
 Der Bildschirmausschnitt des Gameboys ist `160x144` (Breite `x` Höhe)
@@ -23,14 +26,10 @@ einstellt wird.[^nitendo.com]
 
 ## Drehung
 
-
 * O-Tetrominos verändern ihr Aussehen nicht, wenn sie sich drehen.
 * I-Tetrominos have two rotations, favoring the lower half when horizontal, and the right half when vertical.
     J, L, and T pieces have four rotations centered around the middle square of the three square edge.
     While S and Z pieces have four rotations, they always favor the bottom and right sides of their rotation space (hence the "right handed" aspect of this rotation system.)
-
-
-
 
 [^strategywiki.org] https://strategywiki.org/wiki/Tetris/Rotation_systems
 https://laroldsjubilantjunkyard.com/tutorial/tetris/
@@ -38,7 +37,7 @@ https://laroldsjubilantjunkyard.com/tutorial/tetris/
 
 4 Farben
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/Colors.svg)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/Colors.svg)
 
 | deutsch | englisch | hex grün[^gimp-color-picker] | grau | grau |
 |---------|-------|--------|----|-----|
@@ -53,23 +52,23 @@ https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy
 
 `CopyrightScreen`
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/CopyrightScreen.png)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/CopyrightScreen.png)
 
 `TitleScreen`
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/TitleScreen.png)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/TitleScreen.png)
 
 `MainMenuScreen`
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/MainMenuScreen.png)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/MainMenuScreen.png)
 
 `LevelSelectScreen`
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/LevelSelectScreen.png)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/LevelSelectScreen.png)
 
 `IngameScreen`
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/IngameScreen.png)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/IngameScreen.png)
 
 
 Das Spielfeld ist `8x18` groß. Der linke Rand ist `2` und der rechte
@@ -77,11 +76,11 @@ Rand `10` Blöcke breit.
 
 `GameOverScreen`
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/GameOverScreen.png)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/GameOverScreen.png)
 
 `RussianDancersScreen`
 
-![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/resources/graphics/screenshots/RussianDancersScreen.gif)
+![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/RussianDancersScreen.gif)
 
 ## Emulation
 
