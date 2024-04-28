@@ -1,17 +1,17 @@
 package rocks.friedrich.tetris.blocks;
 
 import rocks.friedrich.engine_omega.Scene;
-import rocks.friedrich.engine_omega.actor.Image;
+import rocks.friedrich.tetris.utils.ImageActor;
 
 public class Block {
 
-    private Image image;
+    private ImageActor image;
 
     private Scene scene;
 
     public Block(Scene scene, String blockName, int x, int y) {
         this.scene = scene;
-        image = new Image("images/blocks/block-" + blockName + ".png", 32);
+        image = new ImageActor("images/blocks/Block-" + blockName + ".png");
         image.setPosition(x, y);
         scene.add(image);
     }

@@ -1,10 +1,10 @@
 package rocks.friedrich.tetris.utils;
 
+import rocks.friedrich.tetris.Tetris;
 import rocks.friedrich.tetris.color.ColorSchema;
 import rocks.friedrich.tetris.color.GrayColorSchema;
 import rocks.friedrich.tetris.color.GreenColorSchema;
 
-import java.awt.Color;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
@@ -13,10 +13,14 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import java.util.HashMap;
+
 /**
  * https://stackoverflow.com/a/62507011
  */
 public class ImagePreparer {
+
+    private static final HashMap<String, BufferedImage> cache = new HashMap<>();
 
     private static String getFilePath(String pathname) {
         return ImagePreparer.class.getClassLoader().getResource(pathname).getFile();
@@ -34,10 +38,26 @@ public class ImagePreparer {
         ImageIO.write(image, "png", new File(pathname));
     }
 
+    public static BufferedImage get(String pathname) {
+        if (cache.containsKey(pathname)) {
+            return cache.get(pathname);
+        }
+        try {
+            BufferedImage image = read(pathname);
+            image = scale(changeColorSchema(image), Tetris.SCALE);
+            cache.put(pathname, image);
+            return image;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     /**
      * https://stackoverflow.com/a/4216635
      */
     public static BufferedImage scale(BufferedImage image, int scale) {
+        System.out.println("Scaling image by " + scale);
         BufferedImage after = new BufferedImage(image.getWidth() * scale, image.getHeight() * scale,
                 BufferedImage.TYPE_INT_ARGB);
         AffineTransform at = new AffineTransform();

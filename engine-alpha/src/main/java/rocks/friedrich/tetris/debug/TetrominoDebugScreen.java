@@ -1,8 +1,8 @@
 package rocks.friedrich.tetris.debug;
 
-import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
+import rocks.friedrich.tetris.Tetris;
 import rocks.friedrich.tetris.tetrominos.*;
 import java.awt.event.KeyEvent;
 
@@ -74,9 +74,7 @@ public class TetrominoDebugScreen extends Scene implements KeyListener {
 
     public static void main(String[] args) {
         Scene scene = new TetrominoDebugScreen();
-        // 160x144 x4 -> 640x576
-        Game.setDebug(true);
-        Game.start(640, 576, scene);
+        Tetris.start(scene, true);
     }
 
 }
