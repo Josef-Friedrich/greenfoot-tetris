@@ -15,16 +15,34 @@ public abstract class Tetromino {
 
     protected int rotation;
 
-    Tetromino(Scene scene, int x, int y) {
+    /**
+     * Show different block images for debugging purposes.
+     */
+    protected boolean debug;
+
+    Tetromino(Scene scene, int x, int y, boolean debug) {
         this.x = x;
         this.y = y;
         this.scene = scene;
         blocks = new Block[4];
+        this.debug = debug;
     }
 
+    Tetromino(Scene scene, int x, int y) {
+        this(scene, x, y, false);
+    }
 
     protected Block createBlock(String name, int x, int y) {
         return new Block(this.scene, name, x, y);
+    }
+
+    protected void addBlock(int index, String name, int x, int y) {
+        if (debug) {
+            blocks[index] = createBlock("Debug-" + index, x, y);
+
+        } else {
+            blocks[index] = createBlock(name, x, y);
+        }
     }
 
     public void moveLeft() {

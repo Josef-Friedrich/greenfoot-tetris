@@ -8,6 +8,8 @@ import java.awt.event.KeyEvent;
 
 public class TetrominoDebugScreen extends Scene implements KeyListener {
 
+    private boolean DEBUG = true;
+
     Tetromino[] t;
 
     public TetrominoDebugScreen() {
@@ -25,21 +27,21 @@ public class TetrominoDebugScreen extends Scene implements KeyListener {
     private Tetromino createTetromino(String name, int x, int y) {
         switch (name) {
             case "L":
-                return new L(this, x, y);
+                return new L(this, x, y, DEBUG);
             case "J":
-                return new J(this, x, y);
+                return new J(this, x, y, DEBUG);
             case "I":
-                return new I(this, x, y);
+                return new I(this, x, y, DEBUG);
             case "O":
-                return new O(this, x, y);
+                return new O(this, x, y, DEBUG);
             case "Z":
-                return new Z(this, x, y);
+                return new Z(this, x, y, DEBUG);
             case "S":
-                return new S(this, x, y);
+                return new S(this, x, y, DEBUG);
             case "T":
-                return new T(this, x, y);
+                return new T(this, x, y, DEBUG);
             default:
-                return new L(this, x, y);
+                return new L(this, x, y, DEBUG);
         }
     }
 
@@ -72,7 +74,7 @@ public class TetrominoDebugScreen extends Scene implements KeyListener {
         }
     }
 
-    public static void main(String[] args) {
+     public static void main(String[] args) {
         Scene scene = new TetrominoDebugScreen();
         Tetris.start(scene, true);
     }

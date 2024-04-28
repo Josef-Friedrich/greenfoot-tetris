@@ -3,12 +3,12 @@ package rocks.friedrich.tetris.tetrominos;
 import rocks.friedrich.engine_omega.Scene;
 
 public class Z extends Tetromino {
-    public Z(Scene scene, int x, int y) {
-        super(scene, x, y);
-        blocks[0] = createBlock("Z", x, y);
-        blocks[1] = createBlock("Z", x - 1, y - 1);
-        blocks[2] = createBlock("Z", x, y - 1);
-        blocks[3] = createBlock("Z", x + 1, y - 1);
+    public Z(Scene scene, int x, int y, boolean debug) {
+        super(scene, x, y, debug);
+        addBlock(0, "Z", x, y);
+        addBlock(1, "Z", x - 1, y - 1);
+        addBlock(2, "Z", x, y - 1);
+        addBlock(3, "Z", x + 1, y - 1);
     }
 
 }

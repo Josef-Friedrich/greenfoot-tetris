@@ -10,6 +10,7 @@ public class Tetris {
     public static final int WIDTH = 20;
     public static final int HEIGHT = 18;
     public static final int SCALE = 4;
+    public static boolean DEBUG = false;
 
     public static void start(Scene scene, boolean debug) {
         scene.getCamera().setZoom(Tetris.SCALE * Tetris.BLOCK_SIZE);

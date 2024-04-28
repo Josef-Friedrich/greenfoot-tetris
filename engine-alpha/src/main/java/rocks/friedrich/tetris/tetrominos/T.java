@@ -4,12 +4,12 @@ import rocks.friedrich.engine_omega.Scene;
 
 public class T extends Tetromino {
 
-    public T(Scene scene, int x, int y) {
-        super(scene, x, y);
-        blocks[0] = createBlock("T", x, y);
-        blocks[1] = createBlock("T", x - 1, y);
-        blocks[2] = createBlock("T", x + 1, y);
-        blocks[3] = createBlock("T", x, y - 1);
+    public T(Scene scene, int x, int y, boolean debug) {
+        super(scene, x, y, debug);
+        addBlock(0, "T", x, y);
+        addBlock(1, "T", x - 1, y);
+        addBlock(2, "T", x + 1, y);
+        addBlock(3, "T", x, y - 1);
     }
 
     public void rotate() {
