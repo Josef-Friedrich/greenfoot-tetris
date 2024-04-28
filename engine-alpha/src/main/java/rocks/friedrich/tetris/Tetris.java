@@ -1,8 +1,8 @@
 package rocks.friedrich.tetris;
 
-import ea.Scene;
+import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.tetris.screens.CopyrightScreen;
-import ea.Game;
+import rocks.friedrich.engine_omega.Game;
 
 public class Tetris {
 

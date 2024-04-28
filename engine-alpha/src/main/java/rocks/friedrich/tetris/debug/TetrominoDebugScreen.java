@@ -1,8 +1,8 @@
 package rocks.friedrich.tetris.debug;
 
-import ea.Game;
-import ea.Scene;
-import ea.event.KeyListener;
+import rocks.friedrich.engine_omega.Game;
+import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.tetris.tetrominos.*;
 import java.awt.event.KeyEvent;
 

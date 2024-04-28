@@ -1,6 +1,6 @@
 package rocks.friedrich.tetris.tetrominos;
 
-import ea.Scene;
+import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.tetris.blocks.Block;
 
 public abstract class Tetromino {

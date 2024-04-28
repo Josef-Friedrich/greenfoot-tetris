@@ -2,9 +2,9 @@ package rocks.friedrich.tetris.debug;
 
 import java.awt.event.KeyEvent;
 
-import ea.Game;
-import ea.Scene;
-import ea.event.KeyListener;
+import rocks.friedrich.engine_omega.Game;
+import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.tetris.blocks.Block;
 
 public class BlockDebugScreen extends Scene implements KeyListener {

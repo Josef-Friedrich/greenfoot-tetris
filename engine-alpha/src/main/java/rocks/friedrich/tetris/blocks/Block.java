@@ -1,7 +1,7 @@
 package rocks.friedrich.tetris.blocks;
 
-import ea.Scene;
-import ea.actor.Image;
+import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.actor.Image;
 
 public class Block {
 

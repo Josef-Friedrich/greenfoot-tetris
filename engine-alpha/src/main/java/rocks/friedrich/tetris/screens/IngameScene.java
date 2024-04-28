@@ -1,8 +1,8 @@
 package rocks.friedrich.tetris.screens;
 
-import ea.Scene;
+import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.tetris.blocks.Block;
-import ea.Game;
+import rocks.friedrich.engine_omega.Game;
 
 import java.util.Timer;
 import java.util.TimerTask;

@@ -1,6 +1,6 @@
 package rocks.friedrich.tetris.tetrominos;
 
-import ea.Scene;
+import rocks.friedrich.engine_omega.Scene;
 
 public class I extends Tetromino {
     public I(Scene scene, int x, int y) {
