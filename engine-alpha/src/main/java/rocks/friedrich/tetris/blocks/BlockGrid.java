@@ -1,5 +1,6 @@
 package rocks.friedrich.tetris.blocks;
 
-public class BlockGrid {
+public class BlockGrid
+{
     Block[][] blocks;
 }

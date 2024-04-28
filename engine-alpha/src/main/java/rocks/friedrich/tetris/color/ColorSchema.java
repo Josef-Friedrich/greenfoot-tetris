@@ -2,8 +2,8 @@ package rocks.friedrich.tetris.color;
 
 import java.awt.Color;
 
-public interface ColorSchema {
-
+public interface ColorSchema
+{
     Color white();
 
     Color light();

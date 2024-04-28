@@ -18,23 +18,29 @@ import java.util.HashMap;
 /**
  * Bereitet Bilder für die Verwendung in Tetris vor.
  */
-public class ImagePreparer {
-
+public class ImagePreparer
+{
     private static final HashMap<String, BufferedImage> cache = new HashMap<>();
 
-    private static String getFilePath(String pathname) {
-        return ImagePreparer.class.getClassLoader().getResource(pathname).getFile();
+    private static String getFilePath(String pathname)
+    {
+        return ImagePreparer.class.getClassLoader().getResource(pathname)
+                .getFile();
     }
 
-    private static File getFile(String pathname) {
+    private static File getFile(String pathname)
+    {
         return new File(getFilePath(pathname));
     }
 
-    public static BufferedImage read(String pathname) throws IOException {
+    public static BufferedImage read(String pathname) throws IOException
+    {
         return ImageIO.read(getFile(pathname));
     }
 
-    public static void write(BufferedImage image, String pathname) throws IOException {
+    public static void write(BufferedImage image, String pathname)
+            throws IOException
+    {
         ImageIO.write(image, "png", new File(pathname));
     }
 
@@ -49,16 +55,21 @@ public class ImagePreparer {
      *
      * @return Das vergrößerte und eingefärbtes Bild.
      */
-    public static BufferedImage get(String pathname) {
-        if (cache.containsKey(pathname)) {
+    public static BufferedImage get(String pathname)
+    {
+        if (cache.containsKey(pathname))
+        {
             return cache.get(pathname);
         }
-        try {
+        try
+        {
             BufferedImage image = read(pathname);
             image = scale(changeColorSchema(image), Tetris.SCALE);
             cache.put(pathname, image);
             return image;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
         return null;
@@ -69,13 +80,15 @@ public class ImagePreparer {
      *
      * @see https://stackoverflow.com/a/4216635
      */
-    public static BufferedImage scale(BufferedImage image, int scale) {
+    public static BufferedImage scale(BufferedImage image, int scale)
+    {
         System.out.println("Scaling image by " + scale);
-        BufferedImage after = new BufferedImage(image.getWidth() * scale, image.getHeight() * scale,
-                BufferedImage.TYPE_INT_ARGB);
+        BufferedImage after = new BufferedImage(image.getWidth() * scale,
+                image.getHeight() * scale, BufferedImage.TYPE_INT_ARGB);
         AffineTransform at = new AffineTransform();
         at.scale(scale, scale);
-        AffineTransformOp scaleOp = new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        AffineTransformOp scaleOp = new AffineTransformOp(at,
+                AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
         return scaleOp.filter(image, after);
     }
 
@@ -83,11 +96,11 @@ public class ImagePreparer {
      * Ändert die Farben eines Bildes.
      *
      * Die Ausgangsbilder haben als Farben vier verschiedene Grautöne bzw. zwei
-     * Grautöne und schwarz und weiß. Mit Hilfe dieser Methode ist es möglich, die
-     * Bilder z. B. grünlich einzufärben, sodass sie dem klassischen Gameboy-Farben
-     * ähneln. So müssen nicht für ein bestimmtes Farbschema entscheiden und dann
-     * viele Bilddateien erstellen, die dann wieder geändert werden müssten, wenn
-     * wir ein anderes Fahrschema nutzen wollen.
+     * Grautöne und schwarz und weiß. Mit Hilfe dieser Methode ist es möglich,
+     * die Bilder z. B. grünlich einzufärben, sodass sie dem klassischen
+     * Gameboy-Farben ähneln. So müssen nicht für ein bestimmtes Farbschema
+     * entscheiden und dann viele Bilddateien erstellen, die dann wieder
+     * geändert werden müssten, wenn wir ein anderes Fahrschema nutzen wollen.
      *
      * @see https://codereview.stackexchange.com/a/146611
      *
@@ -95,26 +108,33 @@ public class ImagePreparer {
      *
      * @return Das Bild mit den geänderten Farben.
      */
-    public static BufferedImage changeColorSchema(BufferedImage image) {
+    public static BufferedImage changeColorSchema(BufferedImage image)
+    {
         ColorSchema from = new GrayColorSchema();
         ColorSchema to = new GreenColorSchema();
-
         int w = image.getWidth();
         int h = image.getHeight();
         int[] rgb = image.getRGB(0, 0, w, h, null, 0, w);
-        for (int i = 0; i < rgb.length; i++) {
-            if (rgb[i] == from.white().getRGB()) {
+        for (int i = 0; i < rgb.length; i++)
+        {
+            if (rgb[i] == from.white().getRGB())
+            {
                 rgb[i] = to.white().getRGB();
-            } else if (rgb[i] == from.light().getRGB()) {
+            }
+            else if (rgb[i] == from.light().getRGB())
+            {
                 rgb[i] = to.light().getRGB();
-            } else if (rgb[i] == from.dark().getRGB()) {
+            }
+            else if (rgb[i] == from.dark().getRGB())
+            {
                 rgb[i] = to.dark().getRGB();
-            } else if (rgb[i] == from.black().getRGB()) {
+            }
+            else if (rgb[i] == from.black().getRGB())
+            {
                 rgb[i] = to.black().getRGB();
             }
         }
         image.setRGB(0, 0, w, h, rgb, 0, w);
         return image;
     }
-
 }

@@ -9,19 +9,19 @@ import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
 
-public class ImagePreparerTest {
-
+public class ImagePreparerTest
+{
     @Test
-    public void testCover() throws IOException {
+    public void testCover() throws IOException
+    {
         write(scale(read("CopyrightScreen.png"), 4),
                 "CopyrightScreen_pixelperfect-upscaling.png");
     }
 
     @Test
-    public void testChangeColors() throws IOException {
-        write(
-                changeColorSchema(read("TitleScreen.png")),
+    public void testChangeColors() throws IOException
+    {
+        write(changeColorSchema(read("TitleScreen.png")),
                 "CopyrightScreen_change_colors.png");
-
     }
 }

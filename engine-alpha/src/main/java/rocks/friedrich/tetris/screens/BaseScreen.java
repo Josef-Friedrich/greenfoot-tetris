@@ -1,6 +1,7 @@
 package rocks.friedrich.tetris.screens;
 
-public class BaseScreen {
+public class BaseScreen
+{
     public static final int BLOCK_SIZE = 32;
 
     public static final int COLS = 20;
@@ -16,6 +17,8 @@ public class BaseScreen {
      * Das Spielfeld hat rechts einen Abstand zum Bildschirmrand von 8 Blöcken.
      */
     public static final int PLAYGROUND_RIGHT_X = 10;
+
     public static final int PLAYGROUND_TOP_Y = 0;
+
     public static final int PLAYGROUND_BOTTOM_Y = 17;
 }
