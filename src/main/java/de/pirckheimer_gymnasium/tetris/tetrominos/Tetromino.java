@@ -13,7 +13,7 @@ public abstract class Tetromino
 
     protected int y;
 
-    protected int rotation;
+    public int rotation;
 
     /**
      * Show different block images for debugging purposes.

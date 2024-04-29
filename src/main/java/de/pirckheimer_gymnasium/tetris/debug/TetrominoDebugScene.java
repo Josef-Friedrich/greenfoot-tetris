@@ -1,19 +1,28 @@
 package de.pirckheimer_gymnasium.tetris.debug;
 
+import rocks.friedrich.engine_omega.actor.Text;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.*;
+
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 
 public class TetrominoDebugScene extends Scene implements KeyListener
 {
     private boolean DEBUG = true;
 
+    private Text rotation;
+
     Tetromino[] t;
 
     public TetrominoDebugScene()
     {
+        rotation = new Text("0", 2);
+        rotation.setColor(Color.WHITE);
+        rotation.setPosition(-7, 0);
+        add(rotation);
         t = new Tetromino[7];
         t[0] = createTetromino("L", -5, 5);
         t[1] = createTetromino("J", 0, 5);
@@ -85,6 +94,7 @@ public class TetrominoDebugScene extends Scene implements KeyListener
             {
                 i.rotate();
             }
+            rotation.setContent(String.valueOf(t[0].rotation));
             break;
         }
     }
