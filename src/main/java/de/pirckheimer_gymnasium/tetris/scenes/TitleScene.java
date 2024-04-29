@@ -1,16 +1,12 @@
 package de.pirckheimer_gymnasium.tetris.scenes;
 
-import rocks.friedrich.engine_omega.Scene;
 import de.pirckheimer_gymnasium.tetris.Tetris;
-import de.pirckheimer_gymnasium.tetris.Image;
 
-public class TitleScene extends Scene
+public class TitleScene extends BaseScene
 {
     public TitleScene()
     {
-        Image image = new Image("fullscreen/title.png");
-        getCamera().setFocus(image);
-        add(image);
+        super("title");
     }
 
     public static void main(String[] args)

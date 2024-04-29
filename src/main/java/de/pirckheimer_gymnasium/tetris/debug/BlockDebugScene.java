@@ -2,10 +2,10 @@ package de.pirckheimer_gymnasium.tetris.debug;
 
 import java.awt.event.KeyEvent;
 
+import de.pirckheimer_gymnasium.tetris.blocks.Block;
 import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
-import de.pirckheimer_gymnasium.tetris.blocks.Block;
 
 public class BlockDebugScene extends Scene implements KeyListener
 {
