@@ -29,13 +29,6 @@
     </dependency>
   </dependencies>
 
-  <repositories>
-    <repository>
-      <id>project-repository</id>
-      <url>file://${project.basedir}/repository</url>
-    </repository>
-  </repositories>
-
   <build>
     <plugins>
       <plugin>
