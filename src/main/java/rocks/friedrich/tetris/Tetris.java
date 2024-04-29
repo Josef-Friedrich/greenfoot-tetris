@@ -1,5 +1,7 @@
 package rocks.friedrich.tetris;
 
+import java.awt.Color;
+
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.tetris.scenes.CopyrightScene;
 import rocks.friedrich.engine_omega.Game;
@@ -46,6 +48,14 @@ public class Tetris
      * Das Spielfeld hat rechts einen Abstand zum Bildschirmrand von 8 Blöcken.
      */
     public static final int PLAYGROUND_RIGHT_X = 10;
+
+    public static final Color COLOR_WHITE = null;
+
+    public static final Color COLOR_LIGHT = null;
+
+    public static final Color COLOR_DARK = null;
+
+    public static final Color COLOR_BLACK = null;
 
     public static void start(Scene scene, boolean debug)
     {

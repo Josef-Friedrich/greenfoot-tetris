@@ -10,8 +10,8 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 
 import rocks.friedrich.tetris.color.ColorSchema;
+import rocks.friedrich.tetris.color.CustomColorSchema;
 import rocks.friedrich.tetris.color.GrayColorSchema;
-import rocks.friedrich.tetris.color.GreenColorSchema;
 
 /**
  * Eine Spezialisierung von {@link Image}.
@@ -114,7 +114,7 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
     public static BufferedImage changeColorSchema(BufferedImage image)
     {
         ColorSchema from = new GrayColorSchema();
-        ColorSchema to = new GreenColorSchema();
+        ColorSchema to = new CustomColorSchema();
         int w = image.getWidth();
         int h = image.getHeight();
         int[] rgb = image.getRGB(0, 0, w, h, null, 0, w);
