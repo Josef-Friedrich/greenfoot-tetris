@@ -3,72 +3,15 @@
 Nachbau des Spiels Tetris auf dem klassischem Gameboy mit Hilfe von Java und
 der Engine Alpha.
 
-## Java
+## Über das Spiel Tetris
 
-### Java-Entwicklungsumgebung: IDE - Integrated Development Environment (integrierte Entwicklungsumgebung)
-
-Eine integrierte Entwicklungsumgebung (IDE, von englisch integrated development environment) ist
-eine Sammlung von Computerprogrammen, mit denen die Aufgaben der Softwareentwicklung
-möglichst ohne Medienbrüche bearbeitet werden können.
-
-<small>Quelle: [wikipedia.org](https://de.wikipedia.org/wiki/Integrierte_Entwicklungsumgebung)</small>
-
-#### Bekannte IDEs
-
-* [BlueJ](https://www.bluej.org/): Reduzierte IDE für pädagogische Zwecke
-* [Visual Studio Code](https://code.visualstudio.com): von Microsoft entwickelt, für alle Sprachen einsetzbar, wegen vieler Erweiterungen, läuft auf Google Chrome
-* [Eclipse](https://www.eclipse.org/downloads)
-* [IntelliJ IDEA](https://www.jetbrains.com/de-de/idea): auf Java spezialisiert
-
-Wir setzen die [Community Edition von IntelliJ](https://www.jetbrains.com/de-de/idea/download/other.html) ein.
-
-### Java-Paketnamen
-
-Um Pakete mit gleichem Namen zu vermeiden, haben sich in der Java-Welt folgende
-Konvention für Paketnamen herausgebildet:
-
-* Paketnamen bestehen nur aus Kleinbuchstaben und Unterstrichen `_` (um sie von Klassen zu unterscheiden).
-* Paketnamen sind durch Punkte getrennt.
-* Der Anfang des Paketnames wird durch die Organisation bestimmt, die sie erstellt.
-
-Um den Paketnamen auf der Grundlage einer Organisation zu bestimmen, wird die URL der Organisation umgedreht.
-Beispielsweise wird aus der URL
-
-    https://pirckheimer-gymnasium.de/tetris
-
-der Paketname:
-
-    de.pirckheimer_gymnasium.tetris
-
-<small>Quelle: [baeldung.com](https://www.baeldung.com/java-packages#1-naming-conventions)</small>
-
-### Importe von Java-Klassen aus Paketen
-
-Java verfügt über unzählige vorgefertigte Klassen und Schnittstellen. Thematisch zusammengehörende Klassen und
-Schnittstellen werden zu einem Paket (*package*) zusammengefasst. Die so entstehende Java-Bibliothek ist riesig und
-enthält tausende verschiedener Klassen mit unterschiedlichsten Methoden. Um sich einer dieser Klassen bedienen
-zu können, muss man sie in das gewünschte Projekt importieren. In Java funktioniert das mit dem Schlüsselwort
-`import`.
-
-__Syntax__
-
-`import <paketname>.<klassenname>;` Importiert nur die gewünschte Klasse des angesprochenen Paketes.<br>
-`import <paketname>.*;` Importiert sämtliche Klassen des angesprochenen Paketes.
-
-__Beispiel__
-
-`import java.util.Random;` Importiert die Klasse Random des Paketes java.util.<br>
-`import java.util.*;` Importiert das vollständige Paket java.util.
-
-<small>Quelle: Klett, Informatik 2, 2021, Seite 275</small>
-
-## Bildschirmauflösung
+### Bildschirmauflösung
 
 Der Bildschirmausschnitt des Gameboys ist `160x144` (Breite `x` Höhe)
 Pixel. Ein Block hat die Größe `8x8`. Der Bildschirmausschnitt lässt
 sich als mit `20x18` Blöcken ausfüllen.
 
-## Hauptmodi
+### Hauptmodi
 
 Es gibt zwei Hauptmodi: _„A-Type“_ und _„B-Type“_.
 
@@ -81,32 +24,32 @@ zu erringen. Der Schwierigkeitsgrad kann erhöht, indem
 die Fallgeschwindigkeit heraufsetzt und mehr Zufalls-Tetriminos
 einstellt wird.[^nitendo.com]
 
-## Drehung
+<!-- ### Drehung
 
-* O-Tetrominos verändern ihr Aussehen nicht, wenn sie sich drehen.
-* I-Tetrominos have two rotations, favoring the lower half when horizontal, and the right half when vertical.
-    J, L, and T pieces have four rotations centered around the middle square of the three square edge.
-    While S and Z pieces have four rotations, they always favor the bottom and right sides of their rotation space (hence the "right handed" aspect of this rotation system.)
+- O-Tetrominos verändern ihr Aussehen nicht, wenn sie sich drehen.
+- I-Tetrominos have two rotations, favoring the lower half when horizontal, and the right half when vertical.
+  J, L, and T pieces have four rotations centered around the middle square of the three square edge.
+  While S and Z pieces have four rotations, they always favor the bottom and right sides of their rotation space (hence the "right handed" aspect of this rotation system.)
 
 [^strategywiki.org] https://strategywiki.org/wiki/Tetris/Rotation_systems
-https://laroldsjubilantjunkyard.com/tutorial/tetris/
+https://laroldsjubilantjunkyard.com/tutorial/tetris/ -->
 
-## Farben
+### Farben
 
 4 Farben
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/Colors.svg)
 
-| deutsch | englisch | hex grün[^gimp-color-picker] | grau | grau |
-|---------|-------|--------|----|-----|
-| weiß    | white | 7f7c15 | ffffff | (255,255,255) |
-| hell    | light | 5b703e | adadad | (173,173,173) |
-| dunkel  | dark  | 5d5949 | 525252 | (82,82,82) |
-| schwarz | black | 344d40 | 000000 | (0,0,0) |
+| deutsch | englisch | hex grün[^gimp-color-picker] | grau   | grau          |
+| ------- | -------- | ---------------------------- | ------ | ------------- |
+| weiß    | white    | 7f7c15                       | ffffff | (255,255,255) |
+| hell    | light    | 5b703e                       | adadad | (173,173,173) |
+| dunkel  | dark     | 5d5949                       | 525252 | (82,82,82)    |
+| schwarz | black    | 344d40                       | 000000 | (0,0,0)       |
 
 https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy
 
-## Bildschirme (`scenes`)
+### Bildschirme (`scenes`)
 
 `CopyrightScene`
 
@@ -128,7 +71,6 @@ https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/IngameScreen.png)
 
-
 Das Spielfeld ist `8x18` groß. Der linke Rand ist `2` und der rechte
 Rand `10` Blöcke breit.
 
@@ -140,12 +82,12 @@ Rand `10` Blöcke breit.
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/RussianDancersScreen.gif)
 
-## Emulation
+### Emulation
 
 Es gibt eine Vielzahl sogenannter Emulatoren, mit denen der Gameboy
 simuliert werden kann.
 
-### mGBA
+#### mGBA
 
 Der Emulator
 [mGBA](https://mgba.io/downloads.html) (mini Game Boy Advance) läuft auf
@@ -157,9 +99,11 @@ veröffentlicht. Der Quellcode ist über
 
 Um das Spiel in einem Emulator laufen zu lassen, ist eine sogenanntes
 ROM notwendig, z. B. von
-[emulatorgames.net](https://www.emulatorgames.net/roms/gameboy/tetris-jue-v11/).
+[emulatorgames.net](https://www.emulatorgames.net/roms/gameboy/tetris-jue-v11/)
+oder aus diesem
+[Repository](https://github.com/Josef-Friedrich/tetris/raw/main/misc/Tetris-ROM.gb).
 
-#### Tastenkürzel
+Die Tastenkürzel wichtigsten Tastenkürzel des mGBA sind:
 
 - A: X
 - B: Z
@@ -168,22 +112,83 @@ ROM notwendig, z. B. von
 - Start: Enter
 - Select: Backspace
 
-## Allgemeine Informationen über das Spiel
+### Weiterführende Informationen
+
+#### Allgemeine Informationen über das Spiel
 
 - [englische Wikipedia](<https://en.wikipedia.org/wiki/Tetris_(Game_Boy_video_game)>)
 - [harddrop.com (Tetris Wiki created by Tetris fans for Tetris fans)](https://harddrop.com/wiki/Tetris_%28Game_Boy%29)
 - [Video Game Music Preservation Foundation](<http://www.vgmpf.com/Wiki/index.php?title=Tetris_(GB)>)
 
-## Youtube-Videos
+#### Youtube-Videos
 
 - [Playthrough 16 Minuten, Gameboy-Display wurde abgefilmt](https://www.youtube.com/watch?v=BQwohHgrk2s)
 - [Longplay 52 Minuten (schwarz-weiß Emulator)](https://www.youtube.com/watch?v=VNbo1AGqKrI)
 - [short](https://www.youtube.com/shorts/30vVpKAMu6g)
 
-## Klone
+#### Klone
 
 - [canvas_tetris (javascript)](https://github.com/andyp123/canvas_tetris)
 - [js-tetris](https://github.com/az23/js-tetris) (eventuell nicht fertig gestellt)
+
+## Java
+
+### Java-Entwicklungsumgebung: IDE - Integrated Development Environment (integrierte Entwicklungsumgebung)
+
+Eine integrierte Entwicklungsumgebung (IDE, von englisch integrated development environment) ist
+eine Sammlung von Computerprogrammen, mit denen die Aufgaben der Softwareentwicklung
+möglichst ohne Medienbrüche bearbeitet werden können.
+
+<small>Quelle: [wikipedia.org](https://de.wikipedia.org/wiki/Integrierte_Entwicklungsumgebung)</small>
+
+#### Bekannte IDEs
+
+- [BlueJ](https://www.bluej.org/): Reduzierte IDE für pädagogische Zwecke
+- [Visual Studio Code](https://code.visualstudio.com): von Microsoft entwickelt, für alle Sprachen einsetzbar, wegen vieler Erweiterungen, läuft auf Google Chrome
+- [Eclipse](https://www.eclipse.org/downloads)
+- [IntelliJ IDEA](https://www.jetbrains.com/de-de/idea): auf Java spezialisiert
+
+Wir setzen die [Community Edition von IntelliJ](https://www.jetbrains.com/de-de/idea/download/other.html) ein.
+
+### Java-Paketnamen
+
+Um Pakete mit gleichem Namen zu vermeiden, haben sich in der Java-Welt folgende
+Konvention für Paketnamen herausgebildet:
+
+- Paketnamen bestehen nur aus Kleinbuchstaben und Unterstrichen `_` (um sie von Klassen zu unterscheiden).
+- Paketnamen sind durch Punkte getrennt.
+- Der Anfang des Paketnames wird durch die Organisation bestimmt, die sie erstellt.
+
+Um den Paketnamen auf der Grundlage einer Organisation zu bestimmen, wird die URL der Organisation umgedreht.
+Beispielsweise wird aus der URL
+
+    https://pirckheimer-gymnasium.de/tetris
+
+der Paketname:
+
+    de.pirckheimer_gymnasium.tetris
+
+<small>Quelle: [baeldung.com](https://www.baeldung.com/java-packages#1-naming-conventions)</small>
+
+### Importe von Java-Klassen aus Paketen
+
+Java verfügt über unzählige vorgefertigte Klassen und Schnittstellen. Thematisch zusammengehörende Klassen und
+Schnittstellen werden zu einem Paket (_package_) zusammengefasst. Die so entstehende Java-Bibliothek ist riesig und
+enthält tausende verschiedener Klassen mit unterschiedlichsten Methoden. Um sich einer dieser Klassen bedienen
+zu können, muss man sie in das gewünschte Projekt importieren. In Java funktioniert das mit dem Schlüsselwort
+`import`.
+
+**Syntax**
+
+`import <paketname>.<klassenname>;` Importiert nur die gewünschte Klasse des angesprochenen Paketes.<br>
+`import <paketname>.*;` Importiert sämtliche Klassen des angesprochenen Paketes.
+
+**Beispiel**
+
+`import java.util.Random;` Importiert die Klasse Random des Paketes java.util.<br>
+`import java.util.*;` Importiert das vollständige Paket java.util.
+
+<small>Quelle: Klett, Informatik 2, 2021, Seite 275</small>
 
 [^nitendo.com]: https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
 [^gimp-color-picker]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
