@@ -37,6 +37,20 @@ public class L extends Tetromino
             blocks[2].moveBy(-1, 1);
             blocks[3].moveBy(0, 2);
             break;
+
+        // 2 -> 3
+        case 3:
+            blocks[1].moveBy(1, -1);
+            blocks[2].moveBy(-1, 1);
+            blocks[3].moveBy(0, 2);
+            break;
+
+        // 3 -> 4
+        case 4:
+            blocks[1].moveBy(1, -1);
+            blocks[2].moveBy(-1, 1);
+            blocks[3].moveBy(0, 2);
+            break;
         }
     }
 }
