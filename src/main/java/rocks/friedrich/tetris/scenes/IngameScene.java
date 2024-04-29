@@ -1,27 +1,20 @@
 package rocks.friedrich.tetris.scenes;
 
 import rocks.friedrich.engine_omega.Scene;
-import rocks.friedrich.tetris.blocks.Block;
-import rocks.friedrich.engine_omega.Game;
-
-import java.util.Timer;
-import java.util.TimerTask;
+import rocks.friedrich.tetris.Image;
+import rocks.friedrich.tetris.Tetris;
 
 public class IngameScene extends Scene
 {
     public IngameScene()
     {
-        Block block = new Block(this, "O", 0, 0);
-        Game.setDebug(true);
-        Timer timer = new Timer();
-        TimerTask task = new TimerTask()
-        {
-            @Override
-            public void run()
-            {
-                block.moveDown();
-            }
-        };
-        timer.scheduleAtFixedRate(task, 0, 1000);
+        Image image = new Image("fullscreen/ingame.png");
+        getCamera().setFocus(image);
+        add(image);
+    }
+
+    public static void main(String[] args)
+    {
+        Tetris.start(new IngameScene());
     }
 }

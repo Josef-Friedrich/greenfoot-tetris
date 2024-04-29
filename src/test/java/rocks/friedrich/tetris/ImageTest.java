@@ -16,15 +16,15 @@ public class ImageTest
     @Test
     public void testCover(@TempDir Path tempDir) throws IOException
     {
-        Path file = tempDir.resolve("CopyrightScreen.png");
-        write(scale(read("CopyrightScreen.png"), 4), file.toString());
+        Path file = tempDir.resolve("copyright.png");
+        write(scale(read("fullscreen/copyright.png"), 4), file.toString());
     }
 
     @Test
     public void testChangeColors(@TempDir Path tempDir) throws IOException
     {
-        Path file = tempDir.resolve("TitleScreen.png");
-        write(changeColorSchema(read("TitleScreen.png")),
+        Path file = tempDir.resolve("title.png");
+        write(changeColorSchema(read("fullscreen/title.png")),
                 file.toString());
     }
 }

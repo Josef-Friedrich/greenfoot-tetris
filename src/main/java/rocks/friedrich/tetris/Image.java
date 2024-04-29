@@ -29,8 +29,7 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
 
     private static String getFilePath(String pathname)
     {
-        return Image.class.getClassLoader().getResource(pathname)
-                .getFile();
+        return Image.class.getClassLoader().getResource(pathname).getFile();
     }
 
     private static File getFile(String pathname)
@@ -87,7 +86,6 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
      */
     public static BufferedImage scale(BufferedImage image, int scale)
     {
-        System.out.println("Scaling image by " + scale);
         BufferedImage after = new BufferedImage(image.getWidth() * scale,
                 image.getHeight() * scale, BufferedImage.TYPE_INT_ARGB);
         AffineTransform at = new AffineTransform();

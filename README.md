@@ -33,6 +33,7 @@ einstellt wird.[^nitendo.com]
 
 [^strategywiki.org] https://strategywiki.org/wiki/Tetris/Rotation_systems
 https://laroldsjubilantjunkyard.com/tutorial/tetris/
+
 ## Farben
 
 4 Farben
@@ -48,25 +49,25 @@ https://laroldsjubilantjunkyard.com/tutorial/tetris/
 
 https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy
 
-## Bildschirme (`screens`)
+## Bildschirme (`scenes`)
 
-`CopyrightScreen`
+`CopyrightScene`
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/CopyrightScreen.png)
 
-`TitleScreen`
+`TitleScene`
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/TitleScreen.png)
 
-`MainMenuScreen`
+`MainMenuScene`
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/MainMenuScreen.png)
 
-`LevelSelectScreen`
+`LevelSelectScene`
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/LevelSelectScreen.png)
 
-`IngameScreen`
+`IngameScene`
 
 ![](https://github.com/Josef-Friedrich/tetris-like-game/blob/main/misc/graphics/screenshots/IngameScreen.png)
 
