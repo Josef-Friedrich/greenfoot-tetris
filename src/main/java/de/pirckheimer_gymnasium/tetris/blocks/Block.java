@@ -1,7 +1,7 @@
 package de.pirckheimer_gymnasium.tetris.blocks;
 
-import rocks.friedrich.engine_omega.Scene;
 import de.pirckheimer_gymnasium.tetris.Image;
+import rocks.friedrich.engine_omega.Scene;
 
 public class Block
 {
