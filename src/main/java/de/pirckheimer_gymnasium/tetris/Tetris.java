@@ -2,10 +2,7 @@ package de.pirckheimer_gymnasium.tetris;
 
 import java.awt.Color;
 
-import de.pirckheimer_gymnasium.tetris.scenes.CopyrightScene;
-import de.pirckheimer_gymnasium.tetris.scenes.IngameScene;
 import de.pirckheimer_gymnasium.tetris.scenes.BaseScene;
-import de.pirckheimer_gymnasium.tetris.scenes.TitleScene;
 import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 
@@ -60,12 +57,6 @@ public class Tetris
 
     public static final Color COLOR_BLACK = null;
 
-    public static Scene SCENE_COPYRIGHT = new CopyrightScene();
-
-    public static Scene SCENE_TITLE = new TitleScene();
-
-    public static Scene SCENE_INGAME = new IngameScene();
-
     public static void start(Scene scene, boolean debug)
     {
         scene.getCamera().setZoom(Tetris.SCALE * Tetris.BLOCK_SIZE);
@@ -82,7 +73,6 @@ public class Tetris
     public static void main(String[] args)
     {
         Scene scene = new BaseScene("copyright");
-        Game.start(BLOCK_SIZE * WIDTH * SCALE, BLOCK_SIZE * HEIGHT * SCALE,
-                scene);
+        Tetris.start(scene);
     }
 }
