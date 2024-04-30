@@ -5,6 +5,8 @@ import de.pirckheimer_gymnasium.tetris.blocks.Block;
 
 public abstract class Tetromino
 {
+    public static String[] names = { "L", "J", "I", "O", "Z", "S", "T" };
+
     protected Scene scene;
 
     protected Block[] blocks;
@@ -84,6 +86,37 @@ public abstract class Tetromino
         else
         {
             rotation++;
+        }
+    }
+
+    public static Tetromino create(String name, Scene scene, int x, int y,
+            boolean debug)
+    {
+        switch (name)
+        {
+        case "L":
+            return new L(scene, x, y, debug);
+
+        case "J":
+            return new J(scene, x, y, debug);
+
+        case "I":
+            return new I(scene, x, y, debug);
+
+        case "O":
+            return new O(scene, x, y, debug);
+
+        case "Z":
+            return new Z(scene, x, y, debug);
+
+        case "S":
+            return new S(scene, x, y, debug);
+
+        case "T":
+            return new T(scene, x, y, debug);
+
+        default:
+            return new L(scene, x, y, debug);
         }
     }
 }
