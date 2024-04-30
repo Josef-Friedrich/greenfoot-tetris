@@ -40,7 +40,7 @@ https://laroldsjubilantjunkyard.com/tutorial/tetris/ -->
 
 4 Farben
 
-![](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/graphics/Colors.svg)
+![](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/Colors.svg)
 
 | deutsch | englisch | hex grün[^gimp-color-picker] | grau   | grau          |
 | ------- | -------- | ---------------------------- | ------ | ------------- |
@@ -50,6 +50,10 @@ https://laroldsjubilantjunkyard.com/tutorial/tetris/ -->
 | schwarz | black    | 344d40                       | 000000 | (0,0,0)       |
 
 https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy
+
+### Start-Positionen
+
+![Blueprint](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/Start-Positions.svg)
 
 ### Bildschirme (`scenes`)
 
