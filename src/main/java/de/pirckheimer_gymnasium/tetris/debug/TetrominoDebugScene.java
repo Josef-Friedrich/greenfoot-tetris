@@ -35,32 +35,7 @@ public class TetrominoDebugScene extends Scene implements KeyListener
 
     private Tetromino createTetromino(String name, int x, int y)
     {
-        switch (name)
-        {
-        case "L":
-            return new L(this, x, y, DEBUG);
-
-        case "J":
-            return new J(this, x, y, DEBUG);
-
-        case "I":
-            return new I(this, x, y, DEBUG);
-
-        case "O":
-            return new O(this, x, y, DEBUG);
-
-        case "Z":
-            return new Z(this, x, y, DEBUG);
-
-        case "S":
-            return new S(this, x, y, DEBUG);
-
-        case "T":
-            return new T(this, x, y, DEBUG);
-
-        default:
-            return new L(this, x, y, DEBUG);
-        }
+        return Tetromino.create(name, this, x, y, DEBUG);
     }
 
     @Override

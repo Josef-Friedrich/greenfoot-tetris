@@ -5,6 +5,12 @@ import de.pirckheimer_gymnasium.tetris.blocks.Block;
 
 public abstract class Tetromino
 {
+    /**
+     * Die Reihenfolge der Tetrominos wurde so übernommen, wie sie für den
+     * damaligen <a href=
+     * "https://harddrop.com/wiki/File:GBrandomizer.png">Zufallsgenerator</a>
+     * aufgereiht wurden.
+     */
     public static String[] names = { "L", "J", "I", "O", "Z", "S", "T" };
 
     protected Scene scene;
@@ -89,34 +95,47 @@ public abstract class Tetromino
         }
     }
 
-    public static Tetromino create(String name, Scene scene, int x, int y,
+    public static Tetromino create(int number, Scene scene, int x, int y,
             boolean debug)
     {
-        switch (name)
+        switch (number)
         {
-        case "L":
+        case 0:
             return new L(scene, x, y, debug);
 
-        case "J":
+        case 1:
             return new J(scene, x, y, debug);
 
-        case "I":
+        case 2:
             return new I(scene, x, y, debug);
 
-        case "O":
+        case 3:
             return new O(scene, x, y, debug);
 
-        case "Z":
+        case 4:
             return new Z(scene, x, y, debug);
 
-        case "S":
+        case 5:
             return new S(scene, x, y, debug);
 
-        case "T":
+        case 6:
             return new T(scene, x, y, debug);
 
         default:
             return new L(scene, x, y, debug);
         }
+    }
+
+    public static Tetromino create(String name, Scene scene, int x, int y,
+            boolean debug)
+    {
+        for (int i = 0; i < names.length; i++)
+        {
+            if (names[i].equals(name))
+            {
+                return create(i, scene, x, y, debug);
+            }
+        }
+        return create(0, scene, x, y, debug);
     }
 }
