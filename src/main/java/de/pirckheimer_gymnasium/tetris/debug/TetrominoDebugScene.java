@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 
 public class TetrominoDebugScene extends Scene implements KeyListener
 {
-    private boolean DEBUG = true;
+    public boolean DEBUG = false;
 
     private Text rotation;
 
@@ -101,7 +101,7 @@ public class TetrominoDebugScene extends Scene implements KeyListener
 
     public static void main(String[] args)
     {
-        Scene scene = new TetrominoDebugScene();
-        Tetris.start(scene, true);
+        TetrominoDebugScene scene = new TetrominoDebugScene();
+        Tetris.start(scene, scene.DEBUG);
     }
 }
