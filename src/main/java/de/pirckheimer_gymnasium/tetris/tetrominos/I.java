@@ -25,7 +25,7 @@ public class I extends Tetromino
             blocks[3].moveBy(2, -2);
             for (int i = 0; i < 4; i++)
             {
-                blocks[i].rotateCounterClockwise();
+                blocks[i].rotateClockwise();
             }
             break;
 
@@ -36,7 +36,7 @@ public class I extends Tetromino
             blocks[3].moveBy(-2, 2);
             for (int i = 0; i < 4; i++)
             {
-                blocks[i].rotateClockwise();
+                blocks[i].rotateCounterClockwise();
             }
             break;
         }

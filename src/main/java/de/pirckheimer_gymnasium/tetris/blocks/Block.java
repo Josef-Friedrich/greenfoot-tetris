@@ -42,12 +42,12 @@ public class Block
         image.moveBy(x, y);
     }
 
-    public void rotateClockwise()
+    public void rotateCounterClockwise()
     {
         image.rotateBy(90);
     }
 
-    public void rotateCounterClockwise()
+    public void rotateClockwise()
     {
         image.rotateBy(-90);
     }
