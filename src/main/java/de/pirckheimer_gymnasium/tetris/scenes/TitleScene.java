@@ -7,6 +7,14 @@ public class TitleScene extends BaseScene
     public TitleScene()
     {
         super("title");
+        delay(3, () -> {
+            startIngameScene();
+        });
+    }
+
+    public void startIngameScene()
+    {
+        Tetris.start(new IngameScene());
     }
 
     public static void main(String[] args)
