@@ -8,8 +8,7 @@ import rocks.friedrich.engine_omega.event.KeyListener;
 /**
  * Das ist der erste Bildschirm, der beim Starten des Spiels angezeigt wird.
  */
-public class CopyrightScene extends BaseScene
-        implements KeyListener
+public class CopyrightScene extends BaseScene implements KeyListener
 {
     public CopyrightScene()
     {

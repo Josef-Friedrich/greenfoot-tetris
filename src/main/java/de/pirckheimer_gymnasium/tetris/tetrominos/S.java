@@ -4,9 +4,9 @@ import rocks.friedrich.engine_omega.Scene;
 
 public class S extends Tetromino
 {
-    public S(Scene scene, int x, int y, boolean debug)
+    public S(Scene scene, BlockGrid grid, int x, int y, boolean debug)
     {
-        super(scene, x, y, debug);
+        super(scene, grid, x, y, debug);
         addBlock(0, "S", x, y);
         addBlock(1, "S", x + 1, y);
         addBlock(2, "S", x - 1, y - 1);

@@ -2,7 +2,8 @@ package de.pirckheimer_gymnasium.tetris.debug;
 
 import java.awt.event.KeyEvent;
 
-import de.pirckheimer_gymnasium.tetris.blocks.Block;
+import de.pirckheimer_gymnasium.tetris.tetrominos.Block;
+import de.pirckheimer_gymnasium.tetris.tetrominos.BlockGrid;
 import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
@@ -13,7 +14,7 @@ public class BlockDebugScene extends Scene implements KeyListener
 
     public BlockDebugScene()
     {
-        block = new Block(this, "J", 0, 0);
+        block = new Block(this, new BlockGrid(10, 18), "J", 0, 0);
     }
 
     public static void main(String[] args)

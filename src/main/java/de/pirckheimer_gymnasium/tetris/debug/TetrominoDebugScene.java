@@ -17,25 +17,38 @@ public class TetrominoDebugScene extends Scene implements KeyListener
 
     Tetromino[] t;
 
+    BlockGrid grid;
+
     public TetrominoDebugScene()
     {
         rotation = new Text("0", 2);
         rotation.setColor(Color.WHITE);
         rotation.setPosition(-7, 0);
+        grid = new BlockGrid(Tetris.WIDTH, Tetris.HEIGHT);
+        getCamera().setPostion(Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
         add(rotation);
         t = new Tetromino[7];
-        t[0] = createTetromino("L", -5, 5);
-        t[1] = createTetromino("J", 0, 5);
-        t[2] = createTetromino("I", 5, 5);
-        t[3] = createTetromino("O", 0, 0);
-        t[4] = createTetromino("Z", -5, -5);
-        t[5] = createTetromino("S", 0, -5);
-        t[6] = createTetromino("T", 5, -5);
+        // L I J
+        // O
+        // Z T S
+        int x1 = 3;
+        int x2 = 9;
+        int x3 = 16;
+        int y1 = 3;
+        int y2 = 8;
+        int y3 = 13;
+        t[0] = createTetromino("L", x1, y3);
+        t[1] = createTetromino("I", x2, y3);
+        t[2] = createTetromino("J", x3, y3);
+        t[3] = createTetromino("O", x2, y2);
+        t[4] = createTetromino("Z", x1, y1);
+        t[5] = createTetromino("T", x2, y1);
+        t[6] = createTetromino("S", x3, y1);
     }
 
     private Tetromino createTetromino(String name, int x, int y)
     {
-        return Tetromino.create(name, this, x, y, DEBUG);
+        return Tetromino.create(this, grid, name, x, y, DEBUG);
     }
 
     @Override

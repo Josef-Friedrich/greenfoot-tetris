@@ -24,7 +24,6 @@ public class ImageTest
     public void testChangeColors(@TempDir Path tempDir) throws IOException
     {
         Path file = tempDir.resolve("title.png");
-        write(changeColorSchema(read("fullscreen/title.png")),
-                file.toString());
+        write(changeColorSchema(read("fullscreen/title.png")), file.toString());
     }
 }
