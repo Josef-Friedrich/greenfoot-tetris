@@ -2,6 +2,7 @@ package de.pirckheimer_gymnasium.tetris.debug;
 
 import java.awt.event.KeyEvent;
 
+import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Block;
 import de.pirckheimer_gymnasium.tetris.tetrominos.BlockGrid;
 import rocks.friedrich.engine_omega.Game;
@@ -14,15 +15,16 @@ public class BlockDebugScene extends Scene implements KeyListener
 
     public BlockDebugScene()
     {
-        block = new Block(this, new BlockGrid(10, 18), "J", 0, 0);
+        block = new Block(this, new BlockGrid(Tetris.WIDTH, Tetris.HEIGHT), "J",
+                Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
     }
 
     public static void main(String[] args)
     {
         Scene scene = new BlockDebugScene();
-        // 160x144 x4 -> 640x576
+        scene.getCamera().setPostion(Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
         Game.setDebug(true);
-        Game.start(640, 576, scene);
+        Tetris.start(scene);
     }
 
     @Override

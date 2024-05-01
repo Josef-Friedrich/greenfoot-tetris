@@ -18,6 +18,7 @@ public class Block
         image = new Image("blocks/" + blockName + ".png");
         image.setPosition(x, y);
         scene.add(image);
+        this.grid.addBlock(this);
     }
 
     public int getX()
@@ -30,29 +31,32 @@ public class Block
         return (int) image.getY();
     }
 
+    public void moveBy(int dX, int dY)
+    {
+        int oldX = getX();
+        int oldY = getY();
+        image.moveBy(dX, dY);
+        grid.moveBlock(oldX, oldY, getX(), getY());
+    }
+
     public void moveLeft()
     {
-        image.moveBy(-1, 0);
+        moveBy(-1, 0);
     }
 
     public void moveRight()
     {
-        image.moveBy(1, 0);
+        moveBy(1, 0);
     }
 
     public void moveDown()
     {
-        image.moveBy(0, -1);
+        moveBy(0, -1);
     }
 
     public void remove()
     {
         scene.remove(image);
-    }
-
-    public void moveBy(int x, int y)
-    {
-        image.moveBy(x, y);
     }
 
     public void rotateCounterClockwise()
