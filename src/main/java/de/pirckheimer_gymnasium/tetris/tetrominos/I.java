@@ -13,9 +13,8 @@ public class I extends Tetromino
         addBlock(3, "I_right", x + 2, y);
     }
 
-    public void rotate()
+    protected void doRotation()
     {
-        super.rotate();
         switch (rotation)
         {
         case 0:

@@ -11,7 +11,7 @@ import java.awt.event.KeyEvent;
 
 public class TetrominoDebugScene extends Scene implements KeyListener
 {
-    public boolean DEBUG = true;
+    public boolean DEBUG = false;
 
     private Text rotation;
 
@@ -85,6 +85,8 @@ public class TetrominoDebugScene extends Scene implements KeyListener
             rotation.setContent(String.valueOf(t[0].rotation));
             break;
         }
+
+        grid.print();
     }
 
     public static void main(String[] args)

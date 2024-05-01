@@ -7,18 +7,57 @@ public class Block
 {
     private Image image;
 
+    private String name;
+
+    /**
+     * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
+     *
+     * <p>
+     * Wird benötigen diese Referenz, um den Block in die Szene einzufügen
+     * ({@link Scene#add}) bzw. aus der Szene zu entfernen
+     * ({@link Scene#remove}).
+     */
     private Scene scene;
 
-    private BlockGrid grid;
-
-    public Block(Scene scene, BlockGrid grid, String blockName, int x, int y)
+    /**
+     * @param scene Eine Referenz auf die Szene, in der der Block angezeigt
+     *              werden soll.
+     * @param name  Der Name des Blocks entspricht dem Dateinamen des Bildes
+     *              ohne die Dateierweiterung, z. B. {@code "L"} oder
+     *              {@code "I_left"}.
+     * @param x     Die X-Koordinate der Startposition, auf die der Block
+     *              gesetzt werden soll.
+     * @param y     Die Y-Koordinate der Startposition, auf die der Block
+     *              gesetzt werden soll.
+     */
+    public Block(Scene scene, String name, int x, int y)
     {
         this.scene = scene;
-        this.grid = grid;
-        image = new Image("blocks/" + blockName + ".png");
+        this.name = name;
+        image = new Image("blocks/" + name + ".png");
         image.setPosition(x, y);
         scene.add(image);
-        this.grid.addBlock(this);
+    }
+
+    /**
+     * Gibt den Namen des Blocks zurück.
+     *
+     * @return Der Name des Blocks z. B. {@code "L"} oder {@code "I_left"}.
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * Gibt den ersten Buchstaben des Blocknamens zurück.
+     *
+     * @return Der erste Buchstaben des Blocknamens des Blocks z. B. {@code 'L'}
+     *         oder {@code 'I'}.
+     */
+    public char getChar()
+    {
+        return name.charAt(0);
     }
 
     public int getX()
@@ -33,10 +72,7 @@ public class Block
 
     public void moveBy(int dX, int dY)
     {
-        int oldX = getX();
-        int oldY = getY();
         image.moveBy(dX, dY);
-        grid.moveBlock(oldX, oldY, getX(), getY());
     }
 
     public void moveLeft()

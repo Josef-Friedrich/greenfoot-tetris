@@ -4,7 +4,6 @@ import java.awt.event.KeyEvent;
 
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Block;
-import de.pirckheimer_gymnasium.tetris.tetrominos.BlockGrid;
 import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
@@ -15,7 +14,7 @@ public class BlockDebugScene extends Scene implements KeyListener
 
     public BlockDebugScene()
     {
-        block = new Block(this, new BlockGrid(Tetris.WIDTH, Tetris.HEIGHT), "J",
+        block = new Block(this,  "J",
                 Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
     }
 
