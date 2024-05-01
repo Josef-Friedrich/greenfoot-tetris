@@ -96,34 +96,110 @@ public abstract class Tetromino
         }
     }
 
-    public void moveLeft()
+    protected Block[] getBlocks(int... indices)
     {
+        Block[] result = new Block[indices.length];
+        for (int i = 0; i < indices.length; i++)
+        {
+            result[i] = blocks[indices[i]];
+        }
+        return result;
+    }
+
+    protected Block[] getLeftwardsBlocks()
+    {
+        return new Block[0];
+    }
+
+    protected boolean checkLeft()
+    {
+        for (Block block : getLeftwardsBlocks())
+        {
+            if (!grid.isFree(block.getX() - 1, block.getY()))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean moveLeft()
+    {
+        if (!checkLeft())
+        {
+            return false;
+        }
         removeFromGrid();
         for (int i = 0; i < blocks.length; i++)
         {
             blocks[i].moveLeft();
         }
         addToGrid();
+        return true;
     }
 
-    public void moveRight()
+    protected Block[] getRightwardsBlocks()
     {
+        return new Block[0];
+    }
+
+    protected boolean checkRight()
+    {
+        for (Block block : getRightwardsBlocks())
+        {
+            if (!grid.isFree(block.getX() + 1, block.getY()))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean moveRight()
+    {
+        if (!checkRight())
+        {
+            return false;
+        }
         removeFromGrid();
         for (int i = 0; i < blocks.length; i++)
         {
             blocks[i].moveRight();
         }
         addToGrid();
+        return true;
     }
 
-    public void moveDown()
+    protected Block[] getDownwardsBlocks()
     {
+        return new Block[0];
+    }
+
+    protected boolean checkDown()
+    {
+        for (Block block : getDownwardsBlocks())
+        {
+            if (!grid.isFree(block.getX(), block.getY() - 1))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean moveDown()
+    {
+        if (!checkDown())
+        {
+            return false;
+        }
         removeFromGrid();
         for (int i = 0; i < blocks.length; i++)
         {
             blocks[i].moveDown();
         }
         addToGrid();
+        return true;
     }
 
     protected abstract void doRotation();

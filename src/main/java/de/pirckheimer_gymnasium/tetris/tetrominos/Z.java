@@ -30,4 +30,10 @@ public class Z extends Tetromino
             break;
         }
     }
+
+    @Override
+    protected Block[] getDownwardsBlocks()
+    {
+        return new Block[0];
+    }
 }

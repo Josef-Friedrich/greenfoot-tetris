@@ -62,6 +62,23 @@ public class BlockGrid
     }
 
     /**
+     * Überprüft, ob die angegebene Position im Blockgitter frei ist.
+     *
+     * @param x Die entsprechende x-Koordinate der zu überprüfenden Position.
+     * @param y Die entsprechende y-Koordinate der zu überprüfenden Position.
+     *
+     * @return Wahr, wenn die Position frei ist, falsch sonst.
+     */
+    public boolean isFree(int x, int y)
+    {
+        if (x < 0 || x >= getWidth() || y < 0 || y >= getHeight())
+        {
+            return false;
+        }
+        return grid[x][y] == null;
+    }
+
+    /**
      * Gib eine Textrepräsentation des Blockgitters und der momentation
      * enthaltenen Blöcke aus.
      *

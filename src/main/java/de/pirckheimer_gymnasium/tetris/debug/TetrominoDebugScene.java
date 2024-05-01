@@ -23,7 +23,7 @@ public class TetrominoDebugScene extends Scene implements KeyListener
     {
         rotation = new Text("0", 2);
         rotation.setColor(Color.WHITE);
-        rotation.setPosition(-7, 0);
+        rotation.setPosition(2, Tetris.HEIGHT / 2);
         grid = new BlockGrid(Tetris.WIDTH, Tetris.HEIGHT);
         getCamera().setPostion(Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
         add(rotation);
