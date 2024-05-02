@@ -13,9 +13,7 @@ public class CopyrightScene extends BaseScene implements KeyListener
     public CopyrightScene()
     {
         super("copyright");
-        delay(3, () -> {
-            startTitleScene();
-        });
+        delay(3, () -> startTitleScene());
     }
 
     public void startTitleScene()
@@ -27,7 +25,6 @@ public class CopyrightScene extends BaseScene implements KeyListener
      * Wenn eine beliebige Taste gedrückt wird, wird zum nächsten Bildschirm,
      * der Titelszene, gesprungen.
      */
-    @Override
     public void onKeyDown(KeyEvent keyEvent)
     {
         startTitleScene();
