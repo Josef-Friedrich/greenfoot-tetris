@@ -2,12 +2,15 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import de.pirckheimer_gymnasium.tetris.Image;
 import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.Vector;
 
 public class Block
 {
     private Image image;
 
     private String name;
+
+    private Vector motion;
 
     /**
      * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
@@ -103,5 +106,43 @@ public class Block
     public void rotateClockwise()
     {
         image.rotateBy(-90);
+    }
+
+    public void setMotion(Vector motion)
+    {
+        this.motion = motion;
+    }
+
+    public void resetMotion()
+    {
+        this.motion = null;
+    }
+
+    public void setMotion(float dX, float dY)
+    {
+        motion = new Vector(dX, dY);
+    }
+
+    public Vector getMotion()
+    {
+        return motion;
+    }
+
+    public Vector getMotionDestination()
+    {
+        if (motion == null)
+        {
+            return null;
+        }
+        return image.getPosition().add(motion);
+    }
+
+    public void move()
+    {
+        if (motion != null)
+        {
+            image.moveBy(this.motion);
+            motion = null;
+        }
     }
 }

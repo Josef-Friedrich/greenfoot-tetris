@@ -13,15 +13,15 @@ public class I extends Tetromino
         addBlock(3, "I_right", x + 2, y);
     }
 
-    protected void doRotation()
+    protected void setRotation()
     {
         switch (rotation)
         {
         case 0:
         case 2:
-            blocks[1].moveBy(-1, 1);
-            blocks[2].moveBy(1, -1);
-            blocks[3].moveBy(2, -2);
+            setBlockMotion(1, -1, 1);
+            setBlockMotion(2, 1, -1);
+            setBlockMotion(3, 2, -2);
             for (int i = 0; i < 4; i++)
             {
                 blocks[i].rotateClockwise();
@@ -30,9 +30,9 @@ public class I extends Tetromino
 
         case 1:
         case 3:
-            blocks[1].moveBy(1, -1);
-            blocks[2].moveBy(-1, 1);
-            blocks[3].moveBy(-2, 2);
+            setBlockMotion(1, 1, -1);
+            setBlockMotion(2, -1, 1);
+            setBlockMotion(3, -2, 2);
             for (int i = 0; i < 4; i++)
             {
                 blocks[i].rotateCounterClockwise();

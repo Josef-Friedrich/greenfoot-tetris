@@ -1,6 +1,7 @@
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.Vector;
 
 /**
  * Ein Tetromino ist ein Spielstein in Form von vier Blöcken.
@@ -62,6 +63,11 @@ public abstract class Tetromino
         {
             blocks[index] = createBlock(name, x, y);
         }
+    }
+
+    protected void setBlockMotion(int index, int dX, int dY)
+    {
+        blocks[index].setMotion(dX, dY);
     }
 
     /**
@@ -202,11 +208,24 @@ public abstract class Tetromino
         return true;
     }
 
-    protected abstract void doRotation();
+    protected abstract void setRotation();
 
-    public void rotate()
+    private boolean checkRotation()
     {
-        removeFromGrid();
+        for (Block block : blocks)
+        {
+            Vector dest = block.getMotionDestination();
+            if (dest != null && !grid.isFree(dest))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean rotate()
+    {
+        int oldRotation = rotation;
         if (rotation > 2)
         {
             rotation = 0;
@@ -215,8 +234,24 @@ public abstract class Tetromino
         {
             rotation++;
         }
-        doRotation();
+        setRotation();
+        if (!checkRotation())
+        {
+            for (Block block : blocks)
+            {
+                block.resetMotion();
+            }
+            rotation = oldRotation;
+            return false;
+        }
+        System.out.println("Rotation: " + rotation);
+        removeFromGrid();
+        for (Block block : blocks)
+        {
+            block.move();
+        }
         addToGrid();
+        return true;
     }
 
     public static Tetromino create(Scene scene, BlockGrid grid, int number,

@@ -13,36 +13,36 @@ public class J extends Tetromino
         addBlock(3, "J", x + 1, y - 1);
     }
 
-    protected void doRotation()
+    protected void setRotation()
     {
         switch (rotation)
         {
         // 0 -> 1
         case 1:
-            blocks[1].moveBy(1, 1);
-            blocks[2].moveBy(-1, -1);
-            blocks[3].moveBy(-2, 0);
+            setBlockMotion(1, 1, 1);
+            setBlockMotion(2, -1, -1);
+            setBlockMotion(3, -2, 0);
             break;
 
         // 1 -> 2
         case 2:
-            blocks[1].moveBy(1, -1);
-            blocks[2].moveBy(-1, 1);
-            blocks[3].moveBy(0, 2);
+            setBlockMotion(1, 1, -1);
+            setBlockMotion(2, -1, 1);
+            setBlockMotion(3, 0, 2);
             break;
 
         // 2 -> 3
         case 3:
-            blocks[1].moveBy(-1, -1);
-            blocks[2].moveBy(1, 1);
-            blocks[3].moveBy(2, 0);
+            setBlockMotion(1, -1, -1);
+            setBlockMotion(2, 1, 1);
+            setBlockMotion(3, 2, 0);
             break;
 
         // 3 -> 0
         case 0:
-            blocks[1].moveBy(-1, 1);
-            blocks[2].moveBy(1, -1);
-            blocks[3].moveBy(0, -2);
+            setBlockMotion(1, -1, 1);
+            setBlockMotion(2, 1, -1);
+            setBlockMotion(3, 0, -2);
             break;
         }
     }

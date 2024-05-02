@@ -13,20 +13,20 @@ public class S extends Tetromino
         addBlock(3, "S", x, y - 1);
     }
 
-    protected void doRotation()
+    protected void setRotation()
     {
         switch (rotation)
         {
         case 1:
         case 3:
-            blocks[1].moveBy(-2, 0);
-            blocks[2].moveBy(0, 2);
+            setBlockMotion(1, -2, 0);
+            setBlockMotion(2, 0, 2);
             break;
 
         case 0:
         case 2:
-            blocks[1].moveBy(2, 0);
-            blocks[2].moveBy(0, -2);
+            setBlockMotion(1, 2, 0);
+            setBlockMotion(2, 0, -2);
             break;
         }
     }

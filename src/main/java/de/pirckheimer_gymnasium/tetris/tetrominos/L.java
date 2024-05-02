@@ -13,7 +13,7 @@ public class L extends Tetromino
         addBlock(3, "L", x - 1, y - 1);
     }
 
-    protected void doRotation()
+    protected void setRotation()
     {
         switch (rotation)
         {
@@ -22,9 +22,9 @@ public class L extends Tetromino
             // xxx 31x 31x
             // 102 102 x0x
             // 3xx 32x x2x
-            blocks[1].moveBy(1, 1);
-            blocks[2].moveBy(-1, -1);
-            blocks[3].moveBy(0, 2);
+            setBlockMotion(1, 1, 1);
+            setBlockMotion(2, -1, -1);
+            setBlockMotion(3, 0, 2);
             break;
 
         // 1 -> 2
@@ -32,23 +32,23 @@ public class L extends Tetromino
             // 31x 313 xx3
             // x0x 201 201
             // x2x x2x xxx
-            blocks[1].moveBy(1, -1);
-            blocks[2].moveBy(-1, 1);
-            blocks[3].moveBy(2, 0);
+            setBlockMotion(1, 1, -1);
+            setBlockMotion(2, -1, 1);
+            setBlockMotion(3, 2, 0);
             break;
 
         // 2 -> 3
         case 3:
-            blocks[1].moveBy(-1, -1);
-            blocks[2].moveBy(1, 1);
-            blocks[3].moveBy(0, -2);
+            setBlockMotion(1, -1, -1);
+            setBlockMotion(2, 1, 1);
+            setBlockMotion(3, 0, -2);
             break;
 
         // 3 -> 0
         case 0:
-            blocks[1].moveBy(-1, 1);
-            blocks[2].moveBy(1, -1);
-            blocks[3].moveBy(-2, 0);
+            setBlockMotion(1, -1, 1);
+            setBlockMotion(2, 1, -1);
+            setBlockMotion(3, -2, 0);
             break;
         }
     }

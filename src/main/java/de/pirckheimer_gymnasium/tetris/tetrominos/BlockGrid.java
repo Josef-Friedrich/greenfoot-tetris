@@ -1,5 +1,7 @@
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
+import rocks.friedrich.engine_omega.Vector;
+
 /**
  * Ein Blockgitter, das die Positionen aller Blöcke speichert.
  *
@@ -76,6 +78,11 @@ public class BlockGrid
             return false;
         }
         return grid[x][y] == null;
+    }
+
+    public boolean isFree(Vector position)
+    {
+        return isFree((int) position.getX(), (int) position.getY());
     }
 
     /**
