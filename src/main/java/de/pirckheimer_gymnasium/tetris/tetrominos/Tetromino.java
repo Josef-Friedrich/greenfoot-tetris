@@ -299,6 +299,15 @@ public abstract class Tetromino
         return true;
     }
 
+    public void remove()
+    {
+        for (Block block : blocks)
+        {
+            block.remove();
+        }
+        removeFromGrid();
+    }
+
     public static Tetromino create(Scene scene, BlockGrid grid, int number,
             int x, int y, boolean debug)
     {

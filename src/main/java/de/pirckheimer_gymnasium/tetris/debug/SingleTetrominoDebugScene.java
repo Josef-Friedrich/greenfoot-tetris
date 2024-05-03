@@ -10,7 +10,7 @@ import de.pirckheimer_gymnasium.tetris.tetrominos.*;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
-public class TDebugScene extends Scene implements KeyListener
+public class SingleTetrominoDebugScene extends Scene implements KeyListener
 {
     public boolean DEBUG = false;
 
@@ -20,7 +20,7 @@ public class TDebugScene extends Scene implements KeyListener
 
     BlockGrid grid;
 
-    public TDebugScene()
+    public SingleTetrominoDebugScene()
     {
         rotation = new Text("0", 1);
         rotation.setColor(Color.WHITE);
@@ -28,7 +28,16 @@ public class TDebugScene extends Scene implements KeyListener
         grid = new BlockGrid(8, 8);
         getCamera().setPostion(4, 4);
         add(rotation);
-        tetromino = Tetromino.create(this, grid, "T", 3, 3, DEBUG);
+        createTetromino("L");
+    }
+
+    public void createTetromino(String name)
+    {
+        if (tetromino != null)
+        {
+            tetromino.remove();
+        }
+        tetromino = Tetromino.create(this, grid, name, 3, 3, DEBUG);
     }
 
     @Override
@@ -36,6 +45,34 @@ public class TDebugScene extends Scene implements KeyListener
     {
         switch (keyEvent.getKeyCode())
         {
+        case KeyEvent.VK_L:
+            createTetromino("L");
+            break;
+
+        case KeyEvent.VK_J:
+            createTetromino("J");
+            break;
+
+        case KeyEvent.VK_I:
+            createTetromino("I");
+            break;
+
+        case KeyEvent.VK_O:
+            createTetromino("O");
+            break;
+
+        case KeyEvent.VK_Z:
+            createTetromino("Z");
+            break;
+
+        case KeyEvent.VK_S:
+            createTetromino("S");
+            break;
+
+        case KeyEvent.VK_T:
+            createTetromino("T");
+            break;
+
         case KeyEvent.VK_LEFT:
             tetromino.moveLeft();
             break;
@@ -58,8 +95,8 @@ public class TDebugScene extends Scene implements KeyListener
 
     public static void main(String[] args)
     {
-        TDebugScene scene = new TDebugScene();
         Game.start(Tetris.SCALE * Tetris.BLOCK_SIZE * 8,
-                Tetris.SCALE * Tetris.BLOCK_SIZE * 8, scene);
+                Tetris.SCALE * Tetris.BLOCK_SIZE * 8,
+                new SingleTetrominoDebugScene());
     }
 }
