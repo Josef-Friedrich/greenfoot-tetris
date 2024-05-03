@@ -8,7 +8,13 @@ public class Block
 {
     private Image image;
 
+    private Image mainImage;
+
+    private Image secondImage;
+
     private String name;
+
+    private Vector position;
 
     private Vector motion;
 
@@ -23,11 +29,40 @@ public class Block
     private Scene scene;
 
     /**
+     * @param scene       Eine Referenz auf die Szene, in der der Block
+     *                    angezeigt werden soll.
+     * @param mainImage   Das Hauptbild angegeben als Dateiname ohne die
+     *                    Dateierweiterung, z. B. {@code "L"} oder
+     *                    {@code "I_h_left"}.
+     * @param secondImage Das zweite Bild angegeben als Dateiname ohne die
+     *                    Dateierweiterung, z. B. {@code "L"} oder
+     *                    {@code "I_v_bottom"}.
+     * @param x           Die X-Koordinate der Startposition, auf die der Block
+     *                    gesetzt werden soll.
+     * @param y           Die Y-Koordinate der Startposition, auf die der Block
+     *                    gesetzt werden soll.
+     */
+    public Block(Scene scene, String mainImage, String secondImage, int x,
+            int y)
+    {
+        this.scene = scene;
+        name = mainImage;
+        image = new Image("blocks/" + mainImage + ".png");
+        if (secondImage != null)
+        {
+            this.secondImage = new Image("blocks/" + secondImage + ".png");
+        }
+        this.image.setPosition(x, y);
+        position = new Vector(x, y);
+        scene.add(this.image);
+    }
+
+    /**
      * @param scene Eine Referenz auf die Szene, in der der Block angezeigt
      *              werden soll.
      * @param name  Der Name des Blocks entspricht dem Dateinamen des Bildes
      *              ohne die Dateierweiterung, z. B. {@code "L"} oder
-     *              {@code "I_left"}.
+     *              {@code "I_h_left"}.
      * @param x     Die X-Koordinate der Startposition, auf die der Block
      *              gesetzt werden soll.
      * @param y     Die Y-Koordinate der Startposition, auf die der Block
@@ -35,17 +70,13 @@ public class Block
      */
     public Block(Scene scene, String name, int x, int y)
     {
-        this.scene = scene;
-        this.name = name;
-        image = new Image("blocks/" + name + ".png");
-        image.setPosition(x, y);
-        scene.add(image);
+        this(scene, name, null, x, y);
     }
 
     /**
      * Gibt den Namen des Blocks zurück.
      *
-     * @return Der Name des Blocks z. B. {@code "L"} oder {@code "I_left"}.
+     * @return Der Name des Blocks z. B. {@code "L"} oder {@code "I_h_left"}.
      */
     public String getName()
     {
@@ -75,6 +106,7 @@ public class Block
 
     public void moveBy(int dX, int dY)
     {
+        position = position.add(new Vector(dX, dY));
         image.moveBy(dX, dY);
     }
 
@@ -96,6 +128,28 @@ public class Block
     public void remove()
     {
         scene.remove(image);
+    }
+
+    public void flipImages()
+    {
+        if (image != null && mainImage != null)
+        {
+            image.remove();
+            secondImage = image;
+            image = mainImage;
+            scene.add(image);
+            image.setPosition(position);
+            mainImage = null;
+        }
+        else if (image != null && secondImage != null)
+        {
+            image.remove();
+            mainImage = image;
+            image = secondImage;
+            scene.add(image);
+            image.setPosition(position);
+            secondImage = null;
+        }
     }
 
     public void rotateCounterClockwise()
