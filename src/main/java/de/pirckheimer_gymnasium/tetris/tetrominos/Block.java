@@ -16,7 +16,7 @@ public class Block
 
     private Vector position;
 
-    private Vector motion;
+    private BlockMotion motion;
 
     /**
      * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
@@ -52,9 +52,9 @@ public class Block
         {
             this.secondImage = new Image("blocks/" + secondImage + ".png");
         }
-        this.image.setPosition(x, y);
+        image.setPosition(x, y);
         position = new Vector(x, y);
-        scene.add(this.image);
+        scene.add(image);
     }
 
     /**
@@ -152,17 +152,7 @@ public class Block
         }
     }
 
-    public void rotateCounterClockwise()
-    {
-        image.rotateBy(90);
-    }
-
-    public void rotateClockwise()
-    {
-        image.rotateBy(-90);
-    }
-
-    public void setMotion(Vector motion)
+    public void setMotion(BlockMotion motion)
     {
         this.motion = motion;
     }
@@ -172,12 +162,17 @@ public class Block
         this.motion = null;
     }
 
-    public void setMotion(float dX, float dY)
+    public void setMotion(int dX, int dY, boolean switchImage)
     {
-        motion = new Vector(dX, dY);
+        motion = new BlockMotion(dX, dY, switchImage);
     }
 
-    public Vector getMotion()
+    public void setMotion(int dX, int dY)
+    {
+        setMotion(dX, dY, false);
+    }
+
+    public BlockMotion getMotion()
     {
         return motion;
     }
@@ -188,14 +183,19 @@ public class Block
         {
             return null;
         }
-        return image.getPosition().add(motion);
+        return position.add(motion.getVector());
     }
 
     public void move()
     {
         if (motion != null)
         {
-            image.moveBy(this.motion);
+            if (motion.getSwitchImage())
+            {
+                flipImages();
+            }
+            image.moveBy(motion.getVector());
+            position = position.add(motion.getVector());
             motion = null;
         }
     }

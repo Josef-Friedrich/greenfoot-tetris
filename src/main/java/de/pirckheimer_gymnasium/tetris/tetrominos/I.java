@@ -7,10 +7,10 @@ public class I extends Tetromino
     public I(Scene scene, BlockGrid grid, int x, int y, boolean debug)
     {
         super(scene, grid, x, y, debug);
-        addBlock(0, "I_center", x, y);
-        addBlock(1, "I_left", x - 1, y);
-        addBlock(2, "I_center", x + 1, y);
-        addBlock(3, "I_right", x + 2, y);
+        addBlock(0, "I_h_center", "I_v_center", x, y);
+        addBlock(1, "I_h_left", "I_v_bottom", x - 1, y);
+        addBlock(2, "I_h_center", "I_v_center", x + 1, y);
+        addBlock(3, "I_h_right", "I_v_top", x + 2, y);
     }
 
     protected void setRotation()
@@ -19,24 +19,18 @@ public class I extends Tetromino
         {
         case 0:
         case 2:
-            setBlockMotion(1, -1, 1);
-            setBlockMotion(2, 1, -1);
-            setBlockMotion(3, 2, -2);
-            for (int i = 0; i < 4; i++)
-            {
-                blocks[i].rotateClockwise();
-            }
+            setBlockMotion(0, 0, 0, true);
+            setBlockMotion(1, -1, 1, true);
+            setBlockMotion(2, 1, -1, true);
+            setBlockMotion(3, 2, -2, true);
             break;
 
         case 1:
         case 3:
-            setBlockMotion(1, 1, -1);
-            setBlockMotion(2, -1, 1);
-            setBlockMotion(3, -2, 2);
-            for (int i = 0; i < 4; i++)
-            {
-                blocks[i].rotateCounterClockwise();
-            }
+            setBlockMotion(0, 0, 0, true);
+            setBlockMotion(1, 1, -1, true);
+            setBlockMotion(2, -1, 1, true);
+            setBlockMotion(3, -2, 2, true);
             break;
         }
     }
