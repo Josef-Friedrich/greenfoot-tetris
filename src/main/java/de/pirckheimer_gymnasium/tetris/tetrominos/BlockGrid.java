@@ -64,25 +64,22 @@ public class BlockGrid
     }
 
     /**
-     * Überprüft, ob die angegebene Position im Blockgitter frei ist.
+     * Überprüft, ob die angegebene Koordinate im Blockgitter besetzt ist.
      *
      * @param x Die entsprechende x-Koordinate der zu überprüfenden Position.
      * @param y Die entsprechende y-Koordinate der zu überprüfenden Position.
      *
-     * @return Wahr, wenn die Position frei ist, falsch sonst.
+     * @return Wahr, wenn die Koordinate besetzt ist, falsch sonst.
      */
-    public boolean isFree(int x, int y)
+    public boolean isTaken(int x, int y)
     {
-        if (x < 0 || x >= getWidth() || y < 0 || y >= getHeight())
-        {
-            return false;
-        }
-        return grid[x][y] == null;
+        return x < 0 || x >= getWidth() || y < 0 || y >= getHeight()
+                || grid[x][y] != null;
     }
 
-    public boolean isFree(Vector position)
+    public boolean isTaken(Vector position)
     {
-        return isFree((int) position.getX(), (int) position.getY());
+        return isTaken((int) position.getX(), (int) position.getY());
     }
 
     /**

@@ -137,16 +137,33 @@ public abstract class Tetromino
         return result;
     }
 
-    protected boolean isTaken(int x, int y)
+    /**
+     * Überprüft, ob die gegebene Kooordinate im Blockgitter besetzt ist. Dabei
+     * wird ein eigener Block ignoriert.
+     */
+    protected boolean isGridTaken(int x, int y)
     {
-        return !isOwnBlockPosition(x, y) && !grid.isFree(x, y);
+        return !isOwnBlockPosition(x, y) && grid.isTaken(x, y);
+    }
+
+    /**
+     * Überprüft, ob die gegebene Kooordinate im Blockgitter besetzt ist. Dabei
+     * wird ein eigener Block ignoriert.
+     */
+    protected boolean isGridTaken(Vector position)
+    {
+        if (position == null)
+        {
+            return false;
+        }
+        return isGridTaken((int) position.getX(), (int) position.getY());
     }
 
     protected boolean checkLeft()
     {
         for (Block block : blocks)
         {
-            if (isTaken(block.getX() - 1, block.getY()))
+            if (isGridTaken(block.getX() - 1, block.getY()))
             {
                 return false;
             }
@@ -173,7 +190,7 @@ public abstract class Tetromino
     {
         for (Block block : blocks)
         {
-            if (isTaken(block.getX() + 1, block.getY()))
+            if (isGridTaken(block.getX() + 1, block.getY()))
             {
                 return false;
             }
@@ -200,7 +217,7 @@ public abstract class Tetromino
     {
         for (Block block : blocks)
         {
-            if (isTaken(block.getX(), block.getY() - 1))
+            if (isGridTaken(block.getX(), block.getY() - 1))
             {
                 return false;
             }
@@ -229,8 +246,7 @@ public abstract class Tetromino
     {
         for (Block block : blocks)
         {
-            Vector dest = block.getMotionDestination();
-            if (dest != null && !isOwnBlockPosition(dest) && !grid.isFree(dest))
+            if (isGridTaken(block.getMotionDestination()))
             {
                 return false;
             }
