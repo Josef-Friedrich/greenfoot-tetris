@@ -65,13 +65,18 @@ public abstract class Tetromino
         }
     }
 
+    /**
+     * Überprüft, ob die gegebene Kooordinate mit einem der vier eigenen Blöcke
+     * des Tetrominos übereinstimmt.
+     */
     public boolean isOwnBlockPosition(Vector position)
     {
         return isOwnBlockPosition((int) position.getX(), (int) position.getY());
     }
 
     /**
-     * Diese Methode wird benötigt für das T-Tetro.
+     * Überprüft, ob die gegebene Kooordinate mit einem der vier eigenen Blöcke
+     * des Tetrominos übereinstimmt.
      */
     public boolean isOwnBlockPosition(int x, int y)
     {
@@ -132,16 +137,16 @@ public abstract class Tetromino
         return result;
     }
 
-    protected Block[] getLeftwardsBlocks()
+    protected boolean isTaken(int x, int y)
     {
-        return new Block[0];
+        return !isOwnBlockPosition(x, y) && !grid.isFree(x, y);
     }
 
     protected boolean checkLeft()
     {
-        for (Block block : getLeftwardsBlocks())
+        for (Block block : blocks)
         {
-            if (!grid.isFree(block.getX() - 1, block.getY()))
+            if (isTaken(block.getX() - 1, block.getY()))
             {
                 return false;
             }
@@ -164,16 +169,11 @@ public abstract class Tetromino
         return true;
     }
 
-    protected Block[] getRightwardsBlocks()
-    {
-        return new Block[0];
-    }
-
     protected boolean checkRight()
     {
-        for (Block block : getRightwardsBlocks())
+        for (Block block : blocks)
         {
-            if (!grid.isFree(block.getX() + 1, block.getY()))
+            if (isTaken(block.getX() + 1, block.getY()))
             {
                 return false;
             }
@@ -196,16 +196,11 @@ public abstract class Tetromino
         return true;
     }
 
-    protected Block[] getDownwardsBlocks()
-    {
-        return new Block[0];
-    }
-
     protected boolean checkDown()
     {
-        for (Block block : getDownwardsBlocks())
+        for (Block block : blocks)
         {
-            if (!grid.isFree(block.getX(), block.getY() - 1))
+            if (isTaken(block.getX(), block.getY() - 1))
             {
                 return false;
             }
