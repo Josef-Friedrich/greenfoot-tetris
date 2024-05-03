@@ -104,10 +104,15 @@ public class Block
         return (int) image.getY();
     }
 
+    public void moveBy(Vector vector)
+    {
+        image.moveBy(vector);
+        position = position.add(vector);
+    }
+
     public void moveBy(int dX, int dY)
     {
-        position = position.add(new Vector(dX, dY));
-        image.moveBy(dX, dY);
+        moveBy(new Vector(dX, dY));
     }
 
     public void moveLeft()
@@ -194,8 +199,7 @@ public class Block
             {
                 flipImages();
             }
-            image.moveBy(motion.getVector());
-            position = position.add(motion.getVector());
+            moveBy(motion.getVector());
             motion = null;
         }
     }
