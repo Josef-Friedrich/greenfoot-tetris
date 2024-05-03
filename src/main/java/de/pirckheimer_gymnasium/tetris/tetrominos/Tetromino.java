@@ -16,16 +16,31 @@ public abstract class Tetromino
      */
     public static String[] names = { "L", "J", "I", "O", "Z", "S", "T" };
 
+    /**
+     * Eine Referenz auf die {@link Scene Szene}, in der der Tetromino erstellt
+     * wurde. Diese Referenz wird an die Block-Klasse weitergereicht.
+     */
     protected Scene scene;
 
     protected BlockGrid grid;
 
+    /**
+     * Die x-Koordinate des Tetrominos entspricht der Lage des ersten Blocks,
+     * also dem Block mit der Indexnummer 0 im Blockfeld.
+     */
     protected int x;
 
+    /**
+     * Die y-Koordinate des Tetrominos entspricht der Lage des ersten Blocks,
+     * also dem Block mit der Indexnummer 0 im Blockfeld.
+     */
     protected int y;
 
     protected Block[] blocks;
 
+    /**
+     * Die Rotation des Tetrominos.
+     */
     public int rotation;
 
     /**
