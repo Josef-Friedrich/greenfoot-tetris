@@ -28,7 +28,7 @@ public class TDebugScene extends Scene implements KeyListener
         grid = new BlockGrid(8, 8);
         getCamera().setPostion(4, 4);
         add(rotation);
-        tetromino = Tetromino.create(this, grid, "J", 3, 3, DEBUG);
+        tetromino = Tetromino.create(this, grid, "T", 3, 3, DEBUG);
     }
 
     @Override

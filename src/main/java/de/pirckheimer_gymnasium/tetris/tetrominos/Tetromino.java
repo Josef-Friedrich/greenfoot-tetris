@@ -65,6 +65,26 @@ public abstract class Tetromino
         }
     }
 
+    public boolean isOwnBlockPosition(Vector position)
+    {
+        return isOwnBlockPosition((int) position.getX(), (int) position.getY());
+    }
+
+    /**
+     * Diese Methode wird benötigt für das T-Tetro.
+     */
+    public boolean isOwnBlockPosition(int x, int y)
+    {
+        for (Block block : blocks)
+        {
+            if (block.getX() == x && block.getY() == y)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
     protected void setBlockMotion(int index, int dX, int dY)
     {
         blocks[index].setMotion(dX, dY);
@@ -215,7 +235,7 @@ public abstract class Tetromino
         for (Block block : blocks)
         {
             Vector dest = block.getMotionDestination();
-            if (dest != null && !grid.isFree(dest))
+            if (dest != null && !isOwnBlockPosition(dest) && !grid.isFree(dest))
             {
                 return false;
             }
@@ -244,7 +264,6 @@ public abstract class Tetromino
             rotation = oldRotation;
             return false;
         }
-        System.out.println("Rotation: " + rotation);
         removeFromGrid();
         for (Block block : blocks)
         {
