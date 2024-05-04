@@ -61,35 +61,21 @@ Die Tetrominos erscheinen auf der Koordinate `(4,16)` und als Vorschau auf der K
 
 Gameboy läuft mit einer Framerate von `59.73` Bildern pro Sekunde.
 
-| Level | Frames per row  |
-|-------|-----------------|
-| 0     | 53              |
-| 1     | 49              |
-| 2     | 45              |
-| 3     | 41              |
-| 4     | 37              |
-| 5     | 33              |
-| 6     | 28              |
-| 7     | 22              |
-| 8     | 17              |
-| 9     | 11              |
-| 10    | 10              |
-| 11    | 9               |
-| 12    | 8               |
-| 13    | 7               |
-| 14    | 6               |
-| 15    | 6               |
-| 16    | 5               |
-| 17    | 5               |
-| 18    | 4               |
-| 19    | 4               |
-| 20    | 3               |
+![Die Tetris-ROM im Hex-Editor bei Byte `1B06h`](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/graphics/Level-Speed-Table_1B06.png)
 
+| Level              | 0     | 1     | 2     | 3     | 4     | 5     | 6     | 7     | 8     | 9     | 10    | 11    | 12    | 13    | 14    | 15    | 16    | 17    | 18    | 19    | 20    |
+|--------------------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| Frames per row     | 53    | 49    | 45    | 41    | 37    | 33    | 28    | 22    | 17    | 11    | 10    | 9     | 8     | 7     | 6     | 6     | 5     | 5     | 4     | 4     | 3     |
+| Frames per row - 1 | 52    | 48    | 44    | 40    | 36    | 32    | 27    | 21    | 16    | 10    | 9     | 8     | 7     | 6     | 5     | 5     | 4     | 4     | 3     | 3     | 2     |
+| Hexadezimal        | 0x34  | 0x30  | 0x2C  | 0x28  | 0x24  | 0x20  | 0x1B  | 0x15  | 0x10  | 0x0A  | 0x09  | 0x08  | 0x07  | 0x06  | 0x05  | 0x05  | 0x04  | 0x04  | 0x03  | 0x03  | 0x02  |
+| Hexadezimal        | 34h   | 30h   | 2Ch   | 28h   | 24h   | 20h   | 1Bh   | 15h   | 10h   | 0Ah   | 09h   | 08h   | 07h   | 06h   | 05h   | 05h   | 04h   | 04h   | 03h   | 03h   | 02h   |
+| Sekunden           | 0.887 | 0.820 | 0.753 | 0.686 | 0.619 | 0.552 | 0.469 | 0.368 | 0.285 | 0.184 | 0.167 | 0.151 | 0.134 | 0.117 | 0.100 | 0.100 | 0.084 | 0.084 | 0.067 | 0.067 | 0.050 |
 
-`XXXh` steht für eine hexadezimale Zahl `XXX`. Eine andere Schreibweise wäre `0xXXX`.
-
-Diese Tabelle befindet sich bei `1B06h` in der ROM; jeder Eintrag ist um eins
-kleiner als die tatsächliche Anzahl der Frames. So wird z. B. Level 1, also 49 = 31h Frames, als 30h gespeichert.
+Diese Tabelle befindet sich bei Byte `1B06h` in der ROM; `XXXh` steht für eine
+hexadezimale Zahl `XXX`. Eine andere Schreibweise wäre `0xXXX`.
+Jeder Eintrag ist um eins
+kleiner als die tatsächliche Anzahl der Frames. So wird z. B. bei Level 1 49
+(= `31h`) Frames als `30h` gespeichert.[^harddrop]
 
 ### Bildschirme (`scenes`)
 
@@ -444,8 +430,9 @@ public class TitleScene extends BaseScene
   - Zeitsteuerung
 - Implementierung der Block-Klasse
 
-[^nintendo.com]: https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
 [^gimp-green]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
-[^strategywiki.org]: https://strategywiki.org/wiki/Tetris/Rotation_systems
+[^harddrop]: https://harddrop.com/wiki/Tetris_(Game_Boy)
 [^mgba-gray]: mGBA Emulator Settings / Gameboy / Game Boy palette / Grayscale Preset
+[^nintendo.com]: https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
+[^strategywiki.org]: https://strategywiki.org/wiki/Tetris/Rotation_systems
 [^wikipedia-green]: https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy Original Game Boy Hex / Binary
