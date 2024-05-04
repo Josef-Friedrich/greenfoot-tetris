@@ -81,6 +81,12 @@ https://github.com/alexsteb/tetris_disassembly/blob/b4bbceb3cc086121ab4fe9bf4dad
 
 https://github.com/osnr/tetris/blob/4ca2f8bf3013a13a4c54d59ee03c929036045f93/tetris.asm#L3845-L3846
 
+### Sound
+
+https://github.com/niuhuan/gbc-swing/blob/master/src/main/java/gbc/Speaker.java
+
+https://github.com/trekawek/coffee-gb
+
 ### Bildschirme (`scenes`)
 
 `CopyrightScene`
