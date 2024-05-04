@@ -77,6 +77,10 @@ Jeder Eintrag ist um eins
 kleiner als die tatsächliche Anzahl der Frames. So wird z. B. bei Level 1 49
 (= `31h`) Frames als `30h` gespeichert.[^harddrop]
 
+https://github.com/alexsteb/tetris_disassembly/blob/b4bbceb3cc086121ab4fe9bf4dad6752fe956ec0/main.asm#L4558-L4559
+
+https://github.com/osnr/tetris/blob/4ca2f8bf3013a13a4c54d59ee03c929036045f93/tetris.asm#L3845-L3846
+
 ### Bildschirme (`scenes`)
 
 `CopyrightScene`
