@@ -83,6 +83,12 @@ https://github.com/osnr/tetris/blob/4ca2f8bf3013a13a4c54d59ee03c929036045f93/tet
 
 ### Sound
 
+[Game Boy Sound System](https://en.wikipedia.org/wiki/Game_Boy_Sound_System)
+
+GBS-Dateien: [ocremix.org](https://ocremix.org/chip/265) [zophar.net](https://www.zophar.net/music/gameboy-gbs/tetris)
+
+[gbsplay](https://github.com/mmitch/gbsplay)
+
 https://github.com/niuhuan/gbc-swing/blob/master/src/main/java/gbc/Speaker.java
 
 https://github.com/trekawek/coffee-gb
