@@ -53,6 +53,8 @@ dies zu einer „grünstichigen“ Grafikanzeige.
 
 ### Start-Positionen
 
+Die Tetrominos erscheinen auf der Koordinate `(4,16)` und als Vorschau auf der Koordinate `(14,3)`.
+
 ![Blueprint](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/Start-Positions.svg)
 
 ### Bildschirme (`scenes`)
