@@ -1,7 +1,5 @@
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
-import java.util.Random;
-
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.Vector;
 
@@ -17,8 +15,6 @@ public abstract class Tetromino
      * des ursprünglichen Gameboys aufgereiht wurden.
      */
     public static String[] names = { "L", "J", "I", "O", "Z", "S", "T" };
-
-    private static Random random = new Random();
 
     /**
      * Eine Referenz auf die {@link Scene Szene}, in der der Tetromino erstellt
@@ -382,29 +378,4 @@ public abstract class Tetromino
         return create(scene, grid, 0, x, y, debug);
     }
 
-    /**
-     * Erzeugt einen zufälligen Tetromino.
-     */
-    public static Tetromino createRandom(Scene scene, BlockGrid grid, int x,
-            int y, boolean debug)
-    {
-        return create(scene, grid, random.nextInt(7), x, y, debug);
-    }
-
-    /**
-     * Erzeugt einen zufälligen Tetromino.
-     */
-    public static Tetromino createRandom(Scene scene, int x, int y,
-            boolean debug)
-    {
-        return createRandom(scene, null, x, y, debug);
-    }
-
-    /**
-     * Erzeugt einen zufälligen Tetromino.
-     */
-    public static Tetromino createRandom(Scene scene, int x, int y)
-    {
-        return createRandom(scene, x, y, false);
-    }
 }
