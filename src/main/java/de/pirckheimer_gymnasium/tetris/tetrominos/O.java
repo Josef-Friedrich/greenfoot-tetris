@@ -9,8 +9,8 @@ public class O extends Tetromino
         super(scene, grid, x, y, debug);
         addBlock(0, "O", x, y);
         addBlock(1, "O", x + 1, y);
-        addBlock(2, "O", x, y + 1);
-        addBlock(3, "O", x + 1, y + 1);
+        addBlock(2, "O", x, y - 1);
+        addBlock(3, "O", x + 1, y - 1);
     }
 
     protected void setRotation()
