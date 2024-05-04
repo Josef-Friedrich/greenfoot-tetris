@@ -57,6 +57,40 @@ Die Tetrominos erscheinen auf der Koordinate `(4,16)` und als Vorschau auf der K
 
 ![Blueprint](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/Start-Positions.svg)
 
+### Geschwindigkeit
+
+Gameboy läuft mit einer Framerate von `59.73` Bildern pro Sekunde.
+
+| Level | Frames per row  |
+|-------|-----------------|
+| 0     | 53              |
+| 1     | 49              |
+| 2     | 45              |
+| 3     | 41              |
+| 4     | 37              |
+| 5     | 33              |
+| 6     | 28              |
+| 7     | 22              |
+| 8     | 17              |
+| 9     | 11              |
+| 10    | 10              |
+| 11    | 9               |
+| 12    | 8               |
+| 13    | 7               |
+| 14    | 6               |
+| 15    | 6               |
+| 16    | 5               |
+| 17    | 5               |
+| 18    | 4               |
+| 19    | 4               |
+| 20    | 3               |
+
+
+`XXXh` steht für eine hexadezimale Zahl `XXX`. Eine andere Schreibweise wäre `0xXXX`.
+
+Diese Tabelle befindet sich bei `1B06h` in der ROM; jeder Eintrag ist um eins
+kleiner als die tatsächliche Anzahl der Frames. So wird z. B. Level 1, also 49 = 31h Frames, als 30h gespeichert.
+
 ### Bildschirme (`scenes`)
 
 `CopyrightScene`
