@@ -6,9 +6,11 @@ import java.util.Random;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.BlockGrid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
+import rocks.friedrich.engine_omega.FrameUpdateListener;
 import rocks.friedrich.engine_omega.event.KeyListener;
 
-public class IngameScene extends BaseScene implements KeyListener
+public class IngameScene extends BaseScene
+        implements KeyListener, FrameUpdateListener
 {
     private BlockGrid grid;
 
@@ -37,6 +39,27 @@ public class IngameScene extends BaseScene implements KeyListener
      */
     private Tetromino previewTetromino;
 
+    private int level = 0;
+
+    /**
+     * According <a href=
+     * "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
+     */
+    private int[] framesPerRow = new int[] { 53, 49, 45, 41, 37, 33, 28, 22, 17,
+            11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3 };
+
+    /**
+     * According <a href=
+     * "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
+     */
+    private double gameboyFrameRate = 59.73;
+
+    private long latestDownMovement = 0;
+
+    private boolean automaticDownMovement = true;
+
+    private long downInterval = 0;
+
     public IngameScene()
     {
         super("ingame");
@@ -45,12 +68,6 @@ public class IngameScene extends BaseScene implements KeyListener
         // Blockgitter um eine Zeile höher.
         grid = new BlockGrid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
         createNextTetromino();
-        repeat(1, () -> {
-            if (!tetromino.moveDown())
-            {
-                createNextTetromino();
-            }
-        });
     }
 
     private void createNextTetromino()
@@ -73,6 +90,34 @@ public class IngameScene extends BaseScene implements KeyListener
         // Methode null.
         previewTetromino = Tetromino.create(this, null, nextTetromino, 14, 3,
                 Tetris.DEBUG);
+        downInterval = caculateDownInterval();
+    }
+
+    private long caculateDownInterval()
+    {
+        return (long) (1_000_000_000 / gameboyFrameRate * framesPerRow[level]);
+    }
+
+    private void moveDown()
+    {
+        if (!tetromino.moveDown())
+        {
+            createNextTetromino();
+        }
+        latestDownMovement = System.nanoTime();
+    }
+
+    @Override
+    public void onFrameUpdate(float deltaSeconds)
+    {
+        if (!automaticDownMovement)
+        {
+            return;
+        }
+        if (System.nanoTime() - latestDownMovement > downInterval)
+        {
+            moveDown();
+        }
     }
 
     @Override
@@ -87,9 +132,10 @@ public class IngameScene extends BaseScene implements KeyListener
         case KeyEvent.VK_RIGHT:
             tetromino.moveRight();
             break;
-        // case KeyEvent.VK_DOWN:
-        // tetromino.moveDown();
-        // break;
+
+        case KeyEvent.VK_DOWN:
+            downInterval = 0;
+            break;
 
         case KeyEvent.VK_SPACE:
             tetromino.rotate();

@@ -21,7 +21,7 @@ Blockreihen auflöst werden, während die Tetrominos immer schneller fallen.
 Im _„B-Type“_-Modus müssen 25 Reihen beseitigt werden, um zu siegen. Der
 Schwierigkeitsgrad kann erhöht werden, indem
 die Fallgeschwindigkeit heraufsetzt und dadurch mehr Tetrominos
-eingestellt werden.[^nintendo.com]
+eingestellt werden.[^nintendo]
 
 <!-- ### Drehung
 
@@ -30,7 +30,7 @@ eingestellt werden.[^nintendo.com]
   J, L, and T pieces have four rotations centered around the middle square of the three square edge.
   While S and Z pieces have four rotations, they always favor the bottom and right sides of their rotation space (hence the "right handed" aspect of this rotation system.)
 
-[^strategywiki.org] https://strategywiki.org/wiki/Tetris/Rotation_systems
+[^strategywiki] https://strategywiki.org/wiki/Tetris/Rotation_systems
 https://laroldsjubilantjunkyard.com/tutorial/tetris/ -->
 
 ![Blueprint](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/Blueprint.svg)
@@ -80,6 +80,14 @@ kleiner als die tatsächliche Anzahl der Frames. So wird z. B. bei Level 1 49
 https://github.com/alexsteb/tetris_disassembly/blob/b4bbceb3cc086121ab4fe9bf4dad6752fe956ec0/main.asm#L4558-L4559
 
 https://github.com/osnr/tetris/blob/4ca2f8bf3013a13a4c54d59ee03c929036045f93/tetris.asm#L3845-L3846
+
+### Soft und Hard Drop
+
+Ein __Soft Drop__ ist eine Bewegung, bei dem ein Tetromino seine Abwärtsbewegung
+beschleunigt. Dieser Zug bringt mehr Punkte, als den Tetromino von selbst fallen
+zu lassen, aber weniger als ein Hard Drop.[^fandom]
+
+Bei einem __Hard Drop__ erreicht ein Tetromino sofort seine endgültige Position.
 
 ### Sound
 
@@ -446,9 +454,10 @@ public class TitleScene extends BaseScene
   - Zeitsteuerung
 - Implementierung der Block-Klasse
 
+[^fandom] https://tetris.fandom.com/wiki/Soft_Drop
 [^gimp-green]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
 [^harddrop]: https://harddrop.com/wiki/Tetris_(Game_Boy)
 [^mgba-gray]: mGBA Emulator Settings / Gameboy / Game Boy palette / Grayscale Preset
-[^nintendo.com]: https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
-[^strategywiki.org]: https://strategywiki.org/wiki/Tetris/Rotation_systems
+[^nintendo]: https://www.nintendo.com/de-de/Spiele/Game-Boy/TETRIS--275924.html
+[^strategywiki]: https://strategywiki.org/wiki/Tetris/Rotation_systems
 [^wikipedia-green]: https://en.wikipedia.org/wiki/List_of_video_game_console_palettes#Game_Boy Original Game Boy Hex / Binary
