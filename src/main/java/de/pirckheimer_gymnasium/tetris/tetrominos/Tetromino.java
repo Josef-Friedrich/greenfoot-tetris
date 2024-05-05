@@ -121,29 +121,9 @@ public abstract class Tetromino
     }
 
     /**
-     * Entfernt alle Blöcke des Tetrominos aus dem Blockgitter.
-     *
-     * Die Blöcke könnten nicht einzeln im Block verschoben werden, da sie sich
-     * sonst gegenseitig überschreiben würden.
-     *
-     * @see #addToGrid()
-     */
-    protected void removeFromGrid()
-    {
-        if (grid == null)
-        {
-            return;
-        }
-        for (int i = 0; i < blocks.length; i++)
-        {
-            grid.removeBlock(blocks[i]);
-        }
-    }
-
-    /**
      * Fügt alle Blöcke des Tetrominos in das Blockgitter ein.
      *
-     * Die Blöcke könnten nicht einzeln im Block verschoben werden, da sie sich
+     * Die Blöcke können nicht einzeln im Gitter verschoben werden, da sie sich
      * sonst gegenseitig überschreiben würden.
      *
      * @see #removeFromGrid()
@@ -154,9 +134,29 @@ public abstract class Tetromino
         {
             return;
         }
-        for (int i = 0; i < blocks.length; i++)
+        for (Block block : blocks)
         {
-            grid.addBlock(blocks[i]);
+            grid.addBlock(block);
+        }
+    }
+
+    /**
+     * Entfernt alle Blöcke des Tetrominos aus dem Blockgitter.
+     *
+     * Die Blöcke können nicht einzeln im Gitter verschoben werden, da sie sich
+     * sonst gegenseitig überschreiben würden.
+     *
+     * @see #addToGrid()
+     */
+    protected void removeFromGrid()
+    {
+        if (grid == null)
+        {
+            return;
+        }
+        for (Block block : blocks)
+        {
+            grid.removeBlock(block);
         }
     }
 
@@ -171,7 +171,7 @@ public abstract class Tetromino
     }
 
     /**
-     * Überprüft, ob die gegebene Kooordinate im Blockgitter besetzt ist. Dabei
+     * Überprüft, ob die gegebene Koordinate im Blockgitter besetzt ist. Dabei
      * wird ein eigener Block ignoriert.
      */
     protected boolean isGridTaken(int x, int y)
@@ -180,7 +180,7 @@ public abstract class Tetromino
     }
 
     /**
-     * Überprüft, ob die gegebene Kooordinate im Blockgitter besetzt ist. Dabei
+     * Überprüft, ob die gegebene Koordinate im Blockgitter besetzt ist. Dabei
      * wird ein eigener Block ignoriert.
      */
     protected boolean isGridTaken(Vector position)
@@ -211,13 +211,12 @@ public abstract class Tetromino
             return false;
         }
         removeFromGrid();
-        for (int i = 0; i < blocks.length; i++)
+        for (Block block : blocks)
         {
-            blocks[i].moveLeft();
+            block.moveLeft();
         }
         addToGrid();
         x--;
-        assert x == blocks[0].getX();
         return true;
     }
 
@@ -240,9 +239,9 @@ public abstract class Tetromino
             return false;
         }
         removeFromGrid();
-        for (int i = 0; i < blocks.length; i++)
+        for (Block block : blocks)
         {
-            blocks[i].moveRight();
+            block.moveRight();
         }
         addToGrid();
         x++;
@@ -269,13 +268,12 @@ public abstract class Tetromino
             return false;
         }
         removeFromGrid();
-        for (int i = 0; i < blocks.length; i++)
+        for (Block block : blocks)
         {
-            blocks[i].moveDown();
+            block.moveDown();
         }
         addToGrid();
         y--;
-        assert y == blocks[0].getY();
         return true;
     }
 
@@ -285,7 +283,6 @@ public abstract class Tetromino
      * <p>
      * Achtung das ist eine naive Implementation! Wir überprüfen einen 3x3-Block
      * um den Mittelpunkt des Tetromino.
-     *
      *
      * <p>
      * Probleme dieser Implementation:
@@ -346,8 +343,8 @@ public abstract class Tetromino
         removeFromGrid();
     }
 
-    public static Tetromino create(Scene scene, Grid grid, int number,
-            int x, int y, boolean debug)
+    public static Tetromino create(Scene scene, Grid grid, int number, int x,
+            int y, boolean debug)
     {
         switch (number)
         {
@@ -377,8 +374,8 @@ public abstract class Tetromino
         }
     }
 
-    public static Tetromino create(Scene scene, Grid grid, String name,
-            int x, int y, boolean debug)
+    public static Tetromino create(Scene scene, Grid grid, String name, int x,
+            int y, boolean debug)
     {
         for (int i = 0; i < names.length; i++)
         {
