@@ -2,7 +2,7 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import rocks.friedrich.engine_omega.Scene;
 
-public class I extends Tetromino
+class I extends Tetromino
 {
     public I(Scene scene, BlockGrid grid, int x, int y, boolean debug)
     {

@@ -16,7 +16,7 @@ public class Block
 
     private Vector position;
 
-    private BlockMotion motion;
+    private MotionWithImageExchange motion;
 
     /**
      * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
@@ -135,7 +135,7 @@ public class Block
         scene.remove(image);
     }
 
-    public void flipImages()
+    public void exchangeImages()
     {
         if (image != null && mainImage != null)
         {
@@ -157,7 +157,7 @@ public class Block
         }
     }
 
-    public void setMotion(BlockMotion motion)
+    public void setMotion(MotionWithImageExchange motion)
     {
         this.motion = motion;
     }
@@ -169,7 +169,7 @@ public class Block
 
     public void setMotion(int dX, int dY, boolean switchImage)
     {
-        motion = new BlockMotion(dX, dY, switchImage);
+        motion = new MotionWithImageExchange(dX, dY, switchImage);
     }
 
     public void setMotion(int dX, int dY)
@@ -177,7 +177,7 @@ public class Block
         setMotion(dX, dY, false);
     }
 
-    public BlockMotion getMotion()
+    public Motion getMotion()
     {
         return motion;
     }
@@ -195,9 +195,9 @@ public class Block
     {
         if (motion != null)
         {
-            if (motion.getSwitchImage())
+            if (motion.exchangeImage())
             {
-                flipImages();
+                exchangeImages();
             }
             moveBy(motion.getVector());
             motion = null;
