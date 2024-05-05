@@ -8,18 +8,15 @@ public class BlockMotion
 
     private int y;
 
-    private boolean switchImage;
-
-    public BlockMotion(int x, int y, boolean switchImage)
+    public BlockMotion(int x, int y)
     {
         this.x = x;
         this.y = y;
-        this.switchImage = switchImage;
     }
 
-    public BlockMotion(Vector motion, boolean switchImage)
+    public BlockMotion(Vector motion)
     {
-        this((int) motion.getX(), (int) motion.getY(), switchImage);
+        this((int) motion.getX(), (int) motion.getY());
     }
 
     public int getX()
@@ -35,10 +32,5 @@ public class BlockMotion
     public int getY()
     {
         return y;
-    }
-
-    public boolean getSwitchImage()
-    {
-        return switchImage;
     }
 }

@@ -63,19 +63,12 @@ public abstract class Tetromino
         this(scene, grid, x, y, false);
     }
 
-    protected Block createBlock(String mainImage, String secondImage, int x,
-            int y)
+    protected Block createBlock(String mainImage, int x, int y)
     {
-        return new Block(this.scene, mainImage, secondImage, x, y);
+        return new Block(scene, mainImage, x, y);
     }
 
-    protected Block createBlock(String name, int x, int y)
-    {
-        return createBlock(name, null, x, y);
-    }
-
-    protected void addBlock(int index, String mainImage, String secondImage,
-            int x, int y)
+    protected void addBlock(int index, String mainImage, int x, int y)
     {
         if (debug)
         {
@@ -83,13 +76,8 @@ public abstract class Tetromino
         }
         else
         {
-            blocks[index] = createBlock(mainImage, secondImage, x, y);
+            blocks[index] = createBlock(mainImage, x, y);
         }
-    }
-
-    protected void addBlock(int index, String name, int x, int y)
-    {
-        addBlock(index, name, null, x, y);
     }
 
     /**
@@ -117,15 +105,9 @@ public abstract class Tetromino
         return false;
     }
 
-    protected void setBlockMotion(int index, int dX, int dY,
-            boolean switchImage)
-    {
-        blocks[index].setMotion(dX, dY, switchImage);
-    }
-
     protected void setBlockMotion(int index, int dX, int dY)
     {
-        setBlockMotion(index, dX, dY, false);
+        blocks[index].setMotion(dX, dY);
     }
 
     /**
@@ -377,5 +359,4 @@ public abstract class Tetromino
         }
         return create(scene, grid, 0, x, y, debug);
     }
-
 }

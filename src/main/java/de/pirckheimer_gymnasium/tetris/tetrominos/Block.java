@@ -8,10 +8,6 @@ public class Block
 {
     private Image image;
 
-    private Image mainImage;
-
-    private Image secondImage;
-
     private String name;
 
     private Vector position;
@@ -42,35 +38,14 @@ public class Block
      * @param y           Die Y-Koordinate der Startposition, auf die der Block
      *                    gesetzt werden soll.
      */
-    public Block(Scene scene, String mainImage, String secondImage, int x,
-            int y)
+    public Block(Scene scene, String mainImage, int x, int y)
     {
         this.scene = scene;
         name = mainImage;
         image = new Image("blocks/" + mainImage + ".png");
-        if (secondImage != null)
-        {
-            this.secondImage = new Image("blocks/" + secondImage + ".png");
-        }
         image.setPosition(x, y);
         position = new Vector(x, y);
         scene.add(image);
-    }
-
-    /**
-     * @param scene Eine Referenz auf die Szene, in der der Block angezeigt
-     *              werden soll.
-     * @param name  Der Name des Blocks entspricht dem Dateinamen des Bildes
-     *              ohne die Dateierweiterung, z. B. {@code "L"} oder
-     *              {@code "I_h_left"}.
-     * @param x     Die X-Koordinate der Startposition, auf die der Block
-     *              gesetzt werden soll.
-     * @param y     Die Y-Koordinate der Startposition, auf die der Block
-     *              gesetzt werden soll.
-     */
-    public Block(Scene scene, String name, int x, int y)
-    {
-        this(scene, name, null, x, y);
     }
 
     /**
@@ -135,28 +110,6 @@ public class Block
         scene.remove(image);
     }
 
-    public void flipImages()
-    {
-        if (image != null && mainImage != null)
-        {
-            image.remove();
-            secondImage = image;
-            image = mainImage;
-            scene.add(image);
-            image.setPosition(position);
-            mainImage = null;
-        }
-        else if (image != null && secondImage != null)
-        {
-            image.remove();
-            mainImage = image;
-            image = secondImage;
-            scene.add(image);
-            image.setPosition(position);
-            secondImage = null;
-        }
-    }
-
     public void setMotion(BlockMotion motion)
     {
         this.motion = motion;
@@ -167,14 +120,9 @@ public class Block
         this.motion = null;
     }
 
-    public void setMotion(int dX, int dY, boolean switchImage)
-    {
-        motion = new BlockMotion(dX, dY, switchImage);
-    }
-
     public void setMotion(int dX, int dY)
     {
-        setMotion(dX, dY, false);
+        motion = new BlockMotion(dX, dY);
     }
 
     public BlockMotion getMotion()
@@ -195,10 +143,6 @@ public class Block
     {
         if (motion != null)
         {
-            if (motion.getSwitchImage())
-            {
-                flipImages();
-            }
             moveBy(motion.getVector());
             motion = null;
         }
