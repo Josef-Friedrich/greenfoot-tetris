@@ -24,6 +24,11 @@ class Motion
         return x;
     }
 
+    public int getY()
+    {
+        return y;
+    }
+
     public Vector getVector()
     {
         return new Vector(x, y);

@@ -6,6 +6,10 @@ import rocks.friedrich.engine_omega.Vector;
 
 public class Block
 {
+    private int x;
+
+    private int y;
+
     private Image image;
 
     private Image mainImage;
@@ -13,8 +17,6 @@ public class Block
     private Image secondImage;
 
     private String name;
-
-    private Vector position;
 
     private MotionWithImageExchange motion;
 
@@ -53,7 +55,8 @@ public class Block
             this.secondImage = new Image("blocks/" + secondImage + ".png");
         }
         image.setPosition(x, y);
-        position = new Vector(x, y);
+        this.x = x;
+        this.y = y;
         scene.add(image);
     }
 
@@ -96,18 +99,21 @@ public class Block
 
     public int getX()
     {
-        return (int) image.getX();
+        assert (int) image.getX() == x;
+        return x;
     }
 
     public int getY()
     {
-        return (int) image.getY();
+        assert (int) image.getY() == y;
+        return y;
     }
 
     public void moveBy(Vector vector)
     {
         image.moveBy(vector);
-        position = position.add(vector);
+        x = x + (int) vector.getX();
+        y = y + (int) vector.getY();
     }
 
     public void moveBy(int dX, int dY)
@@ -143,7 +149,7 @@ public class Block
             secondImage = image;
             image = mainImage;
             scene.add(image);
-            image.setPosition(position);
+            image.setPosition(x, y);
             mainImage = null;
         }
         else if (image != null && secondImage != null)
@@ -152,7 +158,7 @@ public class Block
             mainImage = image;
             image = secondImage;
             scene.add(image);
-            image.setPosition(position);
+            image.setPosition(x, y);
             secondImage = null;
         }
     }
@@ -188,7 +194,7 @@ public class Block
         {
             return null;
         }
-        return position.add(motion.getVector());
+        return new Vector(x + motion.getX(), y + motion.getY());
     }
 
     public void move()

@@ -224,6 +224,8 @@ public abstract class Tetromino
             blocks[i].moveLeft();
         }
         addToGrid();
+        x--;
+        assert x == blocks[0].getX();
         return true;
     }
 
@@ -251,6 +253,8 @@ public abstract class Tetromino
             blocks[i].moveRight();
         }
         addToGrid();
+        x++;
+        assert x == blocks[0].getX();
         return true;
     }
 
@@ -278,6 +282,8 @@ public abstract class Tetromino
             blocks[i].moveDown();
         }
         addToGrid();
+        y--;
+        assert y == blocks[0].getY();
         return true;
     }
 
@@ -377,5 +383,4 @@ public abstract class Tetromino
         }
         return create(scene, grid, 0, x, y, debug);
     }
-
 }
