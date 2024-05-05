@@ -13,7 +13,7 @@ class I extends Tetromino
         addBlock(3, "I", x + 2, y);
     }
 
-    protected void setRotation()
+    protected void doRotation()
     {
         switch (rotation)
         {

@@ -14,8 +14,6 @@ public class Block
 
     private String name;
 
-    private MotionWithImageExchange motion;
-
     /**
      * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
      *
@@ -29,7 +27,7 @@ public class Block
     /**
      * @param scene       Eine Referenz auf die Szene, in der der Block
      *                    angezeigt werden soll.
-     * @param mainImage   Das Hauptbild angegeben als Dateiname ohne die
+     * @param imageName   Das Hauptbild angegeben als Dateiname ohne die
      *                    Dateierweiterung, z. B. {@code "L"} oder
      *                    {@code "I_h_left"}.
      * @param secondImage Das zweite Bild angegeben als Dateiname ohne die
@@ -40,15 +38,15 @@ public class Block
      * @param y           Die Y-Koordinate der Startposition, auf die der Block
      *                    gesetzt werden soll.
      */
-    public Block(Scene scene, String mainImage, int x, int y)
+    public Block(Scene scene, String imageName, int x, int y)
     {
         this.scene = scene;
-        name = mainImage;
-        image = new Image("blocks/" + mainImage + ".png");
+        name = imageName;
+        image = new Image("blocks/" + imageName + ".png");
         image.setPosition(x, y);
+        scene.add(image);
         this.x = x;
         this.y = y;
-        scene.add(image);
     }
 
     /**
@@ -114,43 +112,5 @@ public class Block
     public void remove()
     {
         scene.remove(image);
-    }
-
-    public void setMotion(MotionWithImageExchange motion)
-    {
-        this.motion = motion;
-    }
-
-    public void resetMotion()
-    {
-        this.motion = null;
-    }
-
-    public void setMotion(int dX, int dY)
-    {
-        motion = new BlockMotion(dX, dY);
-    }
-
-    public Motion getMotion()
-    {
-        return motion;
-    }
-
-    public Vector getMotionDestination()
-    {
-        if (motion == null)
-        {
-            return null;
-        }
-        return new Vector(x + motion.getX(), y + motion.getY());
-    }
-
-    public void move()
-    {
-        if (motion != null)
-        {
-            moveBy(motion.getVector());
-            motion = null;
-        }
     }
 }

@@ -63,6 +63,16 @@ public abstract class Tetromino
         this(scene, grid, x, y, false);
     }
 
+    public int getX()
+    {
+        return x;
+    }
+
+    public int getY()
+    {
+        return y;
+    }
+
     protected Block createBlock(String mainImage, int x, int y)
     {
         return new Block(scene, mainImage, x, y);
@@ -107,7 +117,7 @@ public abstract class Tetromino
 
     protected void setBlockMotion(int index, int dX, int dY)
     {
-        blocks[index].setMotion(dX, dY);
+        blocks[index].moveBy(dX, dY);
     }
 
     /**
@@ -269,23 +279,50 @@ public abstract class Tetromino
         return true;
     }
 
-    protected abstract void setRotation();
-
+    /**
+     * Überprüft, ob sich das Tetromino drehen kann.
+     *
+     * <p>
+     * Achtung das ist eine naive Implementation! Wir überprüfen einen 3x3-Block
+     * um den Mittelpunkt des Tetromino.
+     *
+     *
+     * <p>
+     * Probleme dieser Implementation:
+     *
+     * <ul>
+     * <item>Das I-Tetromino schaut einen Block über den 3x3-Block
+     * hinaus.</item>
+     *
+     * <item>In den 3x3-Feld dürfen sind an gewissen Position Blöcke befinden
+     * und das Tetromino kann sich trotzdem bewegen.</item>
+     * </ul>
+     *
+     * @return
+     */
     private boolean checkRotation()
     {
-        for (Block block : blocks)
+        for (int x = getX() - 1; x <= getX() + 1; x++)
         {
-            if (isGridTaken(block.getMotionDestination()))
+            for (int y = getY() - 1; y <= getY() + 1; y++)
             {
-                return false;
+                if (isGridTaken(x, y))
+                {
+                    return false;
+                }
             }
         }
         return true;
     }
 
+    protected abstract void doRotation();
+
     public boolean rotate()
     {
-        int oldRotation = rotation;
+        if (!checkRotation())
+        {
+            return false;
+        }
         if (rotation > 2)
         {
             rotation = 0;
@@ -294,21 +331,8 @@ public abstract class Tetromino
         {
             rotation++;
         }
-        setRotation();
-        if (!checkRotation())
-        {
-            for (Block block : blocks)
-            {
-                block.resetMotion();
-            }
-            rotation = oldRotation;
-            return false;
-        }
         removeFromGrid();
-        for (Block block : blocks)
-        {
-            block.move();
-        }
+        doRotation();
         addToGrid();
         return true;
     }

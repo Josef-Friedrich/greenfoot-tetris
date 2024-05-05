@@ -13,7 +13,7 @@ class Z extends Tetromino
         addBlock(3, "Z", x + 1, y - 1);
     }
 
-    protected void setRotation()
+    protected void doRotation()
     {
         switch (rotation)
         {
