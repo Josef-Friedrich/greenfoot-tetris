@@ -4,7 +4,7 @@ import rocks.friedrich.engine_omega.Scene;
 
 class S extends Tetromino
 {
-    public S(Scene scene, BlockGrid grid, int x, int y, boolean debug)
+    public S(Scene scene, Grid grid, int x, int y, boolean debug)
     {
         super(scene, grid, x, y, debug);
         addBlock(0, "S", x, y);
@@ -19,14 +19,14 @@ class S extends Tetromino
         {
         case 1:
         case 3:
-            setBlockMotion(1, -2, 0);
-            setBlockMotion(2, 0, 2);
+            doBlockMotion(1, -2, 0);
+            doBlockMotion(2, 0, 2);
             break;
 
         case 0:
         case 2:
-            setBlockMotion(1, 2, 0);
-            setBlockMotion(2, 0, -2);
+            doBlockMotion(1, 2, 0);
+            doBlockMotion(2, 0, -2);
             break;
         }
     }

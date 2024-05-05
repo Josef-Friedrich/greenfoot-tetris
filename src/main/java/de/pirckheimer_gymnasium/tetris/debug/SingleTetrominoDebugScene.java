@@ -18,14 +18,14 @@ public class SingleTetrominoDebugScene extends Scene implements KeyListener
 
     Tetromino tetromino;
 
-    BlockGrid grid;
+    Grid grid;
 
     public SingleTetrominoDebugScene()
     {
         rotation = new Text("0", 1);
         rotation.setColor(Color.WHITE);
         rotation.setPosition(0, 0);
-        grid = new BlockGrid(8, 8);
+        grid = new Grid(8, 8);
         getCamera().setPostion(4, 4);
         add(rotation);
         createTetromino("L");
@@ -90,7 +90,6 @@ public class SingleTetrominoDebugScene extends Scene implements KeyListener
             rotation.setContent(tetromino.rotation + "");
             break;
         }
-        grid.print();
     }
 
     public static void main(String[] args)

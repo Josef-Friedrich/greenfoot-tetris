@@ -7,7 +7,7 @@ import rocks.friedrich.engine_omega.Vector;
  *
  * Herz dieser Klasse ist ein zweidimensionales Array/Feld aus Blöcken.
  */
-public class BlockGrid
+public class Grid
 {
     /**
      * Das zweidimensionale Array, das die Blöcke speichert.
@@ -16,7 +16,7 @@ public class BlockGrid
      */
     private Block[][] grid;
 
-    public BlockGrid(int width, int height)
+    public Grid(int width, int height)
     {
         grid = new Block[width][height];
     }
@@ -80,34 +80,5 @@ public class BlockGrid
     public boolean isTaken(Vector position)
     {
         return isTaken((int) position.getX(), (int) position.getY());
-    }
-
-    /**
-     * Gib eine Textrepräsentation des Blockgitters und der momentation
-     * enthaltenen Blöcke aus.
-     *
-     * Diese Methode ist nur für Testzwecke gedacht.
-     */
-    public void print()
-    {
-        String horizontalLine = "-".repeat(getWidth() + 2);
-        System.out.println(horizontalLine);
-        for (int y = getHeight() - 1; y > -1; y--)
-        {
-            System.out.print('|');
-            for (int x = 0; x < getWidth(); x++)
-            {
-                if (grid[x][y] == null)
-                {
-                    System.out.print(" ");
-                }
-                else
-                {
-                    System.out.print(grid[x][y].getChar());
-                }
-            }
-            System.out.println('|');
-        }
-        System.out.println(horizontalLine);
     }
 }

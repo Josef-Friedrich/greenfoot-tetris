@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import de.pirckheimer_gymnasium.tetris.Tetris;
-import de.pirckheimer_gymnasium.tetris.tetrominos.BlockGrid;
+import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 import rocks.friedrich.engine_omega.FrameUpdateListener;
 import rocks.friedrich.engine_omega.event.KeyListener;
@@ -12,7 +12,7 @@ import rocks.friedrich.engine_omega.event.KeyListener;
 public class IngameScene extends BaseScene
         implements KeyListener, FrameUpdateListener
 {
-    private BlockGrid grid;
+    private Grid grid;
 
     /**
      * Der Zufallsgenerator wird benötigt, um zufällig neue Tetrominos zu
@@ -82,7 +82,7 @@ public class IngameScene extends BaseScene
         // Das I-Tetromino ragt einen Block über das sichtbare Spielfeld hinaus,
         // wenn es in der Startposition gedreht wird, deshalb machen wir das
         // Blockgitter um eine Zeile höher.
-        grid = new BlockGrid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
+        grid = new Grid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
         createNextTetromino();
     }
 
@@ -166,10 +166,6 @@ public class IngameScene extends BaseScene
         case KeyEvent.VK_SPACE:
             tetromino.rotate();
             break;
-        }
-        if (Tetris.DEBUG)
-        {
-            grid.print();
         }
     }
 

@@ -17,14 +17,14 @@ public class TetrominoDebugScene extends Scene implements KeyListener
 
     Tetromino[] t;
 
-    BlockGrid grid;
+    Grid grid;
 
     public TetrominoDebugScene()
     {
         rotation = new Text("0", 2);
         rotation.setColor(Color.WHITE);
         rotation.setPosition(2, Tetris.HEIGHT / 2);
-        grid = new BlockGrid(Tetris.WIDTH, Tetris.HEIGHT);
+        grid = new Grid(Tetris.WIDTH, Tetris.HEIGHT);
         getCamera().setPostion(Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
         add(rotation);
         t = new Tetromino[7];
@@ -85,8 +85,6 @@ public class TetrominoDebugScene extends Scene implements KeyListener
             rotation.setContent(String.valueOf(t[0].rotation));
             break;
         }
-
-        grid.print();
     }
 
     public static void main(String[] args)

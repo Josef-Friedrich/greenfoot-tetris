@@ -2,7 +2,6 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import de.pirckheimer_gymnasium.tetris.Image;
 import rocks.friedrich.engine_omega.Scene;
-import rocks.friedrich.engine_omega.Vector;
 
 public class Block
 {
@@ -11,8 +10,6 @@ public class Block
     private int y;
 
     private Image image;
-
-    private String name;
 
     /**
      * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
@@ -41,7 +38,6 @@ public class Block
     public Block(Scene scene, String imageName, int x, int y)
     {
         this.scene = scene;
-        name = imageName;
         image = new Image("blocks/" + imageName + ".png");
         image.setPosition(x, y);
         scene.add(image);
@@ -49,49 +45,21 @@ public class Block
         this.y = y;
     }
 
-    /**
-     * Gibt den Namen des Blocks zurück.
-     *
-     * @return Der Name des Blocks z. B. {@code "L"} oder {@code "I_h_left"}.
-     */
-    public String getName()
-    {
-        return name;
-    }
-
-    /**
-     * Gibt den ersten Buchstaben des Blocknamens zurück.
-     *
-     * @return Der erste Buchstaben des Blocknamens des Blocks z. B. {@code 'L'}
-     *         oder {@code 'I'}.
-     */
-    public char getChar()
-    {
-        return name.charAt(0);
-    }
-
     public int getX()
     {
-        assert (int) image.getX() == x;
         return x;
     }
 
     public int getY()
     {
-        assert (int) image.getY() == y;
         return y;
-    }
-
-    public void moveBy(Vector vector)
-    {
-        image.moveBy(vector);
-        x = x + (int) vector.getX();
-        y = y + (int) vector.getY();
     }
 
     public void moveBy(int dX, int dY)
     {
-        moveBy(new Vector(dX, dY));
+        image.moveBy(dX, dY);
+        x = x + dX;
+        y = y + dY;
     }
 
     public void moveLeft()

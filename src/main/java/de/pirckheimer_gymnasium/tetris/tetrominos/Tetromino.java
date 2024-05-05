@@ -22,7 +22,7 @@ public abstract class Tetromino
      */
     protected Scene scene;
 
-    protected BlockGrid grid;
+    protected Grid grid;
 
     /**
      * Die x-Koordinate des Tetrominos entspricht der Lage des ersten Blocks,
@@ -48,7 +48,7 @@ public abstract class Tetromino
      */
     protected boolean debug;
 
-    Tetromino(Scene scene, BlockGrid grid, int x, int y, boolean debug)
+    Tetromino(Scene scene, Grid grid, int x, int y, boolean debug)
     {
         this.scene = scene;
         this.grid = grid;
@@ -58,7 +58,7 @@ public abstract class Tetromino
         this.debug = debug;
     }
 
-    Tetromino(Scene scene, BlockGrid grid, int x, int y)
+    Tetromino(Scene scene, Grid grid, int x, int y)
     {
         this(scene, grid, x, y, false);
     }
@@ -115,7 +115,7 @@ public abstract class Tetromino
         return false;
     }
 
-    protected void setBlockMotion(int index, int dX, int dY)
+    protected void doBlockMotion(int index, int dX, int dY)
     {
         blocks[index].moveBy(dX, dY);
     }
@@ -346,7 +346,7 @@ public abstract class Tetromino
         removeFromGrid();
     }
 
-    public static Tetromino create(Scene scene, BlockGrid grid, int number,
+    public static Tetromino create(Scene scene, Grid grid, int number,
             int x, int y, boolean debug)
     {
         switch (number)
@@ -377,7 +377,7 @@ public abstract class Tetromino
         }
     }
 
-    public static Tetromino create(Scene scene, BlockGrid grid, String name,
+    public static Tetromino create(Scene scene, Grid grid, String name,
             int x, int y, boolean debug)
     {
         for (int i = 0; i < names.length; i++)
