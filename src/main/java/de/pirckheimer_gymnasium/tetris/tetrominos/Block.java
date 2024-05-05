@@ -31,28 +31,28 @@ public class Block
     private Scene scene;
 
     /**
-     * @param scene       Eine Referenz auf die Szene, in der der Block
-     *                    angezeigt werden soll.
-     * @param mainImage   Das Hauptbild angegeben als Dateiname ohne die
-     *                    Dateierweiterung, z. B. {@code "L"} oder
-     *                    {@code "I_h_left"}.
-     * @param secondImage Das zweite Bild angegeben als Dateiname ohne die
-     *                    Dateierweiterung, z. B. {@code "L"} oder
-     *                    {@code "I_v_bottom"}.
-     * @param x           Die X-Koordinate der Startposition, auf die der Block
-     *                    gesetzt werden soll.
-     * @param y           Die Y-Koordinate der Startposition, auf die der Block
-     *                    gesetzt werden soll.
+     * @param scene           Eine Referenz auf die Szene, in der der Block
+     *                        angezeigt werden soll.
+     * @param imageName       Das Hauptbild angegeben als Dateiname ohne die
+     *                        Dateierweiterung, z. B. {@code "L"} oder
+     *                        {@code "I_h_left"}.
+     * @param secondImageName Das zweite Bild angegeben als Dateiname ohne die
+     *                        Dateierweiterung, z. B. {@code "L"} oder
+     *                        {@code "I_v_bottom"}.
+     * @param x               Die X-Koordinate der Startposition, auf die der
+     *                        Block gesetzt werden soll.
+     * @param y               Die Y-Koordinate der Startposition, auf die der
+     *                        Block gesetzt werden soll.
      */
-    public Block(Scene scene, String mainImage, String secondImage, int x,
+    public Block(Scene scene, String imageName, String secondImageName, int x,
             int y)
     {
         this.scene = scene;
-        name = mainImage;
-        image = new Image("blocks/" + mainImage + ".png");
-        if (secondImage != null)
+        name = imageName;
+        image = new Image("blocks/" + imageName + ".png");
+        if (secondImageName != null)
         {
-            this.secondImage = new Image("blocks/" + secondImage + ".png");
+            this.secondImage = new Image("blocks/" + secondImageName + ".png");
         }
         image.setPosition(x, y);
         this.x = x;
@@ -61,19 +61,19 @@ public class Block
     }
 
     /**
-     * @param scene Eine Referenz auf die Szene, in der der Block angezeigt
-     *              werden soll.
-     * @param name  Der Name des Blocks entspricht dem Dateinamen des Bildes
-     *              ohne die Dateierweiterung, z. B. {@code "L"} oder
-     *              {@code "I_h_left"}.
-     * @param x     Die X-Koordinate der Startposition, auf die der Block
-     *              gesetzt werden soll.
-     * @param y     Die Y-Koordinate der Startposition, auf die der Block
-     *              gesetzt werden soll.
+     * @param scene     Eine Referenz auf die Szene, in der der Block angezeigt
+     *                  werden soll.
+     * @param imageName Der Name des Blocks entspricht dem Dateinamen des Bildes
+     *                  ohne die Dateierweiterung, z. B. {@code "L"} oder
+     *                  {@code "I_h_left"}.
+     * @param x         Die X-Koordinate der Startposition, auf die der Block
+     *                  gesetzt werden soll.
+     * @param y         Die Y-Koordinate der Startposition, auf die der Block
+     *                  gesetzt werden soll.
      */
-    public Block(Scene scene, String name, int x, int y)
+    public Block(Scene scene, String imageName, int x, int y)
     {
-        this(scene, name, null, x, y);
+        this(scene, imageName, null, x, y);
     }
 
     /**

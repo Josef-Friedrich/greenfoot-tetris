@@ -7,7 +7,7 @@ import rocks.friedrich.engine_omega.Vector;
  *
  * Herz dieser Klasse ist ein zweidimensionales Array/Feld aus Blöcken.
  */
-public class BlockGrid
+public class Grid
 {
     /**
      * Das zweidimensionale Array, das die Blöcke speichert.
@@ -16,7 +16,7 @@ public class BlockGrid
      */
     private Block[][] grid;
 
-    public BlockGrid(int width, int height)
+    public Grid(int width, int height)
     {
         grid = new Block[width][height];
     }
