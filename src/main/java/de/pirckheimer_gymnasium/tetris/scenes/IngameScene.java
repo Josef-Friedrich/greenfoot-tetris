@@ -42,22 +42,38 @@ public class IngameScene extends BaseScene
     private int level = 0;
 
     /**
-     * According <a href=
+     * Nach wie vielen Frames ein Tetromino eine Reihe weiter nach unten gesetzt
+     * wird und zwar im Verhältnis zur Bildwiederholungsrate des originalen
+     * Gameboys {@code 59.73}.
+     *
+     * Quelle: <a href=
      * "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
      */
-    private int[] framesPerRow = new int[] { 53, 49, 45, 41, 37, 33, 28, 22, 17,
-            11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3 };
+    private final int[] GB_FRAMES_PER_ROM = new int[] { 53, 49, 45, 41, 37, 33,
+            28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3 };
 
     /**
-     * According <a href=
+     * Die Bildwiederholungsrate des originalen Gameboys pro Sekunde mal 100
+     * (damit wir ganzzahlig ohne Rest teilen können): pro Sekunden
+     * {@code 59.73}, mal hundert {@code 5973}.
+     *
+     * Quelle: <a href=
      * "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
      */
-    private double gameboyFrameRate = 59.73;
+    private final int GB_FRAME_RATE = 5973;
 
-    private long latestDownMovement = 0;
+    /**
+     * Der Zeitstempel in Nanosekunden ({@code 1} Sekunden sind
+     * {@code 1.000.000} Nanosekunden)
+     */
+    private long latestDown = 0;
 
-    private boolean automaticDownMovement = true;
+    private boolean automaticDown = true;
 
+    /**
+     * Das Zeitintervall, wie lange es dauern soll, bis das Tetromino eine Reihe
+     * weiter nach unten bewegt werden soll.
+     */
     private long downInterval = 0;
 
     public IngameScene()
@@ -86,16 +102,26 @@ public class IngameScene extends BaseScene
         {
             previewTetromino.remove();
         }
-        // Das Vorschaubild liegth außerhalb des Blockgitters. Wir übergeben der
+        // Das Vorschaubild liegt außerhalb des Blockgitters. Wir übergeben der
         // Methode null.
         previewTetromino = Tetromino.create(this, null, nextTetromino, 14, 3,
                 Tetris.DEBUG);
         downInterval = caculateDownInterval();
     }
 
+    /**
+     * Berechnet das Zeitintervall in Nanosekunden, wie lange es dauert, bis
+     * sich das aktuelle Tetromino von einer Reihe zur darunterliegenden Reihe
+     * bewegt.
+     *
+     * @return
+     */
     private long caculateDownInterval()
     {
-        return (long) (1_000_000_000 / gameboyFrameRate * framesPerRow[level]);
+        // 1_000_000_000 / (5973 / 100)
+        // (1_000_000_000 * 100) / 5973
+        // 100_000_000_000 / 5973
+        return 100_000_000_000L / GB_FRAME_RATE * GB_FRAMES_PER_ROM[level];
     }
 
     private void moveDown()
@@ -104,17 +130,17 @@ public class IngameScene extends BaseScene
         {
             createNextTetromino();
         }
-        latestDownMovement = System.nanoTime();
+        latestDown = System.nanoTime();
     }
 
     @Override
     public void onFrameUpdate(float deltaSeconds)
     {
-        if (!automaticDownMovement)
+        if (!automaticDown)
         {
             return;
         }
-        if (System.nanoTime() - latestDownMovement > downInterval)
+        if (System.nanoTime() - latestDown > downInterval)
         {
             moveDown();
         }
