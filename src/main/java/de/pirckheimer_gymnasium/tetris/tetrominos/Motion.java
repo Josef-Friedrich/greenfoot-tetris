@@ -1,20 +1,21 @@
+
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import rocks.friedrich.engine_omega.Vector;
 
-public class BlockMotion
+class Motion
 {
     private int x;
 
     private int y;
 
-    public BlockMotion(int x, int y)
+    public Motion(int x, int y)
     {
         this.x = x;
         this.y = y;
     }
 
-    public BlockMotion(Vector motion)
+    public Motion(Vector motion)
     {
         this((int) motion.getX(), (int) motion.getY());
     }
@@ -24,13 +25,13 @@ public class BlockMotion
         return x;
     }
 
-    public Vector getVector()
-    {
-        return new Vector(x, y);
-    }
-
     public int getY()
     {
         return y;
+    }
+
+    public Vector getVector()
+    {
+        return new Vector(x, y);
     }
 }

@@ -6,13 +6,15 @@ import rocks.friedrich.engine_omega.Vector;
 
 public class Block
 {
+    private int x;
+
+    private int y;
+
     private Image image;
 
     private String name;
 
-    private Vector position;
-
-    private BlockMotion motion;
+    private MotionWithImageExchange motion;
 
     /**
      * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
@@ -44,7 +46,8 @@ public class Block
         name = mainImage;
         image = new Image("blocks/" + mainImage + ".png");
         image.setPosition(x, y);
-        position = new Vector(x, y);
+        this.x = x;
+        this.y = y;
         scene.add(image);
     }
 
@@ -71,18 +74,21 @@ public class Block
 
     public int getX()
     {
-        return (int) image.getX();
+        assert (int) image.getX() == x;
+        return x;
     }
 
     public int getY()
     {
-        return (int) image.getY();
+        assert (int) image.getY() == y;
+        return y;
     }
 
     public void moveBy(Vector vector)
     {
         image.moveBy(vector);
-        position = position.add(vector);
+        x = x + (int) vector.getX();
+        y = y + (int) vector.getY();
     }
 
     public void moveBy(int dX, int dY)
@@ -110,7 +116,7 @@ public class Block
         scene.remove(image);
     }
 
-    public void setMotion(BlockMotion motion)
+    public void setMotion(MotionWithImageExchange motion)
     {
         this.motion = motion;
     }
@@ -125,7 +131,7 @@ public class Block
         motion = new BlockMotion(dX, dY);
     }
 
-    public BlockMotion getMotion()
+    public Motion getMotion()
     {
         return motion;
     }
@@ -136,7 +142,7 @@ public class Block
         {
             return null;
         }
-        return position.add(motion.getVector());
+        return new Vector(x + motion.getX(), y + motion.getY());
     }
 
     public void move()

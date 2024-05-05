@@ -1,0 +1,12 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "IngameScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.scenes.IngameScene",
+      "vmArgs": "-enableassertions",
+      "projectName": "tetris"
+    }
+  ]
+}
