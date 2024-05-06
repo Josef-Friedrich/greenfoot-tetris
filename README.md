@@ -543,7 +543,7 @@ public class Block
 
 - Fertigstellung der `Block`-Klasse
 
-![UML-Klassendiagramm der Klasse Block](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/UML/screenshots/Class-Block.drawio.svg)
+![UML-Klassendiagramm der Klasse Block](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/UML/Class-Block.drawio.svg)
 
 - Anfangen der `Tetromino`-Klasse
 
