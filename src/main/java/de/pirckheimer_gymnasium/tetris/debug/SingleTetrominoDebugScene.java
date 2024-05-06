@@ -1,19 +1,17 @@
 package de.pirckheimer_gymnasium.tetris.debug;
 
-import rocks.friedrich.engine_omega.actor.Text;
-import rocks.friedrich.engine_omega.Game;
-import rocks.friedrich.engine_omega.Scene;
-import rocks.friedrich.engine_omega.event.KeyListener;
-import de.pirckheimer_gymnasium.tetris.Tetris;
-import de.pirckheimer_gymnasium.tetris.tetrominos.*;
-
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
+import de.pirckheimer_gymnasium.tetris.Tetris;
+import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
+import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
+import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.actor.Text;
+import rocks.friedrich.engine_omega.event.KeyListener;
+
 public class SingleTetrominoDebugScene extends Scene implements KeyListener
 {
-    public boolean DEBUG = false;
-
     private Text rotation;
 
     Tetromino tetromino;
@@ -37,7 +35,7 @@ public class SingleTetrominoDebugScene extends Scene implements KeyListener
         {
             tetromino.remove();
         }
-        tetromino = Tetromino.create(this, grid, name, 3, 3, DEBUG);
+        tetromino = Tetromino.create(this, grid, name, 3, 3);
     }
 
     @Override
@@ -90,13 +88,10 @@ public class SingleTetrominoDebugScene extends Scene implements KeyListener
             rotation.setContent(tetromino.rotation + "");
             break;
         }
-        grid.print();
     }
 
     public static void main(String[] args)
     {
-        Game.start(Tetris.SCALE * Tetris.BLOCK_SIZE * 8,
-                Tetris.SCALE * Tetris.BLOCK_SIZE * 8,
-                new SingleTetrominoDebugScene());
+        Tetris.start(new SingleTetrominoDebugScene(), true);
     }
 }
