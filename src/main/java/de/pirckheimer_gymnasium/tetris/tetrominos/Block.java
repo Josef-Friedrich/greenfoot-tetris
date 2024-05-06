@@ -22,18 +22,15 @@ public class Block
     private int y;
 
     /**
-     * @param scene       Eine Referenz auf die Szene, in der der Block
-     *                    angezeigt werden soll.
-     * @param imageName   Das Hauptbild angegeben als Dateiname ohne die
-     *                    Dateierweiterung, z. B. {@code "L"} oder
-     *                    {@code "I_h_left"}.
-     * @param secondImage Das zweite Bild angegeben als Dateiname ohne die
-     *                    Dateierweiterung, z. B. {@code "L"} oder
-     *                    {@code "I_v_bottom"}.
-     * @param x           Die X-Koordinate der Startposition, auf die der Block
-     *                    gesetzt werden soll.
-     * @param y           Die Y-Koordinate der Startposition, auf die der Block
-     *                    gesetzt werden soll.
+     * @param scene     Eine Referenz auf die Szene, in der der Block angezeigt
+     *                  werden soll.
+     * @param imageName Das Hauptbild angegeben als Dateiname ohne die
+     *                  Dateierweiterung, z. B. {@code "L"} oder
+     *                  {@code "I_h_left"}.
+     * @param x         Die X-Koordinate der Startposition, auf die der Block
+     *                  gesetzt werden soll.
+     * @param y         Die Y-Koordinate der Startposition, auf die der Block
+     *                  gesetzt werden soll.
      */
     public Block(Scene scene, String imageName, int x, int y)
     {
