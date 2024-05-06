@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "TurboFireDebugScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.debug.TurboFireDebugScene",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
       "name": "BlockDebugScene",
       "request": "launch",
       "mainClass": "de.pirckheimer_gymnasium.tetris.debug.BlockDebugScene",
