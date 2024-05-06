@@ -541,6 +541,7 @@ public class Block
 
 ### 3. Sitzung
 
+- Löschen des Klassenattributes `Tetris.DEBUG`
 - Fertigstellung der `Block`-Klasse
 
 ![UML-Klassendiagramm der Klasse Block](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/UML/Class-Block.drawio.svg)
