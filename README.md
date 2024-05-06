@@ -542,6 +542,9 @@ public class Block
 # 3. Sitzung
 
 - Fertigstellung der `Block`-Klasse
+
+![UML-Klassendiagramm der Klasse Block](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/UML/screenshots/Class-Block.drawio.svg)
+
 - Anfangen der `Tetromino`-Klasse
 
 [^fandom] https://tetris.fandom.com/wiki/Soft_Drop
