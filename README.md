@@ -447,14 +447,107 @@ public class TitleScene extends BaseScene
 
 ### 2. Sitzung
 
-- Implementierung der statischen `start()`-Methoden in der Tetrisklasse.
+- Löschen des `blocks`-Pakets.
+- Implementierung der statischen `start()`-Methoden in der `Tetris`-Klasse.
+
+```java
+    public static void start(Scene scene, boolean debug)
+    {
+        scene.getCamera().setZoom(BLOCK_SIZE * SCALE);
+        Game.setDebug(debug);
+        if (!Game.isRunning())
+        {
+            Game.start(WIDTH * BLOCK_SIZE * SCALE, HEIGHT * BLOCK_SIZE * SCALE,
+                    scene);
+        }
+        else
+        {
+            Game.transitionToScene(scene);
+        }
+    }
+
+    public static void start(Scene scene)
+    {
+        start(scene, false);
+    }
+
+    public static void start()
+    {
+        start(new TitleScene());
+    }
+
+    public static void main(String[] args)
+    {
+        start();
+    }
+```
+
 - Löschen der Klassen `HelloWorldScene` und `SimpleScene`.
 - Erweiterung der `*Scene`s:
   - Tastensteuerung: siehe -> https://engine-alpha.org/wiki/v4.x/User_Input
   - Zeitsteuerung
-- Implementierung der Block-Klasse
 
-[^fandom] https://tetris.fandom.com/wiki/Soft_Drop
+```java
+package de.pirckheimer_gymnasium.tetris.scenes;
+
+import de.pirckheimer_gymnasium.tetris.Tetris;
+import rocks.friedrich.engine_omega.event.KeyListener;
+
+import java.awt.event.KeyEvent;
+
+public class CopyrightScene extends BaseScene implements KeyListener
+{
+    public CopyrightScene()
+    {
+        super("copyright");
+        // Lambda-Ausdruck = anonyme Funktion () -> {}
+        delay(1, () -> startTitleScene());
+    }
+
+    public void startTitleScene()
+    {
+        Tetris.start(new TitleScene());
+    }
+
+    public void onKeyDown(KeyEvent e)
+    {
+        startTitleScene();
+    }
+
+    public static void main(String[] args)
+    {
+        Tetris.start(new CopyrightScene(), true);
+    }
+}
+```
+
+- Initialisierung der `Block`-Klasse
+
+```java
+package de.pirckheimer_gymnasium.tetris.tetrominos;
+
+import de.pirckheimer_gymnasium.tetris.Image;
+
+public class Block
+{
+    private Image image;
+
+    public Block(String name)
+    {
+        image = new Image("blocks/" + name + ".png");
+    }
+}
+```
+
+### 3. Sitzung
+
+- Fertigstellung der `Block`-Klasse
+
+![UML-Klassendiagramm der Klasse Block](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/UML/Class-Block.drawio.svg)
+
+- Initialisierung der `Tetromino`-Klasse
+
+[^fandom]: https://tetris.fandom.com/wiki/Soft_Drop
 [^gimp-green]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
 [^harddrop]: https://harddrop.com/wiki/Tetris_(Game_Boy)
 [^mgba-gray]: mGBA Emulator Settings / Gameboy / Game Boy palette / Grayscale Preset
