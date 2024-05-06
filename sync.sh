@@ -2,9 +2,19 @@
 
 BASE="/home/jf/repos/tetris"
 
+MASTER_REPO="$BASE/tetris_github"
+
 _sync() {
+    echo
+    echo
+    echo "$1"
     cd "$BASE/$1"
     git pull
+    mvn formatter:format
+}
+
+_copy() {
+    cp "$MASTER_REPO/$2" "$BASE/$1/$2"
 }
 
 _sync eb_al

@@ -14,8 +14,7 @@ public class BlockDebugScene extends Scene implements KeyListener
 
     public BlockDebugScene()
     {
-        block = new Block(this,  "J",
-                Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
+        block = new Block(this, "J", Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
     }
 
     public static void main(String[] args)

@@ -85,7 +85,6 @@ public class TetrominoDebugScene extends Scene implements KeyListener
             rotation.setContent(String.valueOf(t[0].rotation));
             break;
         }
-
         grid.print();
     }
 
