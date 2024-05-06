@@ -539,7 +539,7 @@ public class Block
 }
 ```
 
-# 3. Sitzung
+### 3. Sitzung
 
 - Fertigstellung der `Block`-Klasse
 
