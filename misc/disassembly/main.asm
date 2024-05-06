@@ -4,7 +4,7 @@ INCLUDE "palettes.asm"
 ; rst vectors
 SECTION "rst 00", ROM0 [$00]
 	jp Init
-  
+
 SECTION "rst 08", ROM0 [$08]
 	jp Init
 	DS $5
@@ -29,7 +29,7 @@ SECTION "rst 28", ROM0 [$28]
 ; * jumps to that address
 
 	add a, a	; double GAME_STATUS
-	pop hl		
+	pop hl
 	ld e, a
 	ld d, $00
 	add hl, de	; add 2 * GAME_STATUS to caller address
@@ -75,26 +75,26 @@ Serial::
 	pop af
 	reti
 
-; Small switch statement: 
+; Small switch statement:
 ; (rst 28 jumps to following address, depending on current $ff00 + $cd)
 func_006b:
 	ldh a, [$ff00 + $cd]
 	rst $28
-	
+
 	db $78, $00	; => 0078
 	db $9f, $00	; => 009f
 	db $a4, $00	; => 00a4
 	db $ba, $00	; => 00ba
 	db $ea, $27	; => 27ea
-	
+
 l_0078:
 	ldh a, [rGAME_STATUS]
 	cp MENU_TITLE
 	jr z, l_0086
-	
+
 	cp MENU_TITLE_INIT
 	ret z
-	
+
 	ld a, MENU_TITLE_INIT
 	ldh [rGAME_STATUS], a
 	ret
@@ -121,7 +121,7 @@ func_009f:
 	ldh a, [rSB]
 	ldh [$ff00 + $d0], a
 	ret
-	
+
 func_00a4:
 	ldh a, [rSB]
 	ldh [$ff00 + $d0], a
@@ -149,7 +149,7 @@ func_00ba:
 	ld a, $80
 	ldh [rSC], a
 	ret
-	
+
 func_00d0:
 	ldh a, [$ff00 + $cd]
 	cp $02
@@ -164,11 +164,11 @@ func_00d0:
 SECTION "Entry", ROM0 [$100]
   nop
 	jp Start
-  
+
 SECTION "Header", ROM0 [$104]
 	db $ce, $ed, $66, $66, $cc, $0d, $00, $0b, $03, $73, $00, $83, $00, $0c, $00, $0d,
 	db $00, $08, $11, $1f, $88, $89, $00, $0e, $dc, $cc, $6e, $e6, $dd, $dd, $d9, $99,
-	db $bb, $bb, $67, $63, $6e, $0e, $ec, $cc, $dd, $dc, $99, $9f, $bb, $b9, $33, $3e, 
+	db $bb, $bb, $67, $63, $6e, $0e, $ec, $cc, $dd, $dc, $99, $9f, $bb, $b9, $33, $3e,
 	db "TETRIS", $00, $00, $00, $00, $00, $00, $00, $00, $00
 	db $00		;dmg - classic gameboy
 	db $00, $00	;new license
@@ -199,7 +199,7 @@ l_015d:
 	ld a, [hl]
 	and b
 	ret
-	
+
 func_0166:
 	ld a, e
 	add a, [hl]
@@ -223,23 +223,23 @@ func_0166:
 	ret
 
 ; The VBlank interrupt handler, must occur once somewhen during the game-loop
-VBlank::	
+VBlank::
 	push af				; Store registers
 	push bc
 	push de
 	push hl
-	
+
 	ldh a, [rREQUEST_SERIAL_TRANSFER]	; Transfer data only if requested
 	and a
 	jr z, .skip_serial_connection
-	
+
 	ldh a, [$ff00 + $cb]			; ?
 	cp $29
 	jr nz, .skip_serial_connection
-	
+
 	xor a
 	ldh [rREQUEST_SERIAL_TRANSFER], a	; Clear request
-	ldh a, [rSB_DATA]			
+	ldh a, [rSB_DATA]
 	ldh [rSB], a				; Send data to link cable
 	ld hl, rSC
 	ld [hl], $81				; Use internal clock (= this GB is the master)
@@ -309,26 +309,26 @@ Init:
 	jr nz, .loop_0
 	dec c
 	jr nz, .loop_0
-	
+
 Screen_Setup: ; $21B
 
-rINTERRUPT_DEFAULT EQU %00000001
+DEF rINTERRUPT_DEFAULT EQU %00000001
 ; * VBlank interrupt enabled
 ; * everything else disabled
 
-rLCDC_START EQU %10000000
+DEF rLCDC_START EQU %10000000
 ; * LCD enabled
 ; * everything else disabled
 
 	ld a, rINTERRUPT_DEFAULT
-	
+
 	di
-	
+
 	ldh [rIF], a
 	ldh [rIE], a
-	
+
 	xor a
-	
+
 	ldh [rSCY], a
 	ldh [rSCX], a
 	ldh [rUNKNOWN1], a
@@ -342,25 +342,25 @@ rLCDC_START EQU %10000000
 	ldh a, [rLY]
 	cp SCREEN_HEIGHT + 4
 	jr nz, .loop_1
-	
+
 	ld a, $03
 	ldh [rLCDC], a
-	
+
 	ld a, PALETTE_1
 	ldh [rBGP], a
 	ldh [rOBP0], a
-	
+
 	ld a, PALETTE_2
 	ldh [rOBP1], a
 	ld hl, rNR52
-	
+
 	ld a, SOUND_ON
 	ldd [hl], a	; rNR51
-	
+
 	ld a, USE_ALL_CHANNELS
 	ldd [hl], a	; rNR50
 	ld [hl], MASTER_VOLUME_MAX
-	
+
 	ld a, $01
 	ld [rMBC], a
 	ld sp, SP_INIT
@@ -371,9 +371,9 @@ rLCDC_START EQU %10000000
 	ld b, $00
 .loop_2:
 	ldd [hl], a
-	dec b		
+	dec b
 	jr nz, .loop_2	; Flush 256 bytes from end of WRAM Bank 1
-	
+
 ; Flush WRAM Bank 0
 	ld hl, $cfff	; End of WRAM Bank 0
 	ld c, $10	; $1000 = size of WRAM Bank 0
@@ -397,8 +397,8 @@ Flush_VRAM::
 	jr nz, .loop_4
 	dec c
 	jr nz, .loop_4
-	
-; Flush Object Attribute Memory (OAM)	
+
+; Flush Object Attribute Memory (OAM)
 	ld hl, $feff	; End of unusable hardware RAM
 	ld b, $00
 .loop_5:
@@ -413,7 +413,7 @@ Flush_VRAM::
 	ldd [hl], a
 	dec b
 	jr nz, .loop_6	; Flush 128 bytes (Entire HRAM)
-	
+
 ; Copy DMA Transfer routine into HRAM
 	ld c, $b6	; Target location in HRAM
 	ld b, $0c	; Routine length
@@ -424,11 +424,11 @@ Flush_VRAM::
 	inc c
 	dec b
 	jr nz, .loop_7
-	
+
 	call Flush_BG1
 	call Sound_Init
 
-rINTERRUPT_SERIAL EQU %00001001
+DEF rINTERRUPT_SERIAL EQU %00001001
 ; * VBlank interrupt enabled
 ; * Serial interrupt enabled
 ; * everything else disabled
@@ -439,18 +439,18 @@ rINTERRUPT_SERIAL EQU %00001001
 ; Set up a few game variables
 	ld a, GAME_TYPE_A
 	ldh [rGAME_TYPE], a
-	
+
 	ld a, MUSIC_TYPE_A
 	ldh [rMUSIC_TYPE], a
-	
+
 	ld a, MENU_COPYRIGHT_INIT
 	ldh [rGAME_STATUS], a
-	
+
 	ld a, LCDC_ON
 	ldh [rLCDC], a
-	
+
 	ei			; enable interrupts (VBlank interrupt handler can occur now)
-	
+
 	xor a
 	ldh [rIF], a		; clear all interrupt flags
 	ldh [rWY], a		; Set Window X & Y Position to initial
@@ -461,12 +461,12 @@ rINTERRUPT_SERIAL EQU %00001001
 	call Read_Joypad
 	call State_Machine
 	call func_7ff0
-	
+
 	ldh a, [rBUTTON_DOWN]
 	and $0f
-	cp $0f			
+	cp $0f
 	jp z, Screen_Setup	; if all directional keys are pressed, reset game
-	
+
 ; Countdown both $ffa6 and $ffa7 by 1, if >0
 	ld hl, rCOUNTDOWN
 	ld b, $02
@@ -491,7 +491,7 @@ rINTERRUPT_SERIAL EQU %00001001
 	jr z, .wait_for_vblank	; Loop until VBlank handler has finished executing
 	xor a
 	ldh [rVBLANK_DONE], a
-	
+
 	jp .Main_Loop
 
 
@@ -499,7 +499,7 @@ State_Machine::
 	ldh a, [rGAME_STATUS]
 	rst $28
 
-; Big switch statement: 
+; Big switch statement:
 ; (rst $28 jumps to following address, depending on current GAME_STATUS)
 	db $ce, $1b	; MENU_IN_GAME 		=> 1bce
 	db $e2, $1c	; MENU_GAME_OVER_INIT	=> 1ce2
@@ -556,15 +556,15 @@ State_Machine::
 	db $1b, $13	; MENU_ROCKET_2_INIT	=> 131b
 	db $a0, $03	; MENU_COPYRIGHT_2	=> 03a0
 	db $ea, $27	; (unknown)		=> 27ea
- 
- 
+
+
 lbl_MENU_COPYRIGHT_INIT::
 	call WAIT_FOR_VBLANK
 	call COPY_TITLE_TILES
 	ld de, $4a07		; Starting address of copyright screen tile map in ROM
 	call COPY_TILEMAP
 	call CLEAR_OAM_DATA
-	
+
 	ld hl, $c300		; Copy some values into $c300+. Seems to be serial related
 	ld de, $6450
 .loop_12:
@@ -574,8 +574,8 @@ lbl_MENU_COPYRIGHT_INIT::
 	ld a, h
 	cp $c4
 	jr nz, .loop_12
-	
-	ld a, LCDC_STANDARD		
+
+	ld a, LCDC_STANDARD
 	ldh [rLCDC], a
 	ld a, $fa		; ~ 4 seconds
 	ldh [rCOUNTDOWN], a
@@ -593,8 +593,8 @@ lbl_MENU_COPYRIGHT_1::
 	ld a, MENU_COPYRIGHT_2
 	ld [rGAME_STATUS], a
 	ret
-	
-	
+
+
 ; Wait until either previous countdown (4 secs) is done, or anz button was hit, then change game status to MENU_TITLE_INIT
 lbl_MENU_COPYRIGHT_2::
 	ldh a, [rBUTTON_HIT]
@@ -607,7 +607,7 @@ lbl_MENU_COPYRIGHT_2::
 	ld a, MENU_TITLE_INIT
 	ld [rGAME_STATUS], a
 	ret
-	
+
 lbl_MENU_TITLE_INIT::
 	call WAIT_FOR_VBLANK
 	xor a
@@ -651,23 +651,23 @@ l_03e9:
 	ld [hl], $58		; Little arrow tile address
 	ld a, $03
 	ld [$dfe8], a
-	
+
 	ld a, LCDC_STANDARD
 	ldh [rLCDC], a
-	
+
 	ld a, MENU_TITLE
 	ldh [rGAME_STATUS], a
-	
+
 	ld a, $7d		; ~ 2 seconds
 	ldh [rCOUNTDOWN], a
-	
+
 	ld a, $04
 	ldh [rMUSIC_COUNTDOWN], a
-	
+
 	ldh a, [rDEMO_GAME]
 	and a
 	ret nz
-	
+
 	ld a, $13
 	ldh [rMUSIC_COUNTDOWN], a
 	ret
@@ -675,21 +675,21 @@ l_03e9:
 PLAY_DEMO_GAME:
 	ld a, GAME_TYPE_A
 	ldh [rGAME_TYPE], a
-	
+
 	ld a, $09
 	ldh [rLEVEL_A], a		; set to level 9
-	
+
 	xor a
 	ldh [rPLAYERS], a		; 1 player mode
 	ldh [rDEMO_STATUS], a
 	ldh [rDEMO_BUTTON_HIT], a
 	ldh [rDEMO_ACTION_COUNTDOWN], a
-	
+
 	ld a, $62			; $62b0 = start address of first demo storyboard
 	ldh [rDEMO_STORYBOARD_1], a
 	ld a, $b0
 	ldh [rDEMO_STORYBOARD_2], a
-	
+
 	ldh a, [rDEMO_GAME]
 	cp $02
 	ld a, $02
@@ -698,60 +698,60 @@ PLAY_DEMO_GAME:
 ; set up second demo game:
 	ld a, GAME_TYPE_B
 	ldh [rGAME_TYPE], a
-	
+
 	ld a, $09
 	ldh [rLEVEL_B], a		; set to level 9
-	
+
 	ld a, $02
 	ldh [rINITIAL_HEIGHT], a
-	
+
 	ld a, $63			; $63b0 = start address of second demo storyboard
 	ldh [rDEMO_STORYBOARD_1], a
 	ld a, $b0
 	ldh [rDEMO_STORYBOARD_2], a
-	
+
 	ld a, $11
 	ldh [rDEMO_STATUS], a
 	ld a, $01
 
 .set_up_first_demo_game:
 	ldh [rDEMO_GAME], a
-	
+
 	ld a, MENU_IN_GAME_INIT
 	ldh [rGAME_STATUS], a		; start a normal in-game (called routines are mostly the same)
-	
+
 	call WAIT_FOR_VBLANK
 	call COPY_IN_GAME_TILES
-	
+
 	ld de, $4cd7			; start of tile map for game select screen
 	call COPY_TILEMAP		; copy that tile map to VRAM (useless!)
 	call CLEAR_OAM_DATA
-	
+
 	ld a, LCDC_STANDARD
 	ldh [rLCDC], a
 	ret
-	
-	
+
+
 func_0474: 	; not used function
 	ld a, $ff
 	ldh [rUNUSED], a
 	ret
-	
-	
-lbl_MENU_TITLE::	
+
+
+lbl_MENU_TITLE::
 	ldh a, [rCOUNTDOWN]
 	and a
 	jr nz, .skip_still_no_demo
 	ld hl, rMUSIC_COUNTDOWN
 	dec [hl]
 	jr z, PLAY_DEMO_GAME
-	
+
 	ld a, $7d		; ~ 2 seconds
 	ldh [rCOUNTDOWN], a
-	
+
 .skip_still_no_demo:
 	call WASTE_TIME
-	
+
 	ld a, $55		; Something Serial Data related
 	ldh [rSB], a
 	ld a, $80
@@ -759,37 +759,37 @@ lbl_MENU_TITLE::
 	ldh a, [$ff00 + $cc]
 	and a
 	jr z, .skip_title_serial_check
-	
+
 	ldh a, [$ff00 + $cb]
 	and a
 	jr nz, l_04d7
-	
+
 	xor a
 	ldh [$ff00 + $cc], a
 	jr l_0509
-	
+
 .skip_title_serial_check:
 	ldh a, [rBUTTON_HIT]
 	ld b, a
-	
+
 	ldh a, [rPLAYERS]
-	
+
 	bit BTN_SELECT, b
 	jr nz, MENU_TITLE_SELECT_BTN
-	
+
 	bit BTN_RIGHT, b
 	jr nz, MENU_TITLE_RIGHT_BTN
-	
+
 	bit BTN_LEFT, b
 	jr nz, MENU_TITLE_LEFT_BTN
-	
+
 	bit BTN_START, b
 	ret z			; Return if no relevant button was pressed
-	
+
 	and a
 	ld a, $08
 	jr z, first_player_selected	; jump if 1 player selected
-	
+
 	ld a, b
 	cp $08
 	ret nz
@@ -834,7 +834,7 @@ MENU_TITLE_SELECT_BTN:
 	xor $01		; toggles rPLAYERS value (i.e. 0 -> 1 and 1 -> 0)
 l_04f5:
 	ldh [rPLAYERS], a
-	
+
 	and a
 	ld a, $10
 	jr z, .move_arrow_left
@@ -861,14 +861,14 @@ CHECK_DEMO_GAME_FINISHED::
 	ldh a, [rDEMO_GAME]
 	and a
 	ret z			; return if NOT in demo mode
-	
+
 	call WASTE_TIME
-	
+
 	xor a				; empty serial connection byte
 	ldh [rSB], a
 	ld a, $80			; turn on serial connection and act as slave (allow receiving)
-	ldh [rSC], a			
-	
+	ldh [rSC], a
+
 	ldh a, [rBUTTON_HIT]
 	bit BTN_START, a
 	jr z, .dont_cancel_demo_game	; jump if Start button not pressed
@@ -876,8 +876,8 @@ CHECK_DEMO_GAME_FINISHED::
 	ld a, $33			; load byte $33 for starting a serial connection
 	ldh [rSB], a
 	ld a, $81			; turn on serial connection and act as master (try sending)
-	ldh [rSC], a			 
-	
+	ldh [rSC], a
+
 	ld a, MENU_TITLE_INIT		; quit demo game and return to main menu
 	ldh [rGAME_STATUS], a
 	ret
@@ -886,16 +886,16 @@ CHECK_DEMO_GAME_FINISHED::
 	ld hl, rDEMO_STATUS
 	ldh a, [rDEMO_GAME]
 	cp $02				; if is currently running the first demo game, ...
-	
+
 	ld b, $10
 	jr z, .skip_3
-	
+
 	ld b, $1d
 .skip_3:				; ... then set b to $10, otherwise set b to $1d.
-	ld a, [hl]			
-	cp b				
+	ld a, [hl]
+	cp b
 	ret nz				; if rDEMO_STATUS not equal b then keep going, ...
-	
+
 	ld a, MENU_TITLE_INIT		; ... otherwise return to main menu.
 	ldh [rGAME_STATUS], a		; (rDEMO_STATUS increases with each block, game 1 goes from $03 to $09, game 2 from $14 to $1c)
 	ret
@@ -907,15 +907,15 @@ SIMULATE_BUTTON_PRESSES::
 	ldh a, [rDEMO_GAME]
 	and a
 	ret z			; return if NOT in demo mode
-	
+
 	ldh a, [rUNUSED]
 	cp $ff
 	ret z			; always false
-	
+
 	ldh a, [rDEMO_ACTION_COUNTDOWN]
 	and a
 	jr z, .retrieve_next_action	; jump if countdown reached zero
-	
+
 	dec a
 	ldh [rDEMO_ACTION_COUNTDOWN], a ; countdown by 1
 	jr .clear_real_button_press
@@ -926,7 +926,7 @@ SIMULATE_BUTTON_PRESSES::
 	ldh a, [rDEMO_STORYBOARD_2]
 	ld l, a				; load the current storyboard address into hl
 	ldi a, [hl]			; get first value at address -> supposed button press
-	
+
 	ld b, a
 	ldh a, [rDEMO_BUTTON_HIT]
 	xor b
@@ -935,10 +935,10 @@ SIMULATE_BUTTON_PRESSES::
 					; if any button is pressed twice in a row, turn it off now.
 	ld a, b
 	ldh [rDEMO_BUTTON_HIT], a	; (also save it at rDEMO_BUTTON_HIT)
-	
+
 	ldi a, [hl]			; load the button press duration from storyboard
 	ldh [rDEMO_ACTION_COUNTDOWN], a
-	
+
 	ld a, h
 	ldh [rDEMO_STORYBOARD_1], a
 	ld a, l
@@ -948,11 +948,11 @@ SIMULATE_BUTTON_PRESSES::
 .clear_real_button_press:
 	xor a
 	ldh [rBUTTON_HIT], a
-	
+
 .store_actual_button_press:
 	ldh a, [rBUTTON_DOWN]
 	ldh [rDEMO_ACTUAL_BUTTON], a	; store actual button presses into rDEMO_ACTUAL_BUTTON
-	ldh a, [rDEMO_BUTTON_HIT]	
+	ldh a, [rDEMO_BUTTON_HIT]
 	ldh [rBUTTON_DOWN], a		; replace them with the simulated buttons from the demo storyboard
 	ret
 
@@ -967,7 +967,7 @@ USELESS_FUNCTION::
 	ldh a, [rDEMO_GAME]
 	and a
 	ret z				; return if NOT demo mode
-	
+
 	ldh a, [rUNUSED]
 	cp $ff
 	ret nz				; always true - always return
@@ -978,24 +978,24 @@ USELESS_FUNCTION::
 	ldh a, [rDEMO_BUTTON_HIT]
 	cp b
 	jr z, l_05ad
-	
+
 	ldh a, [rDEMO_STORYBOARD_1]
 	ld h, a
 	ldh a, [rDEMO_STORYBOARD_2]
 	ld l, a
-	
+
 	ldh a, [rDEMO_BUTTON_HIT]
 	ldi [hl], a
 	ldh a, [rDEMO_ACTION_COUNTDOWN]
 	ldi [hl], a
-	
+
 	ld a, h
 	ldh [rDEMO_STORYBOARD_1], a
 	ld a, l
 	ldh [rDEMO_STORYBOARD_2], a
 	ld a, b
 	ldh [rDEMO_BUTTON_HIT], a
-	
+
 	xor a
 	ldh [rDEMO_ACTION_COUNTDOWN], a
 	ret
@@ -1010,12 +1010,12 @@ l_05ad:
 RESTORE_BUTTON_PRESSES::
 	ldh a, [rDEMO_GAME]
 	and a
-	ret z				; return if NOT in demo game 
-	
+	ret z				; return if NOT in demo game
+
 	ldh a, [rUNUSED]
 	and a
 	ret nz
-	
+
 	ldh a, [rDEMO_ACTUAL_BUTTON]
 	ldh [rBUTTON_DOWN], a		; restore stored real button presses at begin of menu_in_game function
 	ret
@@ -1050,8 +1050,8 @@ l_05d1:
 	ld a, $2b
 	ldh [rGAME_STATUS], a
 	ret
-	
-	
+
+
 func_05f7:
 	ldh a, [$ff00 + $cb]
 	cp $29
@@ -1215,7 +1215,7 @@ l_06e1:
 	db $40, $28, $AE, $00, $40, $30, $AE, $20, $48, $28, $AF, $00
 	db $48, $30, $AF, $20, $78, $28, $C0, $00, $78, $30, $C0, $20
 	db $80, $28, $C1, $00, $80, $30, $C1, $20
-	
+
 func_0725:
 	ld a, [de]
 	ldi [hl], a
@@ -3051,8 +3051,8 @@ l_1225:
 	ld hl, $9d29
 	call func_19ff
 	ret
-	
-	
+
+
 lbl_MENU_ROCKET_1D::
 	ldh a, [rCOUNTDOWN]
 	and a
@@ -3085,8 +3085,8 @@ lbl_MENU_ROCKET_1D::
 l_1277:
 	call func_13fa
 	ret
-	
-	
+
+
 lbl_MENU_ROCKET_1E::
 	ldh a, [rCOUNTDOWN]
 	and a
@@ -4554,7 +4554,7 @@ l_1afa:
 	ldh [rGRAVITY], a
 	ldh [$ff00 + $9a], a
 	ret
-	
+
 	db $34, $30, $2C, $28, $24, $20, $1B, $15, $10, $0A, $09, $08
 	db $07, $06, $05, $05, $04, $04, $03, $03, $02
 
@@ -4688,15 +4688,15 @@ l_1bc8:
 	cp $2c
 	jr nz, l_1bc2
 	ret
-	
+
 SECTION "MENU_IN_GAME", ROM0 [$1BCE]
 lbl_MENU_IN_GAME::
 	call START_SELECT_HANDLER	; check if start or select was pressed
-	
+
 	ldh a, [rPAUSE_MENU]
 	and a
 	ret nz				; return if in pause menu
-	
+
 	call CHECK_DEMO_GAME_FINISHED
 	call SIMULATE_BUTTON_PRESSES
 	call USELESS_FUNCTION		; does nothing b/c depending on unused variable
@@ -4732,33 +4732,33 @@ START_SELECT_HANDLER::
 	and $0f
 	cp $0f
 	jp z, Screen_Setup		; if buttons A, B, Select and Start are all pressed, reset game
-	
+
 	ldh a, [rDEMO_GAME]
 	and a
 	ret nz				; return now, if it is only a demo game
-	
+
 	ldh a, [rBUTTON_HIT]
 	bit BTN_START, a
 	jr z, toggle_next_block_hidden	; if Start is NOT pressed, check if Select is pressed
-					
+
 					; start button was pressed:
 	ldh a, [rPLAYERS]
 	and a
 	jr nz, l_1c6a			; jump if 2 player mode
-	
+
 	ld hl, rLCDC
-	
+
 	ldh a, [rPAUSE_MENU]
 	xor $01				; toggle start menu flag
 	ldh [rPAUSE_MENU], a
 	jr z, .unpausing			; jump if now unpausing
-					
+
 					; pausing now:
 	set 3, [hl]			; select second background tile map at $9c00 (already contains the pause menu text)
-	
+
 	ld a, $01
 	ld [rPAUSED], a			; set "just paused" flag
-	
+
 	ld hl, $994e			; start of line tiles on BG tile map 1
 	ld de, $9d4e			; start of line tiles on BG tile map 2
 	ld b, $04			; length of line tiles (4 numbers max, 9999 is highest line number)
@@ -4766,19 +4766,19 @@ START_SELECT_HANDLER::
 	ldh a, [rLCDC_STAT]
 	and $03
 	jr nz, .loop_18			; Loop until H-Blank reached (bits 0 and 1 of rLCDC_STAT not set)
-	
+
 	ldi a, [hl]
 	ld [de], a			; Copy score tile from BG tile map 1 to BG tile map 2
 	inc de
 	dec b
 	jr nz, .loop_18			; loop while there are still tiles left (and wait for H-Blank again)
-	
+
 	ld a, $80
 .set_next_block_display:
 	ld [rHIDE_NEXT_BLOCK_DISPLAY], a	; set the actual visibility of the next block display
 .l_1c50:
 	ld [rBLOCK_VISIBILITY], a
-	
+
 	call func_2683
 	call func_2696
 	ret
@@ -4787,11 +4787,11 @@ START_SELECT_HANDLER::
 	res 3, [hl]			; select first background tile map at $9800 (still contains the fallen blocks)
 	ld a, $02
 	ld [rPAUSED], a			; set the "just unpaused" flag
-	
+
 	ld a, [rHIDE_NEXT_BLOCK]
 	and a
 	jr z, .set_next_block_display	; jump if next block was not hidden before pausing
-	
+
 	xor a
 	jr .l_1c50			; jump if next block was hidden before pausing
 
@@ -4879,7 +4879,7 @@ l_1cd3:
 	ld a, [bc]
 	ld e, $1c
 	db $0E
-	
+
 lbl_MENU_GAME_OVER_INIT::
 	ld a, $80
 	ld [rBLOCK_VISIBILITY], a
@@ -4897,8 +4897,8 @@ lbl_MENU_GAME_OVER_INIT::
 	ld a, $0d
 	ldh [rGAME_STATUS], a
 	ret
-	
-	
+
+
 lbl_MENU_GAME_OVER::
 	ldh a, [rBUTTON_HIT]
 	bit 0, a
@@ -4920,8 +4920,8 @@ l_1d0f:
 l_1d23:
 	ldh [rGAME_STATUS], a
 	ret
-	
-	
+
+
 lbl_MENU_TYPE_B_WON::
 	ldh a, [rCOUNTDOWN]
 	and a
@@ -5752,49 +5752,49 @@ clear_row_animation::
 	ldh a, [rBLOCK_STATUS]
 	cp $03
 	ret nz				; Return if not right at end of block placement handling
-	
+
 	ldh a, [rCOUNTDOWN]
 	and a
 	ret nz				; Return if there is a countdown running
-	
+
 	ld de, rLINE_CLEAR_START
 	ldh a, [rCLEAR_PROGRESS]
 	bit 0, a			; Check if lowest bit of rCLEAR_PROGRESS is set
 	jr nz, .unfill_block_rows	; Jump if rCLEAR_PROGRESS = 1,3,5 or 7
-	
+
 	ld a, [de]
 	and a
-	jr z, .nothing_to_clear		; Jump if line is clear	
+	jr z, .nothing_to_clear		; Jump if line is clear
 
 
 
 ; At RAM addresses $c0a3 to $c0aa lie the VRAM starting map addresses for the
 ; to be removed block lines. (The higher byte needs to be reduced by $30 first)
 ; i.e.: The second to last line is to be cleared, the first block on that row has
-; the map address of $9A02. 
+; the map address of $9A02.
 ; It is therefore saved at $c0a3 as $ca02.
 
 .fill_block_rows:
-	sub a, $30		
+	sub a, $30
 	ld h, a				; Get the first block's address' high byte
 	inc de
-	ld a, [de]				
+	ld a, [de]
 	ld l, a				; Get the first block's address' low byte
-	ldh a, [rCLEAR_PROGRESS]	
-	cp $06						
-	ld a, $8c			
+	ldh a, [rCLEAR_PROGRESS]
+	cp $06
+	ld a, $8c
 	jr nz, .dark_blocks		; if the clearing progress is in state 6 (= almost done)
 	ld a, $2f			; fill line with white blocks (tile 2f)
 .dark_blocks:				; otherwise use dark blocks (tile 8c)
-	ld c, $0a			; 10 = width of tetris block line		
-.loop_10:				
+	ld c, $0a			; 10 = width of tetris block line
+.loop_10:
 	ldi [hl], a			; fill whole line of tile map with chosen block
-	dec c				
-	jr nz, .loop_10			
+	dec c
+	jr nz, .loop_10
 	inc de
 	ld a, [de]
 	and a
-	jr nz, .fill_block_rows		; check if another line needs to be cleared, then loop	
+	jr nz, .fill_block_rows		; check if another line needs to be cleared, then loop
 .increase_clear_progress:
 	ldh a, [rCLEAR_PROGRESS]
 	inc a
@@ -5819,8 +5819,8 @@ clear_row_animation::
 
 .unfill_block_rows:
 	ld a, [de]	; ([de] still points to the first block of the first line to be removed)
-	ld h, a		
-	sub a, $30	
+	ld h, a
+	sub a, $30
 	ld c, a		; set bc to the correct RAM location (where all tiles are saved)
 	inc de
 	ld a, [de]
@@ -5835,7 +5835,7 @@ clear_row_animation::
 	inc hl
 	dec b
 	jr nz, .loop_11
-	
+
 	inc de
 	ld a, [de]
 	and a
@@ -6087,9 +6087,9 @@ func_239e:
 
 func_23b7:
 	ldh a, [rROW_UPDATE]
-	cp $12		
+	cp $12
 	ret nz			; Return if not row 12 is to be copied
-	ld hl, $9822		
+	ld hl, $9822
 	ld de, $c822
 	call COPY_ROW
 	ld hl, $986d
@@ -6170,11 +6170,11 @@ func_243b:
 	ldh a, [rGAME_STATUS]
 	and a
 	ret nz		; return if not in-game
-	
+
 	ldh a, [rGAME_TYPE]
 	cp GAME_TYPE_A
 	ret nz		; return if type B game
-	
+
 	ld de, $c0a2
 	call func_2a36
 	ret
@@ -6275,34 +6275,34 @@ func_24bb:
 	ld a, [hl]
 	cp $80
 	ret z				; return if there is no falling block (visible)
-	
+
 	ld l, $03
 	ld a, [hl]			; = rBLOCK_TYPE
 	ldh [$ff00 + $a0], a		; store current block type
-	
+
 	ldh a, [rBUTTON_HIT]
 	ld b, a
-	
+
 	bit BTN_B, b
 	jr nz, .rotate_B_button		; jump if button B was pressed
-	
+
 	bit BTN_A, b
 	jr z, l_2509			; jump if anything BUT button A was pressed
-					
-					; Button A pressed:	
+
+					; Button A pressed:
 	ld a, [hl]
 	and $03
 	jr z, .block_variation_low_end	; jump if block type MOD 4 = 0 (lowest variation of block)
-	
+
 	dec [hl]			; change to lower variation (rotate clockwise)
-	
+
 	jr .rotation_finished
 
 .block_variation_low_end:
 	ld a, [hl]
 	or $03
 	ld [hl], a			; add 3 to the block variation (starting back at the highest variation)
-	
+
 	jr .rotation_finished
 
 .rotate_B_button:
@@ -6310,9 +6310,9 @@ func_24bb:
 	and $03
 	cp $03
 	jr z, .block_variation_high_end	; jump if block type MOD 4 = 3 (highest variation of block)
-	
+
 	inc [hl]			; change to higher variation (rotate counter-clockwise)
-	
+
 	jr .rotation_finished
 
 .block_variation_high_end:
@@ -6323,20 +6323,20 @@ func_24bb:
 .rotation_finished:
 	ld a, $03
 	ld [$dfe0], a
-	
+
 	call func_2683
 	call func_2573
-	
+
 	and a
 	jr z, l_2509
-	
+
 	xor a
 	ld [$dfe0], a
-	
+
 	ld hl, rBLOCK_TYPE
 	ldh a, [$ff00 + $a0]
 	ld [hl], a
-	
+
 	call func_2683
 
 l_2509:
@@ -6382,7 +6382,7 @@ l_253a:
 l_2549:
 	ldh [$ff00 + $aa], a
 	ret
-	
+
 
 l_254c:
 	bit 5, b
@@ -6632,7 +6632,7 @@ func_2683:
 	ldh [rOAM_TILE_ADDRESS_2], a
 	ld a, $c0
 	ldh [rOAM_TILE_ADDRESS_1], a
-	
+
 	ld hl, rBLOCK_VISIBILITY
 	call func_2a89
 	ret
@@ -6709,7 +6709,7 @@ func_2798:
 	ret
 
 
-; copy all tiles as specified in registers de (target), hl (source) and bc (length) 
+; copy all tiles as specified in registers de (target), hl (source) and bc (length)
 COPY_TILES::
 	ldi a, [hl]
 	ld [de], a
@@ -6755,8 +6755,8 @@ COPY_TITLE_TILES::
 	ld bc, $0da0		; length of symbol data set (starting right after characters)
 	call COPY_TILES		; copy all title image tiles (picture of Moscow cathedral)
 	ret
-	
-	
+
+
 	ld bc, $1000
 
 
@@ -6769,11 +6769,11 @@ func_27e4:
 ; Takes a ROM address (de) and copies the full tilemap into Tilemap A (starting at $9800)
 COPY_TILEMAP::
 	ld hl, $9800
-	
+
 ; Allows for a unique tilemap starting address - is only ever used for Tilemap B (starting at $9C00)
 COPY_TILEMAP_B::
 	ld b, $12		; = full 18 rows of tiles
-	
+
 ; Allows for unique tilemap and a custom number of rows (less than the full 18)
 COPY_TILEMAP_FEWER_ROWS::
 	push hl
@@ -6784,7 +6784,7 @@ COPY_TILEMAP_FEWER_ROWS::
 	inc de
 	dec c
 	jr nz, .loop_15
-	
+
 	pop hl
 	push de
 	ld de, $0020
@@ -6824,22 +6824,22 @@ l_281a:
 
 WAIT_FOR_VBLANK::
 	ldh a, [rIE]
-	ldh [rIE_TEMP], a	
-	res 0, a		
+	ldh [rIE_TEMP], a
+	res 0, a
 	ldh [rIE], a		; turn off V-Blank interrupt
 .loop_13:
 	ldh a, [rLY]		; loop until in V-Blank area
 	cp SCREEN_HEIGHT + 1
 	jr nz, .loop_13
-	
+
 	ldh a, [rLCDC]
 	and $7f
 	ldh [rLCDC], a		; turn off LCDC (keep other settings in rLCDC)
-	
+
 	ldh a, [rIE_TEMP]
 	ldh [rIE], a
 	ret
-	
+
 
 	; data section $2839 - $29a5 incl.
 data:
@@ -6885,8 +6885,8 @@ Read_Joypad::
 	cpl		; reverse bits (as pressed buttons are shown as 0's)
 	and $0f		; mask lower nibble
 	swap a		; move it to higher nibble
-	ld b, a		
-	
+	ld b, a
+
 	ld a, 1 << 4 	; select button keys
 	ldh [rJOYP], a
 	rept 10
@@ -6895,7 +6895,7 @@ Read_Joypad::
 	cpl
 	and $0f
 	or b		; In register A: lower nibble = buttons, higher nibble = directional keys
-	
+
 	ld c, a
 	ldh a, [rBUTTON_DOWN]
 	xor c			; XOR+AND gate (only true, if "false -> true",
@@ -6936,7 +6936,7 @@ l_29f6:
 	ld a, l
 	ldh [$ff00 + $b4], a
 	ret
-	
+
 	ldh a, [$ff00 + $b5]
 	ld d, a
 	ldh a, [$ff00 + $b4]
@@ -7030,17 +7030,17 @@ l_2a85:
 	ret
 
 func_2a89:
-	ld a, h			
+	ld a, h
 	ldh [rSPRITE_ORIGINAL_ADDRESS_1], a
 	ld a, l
 	ldh [rSPRITE_ORIGINAL_ADDRESS_2], a
 	ld a, [hl]
 	and a
 	jr z, l_2ab0		; jmp if sprite is (supposed to be) visible
-	
+
 	cp $80
 	jr z, l_2aae		; jmp if sprite is (supposed to be) invisible
-	
+
 l_2a97:
 	ldh a, [rSPRITE_ORIGINAL_ADDRESS_1]
 	ld h, a
@@ -7071,24 +7071,24 @@ l_2ab5:
 	inc de
 	dec b
 	jr nz, l_2ab5
-	
+
 	ldh a, [rOAM_TILE_NO]	; = sprite index (block type)
 	ld hl, $2b64		; list of addresses
-	rlca			
+	rlca
 	ld e, a
 	ld d, $00
 	add hl, de		; add sprite index * 2 to $2b64
 	ld e, [hl]
 	inc hl
 	ld d, [hl]		; retrieve a memory address dependent on current sprite index (smallest is $2c20)
-	ld a, [de]		
+	ld a, [de]
 	ld l, a
 	inc de
 	ld a, [de]
 	ld h, a			; retrieve a new memory address at the previously retrieved address (smallest is $2d58)
 	inc de
 	ld a, [de]
-	ldh [$ff00 + $90], a	
+	ldh [$ff00 + $90], a
 	inc de
 	ld a, [de]
 	ldh [$ff00 + $91], a	; store also two further values in each $ff00 + $90 and $ff00 + $91
@@ -7100,21 +7100,21 @@ read_next_design_element:
 	inc hl			; retrieve the sprite design of the sprite index, using tile numbers, $fe for nothing and $ff for end of block
 	ldh a, [$ff00 + $8c]	; ?
 	ldh [$ff00 + $94], a
-	
+
 	ld a, [hl]
 	cp $ff
-	jr z, l_2aa9		; jump if end of this sprite's design found 
-	
+	jr z, l_2aa9		; jump if end of this sprite's design found
+
 	cp $fd			; (there is $fd during congratulation animation.)
 	jr nz, l_2af4		; jump if not $fd
-	
+
 	ldh a, [$ff00 + $8c]
 	xor $20
 	ldh [$ff00 + $94], a
-	
+
 	inc hl
 	ld a, [hl]		; read input byte after the $fd
-	
+
 	jr l_2af8
 
 is_empty_design_element:
@@ -7135,7 +7135,7 @@ l_2af8:
 	ldh a, [$ff00 + $8b]
 	bit 6, a
 	jr nz, l_2b0b
-	
+
 	ldh a, [$ff00 + $90]
 	add a, b
 	adc a, c
@@ -7187,7 +7187,7 @@ l_2b34:
 	ldh a, [rOAM_VISIBLE]
 	and a
 	jr z, l_2b46			; jump if sprite is (supposed to be) visible
-	
+
 	ld a, $ff
 	jr l_2b48
 
@@ -7195,18 +7195,18 @@ l_2b46:
 	ldh a, [rOAM_Y_POS]
 
 l_2b48:
-	ldi [hl], a		
-	ldh a, [rOAM_X_POS]		
-	ldi [hl], a			
+	ldi [hl], a
+	ldh a, [rOAM_X_POS]
+	ldi [hl], a
 	ldh a, [rOAM_TILE_NO]
 	ldi [hl], a
-	ldh a, [$ff00 + $94]		; 
-	ld b, a				; 
-	ldh a, [$ff00 + $8b]		; 
-	or b				; 
-	ld b, a				; 
-	ldh a, [rOAM_ATTRIBUTE_NO]		; 
-	or b				; "or" both 8b and 9f into the attribute 
+	ldh a, [$ff00 + $94]		;
+	ld b, a				;
+	ldh a, [$ff00 + $8b]		;
+	or b				;
+	ld b, a				;
+	ldh a, [rOAM_ATTRIBUTE_NO]		;
+	or b				; "or" both 8b and 9f into the attribute
 	ldi [hl], a
 	ld a, h
 	ldh [rOAM_TILE_ADDRESS_1], a
@@ -7214,7 +7214,7 @@ l_2b48:
 	ldh [rOAM_TILE_ADDRESS_2], a
 	pop hl
 	jp read_next_design_element
-	
+
 ; start of data section (see above): starting at $2b64
 SECTION "Data", ROM0 [$2B64]
 	db $20, $2C, $24, $2C, $28, $2C, $2C, $2C, $30, $2C, $34, $2C
@@ -7712,7 +7712,7 @@ SECTION "Data2", romx
 	db $46, $46, $46, $46, $4E, $3C, $00, $00, $46, $46, $46, $46
 	db $2C, $18, $00, $00, $46, $46, $56, $7E, $6E, $46, $00, $00
 	db $46, $2C, $18, $38, $64, $42, $00, $00, $66, $66, $3C, $18
-	db $18, $18, $00, $00, $7E, $0E, $1C, $38, $70, $7E, $00, $00	
+	db $18, $18, $00, $00, $7E, $0E, $1C, $38, $70, $7E, $00, $00
 	db $00, $00, $00, $00, $60, $60, $00, $00, $00, $00, $3C, $3C
 	db $00, $00, $00, $00, $00, $22, $14, $08, $14, $22, $00, $00
 	db $00, $36, $36, $5F, $49, $5F, $41, $7F, $41, $3E, $22, $1C
@@ -9034,5 +9034,5 @@ func_7ff0:
 
 Sound_Init::
 	jp $69a5
-	
+
 	db $00, $00, $00, $00, $00, $00, $00, $00, $00

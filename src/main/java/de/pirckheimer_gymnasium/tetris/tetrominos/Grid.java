@@ -83,7 +83,7 @@ public class Grid
     }
 
     /**
-     * Gib eine Textrepräsentation des Blockgitters und der momentation
+     * Gib eine Textrepräsentation des Blockgitters und der momentan
      * enthaltenen Blöcke aus.
      *
      * Diese Methode ist nur für Testzwecke gedacht.
