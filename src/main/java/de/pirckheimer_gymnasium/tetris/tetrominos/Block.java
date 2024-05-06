@@ -5,12 +5,6 @@ import rocks.friedrich.engine_omega.Scene;
 
 public class Block
 {
-    private int x;
-
-    private int y;
-
-    private Image image;
-
     /**
      * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
      *
@@ -20,6 +14,12 @@ public class Block
      * ({@link Scene#remove}).
      */
     private Scene scene;
+
+    private Image image;
+
+    private int x;
+
+    private int y;
 
     /**
      * @param scene       Eine Referenz auf die Szene, in der der Block
