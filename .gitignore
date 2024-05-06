@@ -29,4 +29,7 @@ hs_err_pid*
 
 out/
 
+# mGBA save file
 *.sav
+# Drawio backup file
+*.bkp
