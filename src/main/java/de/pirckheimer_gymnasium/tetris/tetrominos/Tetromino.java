@@ -1,5 +1,6 @@
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
+import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.Vector;
 
@@ -43,24 +44,13 @@ public abstract class Tetromino
      */
     public int rotation;
 
-    /**
-     * Show different block images for debugging purposes.
-     */
-    protected boolean debug;
-
-    Tetromino(Scene scene, Grid grid, int x, int y, boolean debug)
+    public Tetromino(Scene scene, Grid grid, int x, int y)
     {
         this.scene = scene;
         this.grid = grid;
         this.x = x;
         this.y = y;
         blocks = new Block[4];
-        this.debug = debug;
-    }
-
-    Tetromino(Scene scene, Grid grid, int x, int y)
-    {
-        this(scene, grid, x, y, false);
     }
 
     public int getX()
@@ -80,7 +70,7 @@ public abstract class Tetromino
 
     protected void addBlock(int index, String mainImage, int x, int y)
     {
-        if (debug)
+        if (Game.isDebug())
         {
             blocks[index] = createBlock("Debug-" + index, x, y);
         }
@@ -344,46 +334,46 @@ public abstract class Tetromino
     }
 
     public static Tetromino create(Scene scene, Grid grid, int number, int x,
-            int y, boolean debug)
+            int y)
     {
         switch (number)
         {
         case 0:
-            return new L(scene, grid, x, y, debug);
+            return new L(scene, grid, x, y);
 
         case 1:
-            return new J(scene, grid, x, y, debug);
+            return new J(scene, grid, x, y);
 
         case 2:
-            return new I(scene, grid, x, y, debug);
+            return new I(scene, grid, x, y);
 
         case 3:
-            return new O(scene, grid, x, y, debug);
+            return new O(scene, grid, x, y);
 
         case 4:
-            return new Z(scene, grid, x, y, debug);
+            return new Z(scene, grid, x, y);
 
         case 5:
-            return new S(scene, grid, x, y, debug);
+            return new S(scene, grid, x, y);
 
         case 6:
-            return new T(scene, grid, x, y, debug);
+            return new T(scene, grid, x, y);
 
         default:
-            return new L(scene, grid, x, y, debug);
+            return new L(scene, grid, x, y);
         }
     }
 
     public static Tetromino create(Scene scene, Grid grid, String name, int x,
-            int y, boolean debug)
+            int y)
     {
         for (int i = 0; i < names.length; i++)
         {
             if (names[i].equals(name))
             {
-                return create(scene, grid, i, x, y, debug);
+                return create(scene, grid, i, x, y);
             }
         }
-        return create(scene, grid, 0, x, y, debug);
+        return create(scene, grid, 0, x, y);
     }
 }

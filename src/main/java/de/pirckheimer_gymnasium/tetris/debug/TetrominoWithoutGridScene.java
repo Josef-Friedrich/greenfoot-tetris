@@ -8,7 +8,7 @@ public class TetrominoWithoutGridScene extends Scene
 {
     public TetrominoWithoutGridScene()
     {
-        Tetromino.create(this, null, "L", 3, -3, false);
+        Tetromino.create(this, null, "L", 3, -3);
     }
 
     public static void main(String[] args)

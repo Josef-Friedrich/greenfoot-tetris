@@ -1,18 +1,17 @@
 package de.pirckheimer_gymnasium.tetris.debug;
 
-import rocks.friedrich.engine_omega.actor.Text;
-import rocks.friedrich.engine_omega.Scene;
-import rocks.friedrich.engine_omega.event.KeyListener;
-import de.pirckheimer_gymnasium.tetris.Tetris;
-import de.pirckheimer_gymnasium.tetris.tetrominos.*;
-
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 
+import de.pirckheimer_gymnasium.tetris.Tetris;
+import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
+import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
+import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.actor.Text;
+import rocks.friedrich.engine_omega.event.KeyListener;
+
 public class TetrominoDebugScene extends Scene implements KeyListener
 {
-    public boolean DEBUG = false;
-
     private Text rotation;
 
     Tetromino[] t;
@@ -48,7 +47,7 @@ public class TetrominoDebugScene extends Scene implements KeyListener
 
     private Tetromino createTetromino(String name, int x, int y)
     {
-        return Tetromino.create(this, grid, name, x, y, DEBUG);
+        return Tetromino.create(this, grid, name, x, y);
     }
 
     @Override
@@ -89,7 +88,6 @@ public class TetrominoDebugScene extends Scene implements KeyListener
 
     public static void main(String[] args)
     {
-        TetrominoDebugScene scene = new TetrominoDebugScene();
-        Tetris.start(scene, scene.DEBUG);
+        Tetris.start(new TetrominoDebugScene(), true);
     }
 }

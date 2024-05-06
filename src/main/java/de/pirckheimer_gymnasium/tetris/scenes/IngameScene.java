@@ -94,8 +94,7 @@ public class IngameScene extends BaseScene
         {
             nextTetromino = random.nextInt(7);
         }
-        tetromino = Tetromino.create(this, grid, nextTetromino, 4, 16,
-                Tetris.DEBUG);
+        tetromino = Tetromino.create(this, grid, nextTetromino, 4, 16);
         nextTetromino = random.nextInt(7);
         // Entfernen des alten Vorschaubildes, falls vorhanden.
         if (previewTetromino != null)
@@ -104,8 +103,7 @@ public class IngameScene extends BaseScene
         }
         // Das Vorschaubild liegt außerhalb des Blockgitters. Wir übergeben der
         // Methode null.
-        previewTetromino = Tetromino.create(this, null, nextTetromino, 14, 3,
-                Tetris.DEBUG);
+        previewTetromino = Tetromino.create(this, null, nextTetromino, 14, 3);
         downInterval = caculateDownInterval();
     }
 
