@@ -2,6 +2,34 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import rocks.friedrich.engine_omega.Vector;
 
+class FilledRowRange
+{
+    int from;
+
+    int to;
+
+    public FilledRowRange(int from, int to)
+    {
+        this.from = from;
+        this.to = to;
+    }
+
+    public int getFrom()
+    {
+        return from;
+    }
+
+    public int getTo()
+    {
+        return from;
+    }
+
+    public int getRowCount()
+    {
+        return to - from;
+    }
+}
+
 /**
  * Ein Blockgitter, das die Positionen aller Blöcke speichert.
  *
@@ -82,9 +110,69 @@ public class Grid
         return isTaken((int) position.getX(), (int) position.getY());
     }
 
+    private boolean isRowFull(int y)
+    {
+        for (int x = 0; x < getWidth(); x++)
+        {
+            if (grid[x][y] == null)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public FilledRowRange getFilledRowRange()
+    {
+        int from = -1;
+        int to = -1;
+        for (int y = 0; y < getHeight(); y++)
+        {
+            if (isRowFull(y))
+            {
+                if (from == -1)
+                {
+                    from = y;
+                }
+                to = y;
+            }
+        }
+        if (from > -1 && to > -1)
+        {
+            return new FilledRowRange(from, to);
+        }
+        return null;
+    }
+
+    public void removeFilledRowRange(FilledRowRange range)
+    {
+        for (int y = range.getFrom(); y <= range.getTo(); y++)
+        {
+            for (int x = 0; x < getWidth(); x++)
+            {
+                grid[x][y].remove();
+                grid[x][y] = null;
+            }
+        }
+    }
+
+    public void triggerLandslide(FilledRowRange range)
+    {
+        for (int y = range.getTo(); y < getHeight(); y++)
+        {
+            for (int x = 0; x < getWidth(); x++)
+            {
+                Block block = grid[x][y];
+                block.moveBy(0, -range.getRowCount());
+                grid[x][y] = null;
+                grid[x][y - range.getRowCount()] = block;
+            }
+        }
+    }
+
     /**
-     * Gib eine Textrepräsentation des Blockgitters und der momentan
-     * enthaltenen Blöcke aus.
+     * Gib eine Textrepräsentation des Blockgitters und der momentan enthaltenen
+     * Blöcke aus.
      *
      * Diese Methode ist nur für Testzwecke gedacht.
      */
