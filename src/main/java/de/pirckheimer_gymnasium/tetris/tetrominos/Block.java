@@ -114,6 +114,9 @@ public class Block
         image.moveBy(vector);
         x = x + (int) vector.getX();
         y = y + (int) vector.getY();
+        // trigger assert
+        image.getX();
+        image.getY();
     }
 
     public void moveBy(int dX, int dY)

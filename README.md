@@ -541,6 +541,7 @@ public class Block
 
 ### 3. Sitzung
 
+- Löschen des Klassenattributes `Tetris.DEBUG`
 - Fertigstellung der `Block`-Klasse
 
 ![UML-Klassendiagramm der Klasse Block](https://raw.githubusercontent.com/Josef-Friedrich/tetris/main/misc/UML/Class-Block.drawio.svg)
@@ -645,7 +646,6 @@ public class I extends Tetromino
     }
 }
 ```
-
 
 [^fandom]: https://tetris.fandom.com/wiki/Soft_Drop
 [^gimp-green]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
