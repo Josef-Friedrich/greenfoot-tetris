@@ -76,6 +76,8 @@ public class IngameScene extends BaseScene
      */
     private long downInterval = 0;
 
+    protected PressedKeyRepeater keyRepeater;
+
     public IngameScene()
     {
         super("ingame");
@@ -84,6 +86,10 @@ public class IngameScene extends BaseScene
         // Blockgitter um eine Zeile höher.
         grid = new Grid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
         createNextTetromino();
+        keyRepeater = new PressedKeyRepeater(this);
+        keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> tetromino.moveRight());
+        keyRepeater.addTask(KeyEvent.VK_LEFT, () -> tetromino.moveLeft());
+        keyRepeater.addTask(KeyEvent.VK_DOWN, () -> tetromino.moveDown());
     }
 
     private void createNextTetromino()
@@ -149,15 +155,7 @@ public class IngameScene extends BaseScene
     {
         switch (keyEvent.getKeyCode())
         {
-        case KeyEvent.VK_LEFT:
-            tetromino.moveLeft();
-            break;
-
-        case KeyEvent.VK_RIGHT:
-            tetromino.moveRight();
-            break;
-
-        case KeyEvent.VK_DOWN:
+        case KeyEvent.VK_S:
             downInterval = 0;
             break;
 

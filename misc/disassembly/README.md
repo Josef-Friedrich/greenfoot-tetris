@@ -1,3 +1,5 @@
+To debug use https://emulicious.net/
+
 https://github.com/alexsteb/tetris_disassembly
 
 # tetris_disassembly

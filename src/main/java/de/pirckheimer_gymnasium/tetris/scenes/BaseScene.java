@@ -32,14 +32,5 @@ public class BaseScene extends Scene
             getCamera().setFocus(background);
             add(background);
         }
-        pressedKeyRepeater = new PressedKeyRepeater(this);
-        addKeyListener(pressedKeyRepeater);
-    }
-
-    public void onKeyPressed(int keyCode, double interval, Runnable runnable,
-            double initialRepeatDelay)
-    {
-        pressedKeyRepeater.addTask(keyCode, interval, runnable,
-                initialRepeatDelay);
     }
 }

@@ -18,6 +18,16 @@ public class PressedKeyRepeater implements KeyListener
 
     private Scene scene;
 
+    /**
+     * In Sekunden
+     */
+    private double defaultInterval = 0.03;
+
+    /**
+     * In Sekunden
+     */
+    private double defaultInitialInterval = 0.15;
+
     private class Executor implements FrameUpdateListener, KeyListener
     {
         private double countdown;
@@ -27,7 +37,7 @@ public class PressedKeyRepeater implements KeyListener
         public Executor(Task task)
         {
             this.task = task;
-            countdown = task.getFirstRepeatDelay();
+            countdown = task.getInitialInterval();
             scene.addKeyListener(this);
             scene.addFrameUpdateListener(this);
             task.run();
@@ -64,23 +74,34 @@ public class PressedKeyRepeater implements KeyListener
     {
         private int keyCode;
 
-        private double interval;
-
         private Runnable runnable;
 
         /**
-         * Verzögerung zwischen dem Tastendruck und der ersten Wiederholung der
-         * Aufgabe.
+         * Verzögerung zwischen dem ersten Tastendruck und der ersten
+         * Wiederholung der Aufgabe.
+         *
+         * In Sekunden
          */
-        private double firstRepeatDelay;
+        private double initialInterval;
 
-        public Task(int keyCode, double interval, Runnable runnable,
-                double firstRepeatDelay)
+        /**
+         * In Sekunden
+         */
+        private double interval;
+
+        public Task(int keyCode, Runnable runnable, double interval,
+                double initialInterval)
         {
             this.keyCode = keyCode;
             this.interval = interval;
             this.runnable = runnable;
-            this.firstRepeatDelay = firstRepeatDelay;
+            this.initialInterval = initialInterval;
+        }
+
+        public Task(int keyCode, Runnable runnable)
+        {
+            this.keyCode = keyCode;
+            this.runnable = runnable;
         }
 
         public int getKeyCode()
@@ -90,34 +111,58 @@ public class PressedKeyRepeater implements KeyListener
 
         public double getInterval()
         {
+            if (interval == 0)
+            {
+                return defaultInterval;
+            }
             return interval;
         }
 
         public void run()
         {
-            new Thread(runnable).start();
+            runnable.run();
         }
 
-        public double getFirstRepeatDelay()
+        public double getInitialInterval()
         {
-            if (firstRepeatDelay == 0)
+            if (initialInterval == 0.0)
             {
-                return interval;
+                return defaultInitialInterval;
             }
-            return firstRepeatDelay;
+            return initialInterval;
         }
+    }
+
+    public PressedKeyRepeater(Scene scene, double interval,
+            double intialInterval)
+    {
+        this.scene = scene;
+        if (interval > 0)
+        {
+            defaultInterval = interval;
+        }
+        if (intialInterval > 0)
+        {
+            defaultInitialInterval = intialInterval;
+        }
+        tasks = new ArrayList<Task>();
+        this.scene.addKeyListener(this);
     }
 
     public PressedKeyRepeater(Scene scene)
     {
-        this.scene = scene;
-        tasks = new ArrayList<Task>();
+        this(scene, 0, 0);
     }
 
-    public void addTask(int keyCode, double interval, Runnable runnable,
-            double initialRepeatDelay)
+    public void addTask(int keyCode, Runnable runnable, double interval,
+            double initialInterval)
     {
-        tasks.add(new Task(keyCode, interval, runnable, initialRepeatDelay));
+        tasks.add(new Task(keyCode, runnable, interval, initialInterval));
+    }
+
+    public void addTask(int keyCode, Runnable runnable)
+    {
+        tasks.add(new Task(keyCode, runnable));
     }
 
     @Override
