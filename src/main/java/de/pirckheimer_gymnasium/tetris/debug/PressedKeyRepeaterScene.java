@@ -3,17 +3,18 @@ package de.pirckheimer_gymnasium.tetris.debug;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.scenes.BaseScene;
 import de.pirckheimer_gymnasium.tetris.scenes.PressedKeyRepeater;
+import rocks.friedrich.engine_omega.Scene;
 
 import java.awt.event.KeyEvent;
 
 public class PressedKeyRepeaterScene extends BaseScene
 {
-    PressedKeyRepeater keyRepeater;
+    PressedKeyRepeater<Scene> keyRepeater;
 
     public PressedKeyRepeaterScene()
     {
         super(null);
-        keyRepeater = new PressedKeyRepeater(this);
+        keyRepeater = new PressedKeyRepeater<Scene>(this);
         keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> {
             System.out.println("right");
         });

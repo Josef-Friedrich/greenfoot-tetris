@@ -14,8 +14,6 @@ public class BaseScene extends Scene
      */
     protected Image background;
 
-    protected PressedKeyRepeater pressedKeyRepeater;
-
     public BaseScene(String imageFilename)
     {
         if (imageFilename != null)

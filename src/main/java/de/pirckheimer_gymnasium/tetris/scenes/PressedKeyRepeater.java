@@ -5,18 +5,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rocks.friedrich.engine_omega.FrameUpdateListener;
-import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.event.FrameUpdateListenerContainer;
 import rocks.friedrich.engine_omega.event.KeyListener;
+import rocks.friedrich.engine_omega.event.KeyListenerContainer;
+
+interface FrameAndKeyListenerContainer
+        extends KeyListenerContainer, FrameUpdateListenerContainer
+{
+}
 
 /**
  * Bei gedrückter Taste mehrmals die gleiche Aktionen in einem bestimmten
  * Abstand ausführen.
  */
-public class PressedKeyRepeater implements KeyListener
+public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateListenerContainer>
+        implements KeyListener
 {
     private List<Task> tasks;
 
-    private Scene scene;
+    private T scene;
 
     /**
      * In Sekunden
@@ -133,8 +140,7 @@ public class PressedKeyRepeater implements KeyListener
         }
     }
 
-    public PressedKeyRepeater(Scene scene, double interval,
-            double intialInterval)
+    public PressedKeyRepeater(T scene, double interval, double intialInterval)
     {
         this.scene = scene;
         if (interval > 0)
@@ -149,7 +155,7 @@ public class PressedKeyRepeater implements KeyListener
         this.scene.addKeyListener(this);
     }
 
-    public PressedKeyRepeater(Scene scene)
+    public PressedKeyRepeater(T scene)
     {
         this(scene, 0, 0);
     }

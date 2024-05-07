@@ -8,6 +8,7 @@ import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 import rocks.friedrich.engine_omega.FrameUpdateListener;
 import rocks.friedrich.engine_omega.event.KeyListener;
+import rocks.friedrich.engine_omega.Scene;
 
 public class IngameScene extends BaseScene
         implements KeyListener, FrameUpdateListener
@@ -76,7 +77,7 @@ public class IngameScene extends BaseScene
      */
     private long downInterval = 0;
 
-    protected PressedKeyRepeater keyRepeater;
+    protected PressedKeyRepeater<Scene> keyRepeater;
 
     public IngameScene()
     {
@@ -86,7 +87,7 @@ public class IngameScene extends BaseScene
         // Blockgitter um eine Zeile höher.
         grid = new Grid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
         createNextTetromino();
-        keyRepeater = new PressedKeyRepeater(this);
+        keyRepeater = new PressedKeyRepeater<Scene>(this);
         keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> tetromino.moveRight());
         keyRepeater.addTask(KeyEvent.VK_LEFT, () -> tetromino.moveLeft());
         keyRepeater.addTask(KeyEvent.VK_DOWN, () -> tetromino.moveDown());
