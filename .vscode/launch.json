@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "PressedKeyRepeaterScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.debug.PressedKeyRepeaterScene",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
       "name": "TurboFireDebugScene",
       "request": "launch",
       "mainClass": "de.pirckheimer_gymnasium.tetris.debug.TurboFireDebugScene",

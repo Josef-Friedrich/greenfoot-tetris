@@ -14,7 +14,7 @@ public class BaseScene extends Scene
      */
     protected Image background;
 
-    protected TurboFireStarter turboFire;
+    protected PressedKeyRepeater pressedKeyRepeater;
 
     public BaseScene(String imageFilename)
     {
@@ -32,12 +32,14 @@ public class BaseScene extends Scene
             getCamera().setFocus(background);
             add(background);
         }
-        turboFire = new TurboFireStarter(this);
-        addKeyListener(turboFire);
+        pressedKeyRepeater = new PressedKeyRepeater(this);
+        addKeyListener(pressedKeyRepeater);
     }
 
-    public void addTurboFire(int keyCode, float interval, Runnable runnable)
+    public void onKeyPressed(int keyCode, double interval, Runnable runnable,
+            double initialRepeatDelay)
     {
-        turboFire.addTask(keyCode, interval, runnable);
+        pressedKeyRepeater.addTask(keyCode, interval, runnable,
+                initialRepeatDelay);
     }
 }
