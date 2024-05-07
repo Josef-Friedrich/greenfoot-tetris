@@ -67,13 +67,19 @@ public abstract class Tetromino
     protected void addBlock(int index, String mainImage, String secondImage,
             int x, int y)
     {
+        Block block;
         if (Game.isDebug())
         {
-            blocks[index] = createBlock("Debug-" + index, x, y);
+            block = createBlock("Debug-" + index, x, y);
         }
         else
         {
-            blocks[index] = createBlock(mainImage, secondImage, x, y);
+            block = createBlock(mainImage, secondImage, x, y);
+        }
+        blocks[index] = block;
+        if (grid != null)
+        {
+            grid.addBlock(block);
         }
     }
 

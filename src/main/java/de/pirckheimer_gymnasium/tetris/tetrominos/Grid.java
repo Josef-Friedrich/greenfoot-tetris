@@ -21,7 +21,7 @@ class FilledRowRange
 
     public int getTo()
     {
-        return from;
+        return to;
     }
 
     public int getRowCount()
@@ -78,6 +78,7 @@ public class Grid
      */
     public void addBlock(Block block)
     {
+        assert grid[block.getX()][block.getY()] == null;
         grid[block.getX()][block.getY()] = block;
     }
 
@@ -158,14 +159,17 @@ public class Grid
 
     public void triggerLandslide(FilledRowRange range)
     {
-        for (int y = range.getTo(); y < getHeight(); y++)
+        for (int y = range.getTo() + 1; y < getHeight(); y++)
         {
             for (int x = 0; x < getWidth(); x++)
             {
                 Block block = grid[x][y];
-                block.moveBy(0, -range.getRowCount());
-                grid[x][y] = null;
-                grid[x][y - range.getRowCount()] = block;
+                if (block != null)
+                {
+                    block.moveBy(0, -range.getRowCount() - 1);
+                    grid[x][y] = null;
+                    grid[x][y - range.getRowCount() - 1] = block;
+                }
             }
         }
     }

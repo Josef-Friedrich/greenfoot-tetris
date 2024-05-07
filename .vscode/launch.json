@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "GridDebugScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.debug.GridDebugScene",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
       "name": "PressedKeyRepeaterScene",
       "request": "launch",
       "mainClass": "de.pirckheimer_gymnasium.tetris.debug.PressedKeyRepeaterScene",

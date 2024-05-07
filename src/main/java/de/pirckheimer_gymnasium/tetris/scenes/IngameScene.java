@@ -133,6 +133,12 @@ public class IngameScene extends BaseScene
     {
         if (!tetromino.moveDown())
         {
+            var range = grid.getFilledRowRange();
+            if (range != null)
+            {
+                grid.removeFilledRowRange(range);
+                grid.triggerLandslide(range);
+            }
             createNextTetromino();
         }
         latestDown = System.nanoTime();
