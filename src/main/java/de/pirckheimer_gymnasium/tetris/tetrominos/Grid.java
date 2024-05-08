@@ -145,15 +145,36 @@ public class Grid
         return null;
     }
 
-    public void removeFilledRowRange(FilledRowRange range)
+    private void clearRow(int y)
     {
-        for (int y = range.getFrom(); y <= range.getTo(); y++)
+        for (int x = 0; x < getWidth(); x++)
         {
-            for (int x = 0; x < getWidth(); x++)
+            if (isTaken(x, y))
             {
                 grid[x][y].remove();
                 grid[x][y] = null;
             }
+        }
+    }
+
+    /**
+     * Leert das ganze Gitter.
+     *
+     * @see de.pirckheimer_gymnasium.tetris.debug.GridDebugScene
+     */
+    public void clear()
+    {
+        for (int y = 0; y < getHeight(); y++)
+        {
+            clearRow(y);
+        }
+    }
+
+    public void removeFilledRowRange(FilledRowRange range)
+    {
+        for (int y = range.getFrom(); y <= range.getTo(); y++)
+        {
+            clearRow(y);
         }
     }
 
@@ -163,9 +184,9 @@ public class Grid
         {
             for (int x = 0; x < getWidth(); x++)
             {
-                Block block = grid[x][y];
-                if (block != null)
+                if (isTaken(x, y))
                 {
+                    Block block = grid[x][y];
                     block.moveBy(0, -range.getRowCount() - 1);
                     grid[x][y] = null;
                     grid[x][y - range.getRowCount() - 1] = block;
