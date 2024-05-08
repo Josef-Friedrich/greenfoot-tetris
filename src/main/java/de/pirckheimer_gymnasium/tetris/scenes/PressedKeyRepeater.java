@@ -51,7 +51,7 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         }
 
         @Override
-        public void onFrameUpdate(float deltaSeconds)
+        public void onFrameUpdate(double deltaSeconds)
         {
             countdown -= deltaSeconds;
             if (countdown < 0)
