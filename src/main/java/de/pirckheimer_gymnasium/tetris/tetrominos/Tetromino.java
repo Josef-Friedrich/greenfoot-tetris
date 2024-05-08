@@ -124,14 +124,31 @@ public abstract class Tetromino
     }
 
     /**
+     * Diese Methode wird benötigt, um Tetrominos außerhalb des Grids zu
+     * rotieren und dann in die gewünschte Endposition zu bringen. So können wir
+     * ein vorbelegtes Gitter erzeugen, um den Algorithmus zu testen wie
+     * ausgefüllte Reihen aus dem Gitter gelöscht werden. Die Tetrominos werden
+     * zunächst ohne Gitter erzeugt ({@code grid = null}), dann rotiert und an
+     * die gewünschte Position geschoben und schließlich wird diese Methode
+     * aufgerufen und die Blöcke werden dem Gitter hinzugefügt.
+     *
+     * @param grid
+     */
+    public void addGrid(Grid grid)
+    {
+        this.grid = grid;
+        addBlocksToGrid();
+    }
+
+    /**
      * Fügt alle Blöcke des Tetrominos in das Blockgitter ein.
      *
      * Die Blöcke können nicht einzeln im Gitter verschoben werden, da sie sich
      * sonst gegenseitig überschreiben würden.
      *
-     * @see #removeFromGrid()
+     * @see #removeBlocksFromGrid()
      */
-    protected void addToGrid()
+    protected void addBlocksToGrid()
     {
         if (grid == null)
         {
@@ -149,9 +166,9 @@ public abstract class Tetromino
      * Die Blöcke können nicht einzeln im Gitter verschoben werden, da sie sich
      * sonst gegenseitig überschreiben würden.
      *
-     * @see #addToGrid()
+     * @see #addBlocksToGrid()
      */
-    protected void removeFromGrid()
+    protected void removeBlocksFromGrid()
     {
         if (grid == null)
         {
@@ -179,6 +196,10 @@ public abstract class Tetromino
      */
     protected boolean isGridTaken(int x, int y)
     {
+        if (grid == null)
+        {
+            return false;
+        }
         return !isOwnBlockPosition(x, y) && grid.isTaken(x, y);
     }
 
@@ -213,12 +234,12 @@ public abstract class Tetromino
         {
             return false;
         }
-        removeFromGrid();
+        removeBlocksFromGrid();
         for (Block block : blocks)
         {
             block.moveLeft();
         }
-        addToGrid();
+        addBlocksToGrid();
         x--;
         assert x == blocks[0].getX();
         return true;
@@ -242,12 +263,12 @@ public abstract class Tetromino
         {
             return false;
         }
-        removeFromGrid();
+        removeBlocksFromGrid();
         for (Block block : blocks)
         {
             block.moveRight();
         }
-        addToGrid();
+        addBlocksToGrid();
         x++;
         assert x == blocks[0].getX();
         return true;
@@ -271,12 +292,12 @@ public abstract class Tetromino
         {
             return false;
         }
-        removeFromGrid();
+        removeBlocksFromGrid();
         for (Block block : blocks)
         {
             block.moveDown();
         }
-        addToGrid();
+        addBlocksToGrid();
         y--;
         assert y == blocks[0].getY();
         return true;
@@ -317,12 +338,12 @@ public abstract class Tetromino
             rotation = oldRotation;
             return false;
         }
-        removeFromGrid();
+        removeBlocksFromGrid();
         for (Block block : blocks)
         {
             block.move();
         }
-        addToGrid();
+        addBlocksToGrid();
         return true;
     }
 
@@ -332,7 +353,7 @@ public abstract class Tetromino
         {
             block.remove();
         }
-        removeFromGrid();
+        removeBlocksFromGrid();
     }
 
     public static Tetromino create(Scene scene, Grid grid, int number, int x,
