@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-import rocks.friedrich.engine_omega.FrameUpdateListener;
+import rocks.friedrich.engine_omega.event.FrameUpdateListener;
 import rocks.friedrich.engine_omega.event.FrameUpdateListenerContainer;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.event.KeyListenerContainer;

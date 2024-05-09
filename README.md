@@ -647,6 +647,10 @@ public class I extends Tetromino
 }
 ```
 
+### 4. Sitzung
+
+- Update der Engine Omega auf 0.4.0
+
 [^fandom]: https://tetris.fandom.com/wiki/Soft_Drop
 [^gimp-green]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
 [^harddrop]: https://harddrop.com/wiki/Tetris_(Game_Boy)

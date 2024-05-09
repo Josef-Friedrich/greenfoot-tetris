@@ -6,7 +6,7 @@ import java.util.Random;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
-import rocks.friedrich.engine_omega.FrameUpdateListener;
+import rocks.friedrich.engine_omega.event.FrameUpdateListener;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.Scene;
 
