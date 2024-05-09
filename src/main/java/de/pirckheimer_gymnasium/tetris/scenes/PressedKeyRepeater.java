@@ -9,11 +9,6 @@ import rocks.friedrich.engine_omega.event.FrameUpdateListenerContainer;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.event.KeyListenerContainer;
 
-interface FrameAndKeyListenerContainer
-        extends KeyListenerContainer, FrameUpdateListenerContainer
-{
-}
-
 /**
  * Bei gedrückter Taste mehrmals die gleiche Aktionen in einem bestimmten
  * Abstand ausführen.
