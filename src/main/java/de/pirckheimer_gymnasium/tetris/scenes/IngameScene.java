@@ -145,7 +145,7 @@ public class IngameScene extends BaseScene
     }
 
     @Override
-    public void onFrameUpdate(float deltaSeconds)
+    public void onFrameUpdate(double deltaSeconds)
     {
         if (!automaticDown)
         {
