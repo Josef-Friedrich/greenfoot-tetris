@@ -8,6 +8,7 @@ import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 import rocks.friedrich.engine_omega.event.FrameUpdateListener;
 import rocks.friedrich.engine_omega.event.KeyListener;
+import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 
 public class IngameScene extends BaseScene
@@ -170,7 +171,7 @@ public class IngameScene extends BaseScene
             tetromino.rotate();
             break;
         }
-        if (Tetris.DEBUG)
+        if (Game.isDebug())
         {
             grid.print();
         }

@@ -12,10 +12,6 @@ public class Block
 
     private Image image;
 
-    private Image mainImage;
-
-    private Image secondImage;
-
     private String name;
 
     /**
@@ -29,40 +25,10 @@ public class Block
     private Scene scene;
 
     /**
-     * @param scene           Eine Referenz auf die Szene, in der der Block
-     *                        angezeigt werden soll.
-     * @param imageName       Das Hauptbild angegeben als Dateiname ohne die
-     *                        Dateierweiterung, z. B. {@code "L"} oder
-     *                        {@code "I_h_left"}.
-     * @param secondImageName Das zweite Bild angegeben als Dateiname ohne die
-     *                        Dateierweiterung, z. B. {@code "L"} oder
-     *                        {@code "I_v_bottom"}.
-     * @param x               Die X-Koordinate der Startposition, auf die der
-     *                        Block gesetzt werden soll.
-     * @param y               Die Y-Koordinate der Startposition, auf die der
-     *                        Block gesetzt werden soll.
-     */
-    public Block(Scene scene, String imageName, String secondImageName, int x,
-            int y)
-    {
-        this.scene = scene;
-        name = imageName;
-        image = new Image("blocks/" + imageName + ".png");
-        if (secondImageName != null)
-        {
-            this.secondImage = new Image("blocks/" + secondImageName + ".png");
-        }
-        image.setPosition(x, y);
-        this.x = x;
-        this.y = y;
-        scene.add(image);
-    }
-
-    /**
      * @param scene     Eine Referenz auf die Szene, in der der Block angezeigt
      *                  werden soll.
-     * @param imageName Der Name des Blocks entspricht dem Dateinamen des Bildes
-     *                  ohne die Dateierweiterung, z. B. {@code "L"} oder
+     * @param imageName Das Hauptbild angegeben als Dateiname ohne die
+     *                  Dateierweiterung, z. B. {@code "L"} oder
      *                  {@code "I_h_left"}.
      * @param x         Die X-Koordinate der Startposition, auf die der Block
      *                  gesetzt werden soll.
@@ -71,7 +37,13 @@ public class Block
      */
     public Block(Scene scene, String imageName, int x, int y)
     {
-        this(scene, imageName, null, x, y);
+        this.scene = scene;
+        name = imageName;
+        image = new Image("blocks/" + imageName + ".png");
+        image.setPosition(x, y);
+        this.x = x;
+        this.y = y;
+        scene.add(image);
     }
 
     /**
@@ -140,27 +112,5 @@ public class Block
     public void remove()
     {
         scene.remove(image);
-    }
-
-    public void exchangeImages()
-    {
-        if (image != null && mainImage != null)
-        {
-            image.remove();
-            secondImage = image;
-            image = mainImage;
-            scene.add(image);
-            image.setPosition(x, y);
-            mainImage = null;
-        }
-        else if (image != null && secondImage != null)
-        {
-            image.remove();
-            mainImage = image;
-            image = secondImage;
-            scene.add(image);
-            image.setPosition(x, y);
-            secondImage = null;
-        }
     }
 }

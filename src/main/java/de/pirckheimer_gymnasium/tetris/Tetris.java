@@ -34,12 +34,6 @@ public class Tetris
     public static final int SCALE = 4;
 
     /**
-     * Schaltet den Entwicklermodus ein oder aus. Im Entwicklermodus werden zum
-     * Beispiel statt den normalen Blockbilder Zahlen angezeigt.
-     */
-    public static boolean DEBUG = false;
-
-    /**
      * Das Spielfeld hat rechts einen Abstand zum Bildschirmrand von 8 Blöcken.
      */
     public static final int GRID_WIDTH = 10;
@@ -54,9 +48,8 @@ public class Tetris
 
     public static void start(Scene scene, boolean debug)
     {
-        Tetris.DEBUG = debug;
-        scene.getCamera().setZoom(Tetris.SCALE * Tetris.BLOCK_SIZE);
         Game.setDebug(debug);
+        scene.getCamera().setZoom(Tetris.SCALE * Tetris.BLOCK_SIZE);
         if (Game.isRunning())
         {
             Game.transitionToScene(scene);

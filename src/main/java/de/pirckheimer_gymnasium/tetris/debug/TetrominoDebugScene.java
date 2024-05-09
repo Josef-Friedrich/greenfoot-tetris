@@ -6,6 +6,7 @@ import java.awt.event.KeyEvent;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
+import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.actor.Text;
 import rocks.friedrich.engine_omega.event.KeyListener;
@@ -86,8 +87,15 @@ public class TetrominoDebugScene extends Scene implements KeyListener
         }
     }
 
+
+    public static void start(boolean debug) {
+        // Muss vorher gesetzt werden
+        Game.setDebug(debug);
+        Tetris.start(new TetrominoDebugScene(), debug);
+    }
+
     public static void main(String[] args)
     {
-        Tetris.start(new TetrominoDebugScene(), true);
+        start(false);
     }
 }

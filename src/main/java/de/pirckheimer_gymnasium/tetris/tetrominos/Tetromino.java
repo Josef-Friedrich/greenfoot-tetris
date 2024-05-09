@@ -63,39 +63,22 @@ public abstract class Tetromino
         return y;
     }
 
-    protected Block createBlock(String mainImage, String secondImage, int x,
-            int y)
-    {
-        return new Block(this.scene, mainImage, secondImage, x, y);
-    }
-
-    protected Block createBlock(String name, int x, int y)
-    {
-        return createBlock(name, null, x, y);
-    }
-
-    protected void addBlock(int index, String mainImage, String secondImage,
-            int x, int y)
+    protected void addBlock(int index, String imageName, int x, int y)
     {
         Block block;
         if (Game.isDebug())
         {
-            block = createBlock("Debug-" + index, x, y);
+            block = new Block(this.scene, "Debug-" + index, x, y);
         }
         else
         {
-            block = createBlock(mainImage, secondImage, x, y);
+            block = new Block(this.scene, imageName, x, y);
         }
         blocks[index] = block;
         if (grid != null)
         {
             grid.addBlock(block);
         }
-    }
-
-    protected void addBlock(int index, String name, int x, int y)
-    {
-        addBlock(index, name, null, x, y);
     }
 
     /**

@@ -2,6 +2,20 @@
   "configurations": [
     {
       "type": "java",
+      "name": "SingleTetrominoDebugScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.debug.SingleTetrominoDebugScene",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
+      "name": "TetrominoDebugScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.debug.TetrominoDebugScene",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
       "name": "GridDebugScene",
       "request": "launch",
       "mainClass": "de.pirckheimer_gymnasium.tetris.debug.GridDebugScene",
