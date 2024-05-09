@@ -13,7 +13,7 @@ class O extends Tetromino
         addBlock(3, "O", x + 1, y - 1);
     }
 
-    protected void setRotation()
+    protected void doRotation()
     {
         // keine Rotation notwendig bei O
     }

@@ -18,8 +18,6 @@ public class Block
 
     private String name;
 
-    private MotionWithImageExchange motion;
-
     /**
      * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
      *
@@ -163,53 +161,6 @@ public class Block
             scene.add(image);
             image.setPosition(x, y);
             secondImage = null;
-        }
-    }
-
-    public void setMotion(MotionWithImageExchange motion)
-    {
-        this.motion = motion;
-    }
-
-    public void resetMotion()
-    {
-        this.motion = null;
-    }
-
-    public void setMotion(int dX, int dY, boolean switchImage)
-    {
-        motion = new MotionWithImageExchange(dX, dY, switchImage);
-    }
-
-    public void setMotion(int dX, int dY)
-    {
-        setMotion(dX, dY, false);
-    }
-
-    public Motion getMotion()
-    {
-        return motion;
-    }
-
-    public Vector getMotionDestination()
-    {
-        if (motion == null)
-        {
-            return null;
-        }
-        return new Vector(x + motion.getX(), y + motion.getY());
-    }
-
-    public void move()
-    {
-        if (motion != null)
-        {
-            if (motion.exchangeImage())
-            {
-                exchangeImages();
-            }
-            moveBy(motion.getVector());
-            motion = null;
         }
     }
 }

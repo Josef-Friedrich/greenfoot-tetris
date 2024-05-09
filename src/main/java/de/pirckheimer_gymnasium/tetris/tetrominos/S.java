@@ -13,20 +13,20 @@ class S extends Tetromino
         addBlock(3, "S", x, y - 1);
     }
 
-    protected void setRotation()
+    protected void doRotation()
     {
         switch (rotation)
         {
         case 1:
         case 3:
-            setBlockMotion(1, -2, 0);
-            setBlockMotion(2, 0, 2);
+            moveBlock(1, -2, 0);
+            moveBlock(2, 0, 2);
             break;
 
         case 0:
         case 2:
-            setBlockMotion(1, 2, 0);
-            setBlockMotion(2, 0, -2);
+            moveBlock(1, 2, 0);
+            moveBlock(2, 0, -2);
             break;
         }
     }
