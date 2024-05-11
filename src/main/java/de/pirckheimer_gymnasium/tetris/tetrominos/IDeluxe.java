@@ -2,9 +2,9 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import rocks.friedrich.engine_omega.Scene;
 
-class I extends Tetromino
+class IDeluxe extends Tetromino
 {
-    public I(Scene scene, Grid grid, int x, int y)
+    public IDeluxe(Scene scene, Grid grid, int x, int y)
     {
         super(scene, grid, x, y);
         // addBlock(0, "I_h_center", "I_v_center", x, y);
