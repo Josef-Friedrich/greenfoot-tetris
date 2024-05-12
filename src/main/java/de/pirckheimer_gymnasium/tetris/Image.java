@@ -1,7 +1,5 @@
 package de.pirckheimer_gymnasium.tetris;
 
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +10,7 @@ import javax.imageio.ImageIO;
 import de.pirckheimer_gymnasium.tetris.color.ColorSchema;
 import de.pirckheimer_gymnasium.tetris.color.CustomColorSchema;
 import de.pirckheimer_gymnasium.tetris.color.GrayColorSchema;
+import rocks.friedrich.engine_omega.util.ImageUtil;
 
 /**
  * Eine Spezialisierung von {@link Image}.
@@ -68,7 +67,7 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
         try
         {
             BufferedImage image = read(pathname);
-            image = scale(changeColorSchema(image), Tetris.SCALE);
+            image = ImageUtil.scale(changeColorSchema(image), Tetris.SCALE);
             cache.put(pathname, image);
             return image;
         }
@@ -77,22 +76,6 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
             e.printStackTrace();
         }
         return null;
-    }
-
-    /**
-     * Vergrößert ein Bild, indem die Pixel vervielfacht werden.
-     *
-     * @see https://stackoverflow.com/a/4216635
-     */
-    public static BufferedImage scale(BufferedImage image, int scale)
-    {
-        BufferedImage after = new BufferedImage(image.getWidth() * scale,
-                image.getHeight() * scale, BufferedImage.TYPE_INT_ARGB);
-        AffineTransform at = new AffineTransform();
-        at.scale(scale, scale);
-        AffineTransformOp scaleOp = new AffineTransformOp(at,
-                AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        return scaleOp.filter(image, after);
     }
 
     /**
