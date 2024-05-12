@@ -33,23 +33,11 @@ _sync tetris_github
 _sync tetris_pgn
 _sync tetris_simple
 
-# _copy eb_al src/main/resources/blocks/I.png
-# _copy ho_da src/main/resources/blocks/I.png
-# _copy ri_ni src/main/resources/blocks/I.png
-# _copy tetris_pgn src/main/resources/blocks/I.png
-
-# _copy eb_al src/main/resources/blocks/README.md
-# _copy ho_da src/main/resources/blocks/README.md
-# _copy ri_ni src/main/resources/blocks/README.md
-# _copy tetris_pgn src/main/resources/blocks/README.md
-
 # README
 _copy tetris_pgn README.md
-_copy tetris_simple README.md
 
 _commit eb_al
 _commit ho_da
 _commit ri_ni
 _commit tetris_pgn
-_commit tetris_simple
 _commit tetris_github
