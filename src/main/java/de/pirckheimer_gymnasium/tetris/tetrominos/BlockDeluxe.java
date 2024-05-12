@@ -42,8 +42,8 @@ public class BlockDeluxe
      * @param y               Die Y-Koordinate der Startposition, auf die der
      *                        Block gesetzt werden soll.
      */
-    public BlockDeluxe(Scene scene, String imageName, String secondImageName, int x,
-            int y)
+    public BlockDeluxe(Scene scene, String imageName, String secondImageName,
+            int x, int y)
     {
         this.scene = scene;
         name = imageName;
