@@ -6,13 +6,12 @@ import java.util.Random;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
-import rocks.friedrich.engine_omega.event.FrameUpdateListener;
-import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
+import rocks.friedrich.engine_omega.event.KeyListener;
+import rocks.friedrich.engine_omega.event.PeriodicTask;
 
-public class IngameScene extends BaseScene
-        implements KeyListener, FrameUpdateListener
+public class IngameScene extends BaseScene implements KeyListener
 {
     private Grid grid;
 
@@ -55,30 +54,16 @@ public class IngameScene extends BaseScene
             28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3 };
 
     /**
-     * Die Bildwiederholungsrate des originalen Gameboys pro Sekunde mal 100
-     * (damit wir ganzzahlig ohne Rest teilen können): pro Sekunden
-     * {@code 59.73}, mal hundert {@code 5973}.
+     * Die Bildwiederholungsrate des originalen Gameboys pro Sekunde.
      *
      * Quelle: <a href=
      * "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
      */
-    private final int GB_FRAME_RATE = 5973;
-
-    /**
-     * Der Zeitstempel in Nanosekunden ({@code 1} Sekunden sind
-     * {@code 1.000.000} Nanosekunden)
-     */
-    private long latestDown = 0;
-
-    private boolean automaticDown = true;
-
-    /**
-     * Das Zeitintervall, wie lange es dauern soll, bis das Tetromino eine Reihe
-     * weiter nach unten bewegt werden soll.
-     */
-    private long downInterval = 0;
+    private final double GB_FRAME_RATE = 59.73;
 
     protected PressedKeyRepeater<Scene> keyRepeater;
+
+    PeriodicTask periodicTask;
 
     public IngameScene()
     {
@@ -88,6 +73,7 @@ public class IngameScene extends BaseScene
         // Blockgitter um eine Zeile höher.
         grid = new Grid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
         createNextTetromino();
+        periodicTask = repeat(caculateDownInterval(), () -> moveDown());
         keyRepeater = new PressedKeyRepeater<Scene>(this);
         keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> tetromino.moveRight());
         keyRepeater.addTask(KeyEvent.VK_LEFT, () -> tetromino.moveLeft());
@@ -112,22 +98,16 @@ public class IngameScene extends BaseScene
         // Das Vorschaubild liegt außerhalb des Blockgitters. Wir übergeben der
         // Methode null.
         previewTetromino = Tetromino.create(this, null, nextTetromino, 14, 3);
-        downInterval = caculateDownInterval();
     }
 
     /**
-     * Berechnet das Zeitintervall in Nanosekunden, wie lange es dauert, bis
-     * sich das aktuelle Tetromino von einer Reihe zur darunterliegenden Reihe
+     * Berechnet das Zeitintervall in Sekunden, wie lange es dauert, bis sich
+     * das aktuelle Tetromino von einer Reihe zur darunterliegenden Reihe
      * bewegt.
-     *
-     * @return
      */
-    private long caculateDownInterval()
+    private double caculateDownInterval()
     {
-        // 1_000_000_000 / (5973 / 100)
-        // (1_000_000_000 * 100) / 5973
-        // 100_000_000_000 / 5973
-        return 100_000_000_000L / GB_FRAME_RATE * GB_FRAMES_PER_ROM[level];
+        return 1.0 / GB_FRAME_RATE * GB_FRAMES_PER_ROM[level];
     }
 
     private void moveDown()
@@ -142,20 +122,6 @@ public class IngameScene extends BaseScene
             }
             createNextTetromino();
         }
-        latestDown = System.nanoTime();
-    }
-
-    @Override
-    public void onFrameUpdate(double deltaSeconds)
-    {
-        if (!automaticDown)
-        {
-            return;
-        }
-        if (System.nanoTime() - latestDown > downInterval)
-        {
-            moveDown();
-        }
     }
 
     @Override
@@ -163,10 +129,6 @@ public class IngameScene extends BaseScene
     {
         switch (keyEvent.getKeyCode())
         {
-        case KeyEvent.VK_S:
-            downInterval = 0;
-            break;
-
         case KeyEvent.VK_SPACE:
             tetromino.rotate();
             break;
