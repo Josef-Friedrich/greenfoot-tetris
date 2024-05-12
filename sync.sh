@@ -31,7 +31,6 @@ _sync ho_da
 _sync ri_ni
 _sync tetris_github
 _sync tetris_pgn
-_sync tetris_simple
 
 # README
 _copy tetris_pgn README.md
