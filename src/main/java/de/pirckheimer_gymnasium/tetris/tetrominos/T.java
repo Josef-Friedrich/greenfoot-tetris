@@ -6,11 +6,11 @@ class T extends Tetromino
 {
     public T(Scene scene, Grid grid, int x, int y)
     {
-        super(scene, grid, x, y);
-        addBlock(0, "T", x, y);
-        addBlock(1, "T", x - 1, y);
-        addBlock(2, "T", x + 1, y);
-        addBlock(3, "T", x, y - 1);
+        super(scene, grid, "T", x, y);
+        addBlock(0, x, y);
+        addBlock(1, x - 1, y);
+        addBlock(2, x + 1, y);
+        addBlock(3, x, y - 1);
     }
 
     protected void doRotation()

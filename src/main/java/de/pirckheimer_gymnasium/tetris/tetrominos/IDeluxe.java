@@ -6,7 +6,7 @@ class IDeluxe extends Tetromino
 {
     public IDeluxe(Scene scene, Grid grid, int x, int y)
     {
-        super(scene, grid, x, y);
+        super(scene, grid, "I", x, y);
         // addBlock(0, "I_h_center", "I_v_center", x, y);
         // addBlock(1, "I_h_left", "I_v_bottom", x - 1, y);
         // addBlock(2, "I_h_center", "I_v_center", x + 1, y);

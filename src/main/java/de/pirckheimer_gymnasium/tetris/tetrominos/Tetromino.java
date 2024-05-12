@@ -25,6 +25,8 @@ public abstract class Tetromino
 
     protected Grid grid;
 
+    protected String name;
+
     /**
      * Die x-Koordinate des Tetrominos entspricht der Lage des ersten Blocks,
      * also dem Block mit der Indexnummer 0 im Blockfeld.
@@ -44,9 +46,10 @@ public abstract class Tetromino
      */
     public int rotation;
 
-    public Tetromino(Scene scene, Grid grid, int x, int y)
+    public Tetromino(Scene scene, Grid grid, String name, int x, int y)
     {
         this.scene = scene;
+        this.name = name;
         this.grid = grid;
         this.x = x;
         this.y = y;
@@ -63,7 +66,7 @@ public abstract class Tetromino
         return y;
     }
 
-    protected void addBlock(int index, String imageName, int x, int y)
+    protected void addBlock(int index, int x, int y)
     {
         Block block;
         if (Game.isDebug())
@@ -72,7 +75,7 @@ public abstract class Tetromino
         }
         else
         {
-            block = new Block(this.scene, imageName, x, y);
+            block = new Block(this.scene, name, x, y);
         }
         blocks[index] = block;
         if (grid != null)
