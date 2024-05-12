@@ -360,30 +360,30 @@ public abstract class Tetromino
         removeBlocksFromGrid();
     }
 
-    public static Tetromino create(Scene scene, Grid grid, int number, int x,
+    public static Tetromino create(Scene scene, Grid grid, String name, int x,
             int y)
     {
-        switch (number)
+        switch (name)
         {
-        case 0:
+        case "L":
             return new L(scene, grid, x, y);
 
-        case 1:
+        case "J":
             return new J(scene, grid, x, y);
 
-        case 2:
+        case "I":
             return new I(scene, grid, x, y);
 
-        case 3:
+        case "O":
             return new O(scene, grid, x, y);
 
-        case 4:
+        case "Z":
             return new Z(scene, grid, x, y);
 
-        case 5:
+        case "S":
             return new S(scene, grid, x, y);
 
-        case 6:
+        case "T":
             return new T(scene, grid, x, y);
 
         default:
@@ -391,16 +391,9 @@ public abstract class Tetromino
         }
     }
 
-    public static Tetromino create(Scene scene, Grid grid, String name, int x,
+    public static Tetromino create(Scene scene, Grid grid, int number, int x,
             int y)
     {
-        for (int i = 0; i < names.length; i++)
-        {
-            if (names[i].equals(name))
-            {
-                return create(scene, grid, i, x, y);
-            }
-        }
-        return create(scene, grid, 0, x, y);
+        return create(scene, grid, names[number], x, y);
     }
 }
