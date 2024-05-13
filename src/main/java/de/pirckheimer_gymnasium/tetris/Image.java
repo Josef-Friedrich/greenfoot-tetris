@@ -7,9 +7,6 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import de.pirckheimer_gymnasium.tetris.color.ColorSchema;
-import de.pirckheimer_gymnasium.tetris.color.CustomColorSchema;
-import de.pirckheimer_gymnasium.tetris.color.GrayColorSchema;
 import rocks.friedrich.engine_omega.util.ImageUtil;
 
 /**
@@ -19,6 +16,20 @@ import rocks.friedrich.engine_omega.util.ImageUtil;
  */
 public class Image extends rocks.friedrich.engine_omega.actor.Image
 {
+    /**
+     * Das klassische Gameboy-Spiel hat ein Farbschema, das aus nur vier Farben
+     * besteht.
+     *
+     * Wir verwenden als Farbnamen <em>weiß</em> ({@code white}), <em>hell</em>
+     * ({@code light}), <em>dunkel</em> ({@code dark}) und <em>schwarz</em>
+     * ({@code black}).
+     */
+    static String[] GRAY_COLOR_SCHEME = { "#ffffff", "#adadad", "#525252",
+            "#000000", };
+
+    static String[] GREEN_COLOR_SCHEME = { "#aaaa00", "#556633", "#335544",
+            "#223322", };
+
     public Image(String pathname)
     {
         super(Image.get(pathname), Tetris.SCALE * Tetris.BLOCK_SIZE);
@@ -50,6 +61,13 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
     /**
      * Gibt ein vergrößertes und eingefärbtes Bild zurück.
      *
+     * Die Ausgangsbilder haben als Farben vier verschiedene Grautöne bzw. zwei
+     * Grautöne und schwarz und weiß. Mit Hilfe dieser Methode ist es möglich,
+     * die Bilder z. B. grünlich einzufärben, sodass sie dem klassischen
+     * Gameboy-Farben ähneln. So müssen nicht für ein bestimmtes Farbschema
+     * entscheiden und dann viele Bilddateien erstellen, die dann wieder
+     * geändert werden müssten, wenn wir ein anderes Fahrschema nutzen wollen.
+     *
      * Dieser Methode ist außerdem ein Zwischenspeicher (Cache) vorgeschaltet.
      * Wird zweimal das gleiche Bild angefordert, wird das Bild beim zweiten Mal
      * aus dem Cache geladen und nicht neu berechnet.
@@ -67,7 +85,8 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
         try
         {
             BufferedImage image = read(pathname);
-            image = ImageUtil.scale(changeColorSchema(image), Tetris.SCALE);
+            image = ImageUtil.scale(ImageUtil.replaceColors(image,
+                    GRAY_COLOR_SCHEME, GREEN_COLOR_SCHEME), Tetris.SCALE);
             cache.put(pathname, image);
             return image;
         }
@@ -76,51 +95,5 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
             e.printStackTrace();
         }
         return null;
-    }
-
-    /**
-     * Ändert die Farben eines Bildes.
-     *
-     * Die Ausgangsbilder haben als Farben vier verschiedene Grautöne bzw. zwei
-     * Grautöne und schwarz und weiß. Mit Hilfe dieser Methode ist es möglich,
-     * die Bilder z. B. grünlich einzufärben, sodass sie dem klassischen
-     * Gameboy-Farben ähneln. So müssen nicht für ein bestimmtes Farbschema
-     * entscheiden und dann viele Bilddateien erstellen, die dann wieder
-     * geändert werden müssten, wenn wir ein anderes Fahrschema nutzen wollen.
-     *
-     * @see https://codereview.stackexchange.com/a/146611
-     *
-     * @param image Das Bild, dessen Farben geändert werden sollen.
-     *
-     * @return Das Bild mit den geänderten Farben.
-     */
-    public static BufferedImage changeColorSchema(BufferedImage image)
-    {
-        ColorSchema from = new GrayColorSchema();
-        ColorSchema to = new CustomColorSchema();
-        int w = image.getWidth();
-        int h = image.getHeight();
-        int[] rgb = image.getRGB(0, 0, w, h, null, 0, w);
-        for (int i = 0; i < rgb.length; i++)
-        {
-            if (rgb[i] == from.white().getRGB())
-            {
-                rgb[i] = to.white().getRGB();
-            }
-            else if (rgb[i] == from.light().getRGB())
-            {
-                rgb[i] = to.light().getRGB();
-            }
-            else if (rgb[i] == from.dark().getRGB())
-            {
-                rgb[i] = to.dark().getRGB();
-            }
-            else if (rgb[i] == from.black().getRGB())
-            {
-                rgb[i] = to.black().getRGB();
-            }
-        }
-        image.setRGB(0, 0, w, h, rgb, 0, w);
-        return image;
     }
 }
