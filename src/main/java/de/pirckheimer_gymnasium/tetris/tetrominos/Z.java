@@ -17,12 +17,16 @@ class Z extends Tetromino
     {
         switch (rotation)
         {
+        // 0 -> 1
+        // 2 -> 3
         case 1:
         case 3:
             moveBlock(2, 0, 2);
             moveBlock(3, -2, 0);
             break;
 
+        // 3 -> 0
+        // 1 -> 2
         case 0:
         case 2:
             moveBlock(2, 0, -2);

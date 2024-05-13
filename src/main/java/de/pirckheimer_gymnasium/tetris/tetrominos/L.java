@@ -19,9 +19,6 @@ class L extends Tetromino
         {
         // 0 -> 1
         case 1:
-            // xxx 31x 31x
-            // 102 102 x0x
-            // 3xx 32x x2x
             moveBlock(1, 1, 1);
             moveBlock(2, -1, -1);
             moveBlock(3, 0, 2);
@@ -29,9 +26,6 @@ class L extends Tetromino
 
         // 1 -> 2
         case 2:
-            // 31x 313 xx3
-            // x0x 201 201
-            // x2x x2x xxx
             moveBlock(1, 1, -1);
             moveBlock(2, -1, 1);
             moveBlock(3, 2, 0);
