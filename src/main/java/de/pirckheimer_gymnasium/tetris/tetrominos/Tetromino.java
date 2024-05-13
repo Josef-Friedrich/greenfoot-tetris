@@ -329,8 +329,31 @@ public abstract class Tetromino
         return true;
     }
 
+    /**
+     * Führt die eigentliche Rotation des Tetrominos durch, d. h. sie bewegt
+     * einzelnen Blöcke an neue Positionen.
+     *
+     * Es handelt sich um eine abstrakte Einschubmethode, die nach dem
+     * Schablonenmethode-Entwurfsmuster (engl. template method) von den
+     * Unterklassen - den einzelnen Tetrominos - implementiert werden müssen.
+     *
+     * @see #rotate
+     */
     protected abstract void doRotation();
 
+    /**
+     * Führt eine Rechtsdrehung durch.
+     *
+     * Es handelt sich um eine Schablonenmethode (engl. template method) nach
+     * dem gleichnamigen Entwurfsmuster. Die Methode ruft abstrakte Methoden
+     * doRotation() auf, die erst in den Unterklassen der einzelnen Tetrominos
+     * definiert werden.
+     *
+     * @see #doRotation
+     *
+     * @return Gibt wahr zurück, wenn sind das Tetromino drehen konnte, sonst
+     *         falsch.
+     */
     public boolean rotate()
     {
         if (!checkRotation())
