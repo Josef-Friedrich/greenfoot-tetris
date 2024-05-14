@@ -65,12 +65,13 @@ public class TextField
 
     public void write(String text, String color)
     {
+        text = text.toUpperCase();
         int glyphIndex = 0;
         int lineIndex = 0;
         for (int i = 0; i < text.length(); i++)
         {
             glyphs[lineIndex][glyphIndex] = new Glyph(this.scene,
-                    text.charAt(i), color, y + glyphIndex, x + lineIndex);
+                    text.charAt(i), color, x + glyphIndex, y + lineIndex);
             glyphIndex++;
             if (glyphIndex > width - 1)
             {

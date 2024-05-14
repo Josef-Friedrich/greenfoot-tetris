@@ -28,14 +28,22 @@ class Glyph
     Glyph(Scene scene, char glyph, String color, int x, int y)
     {
         this.scene = scene;
-        BufferedImage bufferedImage = de.pirckheimer_gymnasium.tetris.Image
-                .get("glyphs/" + glyph + ".png");
-        bufferedImage = ImageUtil
-                .scale(ImageUtil.replaceColors(bufferedImage, new String[]
-                { "#000000" }, new String[] { color }), Tetris.SCALE);
-        this.image = new Image(bufferedImage, Tetris.SCALE * Tetris.BLOCK_SIZE);
-        this.image.setPosition(x, y);
-        scene.add(this.image);
+        try
+        {
+            BufferedImage bufferedImage = de.pirckheimer_gymnasium.tetris.Image
+                    .read("glyphs/" + glyph + ".png");
+            bufferedImage = ImageUtil
+                    .scale(ImageUtil.replaceColors(bufferedImage, new String[]
+                    { "#000000" }, new String[] { color }), Tetris.SCALE);
+            this.image = new Image(bufferedImage,
+                    Tetris.SCALE * Tetris.BLOCK_SIZE);
+            this.image.setPosition(x, y);
+            scene.add(this.image);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     /**
