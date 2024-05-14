@@ -15,18 +15,19 @@ public class Block
     private String name;
 
     /**
-     * Eine Referenz auf die Szene, in der der Block angezeigt werden soll.
+     * Eine Referenz auf die {@link Scene Szene}, in der der Block angezeigt
+     * werden soll.
      *
      * <p>
-     * Wird benötigen diese Referenz, um den Block in die Szene einzufügen
-     * ({@link Scene#add}) bzw. aus der Szene zu entfernen
-     * ({@link Scene#remove}).
+     * Wird benötigen diese Referenz, um den Block in die {@link Scene Szene}
+     * einzufügen ({@link Scene#add}) bzw. aus der {@link Scene Szene} zu
+     * entfernen ({@link Scene#remove}).
      */
     private Scene scene;
 
     /**
-     * @param scene     Eine Referenz auf die Szene, in der der Block angezeigt
-     *                  werden soll.
+     * @param scene     Eine Referenz auf die {@link Scene Szene}, in der der
+     *                  Block angezeigt werden soll.
      * @param imageName Das Hauptbild angegeben als Dateiname ohne die
      *                  Dateierweiterung, z. B. {@code "L"} oder
      *                  {@code "I_h_left"}.
