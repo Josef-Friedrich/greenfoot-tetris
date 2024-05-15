@@ -32,9 +32,9 @@ class Glyph
         {
             BufferedImage bufferedImage = de.pirckheimer_gymnasium.tetris.Image
                     .read("glyphs/" + glyph + ".png");
-            bufferedImage = ImageUtil
-                    .scale(ImageUtil.replaceColors(bufferedImage, new String[]
-                    { "#000000" }, new String[] { color }), Tetris.SCALE);
+            bufferedImage = ImageUtil.scale(
+                    ImageUtil.replaceColor(bufferedImage, "#000000", color),
+                    Tetris.SCALE);
             this.image = new Image(bufferedImage,
                     Tetris.SCALE * Tetris.BLOCK_SIZE);
             this.image.setPosition(x, y);
