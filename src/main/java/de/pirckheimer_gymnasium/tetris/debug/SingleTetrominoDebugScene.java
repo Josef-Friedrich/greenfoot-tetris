@@ -23,8 +23,7 @@ public class SingleTetrominoDebugScene extends Scene implements KeyListener
         rotation = new Text("0", 1);
         rotation.setColor(Color.WHITE);
         rotation.setPosition(0, 0);
-        grid = new Grid(8, 8);
-        getCamera().setPostion(4, 4);
+        grid = new Grid(20, 18);
         add(rotation);
         createTetromino("L");
     }

@@ -84,13 +84,9 @@ public abstract class Tetromino
         }
     }
 
-    /**
-     * Überprüft, ob die gegebene Kooordinate mit einem der vier eigenen Blöcke
-     * des Tetrominos übereinstimmt.
-     */
-    public boolean isOwnBlockPosition(Vector position)
+    protected void moveBlock(int index, int dX, int dY)
     {
-        return isOwnBlockPosition((int) position.getX(), (int) position.getY());
+        blocks[index].moveBy(dX, dY);
     }
 
     /**
@@ -109,9 +105,39 @@ public abstract class Tetromino
         return false;
     }
 
-    protected void moveBlock(int index, int dX, int dY)
+    /**
+     * Überprüft, ob die gegebene Kooordinate mit einem der vier eigenen Blöcke
+     * des Tetrominos übereinstimmt.
+     */
+    public boolean isOwnBlockPosition(Vector position)
     {
-        blocks[index].moveBy(dX, dY);
+        return isOwnBlockPosition((int) position.getX(), (int) position.getY());
+    }
+
+    /**
+     * Überprüft, ob die gegebene Koordinate im Blockgitter besetzt ist. Dabei
+     * wird ein eigener Block ignoriert.
+     */
+    protected boolean isGridTaken(int x, int y)
+    {
+        if (grid == null)
+        {
+            return false;
+        }
+        return !isOwnBlockPosition(x, y) && grid.isTaken(x, y);
+    }
+
+    /**
+     * Überprüft, ob die gegebene Koordinate im Blockgitter besetzt ist. Dabei
+     * wird ein eigener Block ignoriert.
+     */
+    protected boolean isGridTaken(Vector position)
+    {
+        if (position == null)
+        {
+            return false;
+        }
+        return isGridTaken((int) position.getX(), (int) position.getY());
     }
 
     /**
@@ -179,32 +205,6 @@ public abstract class Tetromino
             result[i] = blocks[indices[i]];
         }
         return result;
-    }
-
-    /**
-     * Überprüft, ob die gegebene Koordinate im Blockgitter besetzt ist. Dabei
-     * wird ein eigener Block ignoriert.
-     */
-    protected boolean isGridTaken(int x, int y)
-    {
-        if (grid == null)
-        {
-            return false;
-        }
-        return !isOwnBlockPosition(x, y) && grid.isTaken(x, y);
-    }
-
-    /**
-     * Überprüft, ob die gegebene Koordinate im Blockgitter besetzt ist. Dabei
-     * wird ein eigener Block ignoriert.
-     */
-    protected boolean isGridTaken(Vector position)
-    {
-        if (position == null)
-        {
-            return false;
-        }
-        return isGridTaken((int) position.getX(), (int) position.getY());
     }
 
     protected boolean checkLeft()
