@@ -1,6 +1,8 @@
 package de.pirckheimer_gymnasium.tetris.text;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import rocks.friedrich.engine_omega.Scene;
@@ -25,15 +27,17 @@ class Glyph
 
     private Image image;
 
-    Glyph(Scene scene, char glyph, String color, int x, int y)
+    Glyph(Scene scene, char glyph, Color color, int x, int y)
     {
         this.scene = scene;
         try
         {
             BufferedImage bufferedImage = de.pirckheimer_gymnasium.tetris.Image
                     .read("glyphs/" + glyph + ".png");
+            bufferedImage = convertColorspace(bufferedImage,
+                    BufferedImage.TYPE_INT_ARGB);
             bufferedImage = ImageUtil.scale(
-                    ImageUtil.replaceColor(bufferedImage, "#000000", color),
+                    ImageUtil.replaceColor(bufferedImage, Color.BLACK, color),
                     Tetris.SCALE);
             this.image = new Image(bufferedImage,
                     Tetris.SCALE * Tetris.BLOCK_SIZE);
@@ -44,6 +48,17 @@ class Glyph
         {
             e.printStackTrace();
         }
+    }
+
+    final private static BufferedImage convertColorspace(BufferedImage image,
+            int newType)
+    {
+        BufferedImage raw = image;
+        image = new BufferedImage(raw.getWidth(), raw.getHeight(),
+                newType);
+        ColorConvertOp op = new ColorConvertOp(null);
+        op.filter(raw, image);
+        return image;
     }
 
     /**
