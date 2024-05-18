@@ -1,7 +1,5 @@
 package de.pirckheimer_gymnasium.tetris.text;
 
-import java.awt.Color;
-
 import rocks.friedrich.engine_omega.Scene;
 
 /**
@@ -65,7 +63,7 @@ public class TextField
         glyphs = new Glyph[lines][width];
     }
 
-    public void write(String text, Color color)
+    public void write(String text, String color)
     {
         text = text.toUpperCase();
         int glyphIndex = 0;
@@ -73,7 +71,7 @@ public class TextField
         for (int i = 0; i < text.length(); i++)
         {
             glyphs[lineIndex][glyphIndex] = new Glyph(this.scene,
-                    text.charAt(i), color, x + glyphIndex, y + lineIndex);
+                    text.charAt(i), color, x + glyphIndex, y - lineIndex);
             glyphIndex++;
             if (glyphIndex > width - 1)
             {
