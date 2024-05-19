@@ -39,7 +39,7 @@ public class TextField
     /**
      * Ein zweidimensionales Feld, das als Speicher für die Buchstaben dient.
      */
-    private Glyph[][] glyphs;
+    private TextLine[] textLines;
 
     /**
      *
@@ -60,45 +60,21 @@ public class TextField
         this.y = y;
         this.width = width;
         this.lines = lines;
-        glyphs = new Glyph[lines][width];
+        textLines = new TextLine[lines];
     }
 
     public void write(String text, String color)
     {
-        text = text.toUpperCase();
-        int glyphIndex = 0;
-        int lineIndex = 0;
-        for (int i = 0; i < text.length(); i++)
+        clear();
+        // Ist der Text null oder eine Zeichenkette mit keinem Zeichen, zeichnen
+        // wir keinen Text und verlassen die Methode vorzeitig.
+        if (text == null || text.length() == 0)
         {
-            glyphs[lineIndex][glyphIndex] = new Glyph(this.scene,
-                    text.charAt(i), color, x + glyphIndex, y - lineIndex);
-            glyphIndex++;
-            if (glyphIndex > width - 1)
-            {
-                glyphIndex = 0;
-                lineIndex++;
-            }
-            if (lineIndex > lines - 1)
-            {
-                throw new RuntimeException(
-                        "Der Text passt nicht in das Textfeld");
-            }
+            return;
         }
-    }
-
-    public void writeLine(String text, String color, int y) {
-
-
-    }
-
-    public void clearLine(int lineIndex)
-    {
-        for (Glyph glyph : glyphs[lineIndex])
+        if (text.length() > lines * width)
         {
-            if (glyph != null)
-            {
-                glyph.remove();
-            }
+            throw new RuntimeException("Der Text passt nicht in das Textfeld");
         }
     }
 
@@ -107,9 +83,12 @@ public class TextField
      */
     public void clear()
     {
-        for (int i = 0; i < glyphs.length; i++)
+        for (TextLine line : textLines)
         {
-            clearLine(i);
+            if (line != null)
+            {
+                line.clear();
+            }
         }
     }
 }

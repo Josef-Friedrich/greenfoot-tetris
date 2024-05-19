@@ -68,15 +68,16 @@ public class TextLine
 
     public void write(String text, String color, TextAlignment alignment)
     {
-        // Die Zeichen, die in einem früheren Aufruf eingezeichnet wurden
-        // löschen.
+        // Die Zeichen löschen, die in einem früheren Aufruf eingezeichnet
+        // wurden.
         clear();
-        // Ist der Text null oder eine Zeichenkette mit einem Zeichen, zeichnen
+        // Ist der Text null oder eine Zeichenkette mit keinem Zeichen, zeichnen
         // wir keinen Text und verlassen die Methode vorzeitig.
         if (text == null || text.length() == 0)
         {
             return;
         }
+        // Wir werfen eine Ausnahme, falls der Text nicht in die Zeile passt.
         if (text.length() > width)
         {
             throw new RuntimeException("Der Text passt nicht in die Zeile!");
