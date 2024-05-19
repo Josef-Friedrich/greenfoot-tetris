@@ -76,6 +76,15 @@ public class TextField
         {
             throw new RuntimeException("Der Text passt nicht in das Textfeld");
         }
+        int lineIndex = 0;
+        for (int i = 0; i < text.length(); i += width)
+        {
+            TextLine line = new TextLine(scene, x, y - lineIndex, width);
+            line.write(text.substring(i, Math.min(text.length(), i + width)),
+                    color, TextAlignment.LEFT);
+            textLines[lineIndex] = line;
+            lineIndex++;
+        }
     }
 
     /**

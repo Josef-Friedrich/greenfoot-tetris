@@ -15,7 +15,7 @@ public class TextFieldDebugScene extends Scene implements KeyListener
         TextField textField = new TextField(this, 0, 8, 5, 20);
         getCamera().setPostion(10, 8);
 
-        textField.write("Hello, World. Lorem ipsum","#ff0000");
+        textField.write("Hello, World. Lorem ipsum. Lorem ipsum. Lorem ipsum","#ff0000");
         setBackgroundColor(Color.GRAY);
     }
 
