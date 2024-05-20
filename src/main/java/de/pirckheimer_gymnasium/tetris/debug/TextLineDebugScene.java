@@ -17,7 +17,7 @@ public class TextLineDebugScene extends Scene
 
     private String TEXT = "Hello, World.";
 
-    private String COLOR = "#ff0000";
+    private Color COLOR = Tetris.COLOR_SCHEME_GREEN.getDark();
 
     public TextLineDebugScene()
     {

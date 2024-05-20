@@ -46,6 +46,12 @@ public class Tetris
 
     public static final Color COLOR_BLACK = null;
 
+    public static final ColorScheme COLOR_SCHEME_GRAY = new ColorScheme(
+            "#ffffff", "#adadad", "#525252", "#000000");
+
+    public static final ColorScheme COLOR_SCHEME_GREEN = new ColorScheme(
+            "#aaaa00", "#556633", "#335544", "#223322");
+
     /**
      * Aktivert und deaktiviert den Debug-Modus der Engine-Omega und des Spiels
      * Tetris.

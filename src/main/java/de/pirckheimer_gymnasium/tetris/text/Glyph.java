@@ -1,5 +1,6 @@
 package de.pirckheimer_gymnasium.tetris.text;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
 
@@ -26,7 +27,7 @@ class Glyph
 
     private Image image;
 
-    Glyph(Scene scene, char glyph, String color, int x, int y)
+    Glyph(Scene scene, char glyph, Color color, int x, int y)
     {
         this.scene = scene;
         BufferedImage bufferedImage = null;
@@ -44,7 +45,7 @@ class Glyph
             bufferedImage = convertColorspace(bufferedImage,
                     BufferedImage.TYPE_INT_ARGB);
             bufferedImage = ImageUtil.scale(
-                    ImageUtil.replaceColor(bufferedImage, "#000000", color),
+                    ImageUtil.replaceColor(bufferedImage, Color.BLACK, color),
                     Tetris.SCALE);
             image = new Image(bufferedImage, Tetris.SCALE * Tetris.BLOCK_SIZE);
             image.setPosition(x, y);

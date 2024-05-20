@@ -1,5 +1,7 @@
 package de.pirckheimer_gymnasium.tetris.text;
 
+import java.awt.Color;
+
 import rocks.friedrich.engine_omega.Scene;
 
 /**
@@ -63,7 +65,7 @@ public class TextField
         textLines = new TextLine[lines];
     }
 
-    public void write(String text, String color)
+    public void write(String text, Color color)
     {
         clear();
         // Ist der Text null oder eine Zeichenkette mit keinem Zeichen, zeichnen

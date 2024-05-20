@@ -5,6 +5,7 @@ import java.awt.Color;
 import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.actor.Rectangle;
+import rocks.friedrich.engine_omega.util.ColorUtil;
 
 /**
  * Ein rechteckiges Feld, in das mit den typischen Tetris-Buchstaben geschrieben
@@ -60,13 +61,13 @@ public class TextLine
         if (Game.isDebug())
         {
             Rectangle rectangle = new Rectangle(width, 1);
-            rectangle.setColor(Color.BLUE);
+            rectangle.setColor(ColorUtil.decode("#cccccccc"));
             rectangle.setPosition(x, y);
             scene.add(rectangle);
         }
     }
 
-    public void write(String text, String color, TextAlignment alignment)
+    public void write(String text, Color color, TextAlignment alignment)
     {
         // Die Zeichen löschen, die in einem früheren Aufruf eingezeichnet
         // wurden.

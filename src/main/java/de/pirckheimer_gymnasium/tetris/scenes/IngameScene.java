@@ -6,6 +6,7 @@ import java.util.Random;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
+import de.pirckheimer_gymnasium.tetris.text.NumberDisplay;
 import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
@@ -39,6 +40,12 @@ public class IngameScene extends BaseScene implements KeyListener
      * Das Vorschaubild des nächsten Tetrominos im linken unteren Bereich.
      */
     private Tetromino previewTetromino;
+
+    private NumberDisplay scoreDisplay;
+
+    private NumberDisplay levelDisplay;
+
+    private NumberDisplay clearedLinesDisplay;
 
     private int level = 0;
 
@@ -78,6 +85,12 @@ public class IngameScene extends BaseScene implements KeyListener
         keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> tetromino.moveRight());
         keyRepeater.addTask(KeyEvent.VK_LEFT, () -> tetromino.moveLeft());
         keyRepeater.addTask(KeyEvent.VK_DOWN, () -> tetromino.moveDown());
+        scoreDisplay = new NumberDisplay(this, 13, 14, 4);
+        scoreDisplay.write(100);
+        levelDisplay = new NumberDisplay(this, 13, 10, 4);
+        levelDisplay.write(10);
+        clearedLinesDisplay = new NumberDisplay(this, 13, 7, 4);
+        clearedLinesDisplay.write(10);
     }
 
     private void createNextTetromino()
