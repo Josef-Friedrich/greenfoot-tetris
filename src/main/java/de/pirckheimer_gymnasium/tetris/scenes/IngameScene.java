@@ -41,13 +41,11 @@ public class IngameScene extends BaseScene implements KeyListener
      */
     private Tetromino previewTetromino;
 
-    private NumberDisplay scoreDisplay;
+    private NumberDisplay score;
 
-    private NumberDisplay levelDisplay;
+    private NumberDisplay level;
 
-    private NumberDisplay clearedLinesDisplay;
-
-    private int level = 0;
+    private NumberDisplay clearedLines;
 
     /**
      * Nach wie vielen Frames ein Tetromino eine Reihe weiter nach unten gesetzt
@@ -80,17 +78,14 @@ public class IngameScene extends BaseScene implements KeyListener
         // Blockgitter um eine Zeile höher.
         grid = new Grid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
         createNextTetromino();
+        score = new NumberDisplay(this, 13, 14, 4);
+        level = new NumberDisplay(this, 13, 10, 4);
+        clearedLines = new NumberDisplay(this, 13, 7, 4);
         periodicTask = repeat(caculateDownInterval(), () -> moveDown());
         keyRepeater = new PressedKeyRepeater<Scene>(this);
         keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> tetromino.moveRight());
         keyRepeater.addTask(KeyEvent.VK_LEFT, () -> tetromino.moveLeft());
         keyRepeater.addTask(KeyEvent.VK_DOWN, () -> tetromino.moveDown());
-        scoreDisplay = new NumberDisplay(this, 13, 14, 4);
-        scoreDisplay.write(100);
-        levelDisplay = new NumberDisplay(this, 13, 10, 4);
-        levelDisplay.write(10);
-        clearedLinesDisplay = new NumberDisplay(this, 13, 7, 4);
-        clearedLinesDisplay.write(10);
     }
 
     private void createNextTetromino()
@@ -120,7 +115,7 @@ public class IngameScene extends BaseScene implements KeyListener
      */
     private double caculateDownInterval()
     {
-        return 1.0 / GB_FRAME_RATE * GB_FRAMES_PER_ROM[level];
+        return 1.0 / GB_FRAME_RATE * GB_FRAMES_PER_ROM[level.get()];
     }
 
     private void moveDown()
@@ -132,6 +127,8 @@ public class IngameScene extends BaseScene implements KeyListener
             {
                 grid.removeFilledRowRange(range);
                 grid.triggerLandslide(range);
+                clearedLines.add(range.getRowCount());
+                score.add(3);
             }
             createNextTetromino();
         }

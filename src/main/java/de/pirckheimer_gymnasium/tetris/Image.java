@@ -16,20 +16,6 @@ import rocks.friedrich.engine_omega.util.ImageUtil;
  */
 public class Image extends rocks.friedrich.engine_omega.actor.Image
 {
-    /**
-     * Das klassische Gameboy-Spiel hat ein Farbschema, das aus nur vier Farben
-     * besteht.
-     *
-     * Wir verwenden als Farbnamen <em>weiß</em> ({@code white}), <em>hell</em>
-     * ({@code light}), <em>dunkel</em> ({@code dark}) und <em>schwarz</em>
-     * ({@code black}).
-     */
-    static String[] GRAY_COLOR_SCHEME = { "#ffffff", "#adadad", "#525252",
-            "#000000", };
-
-    static String[] GREEN_COLOR_SCHEME = { "#aaaa00", "#556633", "#335544",
-            "#223322", };
-
     public Image(String pathname)
     {
         super(Image.get(pathname), Tetris.SCALE * Tetris.BLOCK_SIZE);
@@ -85,8 +71,11 @@ public class Image extends rocks.friedrich.engine_omega.actor.Image
         try
         {
             BufferedImage image = read(pathname);
-            image = ImageUtil.scale(ImageUtil.replaceColors(image,
-                    GRAY_COLOR_SCHEME, GREEN_COLOR_SCHEME), Tetris.SCALE);
+            image = ImageUtil.scale(
+                    ImageUtil.replaceColors(image,
+                            Tetris.COLOR_SCHEME_GRAY.getColors(),
+                            Tetris.COLOR_SCHEME_GREEN.getColors()),
+                    Tetris.SCALE);
             cache.put(pathname, image);
             return image;
         }
