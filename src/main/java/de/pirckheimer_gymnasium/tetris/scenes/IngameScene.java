@@ -109,6 +109,15 @@ public class IngameScene extends BaseScene implements KeyListener
     }
 
     /**
+     * https://tetris.wiki/Scoring
+     */
+    private int caculateScore()
+    {
+        return 40 * (level.get() + 1);
+        // 100 * (n + 1) 300 * (n + 1) 1200 * (n + 1)
+    }
+
+    /**
      * Berechnet das Zeitintervall in Sekunden, wie lange es dauert, bis sich
      * das aktuelle Tetromino von einer Reihe zur darunterliegenden Reihe
      * bewegt.
