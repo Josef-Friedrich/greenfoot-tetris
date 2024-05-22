@@ -70,6 +70,13 @@ public class IngameScene extends BaseScene implements KeyListener
 
     PeriodicTask periodicTask;
 
+    /**
+     * Gibt an, ob sich das Tetromino in einer Soft-Drop-Bewegung befindet. Als
+     * Soft-Drop bezeichnet man die schnellere nach unten gerichtete Bewegung
+     * des Tetromino.
+     */
+    private boolean isInSoftDrop = false;
+
     public IngameScene()
     {
         super("ingame");
@@ -81,11 +88,21 @@ public class IngameScene extends BaseScene implements KeyListener
         score = new NumberDisplay(this, 13, 14, 4);
         level = new NumberDisplay(this, 13, 10, 4);
         clearedLines = new NumberDisplay(this, 13, 7, 4);
-        periodicTask = repeat(caculateDownInterval(), () -> moveDown());
+        periodicTask = repeat(caculateDownInterval(), () -> {
+            if (!isInSoftDrop)
+            {
+                moveDown();
+            }
+        });
         keyRepeater = new PressedKeyRepeater<Scene>(this);
+        keyRepeater.addTask(KeyEvent.VK_DOWN, () -> {
+            isInSoftDrop = true;
+            moveDown();
+        }, () -> {
+            isInSoftDrop = false;
+        });
         keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> tetromino.moveRight());
         keyRepeater.addTask(KeyEvent.VK_LEFT, () -> tetromino.moveLeft());
-        keyRepeater.addTask(KeyEvent.VK_DOWN, () -> tetromino.moveDown());
     }
 
     private void createNextTetromino()

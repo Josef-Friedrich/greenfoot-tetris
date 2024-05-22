@@ -22,6 +22,11 @@ public class FilledRowRange
         return to;
     }
 
+    /**
+     * Gibt die Anzahl zurück, wie viele Reihen abgebaut wurden.
+     *
+     * @return die Anzahl an Reihen die abgebaut wurden.
+     */
     public int getRowCount()
     {
         return to - from + 1;
