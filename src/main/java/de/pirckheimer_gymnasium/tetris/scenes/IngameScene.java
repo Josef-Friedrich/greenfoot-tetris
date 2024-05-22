@@ -5,6 +5,7 @@ import java.util.Random;
 
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
+import de.pirckheimer_gymnasium.tetris.tetrominos.SoftDrop;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 import de.pirckheimer_gymnasium.tetris.text.NumberDisplay;
 import rocks.friedrich.engine_omega.Game;
@@ -75,7 +76,7 @@ public class IngameScene extends BaseScene implements KeyListener
      * Soft-Drop bezeichnet man die schnellere nach unten gerichtete Bewegung
      * des Tetromino.
      */
-    private boolean isInSoftDrop = false;
+    private SoftDrop softDrop = null;
 
     public IngameScene()
     {
@@ -89,17 +90,18 @@ public class IngameScene extends BaseScene implements KeyListener
         level = new NumberDisplay(this, 13, 10, 4);
         clearedLines = new NumberDisplay(this, 13, 7, 4);
         periodicTask = repeat(caculateDownInterval(), () -> {
-            if (!isInSoftDrop)
+            if (softDrop == null)
             {
                 moveDown();
             }
         });
         keyRepeater = new PressedKeyRepeater<Scene>(this);
         keyRepeater.addTask(KeyEvent.VK_DOWN, () -> {
-            isInSoftDrop = true;
+            softDrop = new SoftDrop(tetromino);
+        }, () -> {
             moveDown();
         }, () -> {
-            isInSoftDrop = false;
+            softDrop = null;
         });
         keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> tetromino.moveRight());
         keyRepeater.addTask(KeyEvent.VK_LEFT, () -> tetromino.moveLeft());
@@ -143,7 +145,9 @@ public class IngameScene extends BaseScene implements KeyListener
         {
             score = 1200;
         }
-        return score * (level.get() + 1);
+        int result = score * (level.get() + 1);
+        assert result > 0;
+        return result;
     }
 
     /**
@@ -160,13 +164,18 @@ public class IngameScene extends BaseScene implements KeyListener
     {
         if (!tetromino.moveDown())
         {
+            if (softDrop != null)
+            {
+                score.add(softDrop.getDistance());
+            }
+            softDrop = null;
             var range = grid.getFilledRowRange();
             if (range != null)
             {
                 grid.removeFilledRowRange(range);
                 grid.triggerLandslide(range);
                 clearedLines.add(range.getRowCount());
-                score.add(3);
+                score.add(caculateScore(range.getRowCount()));
             }
             createNextTetromino();
         }

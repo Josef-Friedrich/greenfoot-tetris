@@ -42,6 +42,7 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
             countdown = task.getInitialInterval();
             scene.addKeyListener(this);
             scene.addFrameUpdateListener(this);
+            task.runInitialTask();
             task.runRepeatedTask();
         }
 
@@ -76,6 +77,8 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
     private class Task
     {
         private int keyCode;
+
+        private Runnable initialTask;
 
         private Runnable repeatedTask;
 
@@ -116,6 +119,15 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
             this.finalTask = finalTask;
         }
 
+        public Task(int keyCode, Runnable intialTask, Runnable repeatedTask,
+                Runnable finalTask)
+        {
+            this.keyCode = keyCode;
+            this.initialTask = intialTask;
+            this.repeatedTask = repeatedTask;
+            this.finalTask = finalTask;
+        }
+
         public int getKeyCode()
         {
             return keyCode;
@@ -128,6 +140,14 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
                 return defaultInterval;
             }
             return interval;
+        }
+
+        public void runInitialTask()
+        {
+            if (initialTask != null)
+            {
+                initialTask.run();
+            }
         }
 
         public void runRepeatedTask()
@@ -187,6 +207,12 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
     public void addTask(int keyCode, Runnable repeatedTask, Runnable finalTask)
     {
         tasks.add(new Task(keyCode, repeatedTask, finalTask));
+    }
+
+    public void addTask(int keyCode, Runnable initialTask,
+            Runnable repeatedTask, Runnable finalTask)
+    {
+        tasks.add(new Task(keyCode, initialTask, repeatedTask, finalTask));
     }
 
     @Override

@@ -27,10 +27,13 @@ public class NumberDisplay extends TextLine
 
     public int get()
     {
-        return this.number;
+        assert number > -1;
+        return number;
     }
 
-    public void add(int number) {
+    public void add(int number)
+    {
+        assert number > 0;
         this.number += number;
         write(this.number);
     }

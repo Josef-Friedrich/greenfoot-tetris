@@ -1,5 +1,9 @@
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
+/**
+ * Diese Klasse speichert, welche Reihen vollständig sind und daher getilgt
+ * werden können.
+ */
 public class FilledRowRange
 {
     int from;
@@ -29,6 +33,8 @@ public class FilledRowRange
      */
     public int getRowCount()
     {
-        return to - from + 1;
+        int result = to - from + 1;
+        assert result > 0 && result < 5;
+        return result;
     }
 }
