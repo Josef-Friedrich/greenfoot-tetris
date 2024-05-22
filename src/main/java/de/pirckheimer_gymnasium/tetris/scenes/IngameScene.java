@@ -111,10 +111,22 @@ public class IngameScene extends BaseScene implements KeyListener
     /**
      * https://tetris.wiki/Scoring
      */
-    private int caculateScore()
+    private int caculateScore(int clearedLines)
     {
-        return 40 * (level.get() + 1);
-        // 100 * (n + 1) 300 * (n + 1) 1200 * (n + 1)
+        int score = 40;
+        if (clearedLines == 2)
+        {
+            score = 100;
+        }
+        else if (clearedLines == 3)
+        {
+            score = 300;
+        }
+        else if (clearedLines == 4)
+        {
+            score = 1200;
+        }
+        return score * (level.get() + 1);
     }
 
     /**
