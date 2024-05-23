@@ -3,6 +3,7 @@ package de.pirckheimer_gymnasium.tetris.scenes;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import rocks.friedrich.engine_omega.sound.*;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.SoftDrop;
@@ -12,6 +13,21 @@ import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.event.PeriodicTask;
+
+class Sound
+{
+    private static void playMusic(String filename)
+    {
+        System.out.println("Play music");
+        Game.getJukebox().playMusic(new SinglePlayTrack(
+                Game.getSounds().get("sounds/" + filename)));
+    }
+
+    public static void blockMove()
+    {
+        playMusic("Block_move.mp3");
+    }
+}
 
 public class IngameScene extends BaseScene implements KeyListener
 {
@@ -103,8 +119,14 @@ public class IngameScene extends BaseScene implements KeyListener
         }, () -> {
             softDrop = null;
         });
-        keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> tetromino.moveRight());
-        keyRepeater.addTask(KeyEvent.VK_LEFT, () -> tetromino.moveLeft());
+        keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> {
+            tetromino.moveRight();
+            Sound.blockMove();
+        });
+        keyRepeater.addTask(KeyEvent.VK_LEFT, () -> {
+            tetromino.moveLeft();
+            Sound.blockMove();
+        });
     }
 
     private void createNextTetromino()
