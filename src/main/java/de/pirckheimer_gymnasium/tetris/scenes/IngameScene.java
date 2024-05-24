@@ -3,7 +3,6 @@ package de.pirckheimer_gymnasium.tetris.scenes;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
-import rocks.friedrich.engine_omega.sound.*;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.SoftDrop;
@@ -13,19 +12,30 @@ import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.event.PeriodicTask;
+import rocks.friedrich.engine_omega.sound.SinglePlayTrack;
 
 class Sound
 {
     private static void playMusic(String filename)
     {
-        System.out.println("Play music");
-        Game.getJukebox().playMusic(new SinglePlayTrack(
-                Game.getSounds().get("sounds/" + filename)));
+        Game.getJukebox().playMusic(
+                new SinglePlayTrack(Game.getSounds().get("sounds/" + filename)),
+                true);
     }
 
     public static void blockMove()
     {
         playMusic("Block_move.mp3");
+    }
+
+    public static void blockRotate()
+    {
+        playMusic("Block_rotate.mp3");
+    }
+
+    public static void blockDrop()
+    {
+        playMusic("Block_drop.mp3");
     }
 }
 
@@ -120,12 +130,18 @@ public class IngameScene extends BaseScene implements KeyListener
             softDrop = null;
         });
         keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> {
-            tetromino.moveRight();
-            Sound.blockMove();
+            boolean success = tetromino.moveRight();
+            if (success)
+            {
+                Sound.blockMove();
+            }
         });
         keyRepeater.addTask(KeyEvent.VK_LEFT, () -> {
-            tetromino.moveLeft();
-            Sound.blockMove();
+            boolean success = tetromino.moveLeft();
+            if (success)
+            {
+                Sound.blockMove();
+            }
         });
     }
 
@@ -186,6 +202,7 @@ public class IngameScene extends BaseScene implements KeyListener
     {
         if (!tetromino.moveDown())
         {
+            Sound.blockDrop();
             if (softDrop != null)
             {
                 score.add(softDrop.getDistance());
@@ -209,7 +226,11 @@ public class IngameScene extends BaseScene implements KeyListener
         switch (keyEvent.getKeyCode())
         {
         case KeyEvent.VK_SPACE:
-            tetromino.rotate();
+            boolean success = tetromino.rotate();
+            if (success)
+            {
+                Sound.blockRotate();
+            }
             break;
         }
         if (Game.isDebug())

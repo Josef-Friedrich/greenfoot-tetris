@@ -33,7 +33,7 @@ public class NumberDisplay extends TextLine
 
     public void add(int number)
     {
-        assert number > 0;
+        assert number > -1 : "Add only supports positiv values, got " + number;
         this.number += number;
         write(this.number);
     }
