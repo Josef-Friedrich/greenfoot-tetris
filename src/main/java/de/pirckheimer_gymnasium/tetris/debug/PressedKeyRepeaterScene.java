@@ -1,11 +1,11 @@
 package de.pirckheimer_gymnasium.tetris.debug;
 
+import java.awt.event.KeyEvent;
+
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.scenes.BaseScene;
 import de.pirckheimer_gymnasium.tetris.scenes.PressedKeyRepeater;
 import rocks.friedrich.engine_omega.Scene;
-
-import java.awt.event.KeyEvent;
 
 public class PressedKeyRepeaterScene extends BaseScene
 {

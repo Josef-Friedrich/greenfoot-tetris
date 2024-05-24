@@ -1,7 +1,7 @@
 package de.pirckheimer_gymnasium.tetris.debug;
 
-import static de.pirckheimer_gymnasium.tetris.text.TextAlignment.LEFT;
 import static de.pirckheimer_gymnasium.tetris.text.TextAlignment.CENTER;
+import static de.pirckheimer_gymnasium.tetris.text.TextAlignment.LEFT;
 import static de.pirckheimer_gymnasium.tetris.text.TextAlignment.RIGHT;
 
 import java.awt.Color;
