@@ -4,21 +4,17 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.event.FrameUpdateListener;
-import rocks.friedrich.engine_omega.event.FrameUpdateListenerContainer;
 import rocks.friedrich.engine_omega.event.KeyListener;
-import rocks.friedrich.engine_omega.event.KeyListenerContainer;
 
 /**
  * Bei gedrückter Taste mehrmals die gleiche Aktionen in einem bestimmten
  * Abstand ausführen.
  */
-public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateListenerContainer>
-        implements KeyListener
+public class PressedKeyRepeater implements KeyListener
 {
     private List<Task> tasks;
-
-    private T scene;
 
     /**
      * In Sekunden
@@ -40,8 +36,8 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         {
             this.task = task;
             countdown = task.getInitialInterval();
-            scene.addKeyListener(this);
-            scene.addFrameUpdateListener(this);
+            Game.addKeyListener(this);
+            Game.addFrameUpdateListener(this);
             task.runInitialTask();
             task.runRepeatedTask();
         }
@@ -67,8 +63,8 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         {
             if (e.getKeyCode() == task.getKeyCode())
             {
-                scene.removeKeyListener(this);
-                scene.removeFrameUpdateListener(this);
+                Game.removeFrameUpdateListener(this);
+                Game.removeKeyListener(this);
                 task.runFinalTask();
             }
         }
@@ -173,9 +169,8 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         }
     }
 
-    public PressedKeyRepeater(T scene, double interval, double intialInterval)
+    public PressedKeyRepeater(double interval, double intialInterval)
     {
-        this.scene = scene;
         if (interval > 0)
         {
             defaultInterval = interval;
@@ -185,12 +180,12 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
             defaultInitialInterval = intialInterval;
         }
         tasks = new ArrayList<Task>();
-        this.scene.addKeyListener(this);
+        Game.addKeyListener(this);
     }
 
-    public PressedKeyRepeater(T scene)
+    public PressedKeyRepeater()
     {
-        this(scene, 0, 0);
+        this(0, 0);
     }
 
     public void addTask(int keyCode, Runnable runnable, double interval,

@@ -9,7 +9,6 @@ import de.pirckheimer_gymnasium.tetris.tetrominos.SoftDrop;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 import de.pirckheimer_gymnasium.tetris.text.NumberDisplay;
 import rocks.friedrich.engine_omega.Game;
-import rocks.friedrich.engine_omega.Scene;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.event.PeriodicTask;
 import rocks.friedrich.engine_omega.sound.SinglePlayTrack;
@@ -93,7 +92,7 @@ public class IngameScene extends BaseScene implements KeyListener
      */
     private final double GB_FRAME_RATE = 59.73;
 
-    protected PressedKeyRepeater<Scene> keyRepeater;
+    protected PressedKeyRepeater keyRepeater;
 
     PeriodicTask periodicTask;
 
@@ -121,7 +120,7 @@ public class IngameScene extends BaseScene implements KeyListener
                 moveDown();
             }
         });
-        keyRepeater = new PressedKeyRepeater<Scene>(this);
+        keyRepeater = new PressedKeyRepeater();
         keyRepeater.addTask(KeyEvent.VK_DOWN, () -> {
             softDrop = new SoftDrop(tetromino);
         }, () -> {
