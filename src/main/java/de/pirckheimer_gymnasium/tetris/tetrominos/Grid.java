@@ -2,34 +2,6 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import rocks.friedrich.engine_omega.Vector;
 
-class FilledRowRange
-{
-    int from;
-
-    int to;
-
-    public FilledRowRange(int from, int to)
-    {
-        this.from = from;
-        this.to = to;
-    }
-
-    public int getFrom()
-    {
-        return from;
-    }
-
-    public int getTo()
-    {
-        return to;
-    }
-
-    public int getRowCount()
-    {
-        return to - from;
-    }
-}
-
 /**
  * Ein Blockgitter, das die Positionen aller Blöcke speichert.
  *
@@ -187,9 +159,9 @@ public class Grid
                 if (isTaken(x, y))
                 {
                     Block block = grid[x][y];
-                    block.moveBy(0, -range.getRowCount() - 1);
+                    block.moveBy(0, -range.getRowCount());
                     grid[x][y] = null;
-                    grid[x][y - range.getRowCount() - 1] = block;
+                    grid[x][y - range.getRowCount()] = block;
                 }
             }
         }

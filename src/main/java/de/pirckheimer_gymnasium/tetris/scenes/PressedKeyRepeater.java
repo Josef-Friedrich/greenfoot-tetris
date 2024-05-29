@@ -4,21 +4,17 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.event.FrameUpdateListener;
-import rocks.friedrich.engine_omega.event.FrameUpdateListenerContainer;
 import rocks.friedrich.engine_omega.event.KeyListener;
-import rocks.friedrich.engine_omega.event.KeyListenerContainer;
 
 /**
  * Bei gedrückter Taste mehrmals die gleiche Aktionen in einem bestimmten
  * Abstand ausführen.
  */
-public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateListenerContainer>
-        implements KeyListener
+public class PressedKeyRepeater implements KeyListener
 {
     private List<Task> tasks;
-
-    private T scene;
 
     /**
      * In Sekunden
@@ -40,9 +36,10 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         {
             this.task = task;
             countdown = task.getInitialInterval();
-            scene.addKeyListener(this);
-            scene.addFrameUpdateListener(this);
-            task.run();
+            Game.addKeyListener(this);
+            Game.addFrameUpdateListener(this);
+            task.runInitialTask();
+            task.runRepeatedTask();
         }
 
         @Override
@@ -51,7 +48,7 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
             countdown -= deltaSeconds;
             if (countdown < 0)
             {
-                task.run();
+                task.runRepeatedTask();
                 countdown = task.getInterval();
             }
         }
@@ -66,8 +63,9 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         {
             if (e.getKeyCode() == task.getKeyCode())
             {
-                scene.removeKeyListener(this);
-                scene.removeFrameUpdateListener(this);
+                Game.removeFrameUpdateListener(this);
+                Game.removeKeyListener(this);
+                task.runFinalTask();
             }
         }
     }
@@ -76,7 +74,11 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
     {
         private int keyCode;
 
-        private Runnable runnable;
+        private Runnable initialTask;
+
+        private Runnable repeatedTask;
+
+        private Runnable finalTask;
 
         /**
          * Verzögerung zwischen dem ersten Tastendruck und der ersten
@@ -96,14 +98,30 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         {
             this.keyCode = keyCode;
             this.interval = interval;
-            this.runnable = runnable;
+            this.repeatedTask = runnable;
             this.initialInterval = initialInterval;
         }
 
         public Task(int keyCode, Runnable runnable)
         {
             this.keyCode = keyCode;
-            this.runnable = runnable;
+            this.repeatedTask = runnable;
+        }
+
+        public Task(int keyCode, Runnable repeatedTask, Runnable finalTask)
+        {
+            this.keyCode = keyCode;
+            this.repeatedTask = repeatedTask;
+            this.finalTask = finalTask;
+        }
+
+        public Task(int keyCode, Runnable intialTask, Runnable repeatedTask,
+                Runnable finalTask)
+        {
+            this.keyCode = keyCode;
+            this.initialTask = intialTask;
+            this.repeatedTask = repeatedTask;
+            this.finalTask = finalTask;
         }
 
         public int getKeyCode()
@@ -120,9 +138,25 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
             return interval;
         }
 
-        public void run()
+        public void runInitialTask()
         {
-            runnable.run();
+            if (initialTask != null)
+            {
+                initialTask.run();
+            }
+        }
+
+        public void runRepeatedTask()
+        {
+            repeatedTask.run();
+        }
+
+        public void runFinalTask()
+        {
+            if (finalTask != null)
+            {
+                finalTask.run();
+            }
         }
 
         public double getInitialInterval()
@@ -135,9 +169,8 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         }
     }
 
-    public PressedKeyRepeater(T scene, double interval, double intialInterval)
+    public PressedKeyRepeater(double interval, double intialInterval)
     {
-        this.scene = scene;
         if (interval > 0)
         {
             defaultInterval = interval;
@@ -147,12 +180,12 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
             defaultInitialInterval = intialInterval;
         }
         tasks = new ArrayList<Task>();
-        this.scene.addKeyListener(this);
+        Game.addKeyListener(this);
     }
 
-    public PressedKeyRepeater(T scene)
+    public PressedKeyRepeater()
     {
-        this(scene, 0, 0);
+        this(0, 0);
     }
 
     public void addTask(int keyCode, Runnable runnable, double interval,
@@ -161,9 +194,20 @@ public class PressedKeyRepeater<T extends KeyListenerContainer & FrameUpdateList
         tasks.add(new Task(keyCode, runnable, interval, initialInterval));
     }
 
-    public void addTask(int keyCode, Runnable runnable)
+    public void addTask(int keyCode, Runnable repeatedTask)
     {
-        tasks.add(new Task(keyCode, runnable));
+        tasks.add(new Task(keyCode, repeatedTask));
+    }
+
+    public void addTask(int keyCode, Runnable repeatedTask, Runnable finalTask)
+    {
+        tasks.add(new Task(keyCode, repeatedTask, finalTask));
+    }
+
+    public void addTask(int keyCode, Runnable initialTask,
+            Runnable repeatedTask, Runnable finalTask)
+    {
+        tasks.add(new Task(keyCode, initialTask, repeatedTask, finalTask));
     }
 
     @Override

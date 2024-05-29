@@ -1,6 +1,8 @@
 package de.pirckheimer_gymnasium.tetris.text;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.image.ColorConvertOp;
 
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import rocks.friedrich.engine_omega.Scene;
@@ -25,25 +27,66 @@ class Glyph
 
     private Image image;
 
-    Glyph(Scene scene, char glyph, String color, int x, int y)
+    Glyph(Scene scene, char glyph, Color color, int x, int y)
     {
         this.scene = scene;
+        BufferedImage bufferedImage = null;
         try
         {
-            BufferedImage bufferedImage = de.pirckheimer_gymnasium.tetris.Image
-                    .read("glyphs/" + glyph + ".png");
-            bufferedImage = ImageUtil.scale(
-                    ImageUtil.replaceColor(bufferedImage, "#000000", color),
-                    Tetris.SCALE);
-            this.image = new Image(bufferedImage,
-                    Tetris.SCALE * Tetris.BLOCK_SIZE);
-            this.image.setPosition(x, y);
-            scene.add(this.image);
+            bufferedImage = de.pirckheimer_gymnasium.tetris.Image
+                    .read(getImagePath(glyph));
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            // ignore
         }
+        if (bufferedImage != null)
+        {
+            bufferedImage = convertColorspace(bufferedImage,
+                    BufferedImage.TYPE_INT_ARGB);
+            bufferedImage = ImageUtil.scale(
+                    ImageUtil.replaceColor(bufferedImage, Color.BLACK, color),
+                    Tetris.SCALE);
+            image = new Image(bufferedImage, Tetris.SCALE * Tetris.BLOCK_SIZE);
+            image.setPosition(x, y);
+            scene.add(image);
+        }
+    }
+
+    private String convertGlyphToImageName(char glyph)
+    {
+        switch (glyph)
+        {
+        case '.':
+            return "dot";
+
+        case ',':
+            return "comma";
+
+        case '"':
+            return "quotes";
+
+        case '©':
+            return "copyright";
+
+        default:
+            return String.valueOf(glyph);
+        }
+    }
+
+    private String getImagePath(char glyph)
+    {
+        return "glyphs/" + convertGlyphToImageName(glyph) + ".png";
+    }
+
+    final private static BufferedImage convertColorspace(BufferedImage image,
+            int newType)
+    {
+        BufferedImage raw = image;
+        image = new BufferedImage(raw.getWidth(), raw.getHeight(), newType);
+        ColorConvertOp op = new ColorConvertOp(null);
+        op.filter(raw, image);
+        return image;
     }
 
     /**
@@ -51,6 +94,10 @@ class Glyph
      */
     public void remove()
     {
-        this.scene.remove(this.image);
+        if (image == null)
+        {
+            return;
+        }
+        scene.remove(image);
     }
 }

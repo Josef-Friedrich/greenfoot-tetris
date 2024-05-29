@@ -2,6 +2,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "TextLineDebugScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.debug.TextLineDebugScene",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
       "name": "TextFieldDebugScene",
       "request": "launch",
       "mainClass": "de.pirckheimer_gymnasium.tetris.debug.TextFieldDebugScene",

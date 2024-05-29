@@ -46,9 +46,45 @@ public class Tetris
 
     public static final Color COLOR_BLACK = null;
 
+    public static final ColorScheme COLOR_SCHEME_GRAY = new ColorScheme(
+            "#ffffff", "#adadad", "#525252", "#000000");
+
+    public static final ColorScheme COLOR_SCHEME_GREEN = new ColorScheme(
+            "#aaaa00", "#556633", "#335544", "#223322");
+
+    /**
+     * Aktivert und deaktiviert den Debug-Modus der Engine-Omega und des Spiels
+     * Tetris.
+     *
+     * Die Methode ist eine Hüll-Methode um {@link Game#setDebug(boolean)}.
+     *
+     * @param value ist dieser Wert true, wird Tetris ab sofort im Debug-Modus
+     *              ausgeführt.
+     */
+    public static void setDebug(boolean value)
+    {
+        Game.setDebug(value);
+    }
+
+    /**
+     * Startet das Spiel mit der angegebenen Szene und bietet darüberhinaus die
+     * Möglichkeit an, den Debug-Modus zu aktivieren oder zu deaktivieren.
+     *
+     * @param scene Die Szene, mit der das Spiel gestartet werden soll.
+     */
     public static void start(Scene scene, boolean debug)
     {
-        Game.setDebug(debug);
+        setDebug(debug);
+        start(scene);
+    }
+
+    /**
+     * Startet das Spiel mit der angegebenen Szene.
+     *
+     * @param scene Die Szene, mit der das Spiel gestartet werden soll.
+     */
+    public static void start(Scene scene)
+    {
         scene.getCamera().setZoom(Tetris.SCALE * Tetris.BLOCK_SIZE);
         if (Game.isRunning())
         {
@@ -59,11 +95,6 @@ public class Tetris
             Game.start(BLOCK_SIZE * WIDTH * SCALE, BLOCK_SIZE * HEIGHT * SCALE,
                     scene);
         }
-    }
-
-    public static void start(Scene scene)
-    {
-        start(scene, false);
     }
 
     /**
