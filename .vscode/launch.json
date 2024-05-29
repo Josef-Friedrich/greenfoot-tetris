@@ -2,6 +2,27 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Tetris",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.Tetris",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
+      "name": "CopyrightScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.scenes.CopyrightScene",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
+      "name": "TitleScene",
+      "request": "launch",
+      "mainClass": "de.pirckheimer_gymnasium.tetris.scenes.TitleScene",
+      "projectName": "tetris"
+    },
+    {
+      "type": "java",
       "name": "TextLineDebugScene",
       "request": "launch",
       "mainClass": "de.pirckheimer_gymnasium.tetris.debug.TextLineDebugScene",

@@ -13,7 +13,7 @@ public class CopyrightScene extends BaseScene implements KeyListener
     public CopyrightScene()
     {
         super("copyright");
-        delay(3, () -> startTitleScene());
+        delay(4, () -> startTitleScene());
     }
 
     public void startTitleScene()

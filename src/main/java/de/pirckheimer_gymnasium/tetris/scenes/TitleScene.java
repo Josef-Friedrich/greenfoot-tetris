@@ -7,7 +7,7 @@ public class TitleScene extends BaseScene
     public TitleScene()
     {
         super("title");
-        delay(3, () -> {
+        delay(4, () -> {
             startIngameScene();
         });
     }
