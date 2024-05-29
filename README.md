@@ -1148,6 +1148,76 @@ Tetromino `T`:
 
 - Implementierung der Methoden `moveLeft()`, `moveRight()` und `moveDown()`
 
+Tetromino.java
+
+```java
+    public void moveLeft()
+    {
+        for (Block blocks : blocks)
+        {
+            blocks.moveLeft();
+        }
+    }
+
+    public void moveRight()
+    {
+        for (Block block : blocks)
+        {
+            block.moveRight();
+        }
+    }
+
+    public void moveDown()
+    {
+        for (Block block : blocks)
+        {
+            block.moveDown();
+        }
+    }
+```
+
+- Implementierung der Klasse Grid
+
+```java
+public class Grid
+{
+    private Block[][] grid;
+
+    public Grid(int width, int height)
+    {
+        grid = new Block[width][height];
+    }
+
+    public int getWidth()
+    {
+        return grid.length;
+    }
+
+    public int getHeight()
+    {
+        return grid[0].length;
+    }
+
+    public void addBlock(Block block)
+    {
+        grid[block.getX()][block.getY()] = block;
+    }
+
+    public void removeBlock(Block block)
+    {
+        grid[block.getX()][block.getY()] = null;
+    }
+
+    public boolean isTaken(int x, int y)
+    {
+        return x < 0 || x >= getWidth() || y >= getHeight() || y < 0
+                || grid[x][y] != null;
+    }
+}
+```
+
+
+
 [^fandom]: https://tetris.fandom.com/wiki/Soft_Drop
 [^gimp-green]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s
 [^harddrop]: https://harddrop.com/wiki/Tetris_(Game_Boy)
