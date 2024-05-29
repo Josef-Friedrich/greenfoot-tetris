@@ -12,6 +12,7 @@ import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.event.PeriodicTask;
 import rocks.friedrich.engine_omega.sound.SinglePlayTrack;
+import rocks.friedrich.engine_omega.event.PressedKeyRepeater;
 
 class Sound
 {
