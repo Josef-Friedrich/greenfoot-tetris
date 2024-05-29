@@ -40,7 +40,6 @@
         </configuration>
       </plugin>
 
-
       <plugin>
         <groupId>net.revelc.code</groupId>
         <artifactId>impsort-maven-plugin</artifactId>

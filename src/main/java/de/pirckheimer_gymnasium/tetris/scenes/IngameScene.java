@@ -11,8 +11,8 @@ import de.pirckheimer_gymnasium.tetris.text.NumberDisplay;
 import rocks.friedrich.engine_omega.Game;
 import rocks.friedrich.engine_omega.event.KeyListener;
 import rocks.friedrich.engine_omega.event.PeriodicTask;
-import rocks.friedrich.engine_omega.sound.SinglePlayTrack;
 import rocks.friedrich.engine_omega.event.PressedKeyRepeater;
+import rocks.friedrich.engine_omega.sound.SinglePlayTrack;
 
 class Sound
 {
