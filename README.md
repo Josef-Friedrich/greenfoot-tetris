@@ -1236,7 +1236,7 @@ public class Grid
 }
 ```
 
-
+### 7. Sitzung
 
 [^fandom]: https://tetris.fandom.com/wiki/Soft_Drop
 [^gimp-green]: Ermittelt mit dem GIMP Color Picker mittels eines Bildschirmfotos des Videos https://www.youtube.com/watch?v=BQwohHgrk2s

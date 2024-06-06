@@ -66,6 +66,13 @@ public abstract class Tetromino
         return y;
     }
 
+    /**
+     * Fügt einen Block ein.
+     *
+     * @param index Die Indexnummer im Blockfeld.
+     * @param x     Die x-Koordinate, an der der Block eingefügt werden soll.
+     * @param y     Die y-Koordinate, an der der Block eingefügt werden soll.
+     */
     protected void addBlock(int index, int x, int y)
     {
         Block block;
@@ -84,6 +91,15 @@ public abstract class Tetromino
         }
     }
 
+    /**
+     * Bewegt einen Block an eine neue Position durch Angabe eines relativen
+     * Vectors.
+     *
+     * @param index Die Indexnummer, die angibt, welcher Block verschoben werden
+     *              soll.
+     * @param dX    Delta-Wert der Bewegung in x-Richtung.
+     * @param dY    Delta-Wert der Bewegung in y-Richtung.
+     */
     protected void moveBlock(int index, int dX, int dY)
     {
         blocks[index].moveBy(dX, dY);
