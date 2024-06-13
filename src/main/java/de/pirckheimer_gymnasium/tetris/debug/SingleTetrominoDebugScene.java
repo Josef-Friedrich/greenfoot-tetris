@@ -10,7 +10,8 @@ import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 
-public class SingleTetrominoDebugScene extends Scene implements KeyStrokeListener
+public class SingleTetrominoDebugScene extends Scene
+        implements KeyStrokeListener
 {
     private Text rotation;
 
