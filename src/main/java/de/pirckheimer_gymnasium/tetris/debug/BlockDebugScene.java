@@ -5,11 +5,11 @@ import java.awt.event.KeyEvent;
 
 import de.pirckheimer_gymnasium.engine_pi.Scene;
 import de.pirckheimer_gymnasium.engine_pi.actor.Text;
-import de.pirckheimer_gymnasium.engine_pi.event.KeyListener;
+import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Block;
 
-public class BlockDebugScene extends Scene implements KeyListener
+public class BlockDebugScene extends Scene implements KeyStrokeListener
 {
     private Block block;
 

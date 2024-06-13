@@ -4,7 +4,8 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import de.pirckheimer_gymnasium.engine_pi.Game;
-import de.pirckheimer_gymnasium.engine_pi.event.KeyListener;
+import de.pirckheimer_gymnasium.engine_pi.Resources;
+import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
 import de.pirckheimer_gymnasium.engine_pi.event.PeriodicTask;
 import de.pirckheimer_gymnasium.engine_pi.event.PressedKeyRepeater;
 import de.pirckheimer_gymnasium.engine_pi.sound.SinglePlayTrack;
@@ -19,7 +20,7 @@ class Sound
     private static void playMusic(String filename)
     {
         Game.getJukebox().playMusic(
-                new SinglePlayTrack(Game.getSounds().get("sounds/" + filename)),
+                new SinglePlayTrack(Resources.sounds.get("sounds/" + filename)),
                 true);
     }
 
@@ -39,7 +40,7 @@ class Sound
     }
 }
 
-public class IngameScene extends BaseScene implements KeyListener
+public class IngameScene extends BaseScene implements KeyStrokeListener
 {
     private Grid grid;
 

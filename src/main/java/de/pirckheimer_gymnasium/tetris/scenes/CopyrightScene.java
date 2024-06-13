@@ -2,13 +2,13 @@ package de.pirckheimer_gymnasium.tetris.scenes;
 
 import java.awt.event.KeyEvent;
 
-import de.pirckheimer_gymnasium.engine_pi.event.KeyListener;
+import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 
 /**
  * Das ist der erste Bildschirm, der beim Starten des Spiels angezeigt wird.
  */
-public class CopyrightScene extends BaseScene implements KeyListener
+public class CopyrightScene extends BaseScene implements KeyStrokeListener
 {
     public CopyrightScene()
     {

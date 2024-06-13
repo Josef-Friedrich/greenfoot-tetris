@@ -2,9 +2,9 @@ package de.pirckheimer_gymnasium.tetris;
 
 import java.awt.Color;
 
-import de.pirckheimer_gymnasium.tetris.scenes.CopyrightScene;
 import de.pirckheimer_gymnasium.engine_pi.Game;
 import de.pirckheimer_gymnasium.engine_pi.Scene;
+import de.pirckheimer_gymnasium.tetris.scenes.CopyrightScene;
 
 public class Tetris
 {
