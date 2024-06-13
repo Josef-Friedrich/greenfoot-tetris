@@ -46,6 +46,20 @@ public abstract class Tetromino
      */
     public int rotation;
 
+    /**
+     * Erzeugt ein Tetromino durch Angabe des Names.
+     *
+     * @param scene Die Szene, in der das Tetromino eingefügt werden soll.
+     * @param grid  Das Blockgitter, in das das Tetromino eingefügt werden soll.
+     * @param name  Der Name des Tetrominos, zum Beispiel J, L, etc. Die
+     *              Tetrominos sind nach Großbuchstaben benannt.
+     * @param x     Die x-Koordinate (entspricht der Koordinate des 0-ten
+     *              Blocks), an der das Tetromino eingefügt werden soll.
+     * @param y     Die y-Koordinate (entspricht der Koordinate des 0-ten
+     *              Blocks), an der das Tetromino eingefügt werden soll.
+     *
+     * @return Das erzeugte Tetromino.
+     */
     public Tetromino(Scene scene, Grid grid, String name, int x, int y)
     {
         this.scene = scene;
@@ -56,11 +70,23 @@ public abstract class Tetromino
         blocks = new Block[4];
     }
 
+    /**
+     * Gibt die x-Koordinate des Tetrominos zurück.
+     *
+     * @return Die x-Koordinate des Tetrominos entspricht der Lage des ersten
+     *         Blocks, also dem Block mit der Indexnummer 0 im Blockfeld.
+     */
     public int getX()
     {
         return x;
     }
 
+    /**
+     * Gibt die y-Koordinate des Tetrominos zurück.
+     *
+     * @return Die y-Koordinate des Tetrominos entspricht der Lage des ersten
+     *         Blocks, also dem Block mit der Indexnummer 0 im Blockfeld.
+     */
     public int getY()
     {
         return y;
@@ -122,15 +148,6 @@ public abstract class Tetromino
     }
 
     /**
-     * Überprüft, ob die gegebene Kooordinate mit einem der vier eigenen Blöcke
-     * des Tetrominos übereinstimmt.
-     */
-    public boolean isOwnBlockPosition(Vector position)
-    {
-        return isOwnBlockPosition((int) position.getX(), (int) position.getY());
-    }
-
-    /**
      * Überprüft, ob die gegebene Koordinate im Blockgitter besetzt ist. Dabei
      * wird ein eigener Block ignoriert.
      */
@@ -141,19 +158,6 @@ public abstract class Tetromino
             return false;
         }
         return !isOwnBlockPosition(x, y) && grid.isTaken(x, y);
-    }
-
-    /**
-     * Überprüft, ob die gegebene Koordinate im Blockgitter besetzt ist. Dabei
-     * wird ein eigener Block ignoriert.
-     */
-    protected boolean isGridTaken(Vector position)
-    {
-        if (position == null)
-        {
-            return false;
-        }
-        return isGridTaken((int) position.getX(), (int) position.getY());
     }
 
     /**
@@ -213,16 +217,6 @@ public abstract class Tetromino
         }
     }
 
-    protected Block[] getBlocks(int... indices)
-    {
-        Block[] result = new Block[indices.length];
-        for (int i = 0; i < indices.length; i++)
-        {
-            result[i] = blocks[indices[i]];
-        }
-        return result;
-    }
-
     protected boolean checkLeft()
     {
         for (Block block : blocks)
@@ -235,6 +229,11 @@ public abstract class Tetromino
         return true;
     }
 
+    /**
+     * Bewegt das Tetromino um eine Spalte nach links.
+     *
+     * @return Wahr, wenn sich das Tetromino bewegen konnte, sonst falsch.
+     */
     public boolean moveLeft()
     {
         if (!checkLeft())
@@ -264,6 +263,11 @@ public abstract class Tetromino
         return true;
     }
 
+    /**
+     * Bewegt das Tetromino um eine Spalte nach rechts.
+     *
+     * @return Wahr, wenn sich das Tetromino bewegen konnte, sonst falsch.
+     */
     public boolean moveRight()
     {
         if (!checkRight())
@@ -293,6 +297,11 @@ public abstract class Tetromino
         return true;
     }
 
+    /**
+     * Bewegt das Tetromino um eine Reihe nach unten.
+     *
+     * @return Wahr, wenn sich das Tetromino bewegen konnte, sonst falsch.
+     */
     public boolean moveDown()
     {
         if (!checkDown())
@@ -390,6 +399,10 @@ public abstract class Tetromino
         return true;
     }
 
+    /**
+     * Entfernt das Tetromino aus der Szene, d. h. alle Block werden sowohl aus
+     * der Szene als auch aus dem Blockgitter entfernt.
+     */
     public void remove()
     {
         for (Block block : blocks)
@@ -399,6 +412,20 @@ public abstract class Tetromino
         removeBlocksFromGrid();
     }
 
+    /**
+     * Erzeugt ein Tetromino durch Angabe des Names.
+     *
+     * @param scene Die Szene, in der das Tetromino eingefügt werden soll.
+     * @param grid  Das Blockgitter, in das das Tetromino eingefügt werden soll.
+     * @param name  Der Name des Tetrominos, zum Beispiel J, L, etc. Die
+     *              Tetrominos sind nach Großbuchstaben benannt.
+     * @param x     Die x-Koordinate (entspricht der Koordinate des 0-ten
+     *              Blocks), an der das Tetromino eingefügt werden soll.
+     * @param y     Die y-Koordinate (entspricht der Koordinate des 0-ten
+     *              Blocks), an der das Tetromino eingefügt werden soll.
+     *
+     * @return Das erzeugte Tetromino.
+     */
     public static Tetromino create(Scene scene, Grid grid, String name, int x,
             int y)
     {
@@ -430,6 +457,21 @@ public abstract class Tetromino
         }
     }
 
+    /**
+     * Erzeugt ein Tetromino durch Angabe einer Nummer.
+     *
+     * @param scene  Die Szene, in der das Tetromino eingefügt werden soll.
+     * @param grid   Das Blockgitter, in das das Tetromino eingefügt werden
+     *               soll.
+     * @param number Die Nummer des Tetrominos, 0 ist zum Beispiel das
+     *               L-Tetromino, 6 das T-Tetromino.
+     * @param x      Die x-Koordinate (entspricht der Koordinate des 0-ten
+     *               Blocks), an der das Tetromino eingefügt werden soll.
+     * @param y      Die y-Koordinate (entspricht der Koordinate des 0-ten
+     *               Blocks), an der das Tetromino eingefügt werden soll.
+     *
+     * @return Das erzeugte Tetromino.
+     */
     public static Tetromino create(Scene scene, Grid grid, int number, int x,
             int y)
     {

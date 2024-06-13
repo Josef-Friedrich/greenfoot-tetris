@@ -38,12 +38,6 @@ public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
         return ImageIO.read(getFile(pathname));
     }
 
-    public static void write(BufferedImage image, String pathname)
-            throws IOException
-    {
-        ImageIO.write(image, "png", new File(pathname));
-    }
-
     /**
      * Gibt ein vergrößertes und eingefärbtes Bild zurück.
      *
