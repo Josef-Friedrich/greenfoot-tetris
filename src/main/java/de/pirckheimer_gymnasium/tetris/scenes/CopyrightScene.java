@@ -2,8 +2,8 @@ package de.pirckheimer_gymnasium.tetris.scenes;
 
 import java.awt.event.KeyEvent;
 
+import de.pirckheimer_gymnasium.engine_pi.event.KeyListener;
 import de.pirckheimer_gymnasium.tetris.Tetris;
-import rocks.friedrich.engine_omega.event.KeyListener;
 
 /**
  * Das ist der erste Bildschirm, der beim Starten des Spiels angezeigt wird.

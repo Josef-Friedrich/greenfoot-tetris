@@ -1,7 +1,7 @@
 package de.pirckheimer_gymnasium.tetris.text;
 
+import de.pirckheimer_gymnasium.engine_pi.Scene;
 import de.pirckheimer_gymnasium.tetris.Tetris;
-import rocks.friedrich.engine_omega.Scene;
 
 public class NumberDisplay extends TextLine
 {

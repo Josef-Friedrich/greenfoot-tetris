@@ -2,11 +2,11 @@ package de.pirckheimer_gymnasium.tetris.debug;
 
 import java.awt.event.KeyEvent;
 
+import de.pirckheimer_gymnasium.engine_pi.event.KeyListener;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.scenes.BaseScene;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
-import rocks.friedrich.engine_omega.event.KeyListener;
 
 public class GridDebugScene extends BaseScene implements KeyListener
 {

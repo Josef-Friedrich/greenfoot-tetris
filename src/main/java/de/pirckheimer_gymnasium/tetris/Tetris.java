@@ -3,8 +3,8 @@ package de.pirckheimer_gymnasium.tetris;
 import java.awt.Color;
 
 import de.pirckheimer_gymnasium.tetris.scenes.CopyrightScene;
-import rocks.friedrich.engine_omega.Game;
-import rocks.friedrich.engine_omega.Scene;
+import de.pirckheimer_gymnasium.engine_pi.Game;
+import de.pirckheimer_gymnasium.engine_pi.Scene;
 
 public class Tetris
 {
@@ -29,7 +29,7 @@ public class Tetris
 
     /**
      * Die Skalierung des Spiels. Wird zum Beispiel 4 eingestellt, so wird ein
-     * {@code 8x8} Block auf {@code 32x32} vergrößert.
+     * {@code 8x8} Block auf {@code 32x32} vergrößert.omega
      */
     public static final int SCALE = 4;
 
@@ -85,7 +85,7 @@ public class Tetris
      */
     public static void start(Scene scene)
     {
-        scene.getCamera().setZoom(Tetris.SCALE * Tetris.BLOCK_SIZE);
+        scene.getCamera().setMeter(Tetris.SCALE * Tetris.BLOCK_SIZE);
         if (Game.isRunning())
         {
             Game.transitionToScene(scene);

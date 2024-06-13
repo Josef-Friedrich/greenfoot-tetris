@@ -2,7 +2,7 @@ package de.pirckheimer_gymnasium.tetris.text;
 
 import java.awt.Color;
 
-import rocks.friedrich.engine_omega.Scene;
+import de.pirckheimer_gymnasium.engine_pi.Scene;
 
 /**
  * Ein rechteckiges Feld, in das mit den typischen Tetris-Buchstaben geschrieben

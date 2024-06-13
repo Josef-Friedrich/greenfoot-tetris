@@ -7,14 +7,14 @@ import java.util.HashMap;
 
 import javax.imageio.ImageIO;
 
-import rocks.friedrich.engine_omega.util.ImageUtil;
+import de.pirckheimer_gymnasium.engine_pi.util.ImageUtil;
 
 /**
  * Eine Spezialisierung von {@link Image}.
  *
  * Bereitet Bilder für die Verwendung in Tetris vor.
  */
-public class Image extends rocks.friedrich.engine_omega.actor.Image
+public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
 {
     public Image(String pathname)
     {

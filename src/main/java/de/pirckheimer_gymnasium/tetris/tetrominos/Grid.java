@@ -1,6 +1,6 @@
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
-import rocks.friedrich.engine_omega.Vector;
+import de.pirckheimer_gymnasium.engine_pi.Vector;
 
 /**
  * Ein Blockgitter, das die Positionen aller Blöcke speichert.

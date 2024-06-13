@@ -1,7 +1,7 @@
 package de.pirckheimer_gymnasium.tetris.scenes;
 
+import de.pirckheimer_gymnasium.engine_pi.Scene;
 import de.pirckheimer_gymnasium.tetris.Image;
-import rocks.friedrich.engine_omega.Scene;
 
 /**
  * Die Basisszene setzt ein Hintergrundbild an die Position (-2,0) und

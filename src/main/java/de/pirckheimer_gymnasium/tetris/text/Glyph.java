@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
 
+import de.pirckheimer_gymnasium.engine_pi.Scene;
+import de.pirckheimer_gymnasium.engine_pi.actor.Image;
+import de.pirckheimer_gymnasium.engine_pi.util.ImageUtil;
 import de.pirckheimer_gymnasium.tetris.Tetris;
-import rocks.friedrich.engine_omega.Scene;
-import rocks.friedrich.engine_omega.actor.Image;
-import rocks.friedrich.engine_omega.util.ImageUtil;
 
 /**
  * Eine Glyphe bzw. ein Buchstabe.

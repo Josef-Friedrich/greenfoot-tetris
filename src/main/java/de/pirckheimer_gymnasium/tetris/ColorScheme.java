@@ -2,7 +2,7 @@ package de.pirckheimer_gymnasium.tetris;
 
 import java.awt.Color;
 
-import rocks.friedrich.engine_omega.util.ColorUtil;
+import de.pirckheimer_gymnasium.engine_pi.util.ColorUtil;
 
 /**
  * Das klassische Gameboy-Spiel hat ein Farbschema, das aus nur vier Farben

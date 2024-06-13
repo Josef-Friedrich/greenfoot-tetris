@@ -3,16 +3,16 @@ package de.pirckheimer_gymnasium.tetris.scenes;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import de.pirckheimer_gymnasium.engine_pi.Game;
+import de.pirckheimer_gymnasium.engine_pi.event.KeyListener;
+import de.pirckheimer_gymnasium.engine_pi.event.PeriodicTask;
+import de.pirckheimer_gymnasium.engine_pi.event.PressedKeyRepeater;
+import de.pirckheimer_gymnasium.engine_pi.sound.SinglePlayTrack;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.SoftDrop;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 import de.pirckheimer_gymnasium.tetris.text.NumberDisplay;
-import rocks.friedrich.engine_omega.Game;
-import rocks.friedrich.engine_omega.event.KeyListener;
-import rocks.friedrich.engine_omega.event.PeriodicTask;
-import rocks.friedrich.engine_omega.event.PressedKeyRepeater;
-import rocks.friedrich.engine_omega.sound.SinglePlayTrack;
 
 class Sound
 {

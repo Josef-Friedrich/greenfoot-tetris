@@ -1,8 +1,8 @@
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
+import de.pirckheimer_gymnasium.engine_pi.Scene;
+import de.pirckheimer_gymnasium.engine_pi.Vector;
 import de.pirckheimer_gymnasium.tetris.Image;
-import rocks.friedrich.engine_omega.Scene;
-import rocks.friedrich.engine_omega.Vector;
 
 public class BlockDeluxe
 {

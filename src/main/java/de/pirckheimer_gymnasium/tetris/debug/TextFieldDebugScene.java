@@ -2,9 +2,9 @@ package de.pirckheimer_gymnasium.tetris.debug;
 
 import java.awt.Color;
 
+import de.pirckheimer_gymnasium.engine_pi.Scene;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.text.TextField;
-import rocks.friedrich.engine_omega.Scene;
 
 public class TextFieldDebugScene extends Scene
 {
