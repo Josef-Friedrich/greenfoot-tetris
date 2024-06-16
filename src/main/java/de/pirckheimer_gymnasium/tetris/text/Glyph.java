@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.ColorConvertOp;
 
+import de.pirckheimer_gymnasium.engine_pi.Resources;
 import de.pirckheimer_gymnasium.engine_pi.Scene;
 import de.pirckheimer_gymnasium.engine_pi.actor.Image;
 import de.pirckheimer_gymnasium.engine_pi.util.ImageUtil;
@@ -33,8 +34,7 @@ class Glyph
         BufferedImage bufferedImage = null;
         try
         {
-            bufferedImage = de.pirckheimer_gymnasium.tetris.Image
-                    .read(getImagePath(glyph));
+            bufferedImage = Resources.images.get(getImagePath(glyph));
         }
         catch (Exception e)
         {
