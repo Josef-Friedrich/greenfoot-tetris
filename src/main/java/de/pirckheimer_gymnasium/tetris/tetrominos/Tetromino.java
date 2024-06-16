@@ -2,7 +2,6 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import de.pirckheimer_gymnasium.engine_pi.Game;
 import de.pirckheimer_gymnasium.engine_pi.Scene;
-import de.pirckheimer_gymnasium.engine_pi.Vector;
 
 /**
  * Ein Tetromino ist ein Spielstein in Form von vier Blöcken.
@@ -369,10 +368,12 @@ public abstract class Tetromino
     /**
      * Führt eine Rechtsdrehung durch.
      *
+     * <p>
      * Es handelt sich um eine Schablonenmethode (engl. template method) nach
-     * dem gleichnamigen Entwurfsmuster. Die Methode ruft abstrakte Methoden
-     * doRotation() auf, die erst in den Unterklassen der einzelnen Tetrominos
-     * definiert werden.
+     * dem gleichnamigen Entwurfsmuster. Diese Methode ruft die abstrakte
+     * Methoden {@link #doRotation()} auf, die erst in den Unterklassen der
+     * einzelnen Tetrominos definiert werden.
+     * </p>
      *
      * @see #doRotation
      *
