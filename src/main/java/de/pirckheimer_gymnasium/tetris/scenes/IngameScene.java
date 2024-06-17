@@ -123,21 +123,21 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
             }
         });
         keyRepeater = new PressedKeyRepeater();
-        keyRepeater.addTask(KeyEvent.VK_DOWN, () -> {
+        keyRepeater.addListener(KeyEvent.VK_DOWN, () -> {
             softDrop = new SoftDrop(tetromino);
         }, () -> {
             moveDown();
         }, () -> {
             softDrop = null;
         });
-        keyRepeater.addTask(KeyEvent.VK_RIGHT, () -> {
+        keyRepeater.addListener(KeyEvent.VK_RIGHT, () -> {
             boolean success = tetromino.moveRight();
             if (success)
             {
                 Sound.blockMove();
             }
         });
-        keyRepeater.addTask(KeyEvent.VK_LEFT, () -> {
+        keyRepeater.addListener(KeyEvent.VK_LEFT, () -> {
             boolean success = tetromino.moveLeft();
             if (success)
             {
