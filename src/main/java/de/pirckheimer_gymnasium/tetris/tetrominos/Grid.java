@@ -5,7 +5,9 @@ import de.pirckheimer_gymnasium.engine_pi.Vector;
 /**
  * Ein Blockgitter, das die Positionen aller Blöcke speichert.
  *
- * Herz dieser Klasse ist ein zweidimensionales Array/Feld aus Blöcken.
+ * <p>
+ * Das „Herz“ dieser Klasse ist ein zweidimensionales Array/Feld aus Blöcken.
+ * </p>
  */
 public class Grid
 {
@@ -117,6 +119,12 @@ public class Grid
         return null;
     }
 
+    /**
+     * Löscht alle Blöcke aus einer Zeile.
+     *
+     * @param y Die y-Koordinate der Zeile aus der Blöche gelöscht werden
+     *          sollen.
+     */
     private void clearRow(int y)
     {
         for (int x = 0; x < getWidth(); x++)
@@ -150,6 +158,11 @@ public class Grid
         }
     }
 
+    /**
+     * Löst einen Erdrutsch (landslide) aus.
+     *
+     * @param range
+     */
     public void triggerLandslide(FilledRowRange range)
     {
         for (int y = range.getTo() + 1; y < getHeight(); y++)
