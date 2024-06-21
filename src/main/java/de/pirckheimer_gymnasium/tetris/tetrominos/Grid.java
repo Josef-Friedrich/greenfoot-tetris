@@ -80,11 +80,6 @@ public class Grid
                 || grid[x][y] != null;
     }
 
-    public boolean isTaken(Vector position)
-    {
-        return isTaken((int) position.getX(), (int) position.getY());
-    }
-
     private boolean isRowFull(int y)
     {
         for (int x = 0; x < getWidth(); x++)
