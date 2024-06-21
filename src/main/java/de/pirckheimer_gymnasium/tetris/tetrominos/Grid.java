@@ -1,7 +1,5 @@
 package de.pirckheimer_gymnasium.tetris.tetrominos;
 
-import de.pirckheimer_gymnasium.engine_pi.Vector;
-
 /**
  * Ein Blockgitter, das die Positionen aller Blöcke speichert.
  *
@@ -14,7 +12,9 @@ public class Grid
     /**
      * Das zweidimensionale Array, das die Blöcke speichert.
      *
+     * <p>
      * Die erste Dimension ist die x-Koordinate, die zweite die y-Koordinate.
+     * </p>
      */
     private Block[][] grid;
 
@@ -24,7 +24,7 @@ public class Grid
     }
 
     /**
-     * Gibt die Breite des Blockgitters zurücks, also die Anzahl der Blöcke in
+     * Gibt die Breite des Blockgitters zurück, also die Anzahl der Blöcke in
      * x-Richtung.
      *
      * @return Die Breite des Blockgitters.
@@ -35,7 +35,7 @@ public class Grid
     }
 
     /**
-     * Gibt die Höhe des Blockgitters zurücks, also die Anzahl der Blöcke in
+     * Gibt die Höhe des Blockgitters zurück, also die Anzahl der Blöcke in
      * y-Richtung.
      *
      * @return Die Höhe des Blockgitters.
@@ -72,7 +72,7 @@ public class Grid
      * @param x Die entsprechende x-Koordinate der zu überprüfenden Position.
      * @param y Die entsprechende y-Koordinate der zu überprüfenden Position.
      *
-     * @return Wahr, wenn die Koordinate besetzt ist, falsch sonst.
+     * @return Wahr, wenn die Koordinate besetzt ist, sonst falsch.
      */
     public boolean isTaken(int x, int y)
     {
@@ -154,9 +154,10 @@ public class Grid
     }
 
     /**
-     * Löst einen Erdrutsch (landslide) aus.
+     * Löst einen Erdrutsch (landslide) aus, das heißt alle Blöcke oberhalb des
+     * getilgten Bereichs werden nach unten bewegt.
      *
-     * @param range
+     * @param range Der getilgte Bereich mit vollen Zeilen.
      */
     public void triggerLandslide(FilledRowRange range)
     {
