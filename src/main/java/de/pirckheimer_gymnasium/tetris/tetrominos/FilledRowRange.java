@@ -7,18 +7,22 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 public class FilledRowRange
 {
     /**
-     * Ab welcher y-Koordinate (einschließlich) der Bereich mit ausgefüllten Zeilen reicht.
+     * Ab welcher y-Koordinate (einschließlich) der Bereich mit ausgefüllten
+     * Zeilen reicht.
      */
     private int from;
 
     /**
-     * Bis zu welcher y-Koordinate (einschließlich) der Bereich mit ausgefüllten Zeilen reicht.
+     * Bis zu welcher y-Koordinate (einschließlich) der Bereich mit ausgefüllten
+     * Zeilen reicht.
      */
     private int to;
 
     /**
-     * @param from Ab welcher y-Koordinate (einschließlich) der Bereich mit ausgefüllten Zeilen reicht.
-     * @param to Bis zu welcher y-Koordinate (einschließlich) der Bereich mit ausgefüllten Zeilen reicht.
+     * @param from Ab welcher y-Koordinate (einschließlich) der Bereich mit
+     *             ausgefüllten Zeilen reicht.
+     * @param to   Bis zu welcher y-Koordinate (einschließlich) der Bereich mit
+     *             ausgefüllten Zeilen reicht.
      */
     public FilledRowRange(int from, int to)
     {
