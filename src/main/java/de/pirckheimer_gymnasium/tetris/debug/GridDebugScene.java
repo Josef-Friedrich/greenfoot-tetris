@@ -2,21 +2,47 @@ package de.pirckheimer_gymnasium.tetris.debug;
 
 import java.awt.event.KeyEvent;
 
+import de.pirckheimer_gymnasium.engine_pi.Game;
+import de.pirckheimer_gymnasium.engine_pi.Vector;
+import de.pirckheimer_gymnasium.engine_pi.actor.Rectangle;
+import de.pirckheimer_gymnasium.engine_pi.event.FrameUpdateListener;
 import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
+import de.pirckheimer_gymnasium.engine_pi.event.MouseButton;
+import de.pirckheimer_gymnasium.engine_pi.event.MouseClickListener;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.scenes.BaseScene;
+import de.pirckheimer_gymnasium.tetris.tetrominos.FilledRowRange;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 
-public class GridDebugScene extends BaseScene implements KeyStrokeListener
+public class GridDebugScene extends BaseScene
+        implements KeyStrokeListener, FrameUpdateListener, MouseClickListener
 {
     private Grid grid;
+
+    private final Rectangle ROW_OVERLAY;
+
+    private FilledRowRange range;
+
+    private final Rectangle RANGE_OVERLAY;
 
     public GridDebugScene()
     {
         super("ingame");
         grid = new Grid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
-        fillGrid1();
+        ROW_OVERLAY = addOverlayRectangle("green");
+        RANGE_OVERLAY = addOverlayRectangle("blue");
+        fillGrid3();
+    }
+
+    private Rectangle addOverlayRectangle(String color)
+    {
+        Rectangle rectangle = new Rectangle(10, 1);
+        rectangle.setColor(color);
+        rectangle.setOpacity(0.7);
+        rectangle.setLayerPosition(2);
+        add(rectangle);
+        return rectangle;
     }
 
     private void createTetromino(String name, int rotation, int x, int y)
@@ -29,19 +55,82 @@ public class GridDebugScene extends BaseScene implements KeyStrokeListener
         tetromino.addGrid(grid);
     }
 
+    private void L(int rotation, int x, int y)
+    {
+        createTetromino("L", rotation, x, y);
+    }
+
+    private void J(int rotation, int x, int y)
+    {
+        createTetromino("J", rotation, x, y);
+    }
+
+    private void I(int rotation, int x, int y)
+    {
+        createTetromino("I", rotation, x, y);
+    }
+
+    private void O(int rotation, int x, int y)
+    {
+        createTetromino("O", rotation, x, y);
+    }
+
+    private void Z(int rotation, int x, int y)
+    {
+        createTetromino("Z", rotation, x, y);
+    }
+
+    private void S(int rotation, int x, int y)
+    {
+        createTetromino("S", rotation, x, y);
+    }
+
+    private void T(int rotation, int x, int y)
+    {
+        createTetromino("T", rotation, x, y);
+    }
+
     private void fillGrid1()
     {
-        createTetromino("O", 0, 0, 1);
-        createTetromino("O", 0, 2, 1);
-        createTetromino("O", 0, 4, 1);
-        createTetromino("O", 0, 6, 1);
-        createTetromino("O", 0, 8, 1);
-        createTetromino("I", 0, 1, 2);
+        O(0, 0, 1);
+        O(0, 2, 1);
+        O(0, 4, 1);
+        O(0, 6, 1);
+        O(0, 8, 1);
+        I(0, 1, 2);
     }
 
     private void fillGrid2()
     {
-        createTetromino("T", 2, 1, 0);
+        T(2, 1, 0);
+    }
+
+    /**
+     * https://www.retroplace.com/de/spiele/174256--tetris
+     */
+    private void fillGrid3()
+    {
+        T(2, 4, 0);
+        S(0, 2, 1);
+        S(1, 6, 1);
+        J(1, 9, 1);
+        Z(1, 8, 1);
+        T(3, 1, 2);
+        Z(0, 3, 3);
+        S(0, 7, 3);
+        L(2, 5, 3);
+        L(2, 4, 4);
+        I(1, 9, 4);
+        J(1, 8, 5);
+        O(0, 6, 6);
+        Z(1, 3, 5);
+        T(3, 4, 6);
+        T(2, 6, 7);
+        O(0, 8, 8);
+        I(1, 1, 5);
+        I(1, 2, 7);
+        // nicht im Screenshot der Vorlage
+        I(1, 0, 1);
     }
 
     @Override
@@ -50,7 +139,6 @@ public class GridDebugScene extends BaseScene implements KeyStrokeListener
         switch (keyEvent.getKeyCode())
         {
         case KeyEvent.VK_ENTER:
-            var range = grid.getFilledRowRange();
             grid.print();
             if (range != null)
             {
@@ -69,6 +157,38 @@ public class GridDebugScene extends BaseScene implements KeyStrokeListener
             grid.clear();
             fillGrid2();
             break;
+
+        case KeyEvent.VK_3:
+            grid.clear();
+            fillGrid3();
+            break;
+        }
+    }
+
+    @Override
+    public void onFrameUpdate(double pastTime)
+    {
+        Vector position = Game.getMousePositionInCurrentScene();
+        ROW_OVERLAY.setY((int) position.getY());
+        range = grid.getFilledRowRange();
+        if (range != null)
+        {
+            RANGE_OVERLAY.setVisible(true);
+            RANGE_OVERLAY.setHeight(range.getRowCount());
+            RANGE_OVERLAY.setY(range.getFrom());
+        }
+        else
+        {
+            RANGE_OVERLAY.setVisible(false);
+        }
+    }
+
+    @Override
+    public void onMouseDown(Vector position, MouseButton button)
+    {
+        if (button == MouseButton.LEFT)
+        {
+            grid.clearRow((int) position.getY());
         }
     }
 

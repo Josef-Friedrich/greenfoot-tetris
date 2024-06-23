@@ -120,7 +120,7 @@ public class Grid
      * @param y Die y-Koordinate der Zeile aus der Blöche gelöscht werden
      *          sollen.
      */
-    private void clearRow(int y)
+    public void clearRow(int y)
     {
         for (int x = 0; x < getWidth(); x++)
         {
