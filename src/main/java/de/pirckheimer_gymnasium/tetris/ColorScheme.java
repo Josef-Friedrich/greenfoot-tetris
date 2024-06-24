@@ -21,17 +21,29 @@ import java.awt.Color;
 import de.pirckheimer_gymnasium.engine_pi.util.ColorUtil;
 
 /**
- * Das klassische Gameboy-Spiel hat ein Farbschema, das aus nur vier Farben
- * besteht.
+ * Das klassische Gameboy-Spiel hat ein <b>Farbschema</b>, das aus nur <b>vier
+ * Farben</b> besteht.
  *
- * Wir verwenden als Farbnamen <em>weiß</em> ({@code white}), <em>hell</em>
- * ({@code light}), <em>dunkel</em> ({@code dark}) und <em>schwarz</em>
- * ({@code black}).
+ * <p>
+ * Wir verwenden als Farbnamen <em>Weiß</em> ({@code white}), <em>Hell</em>
+ * ({@code light}), <em>Dunkel</em> ({@code dark}) und <em>Schwarz</em>
+ * ({@code black}), obwohl diese Farbnamen nicht den tatsächlichen Farben
+ * entsprechen.
+ * </p>
  */
 public class ColorScheme
 {
     private Color[] colors;
 
+    /**
+     * Erzeugt eine <b>neues Farbschema</b> durch Angabe von
+     * <b>{@link Color}-Objekten</b>.
+     *
+     * @param white
+     * @param light
+     * @param dark
+     * @param black
+     */
     public ColorScheme(Color white, Color light, Color dark, Color black)
     {
         colors = new Color[4];
@@ -41,32 +53,77 @@ public class ColorScheme
         colors[3] = black;
     }
 
+    /**
+     * Erzeugt eine <b>neues Farbschema</b> durch Angabe von Zeichenketten, die
+     * die Farbe in <b>hexadezimaler Notation</b> codieren.
+     *
+     * @param white Die Farbe <em>Weiß</em> ({@code white}) als Zeichenkette in
+     *              die in <b>hexadezimaler Notation</b>.
+     * @param light Die Farbe <em>Hell</em> ({@code light}) als Zeichenkette in
+     *              die in <b>hexadezimaler Notation</b>.
+     * @param dark  Die Farbe <em>Dunkel</em> ({@code dark}) als Zeichenkette in
+     *              die in <b>hexadezimaler Notation</b>.
+     * @param black Die Farbe <em>Schwarz</em> ({@code black}) als Zeichenkette
+     *              in die in <b>hexadezimaler Notation</b>.
+     */
     public ColorScheme(String white, String light, String dark, String black)
     {
         this(ColorUtil.decode(white), ColorUtil.decode(light),
                 ColorUtil.decode(dark), ColorUtil.decode(black));
     }
 
+    /**
+     * Gibt ein Feld aller vier Farben zurück.
+     *
+     * <ol>
+     * <li><em>Weiß</em> ({@code white})</li>
+     * <li><em>Hell</em> ({@code light})</li>
+     * <li><em>Dunkel</em> ({@code dark})</li>
+     * <li><em>Schwarz</em> ({@code black})</li>
+     * </ol>
+     *
+     * @return Ein Feld aller vier Farben.
+     */
     public Color[] getColors()
     {
         return colors;
     }
 
+    /**
+     * Gibt die Farbe <em>Weiß</em> ({@code white}) zurück.
+     *
+     * @return Die Farbe <em>Weiß</em> ({@code white}).
+     */
     public Color getWhite()
     {
         return colors[0];
     }
 
+    /**
+     * Gibt die Farbe <em>Hell</em> ({@code light}) zurück.
+     *
+     * @return Die Farbe <em>Hell</em> ({@code light}).
+     */
     public Color getLight()
     {
         return colors[1];
     }
 
+    /**
+     * Gibt die Farbe <em>Dunkel</em> ({@code dark}) zurück.
+     *
+     * @return Die Farbe <em>Dunkel</em> ({@code dark}).
+     */
     public Color getDark()
     {
         return colors[2];
     }
 
+    /**
+     * Gibt die Farbe <em>Schwarz</em> ({@code black}) zurück.
+     *
+     * @return Die Farbe <em>Schwarz</em> ({@code black}).
+     */
     public Color getBlack()
     {
         return colors[3];
