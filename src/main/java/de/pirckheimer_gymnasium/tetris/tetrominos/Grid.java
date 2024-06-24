@@ -98,6 +98,13 @@ public class Grid
                 || grid[x][y] != null;
     }
 
+    /**
+     * Überprüft, ob eine Zeile mit Blöcken ausgefüllt ist.
+     *
+     * @param y Die y-Koordinate ({@code 0} ist die unterste Zeile).
+     *
+     * @return Wahr, wenn die angegeben Zeile mit Blöcken ausgefüllt ist.
+     */
     private boolean isRowFull(int y)
     {
         for (int x = 0; x < getWidth(); x++)
@@ -163,8 +170,17 @@ public class Grid
         }
     }
 
+    /**
+     * Entfernt die Blöcke der vollen Zeilen aus dem Spiel.
+     *
+     * @param range Der getilgte Bereich mit vollen Zeilen.
+     */
     public void removeFilledRowRange(FilledRowRange range)
     {
+        if (range == null)
+        {
+            return;
+        }
         for (int y = range.getFrom(); y <= range.getTo(); y++)
         {
             clearRow(y);
@@ -179,6 +195,10 @@ public class Grid
      */
     public void triggerLandslide(FilledRowRange range)
     {
+        if (range == null)
+        {
+            return;
+        }
         for (int y = range.getTo() + 1; y < getHeight(); y++)
         {
             for (int x = 0; x < getWidth(); x++)
@@ -195,10 +215,12 @@ public class Grid
     }
 
     /**
-     * Gib eine Textrepräsentation des Blockgitters und der momentan enthaltenen
-     * Blöcke aus.
+     * Gibt eine Textrepräsentation des Blockgitters und der momentan
+     * enthaltenen Blöcke aus.
      *
+     * <p>
      * Diese Methode ist nur für Testzwecke gedacht.
+     * </p>
      */
     public void print()
     {
