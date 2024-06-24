@@ -16,8 +16,6 @@
  */
 package de.pirckheimer_gymnasium.tetris;
 
-import java.awt.Color;
-
 import de.pirckheimer_gymnasium.engine_pi.Game;
 import de.pirckheimer_gymnasium.engine_pi.Scene;
 import de.pirckheimer_gymnasium.tetris.scenes.CopyrightScene;
@@ -53,14 +51,6 @@ public class Tetris
      * Das Spielfeld hat rechts einen Abstand zum Bildschirmrand von 8 Blöcken.
      */
     public static final int GRID_WIDTH = 10;
-
-    public static final Color COLOR_WHITE = null;
-
-    public static final Color COLOR_LIGHT = null;
-
-    public static final Color COLOR_DARK = null;
-
-    public static final Color COLOR_BLACK = null;
 
     public static final ColorScheme COLOR_SCHEME_GRAY = new ColorScheme(
             "#ffffff", "#adadad", "#525252", "#000000");

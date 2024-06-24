@@ -24,7 +24,9 @@ import de.pirckheimer_gymnasium.engine_pi.util.ImageUtil;
 /**
  * Eine Spezialisierung von {@link Image}.
  *
- * Bereitet Bilder für die Verwendung in Tetris vor.
+ * <p>
+ * Bereitet die Bilder für die Verwendung in Tetris vor.
+ * </p>
  */
 public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
 {
@@ -36,16 +38,15 @@ public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
     /**
      * Gibt ein vergrößertes und eingefärbtes Bild zurück.
      *
+     * <p>
      * Die Ausgangsbilder haben als Farben vier verschiedene Grautöne bzw. zwei
      * Grautöne und schwarz und weiß. Mit Hilfe dieser Methode ist es möglich,
      * die Bilder z. B. grünlich einzufärben, sodass sie dem klassischen
-     * Gameboy-Farben ähneln. So müssen nicht für ein bestimmtes Farbschema
-     * entscheiden und dann viele Bilddateien erstellen, die dann wieder
-     * geändert werden müssten, wenn wir ein anderes Fahrschema nutzen wollen.
-     *
-     * Dieser Methode ist außerdem ein Zwischenspeicher (Cache) vorgeschaltet.
-     * Wird zweimal das gleiche Bild angefordert, wird das Bild beim zweiten Mal
-     * aus dem Cache geladen und nicht neu berechnet.
+     * Gameboy-Farben ähneln. So müssen wir uns nicht für ein bestimmtes
+     * Farbschema entscheiden und dann viele Bilddateien erstellen, die dann
+     * wieder geändert werden müssten, wenn wir ein anderes Fahrschema nutzen
+     * wollen.
+     * </p>
      *
      * @param pathname Der relative Pfad zu {@code src/main/resources}.
      *

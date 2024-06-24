@@ -60,7 +60,7 @@ import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
  * <ul>
  * <li>Taste {@code 1}: {@link Grid#getFilledRowRange()}</li>
  * <li>Taste {@code 2}: {@link Grid#removeFilledRowRange(FilledRowRange)}</li>
- * <li>Taste {@code 3}: {@link Grid#triggerLandslide()}</li>
+ * <li>Taste {@code 3}: {@link Grid#triggerLandslide(FilledRowRange)}</li>
  * </ul>
  *
  * <p>
@@ -248,7 +248,8 @@ public class GridDebugScene extends BaseScene
     {
         switch (keyEvent.getKeyCode())
         {
-        case KeyEvent.VK_ENTER -> {
+        case KeyEvent.VK_ENTER ->
+        {
             range = GRID.getFilledRowRange();
             GRID.removeFilledRowRange(range);
             GRID.triggerLandslide(range);
@@ -258,13 +259,16 @@ public class GridDebugScene extends BaseScene
         case KeyEvent.VK_F2 -> fillGrid2();
         case KeyEvent.VK_F3 -> fillGrid3();
         case KeyEvent.VK_F4 -> fillGrid4();
-        case KeyEvent.VK_1 -> {
+        case KeyEvent.VK_1 ->
+        {
             range = GRID.getFilledRowRange();
         }
-        case KeyEvent.VK_2 -> {
+        case KeyEvent.VK_2 ->
+        {
             GRID.removeFilledRowRange(range);
         }
-        case KeyEvent.VK_3 -> {
+        case KeyEvent.VK_3 ->
+        {
             GRID.triggerLandslide(range);
             range = null;
         }

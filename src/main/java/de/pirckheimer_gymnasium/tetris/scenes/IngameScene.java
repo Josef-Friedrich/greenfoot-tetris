@@ -38,9 +38,15 @@ class Sound
 {
     private static void playMusic(String filename)
     {
-        Game.getJukebox().playMusic(
-                new SinglePlayTrack(Resources.SOUNDS.get("sounds/" + filename)),
-                true);
+        try
+        {
+            Game.getJukebox().playMusic(new SinglePlayTrack(
+                    Resources.SOUNDS.get("sounds/" + filename)), true);
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
     public static void blockMove()
@@ -65,8 +71,8 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
 
     /**
      * Der Zufallsgenerator wird benötigt, um zufällig neue Tetrominos zu
-     * erzeugen. Wir verwenden die Method nextInt() um zufällig Zahlen von 0 bis
-     * einschließlich 6 zu bekommen.
+     * erzeugen. Wir verwenden die Method {@code Random#nextInt()} um zufällig
+     * Zahlen von {@code 0} bis einschließlich {@code 6} zu bekommen.
      *
      * @see #createNextTetromino()
      */
@@ -95,21 +101,35 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
     private NumberDisplay clearedLines;
 
     /**
-     * Nach wie vielen Frames ein Tetromino eine Reihe weiter nach unten gesetzt
-     * wird und zwar im Verhältnis zur Bildwiederholungsrate des originalen
-     * Gameboys {@code 59.73}.
+     * Ein Feld, das die Anzahl an Einzelbilder enthält, nach denen eine
+     * Tetromino eine Zeile weiter nach unten rutscht.
      *
+     * <p>
+     * Die Zahl an der Index-Position {@code 0} gibt die Anzahl an Einzelbilder
+     * des {@code 0}-ten Levels an, die {@code 1} die Anzahl des {@code 1}-ten
+     * Level, etc.
+     * </p>
+     *
+     * <p>
+     * Nach wie vielen Einzelbildern ein Tetromino eine Zeile weiter nach unten
+     * gesetzt wird und zwar im Verhältnis zum aktuellen Level.
+     * </p>
+     *
+     * <p>
      * Quelle: <a href=
      * "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
+     * </p>
      */
-    private final int[] GB_FRAMES_PER_ROM = new int[] { 53, 49, 45, 41, 37, 33,
-            28, 22, 17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3 };
+    private final int[] GB_FRAMES_PER_ROW = { 53, 49, 45, 41, 37, 33, 28, 22,
+            17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3 };
 
     /**
      * Die Bildwiederholungsrate des originalen Gameboys pro Sekunde.
      *
+     * <p>
      * Quelle: <a href=
      * "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
+     * </p>
      */
     private final double GB_FRAME_RATE = 59.73;
 
@@ -149,20 +169,8 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         }, () -> {
             softDrop = null;
         });
-        keyRepeater.addListener(KeyEvent.VK_RIGHT, () -> {
-            boolean success = tetromino.moveRight();
-            if (success)
-            {
-                Sound.blockMove();
-            }
-        });
-        keyRepeater.addListener(KeyEvent.VK_LEFT, () -> {
-            boolean success = tetromino.moveLeft();
-            if (success)
-            {
-                Sound.blockMove();
-            }
-        });
+        keyRepeater.addListener(KeyEvent.VK_RIGHT, this::moveRight);
+        keyRepeater.addListener(KeyEvent.VK_LEFT, this::moveLeft);
     }
 
     private void createNextTetromino()
@@ -210,14 +218,54 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
 
     /**
      * Berechnet das Zeitintervall in Sekunden, wie lange es dauert, bis sich
-     * das aktuelle Tetromino von einer Reihe zur darunterliegenden Reihe
-     * bewegt.
+     * das aktuelle Tetromino von einer Zeile zur darunterliegenden bewegt.
+     *
+     * <p>
+     * Wir bereichnen das Intervall mit Hilfe des Dreisatzes, hier mit konkreten
+     * Werte für das 0-te Level:
+     * </p>
+     *
+     * {@code interval / 53 = 1 / 59.73} gibt {@code interval = 1 / 59.73 * 53}
+     *
+     * <p>
+     * Mit Variablen
+     * </p>
+     *
+     * {@code interval / GB_FRAMES_PER_ROW[level] = 1 / GB_FRAME_RATE} gibt
+     * {@code interval = 1 / GB_FRAME_RATE * GB_FRAMES_PER_ROW[level] }
      */
     private double caculateDownInterval()
     {
-        return 1.0 / GB_FRAME_RATE * GB_FRAMES_PER_ROM[level.get()];
+        return 1.0 / GB_FRAME_RATE * GB_FRAMES_PER_ROW[level.get()];
     }
 
+    /**
+     * Bewegt das aktuelle Tetromino nach <b>links</b>.
+     */
+    private void moveLeft()
+    {
+        boolean success = tetromino.moveLeft();
+        if (success)
+        {
+            Sound.blockMove();
+        }
+    }
+
+    /**
+     * Bewegt das aktuelle Tetromino nach <b>rechts</b>.
+     */
+    private void moveRight()
+    {
+        boolean success = tetromino.moveRight();
+        if (success)
+        {
+            Sound.blockMove();
+        }
+    }
+
+    /**
+     * Bewegt das aktuelle Tetromino um eine Zeile nach unten.
+     */
     private void moveDown()
     {
         if (!tetromino.moveDown())

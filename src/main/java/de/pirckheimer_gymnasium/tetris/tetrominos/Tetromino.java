@@ -74,8 +74,6 @@ public abstract class Tetromino
      *              Blocks), an der das Tetromino eingefügt werden soll.
      * @param y     Die y-Koordinate (entspricht der Koordinate des 0-ten
      *              Blocks), an der das Tetromino eingefügt werden soll.
-     *
-     * @return Das erzeugte Tetromino.
      */
     public Tetromino(Scene scene, Grid grid, String name, int x, int y)
     {

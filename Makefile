@@ -18,4 +18,9 @@ test:
 	mvn clean
 	mvn test
 
-.PHONY: build format package test
+doc:
+	rm -rf target/site/apidocs
+	mvn javadoc:javadoc
+	xdg-open target/site/apidocs/index.html
+
+.PHONY: doc build format package test
