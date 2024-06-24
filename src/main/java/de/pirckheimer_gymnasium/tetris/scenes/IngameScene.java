@@ -39,7 +39,7 @@ class Sound
     private static void playMusic(String filename)
     {
         Game.getJukebox().playMusic(
-                new SinglePlayTrack(Resources.sounds.get("sounds/" + filename)),
+                new SinglePlayTrack(Resources.SOUNDS.get("sounds/" + filename)),
                 true);
     }
 

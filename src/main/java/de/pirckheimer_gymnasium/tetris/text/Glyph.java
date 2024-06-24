@@ -50,7 +50,7 @@ class Glyph
         BufferedImage bufferedImage = null;
         try
         {
-            bufferedImage = Resources.images.get(getImagePath(glyph));
+            bufferedImage = Resources.IMAGES.get(getImagePath(glyph));
         }
         catch (Exception e)
         {

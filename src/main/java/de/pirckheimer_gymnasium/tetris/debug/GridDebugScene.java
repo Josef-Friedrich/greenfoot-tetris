@@ -187,7 +187,7 @@ public class GridDebugScene extends BaseScene
     @Override
     public void onFrameUpdate(double pastTime)
     {
-        Vector position = Game.getMousePositionInCurrentScene();
+        Vector position = Game.getMousePosition();
         ROW_OVERLAY.setY((int) position.getY());
         range = grid.getFilledRowRange();
         if (range != null)

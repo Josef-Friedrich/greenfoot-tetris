@@ -53,7 +53,7 @@ public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
      */
     public static BufferedImage get(String pathname)
     {
-        BufferedImage image = Resources.images.get(pathname);
+        BufferedImage image = Resources.IMAGES.get(pathname);
         return ImageUtil.scale(ImageUtil.replaceColors(image,
                 Tetris.COLOR_SCHEME_GRAY.getColors(),
                 Tetris.COLOR_SCHEME_GREEN.getColors()), Tetris.SCALE);
