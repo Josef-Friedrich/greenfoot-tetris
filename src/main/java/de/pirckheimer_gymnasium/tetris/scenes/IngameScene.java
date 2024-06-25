@@ -65,6 +65,11 @@ class Sound
     }
 }
 
+/**
+ * Die Hauptspiel-Szene.
+ *
+ * @author Josef Friedrich
+ */
 public class IngameScene extends BaseScene implements KeyStrokeListener
 {
     private Grid grid;
@@ -244,8 +249,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      */
     private void moveLeft()
     {
-        boolean success = tetromino.moveLeft();
-        if (success)
+        if (tetromino.moveLeft())
         {
             Sound.blockMove();
         }
@@ -256,8 +260,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      */
     private void moveRight()
     {
-        boolean success = tetromino.moveRight();
-        if (success)
+        if (tetromino.moveRight())
         {
             Sound.blockMove();
         }

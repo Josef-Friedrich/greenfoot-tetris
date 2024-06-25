@@ -39,10 +39,10 @@ public class ColorScheme
      * Erzeugt eine <b>neues Farbschema</b> durch Angabe von
      * <b>{@link Color}-Objekten</b>.
      *
-     * @param white
-     * @param light
-     * @param dark
-     * @param black
+     * @param white Die Farbe <em>Weiß</em> ({@code white}).
+     * @param light Die Farbe <em>Hell</em> ({@code light}).
+     * @param dark  Die Farbe <em>Dunkel</em> ({@code dark}).
+     * @param black Die Farbe <em>Schwarz</em> ({@code black}).
      */
     public ColorScheme(Color white, Color light, Color dark, Color black)
     {

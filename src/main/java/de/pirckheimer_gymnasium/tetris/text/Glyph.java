@@ -39,6 +39,7 @@ class Glyph
      * Wird benötigen diese Referenz, um den Buchstabe in die {@link Scene
      * Szene} einzufügen ({@link Scene#add}) bzw. aus der {@link Scene Szene} zu
      * entfernen ({@link Scene#remove}).
+     * </p>
      */
     private Scene scene;
 
