@@ -117,6 +117,24 @@ Soft-Drop-Bewegung.[^harddrop_scoring] [^gamespot]
 [^harddrop_scoring]: https://harddrop.com/wiki/Scoring
 [^gamespot]: https://gamefaqs.gamespot.com/gameboy/585960-tetris/faqs/8483
 
+
+### Animation bei getilgten Zeilen
+
+Folgendes Bild zeigt eine im Programm Gimp geöffnete animierte PGN-Datei. In
+dieser Animation ist zu sehen, wie eine Zeile getilgt wird.
+
+![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/Screenshot-Gimp_animated-cleared-row.png)
+
+1. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/01_row-visible.png)
+2. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/02_gray-overlay.png)
+3. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/03_row-visible.png)
+4. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/04_gray-overlay.png)
+5. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/05_row-visible.png)
+6. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/06_gray-overlay.png)
+7. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/07_row-visible.png)
+8. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/08_cleared.png)
+9. ![](https://raw.githubusercontent.com/engine-pi/tetris/main/misc/graphics/cleared-row/09_finished.png)
+
 ### Sound
 
 [Game Boy Sound System](https://en.wikipedia.org/wiki/Game_Boy_Sound_System)
