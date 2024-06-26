@@ -22,7 +22,7 @@ import java.util.Random;
 import de.pirckheimer_gymnasium.engine_pi.Game;
 import de.pirckheimer_gymnasium.engine_pi.Resources;
 import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
-import de.pirckheimer_gymnasium.engine_pi.event.PeriodicTask;
+import de.pirckheimer_gymnasium.engine_pi.event.PeriodicTaskExecutor;
 import de.pirckheimer_gymnasium.engine_pi.event.PressedKeyRepeater;
 import de.pirckheimer_gymnasium.engine_pi.sound.SinglePlayTrack;
 import de.pirckheimer_gymnasium.tetris.Tetris;
@@ -140,7 +140,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
 
     protected PressedKeyRepeater keyRepeater;
 
-    PeriodicTask periodicTask;
+    PeriodicTaskExecutor periodicTask;
 
     /**
      * Gibt an, ob sich das Tetromino in einer Soft-Drop-Bewegung befindet. Als
@@ -160,7 +160,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         score = new NumberDisplay(this, 13, 14, 4);
         level = new NumberDisplay(this, 13, 10, 4);
         clearedLines = new NumberDisplay(this, 13, 7, 4);
-        periodicTask = repeat(caculateDownInterval(), () -> {
+        periodicTask = repeat(caculateDownInterval(), (counter) -> {
             if (softDrop == null)
             {
                 moveDown();

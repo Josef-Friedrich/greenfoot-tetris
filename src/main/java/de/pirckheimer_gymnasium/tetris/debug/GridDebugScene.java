@@ -80,6 +80,8 @@ public class GridDebugScene extends BaseScene
 
     private final Rectangle RANGE_OVERLAY;
 
+    private boolean showRangeOverlay = true;
+
     public GridDebugScene()
     {
         super("ingame");
@@ -248,27 +250,71 @@ public class GridDebugScene extends BaseScene
     {
         switch (keyEvent.getKeyCode())
         {
-        case KeyEvent.VK_ENTER ->
-        {
+        case KeyEvent.VK_ENTER -> {
+            RANGE_OVERLAY.setVisible(false);
             range = GRID.getFilledRowRange();
-            GRID.removeFilledRowRange(range);
-            GRID.triggerLandslide(range);
-            range = null;
+            if (range != null)
+            {
+                // 1. grau
+                // 2. Zeile sichtbar
+                // 3. grau
+                // 4. Zeile sichtbar
+                // 5. grau
+                // 6. Zeile sichtbar
+                // 7. Zeile getilgt
+                // 8. Zeilen oberhalb nach unten gerutscht
+                Rectangle overlay = addRectangle(10, range.getRowCount(), 0,
+                        range.getFrom());
+                overlay.setColor(Tetris.COLOR_SCHEME_GREEN.getLight());
+                overlay.setVisible(false);
+                showRangeOverlay = false;
+                repeat(0.167, 8, (counter) -> {
+                    System.out.println(counter);
+                    switch (counter)
+                    {
+                    case 1:
+                    case 3:
+                    case 5:
+                        System.out.println("Zeige graue Überblendung");
+                        overlay.setVisible(true);
+                        break;
+
+                    case 2:
+                    case 4:
+                    case 6:
+                        System.out.println("Zeige zu tilgende Zeilen.");
+                        overlay.setVisible(false);
+                        break;
+
+                    case 7:
+                        System.out.println("Tilge Reihen.");
+                        System.out.println(range);
+                        GRID.removeFilledRowRange(range);
+                        break;
+                    }
+                }, (counter) -> {
+                    System.out.println(counter);
+                    System.out.println("Löse Erdrutsch aus.");
+                    GRID.triggerLandslide(range);
+                    remove(overlay);
+                    range = null;
+                });
+            }
         }
         case KeyEvent.VK_F1 -> fillGrid1();
         case KeyEvent.VK_F2 -> fillGrid2();
         case KeyEvent.VK_F3 -> fillGrid3();
         case KeyEvent.VK_F4 -> fillGrid4();
-        case KeyEvent.VK_1 ->
-        {
+        case KeyEvent.VK_1 -> {
+            showRangeOverlay = true;
             range = GRID.getFilledRowRange();
         }
-        case KeyEvent.VK_2 ->
-        {
+        case KeyEvent.VK_2 -> {
+            showRangeOverlay = true;
             GRID.removeFilledRowRange(range);
         }
-        case KeyEvent.VK_3 ->
-        {
+        case KeyEvent.VK_3 -> {
+            showRangeOverlay = true;
             GRID.triggerLandslide(range);
             range = null;
         }
@@ -283,7 +329,7 @@ public class GridDebugScene extends BaseScene
         Vector position = Game.getMousePosition();
         ROW_OVERLAY.setY((int) position.getY());
         // Markiert die Zeilen, die getilgt werden können.
-        if (range != null)
+        if (range != null && showRangeOverlay)
         {
             RANGE_OVERLAY.setVisible(true);
             RANGE_OVERLAY.setHeight(range.getRowCount());
