@@ -222,28 +222,30 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
     /**
      * https://tetris.wiki/Scoring
      *
-     * @param clearedLines Die Anzahl an getilgten Zeilen.
+     * @param lines Die Anzahl an getilgten Zeilen.
      *
      * @return Eine Punkteanzahl zu der Gesamtpunktezahl hinzugezählt werden
      *         muss.
      */
-    private int caculateScore(int clearedLines)
+    private int setScores(int lines)
     {
-        int score = 40;
-        if (clearedLines == 2)
+        int s = 40;
+        if (lines == 2)
         {
-            score = 100;
+            s = 100;
         }
-        else if (clearedLines == 3)
+        else if (lines == 3)
         {
-            score = 300;
+            s = 300;
         }
-        else if (clearedLines == 4)
+        else if (lines == 4)
         {
-            score = 1200;
+            s = 1200;
         }
-        int result = score * (level.get() + 1);
+        int result = s * (level.get() + 1);
         assert result > 0;
+        clearedLines.add(lines);
+        score.add(setScores(lines));
         return result;
     }
 
@@ -389,8 +391,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
                 remove(overlay);
                 createNextTetromino();
                 periodicTask.resume();
-                clearedLines.add(range.getRowCount());
-                score.add(caculateScore(range.getRowCount()));
+                setScores(range.getRowCount());
                 isInAnimation = false;
                 break;
             }
