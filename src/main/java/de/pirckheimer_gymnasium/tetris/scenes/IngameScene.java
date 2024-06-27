@@ -21,11 +21,13 @@ import java.util.Random;
 
 import de.pirckheimer_gymnasium.engine_pi.Game;
 import de.pirckheimer_gymnasium.engine_pi.Resources;
+import de.pirckheimer_gymnasium.engine_pi.actor.Rectangle;
 import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
 import de.pirckheimer_gymnasium.engine_pi.event.PeriodicTaskExecutor;
 import de.pirckheimer_gymnasium.engine_pi.event.PressedKeyRepeater;
 import de.pirckheimer_gymnasium.engine_pi.sound.SinglePlayTrack;
 import de.pirckheimer_gymnasium.tetris.Tetris;
+import de.pirckheimer_gymnasium.tetris.tetrominos.FilledRowRange;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.SoftDrop;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
@@ -45,7 +47,7 @@ class Sound
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            // e.printStackTrace();
         }
     }
 
@@ -266,13 +268,20 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         }
     }
 
+    private boolean isInAnimation = false;
+
     /**
      * Bewegt das aktuelle Tetromino um eine Zeile nach unten.
      */
     private void moveDown()
     {
+        if (isInAnimation)
+        {
+            return;
+        }
         if (!tetromino.moveDown())
         {
+            keyRepeater.stop();
             Sound.blockDrop();
             if (softDrop != null)
             {
@@ -282,20 +291,64 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
             var range = grid.getFilledRowRange();
             if (range != null)
             {
-                grid.removeFilledRowRange(range);
-                grid.triggerLandslide(range);
-                clearedLines.add(range.getRowCount());
-                score.add(caculateScore(range.getRowCount()));
+                clearLines(range);
             }
-            createNextTetromino();
+            else
+            {
+                createNextTetromino();
+            }
         }
     }
 
     /**
-     * Tilgt
+     * Tilgt gefüllte Zeilen und führt eine Animation aus.
      */
-    private void clearLines()
+    private void clearLines(FilledRowRange range)
     {
+        isInAnimation = true;
+        // 1. grau
+        // 2. Zeile sichtbar
+        // 3. grau
+        // 4. Zeile sichtbar
+        // 5. grau
+        // 6. Zeile sichtbar
+        // 7. Zeile getilgt
+        // 8. Zeilen oberhalb nach unten gerutscht
+        Rectangle overlay = addRectangle(10, range.getRowCount(), 0,
+                range.getFrom());
+        overlay.setColor(Tetris.COLOR_SCHEME_GREEN.getLight());
+        overlay.setVisible(false);
+        periodicTask.pause();
+        repeat(0.167, 8, (counter) -> {
+            switch (counter)
+            {
+            case 1:
+            case 3:
+            case 5:
+                overlay.setVisible(true);
+                break;
+
+            case 2:
+            case 4:
+            case 6:
+                overlay.setVisible(false);
+                break;
+
+            case 7:
+                grid.removeFilledRowRange(range);
+                break;
+
+            case 8:
+                grid.triggerLandslide(range);
+                remove(overlay);
+                periodicTask.resume();
+                createNextTetromino();
+                clearedLines.add(range.getRowCount());
+                score.add(caculateScore(range.getRowCount()));
+                isInAnimation = false;
+                break;
+            }
+        });
     }
 
     @Override
