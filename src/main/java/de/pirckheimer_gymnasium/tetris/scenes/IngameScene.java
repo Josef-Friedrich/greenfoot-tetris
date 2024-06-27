@@ -291,6 +291,13 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         }
     }
 
+    /**
+     * Tilgt
+     */
+    private void clearLines()
+    {
+    }
+
     @Override
     public void onKeyDown(KeyEvent keyEvent)
     {
