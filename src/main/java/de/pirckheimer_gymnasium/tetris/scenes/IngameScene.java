@@ -101,10 +101,23 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      */
     private Tetromino previewTetromino;
 
+    /**
+     * Die Gesamtpunktezahl. Diese Nummernanzeige ist mit SCORE beschriftet und
+     * ist oben rechts platziert.
+     */
     private NumberDisplay score;
 
+    /**
+     * In welchem Level wir uns gerade befinden. Das erste Level ist 0. Diese
+     * Nummernanzeige ist mit LEVEL beschriftet und ist rechts in der Mitte
+     * platziert.
+     */
     private NumberDisplay level;
 
+    /**
+     * Wie viele Zeilen bisher getilgt wurden. Diese Nummernanzeige ist mit
+     * LINES beschriftet und ist unter der Level-Anzeige platziert.
+     */
     private NumberDisplay clearedLines;
 
     /**
@@ -145,6 +158,12 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
     PeriodicTaskExecutor periodicTask;
 
     /**
+     * Dadurch kann die Bewegung der Tetrominos gesperrt werden, wenn sich das
+     * Spiel gerade in einer Animation (z. B. Tilgung von Zeilen) befindet.
+     */
+    private boolean isInAnimation = false;
+
+    /**
      * Gibt an, ob sich das Tetromino in einer Soft-Drop-Bewegung befindet. Als
      * Soft-Drop bezeichnet man die schnellere nach unten gerichtete Bewegung
      * des Tetromino.
@@ -160,8 +179,8 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         grid = new Grid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
         createNextTetromino();
         score = new NumberDisplay(this, 13, 14, 4);
-        level = new NumberDisplay(this, 13, 10, 4);
-        clearedLines = new NumberDisplay(this, 13, 7, 4);
+        level = new NumberDisplay(this, 12, 10, 4);
+        clearedLines = new NumberDisplay(this, 12, 7, 4);
         periodicTask = repeat(caculateDownInterval(), (counter) -> {
             if (softDrop == null)
             {
@@ -202,6 +221,11 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
 
     /**
      * https://tetris.wiki/Scoring
+     *
+     * @param clearedLines Die Anzahl an getilgten Zeilen.
+     *
+     * @return Eine Punkteanzahl zu der Gesamtpunktezahl hinzugezählt werden
+     *         muss.
      */
     private int caculateScore(int clearedLines)
     {
@@ -251,6 +275,10 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      */
     private void moveLeft()
     {
+        if (isInAnimation)
+        {
+            return;
+        }
         if (tetromino.moveLeft())
         {
             Sound.blockMove();
@@ -262,13 +290,15 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      */
     private void moveRight()
     {
+        if (isInAnimation)
+        {
+            return;
+        }
         if (tetromino.moveRight())
         {
             Sound.blockMove();
         }
     }
-
-    private boolean isInAnimation = false;
 
     /**
      * Bewegt das aktuelle Tetromino um eine Zeile nach unten.
@@ -279,8 +309,14 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         {
             return;
         }
+        // Wenn sich das Tetromino nicht mehr weiter nach unten bewegen kann.
         if (!tetromino.moveDown())
         {
+            // Wir stoppen alle Tastenwiederholer (z. B. ausgelöst durch einen
+            // Softdrop), wenn sich ein Tetromino nicht
+            // mehr weiter nach unten bewegen kann. Würden wir den Wiederholer
+            // nicht stoppen, dann hätte das neue Tetromino gleich nach dem
+            // Erscheinen ein erhöhtes Falltempo.
             keyRepeater.stop();
             Sound.blockDrop();
             if (softDrop != null)
@@ -295,6 +331,11 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
             }
             else
             {
+                // In der Methode clearLines() wird dann am Ende der Animation
+                // createNextTetromino() aufgerufen.
+                // Wenn keine Zeilen zu tilgen sind, wird keine Animation
+                // stattfinden und wir können gleich das nächste Tetromino
+                // erzeugen.
                 createNextTetromino();
             }
         }
@@ -302,24 +343,29 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
 
     /**
      * Tilgt gefüllte Zeilen und führt eine Animation aus.
+     *
+     * <p>
+     * Diese Methode wird ausgeführt, wenn es ausgefüllte Zeilen gibt, die
+     * getilgt werden müssen.
+     * </p>
      */
     private void clearLines(FilledRowRange range)
     {
         isInAnimation = true;
-        // 1. grau
-        // 2. Zeile sichtbar
-        // 3. grau
-        // 4. Zeile sichtbar
-        // 5. grau
-        // 6. Zeile sichtbar
-        // 7. Zeile getilgt
-        // 8. Zeilen oberhalb nach unten gerutscht
         Rectangle overlay = addRectangle(10, range.getRowCount(), 0,
                 range.getFrom());
         overlay.setColor(Tetris.COLOR_SCHEME_GREEN.getLight());
         overlay.setVisible(false);
         periodicTask.pause();
         repeat(0.167, 8, (counter) -> {
+            // 1. grau
+            // 2. Zeile sichtbar
+            // 3. grau
+            // 4. Zeile sichtbar
+            // 5. grau
+            // 6. Zeile sichtbar
+            // 7. Zeile getilgt
+            // 8. Zeilen oberhalb nach unten gerutscht
             switch (counter)
             {
             case 1:
@@ -341,8 +387,8 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
             case 8:
                 grid.triggerLandslide(range);
                 remove(overlay);
-                periodicTask.resume();
                 createNextTetromino();
+                periodicTask.resume();
                 clearedLines.add(range.getRowCount());
                 score.add(caculateScore(range.getRowCount()));
                 isInAnimation = false;
