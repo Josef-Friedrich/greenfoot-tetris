@@ -220,6 +220,8 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
     }
 
     /**
+     * Setzt drei verschiedene Zahlen, die den Spielstand angeben.
+     *
      * https://tetris.wiki/Scoring
      *
      * @param lines Die Anzahl an getilgten Zeilen.
@@ -227,7 +229,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      * @return Eine Punkteanzahl zu der Gesamtpunktezahl hinzugezählt werden
      *         muss.
      */
-    private int setScores(int lines)
+    private void setScores(int lines)
     {
         int s = 40;
         if (lines == 2)
@@ -245,8 +247,9 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         int result = s * (level.get() + 1);
         assert result > 0;
         clearedLines.add(lines);
-        score.add(setScores(lines));
-        return result;
+        // Nach 10 getilgten Zeilen erhöht sich das Level.
+        level.set(clearedLines.get() / 10);
+        score.add(lines);
     }
 
     /**
