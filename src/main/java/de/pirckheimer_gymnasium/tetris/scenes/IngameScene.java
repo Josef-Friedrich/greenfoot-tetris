@@ -20,52 +20,16 @@ import java.awt.event.KeyEvent;
 import java.util.Random;
 
 import de.pirckheimer_gymnasium.engine_pi.Game;
-import de.pirckheimer_gymnasium.engine_pi.Resources;
 import de.pirckheimer_gymnasium.engine_pi.actor.Rectangle;
 import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
 import de.pirckheimer_gymnasium.engine_pi.event.PeriodicTaskExecutor;
 import de.pirckheimer_gymnasium.engine_pi.event.PressedKeyRepeater;
-import de.pirckheimer_gymnasium.engine_pi.sound.SinglePlayTrack;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.tetrominos.FilledRowRange;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Grid;
 import de.pirckheimer_gymnasium.tetris.tetrominos.SoftDrop;
 import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 import de.pirckheimer_gymnasium.tetris.text.NumberDisplay;
-
-/**
- * @author Josef Friedrich
- */
-class Sound
-{
-    private static void playMusic(String filename)
-    {
-        try
-        {
-            Game.getJukebox().playMusic(new SinglePlayTrack(
-                    Resources.SOUNDS.get("sounds/" + filename)), true);
-        }
-        catch (Exception e)
-        {
-            // e.printStackTrace();
-        }
-    }
-
-    public static void blockMove()
-    {
-        playMusic("Block_move.mp3");
-    }
-
-    public static void blockRotate()
-    {
-        playMusic("Block_rotate.mp3");
-    }
-
-    public static void blockDrop()
-    {
-        playMusic("Block_drop.mp3");
-    }
-}
 
 /**
  * Die Hauptspiel-Szene.
@@ -197,6 +161,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         });
         keyRepeater.addListener(KeyEvent.VK_RIGHT, this::moveRight);
         keyRepeater.addListener(KeyEvent.VK_LEFT, this::moveLeft);
+        Sound.korobeiniki();
     }
 
     private void createNextTetromino()
@@ -244,12 +209,12 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         {
             s = 1200;
         }
+        clearedLines.add(lines);
+        level.set(clearedLines.get() / 10);
         int result = s * (level.get() + 1);
         assert result > 0;
-        clearedLines.add(lines);
         // Nach 10 getilgten Zeilen erhöht sich das Level.
-        level.set(clearedLines.get() / 10);
-        score.add(lines);
+        score.add(result);
     }
 
     /**
@@ -317,6 +282,11 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         // Wenn sich das Tetromino nicht mehr weiter nach unten bewegen kann.
         if (!tetromino.moveDown())
         {
+            if (softDrop != null)
+            {
+                // Muss oberhalb von keyRepeater.stop() stehen.
+                score.add(softDrop.getDistance());
+            }
             // Wir stoppen alle Tastenwiederholer (z. B. ausgelöst durch einen
             // Softdrop), wenn sich ein Tetromino nicht
             // mehr weiter nach unten bewegen kann. Würden wir den Wiederholer
@@ -324,10 +294,6 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
             // Erscheinen ein erhöhtes Falltempo.
             keyRepeater.stop();
             Sound.blockDrop();
-            if (softDrop != null)
-            {
-                score.add(softDrop.getDistance());
-            }
             softDrop = null;
             var range = grid.getFilledRowRange();
             if (range != null)
@@ -395,6 +361,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
                 createNextTetromino();
                 periodicTask.resume();
                 setScores(range.getRowCount());
+                periodicTask.setInterval(caculateDownInterval());
                 isInAnimation = false;
                 break;
             }
