@@ -13,8 +13,8 @@ public class Sound
     {
         try
         {
-
-            Game.getJukebox().playMusic(new LoopedTrack(Resources.SOUNDS.get("sounds/" + filename)));
+            Game.getJukebox().playMusic(new LoopedTrack(
+                    Resources.SOUNDS.get("sounds/" + filename)));
         }
         catch (Exception e)
         {

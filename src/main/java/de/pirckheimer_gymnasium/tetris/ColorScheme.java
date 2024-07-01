@@ -128,4 +128,26 @@ public class ColorScheme
     {
         return colors[3];
     }
+
+    /**
+     * Erzeugt ein graues Farbschema. Screenshots, die mit dem Emulator Gameboy
+     * Advanced als Graustufenbilder exportiert wurden, haben diese vier Farben.
+     *
+     * @return Ein graues Farbschema.
+     */
+    public static ColorScheme createGrayColorScheme()
+    {
+        return new ColorScheme("#ffffff", "#adadad", "#525252", "#000000");
+    }
+
+    /**
+     * Erzeugt ein grünes Farbschema. Diese vier grünen Farben wurde mit Hilfe
+     * eines Youtube-Video ermittelt, das das Gameboy-Display abgefilmt zeigt.
+     *
+     * @return Ein grünes Farbschema.
+     */
+    public static ColorScheme createGreenColorScheme()
+    {
+        return new ColorScheme("#aaaa00", "#556633", "#335544", "#223322");
+    }
 }

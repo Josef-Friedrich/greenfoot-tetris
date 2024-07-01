@@ -52,11 +52,11 @@ public class Tetris
      */
     public static final int GRID_WIDTH = 10;
 
-    public static final ColorScheme COLOR_SCHEME_GRAY = new ColorScheme(
-            "#ffffff", "#adadad", "#525252", "#000000");
+    public static final ColorScheme COLOR_SCHEME_GRAY = ColorScheme
+            .createGrayColorScheme();
 
-    public static final ColorScheme COLOR_SCHEME_GREEN = new ColorScheme(
-            "#aaaa00", "#556633", "#335544", "#223322");
+    public static final ColorScheme COLOR_SCHEME_GREEN = ColorScheme
+            .createGreenColorScheme();
 
     /**
      * Aktivert und deaktiviert den Debug-Modus der Engine-Omega und des Spiels

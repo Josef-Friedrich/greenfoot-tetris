@@ -250,7 +250,8 @@ public class GridDebugScene extends BaseScene
     {
         switch (keyEvent.getKeyCode())
         {
-        case KeyEvent.VK_ENTER -> {
+        case KeyEvent.VK_ENTER ->
+        {
             RANGE_OVERLAY.setVisible(false);
             range = GRID.getFilledRowRange();
             if (range != null)
@@ -305,15 +306,18 @@ public class GridDebugScene extends BaseScene
         case KeyEvent.VK_F2 -> fillGrid2();
         case KeyEvent.VK_F3 -> fillGrid3();
         case KeyEvent.VK_F4 -> fillGrid4();
-        case KeyEvent.VK_1 -> {
+        case KeyEvent.VK_1 ->
+        {
             showRangeOverlay = true;
             range = GRID.getFilledRowRange();
         }
-        case KeyEvent.VK_2 -> {
+        case KeyEvent.VK_2 ->
+        {
             showRangeOverlay = true;
             GRID.removeFilledRowRange(range);
         }
-        case KeyEvent.VK_3 -> {
+        case KeyEvent.VK_3 ->
+        {
             showRangeOverlay = true;
             GRID.triggerLandslide(range);
             range = null;
