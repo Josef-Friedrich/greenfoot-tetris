@@ -161,7 +161,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         });
         keyRepeater.addListener(KeyEvent.VK_RIGHT, this::moveRight);
         keyRepeater.addListener(KeyEvent.VK_LEFT, this::moveLeft);
-        Sound.korobeiniki();
+        Sound.playKorobeiniki();
     }
 
     private void createNextTetromino()
@@ -251,7 +251,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         }
         if (tetromino.moveLeft())
         {
-            Sound.blockMove();
+            Sound.playBlockMove();
         }
     }
 
@@ -266,7 +266,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         }
         if (tetromino.moveRight())
         {
-            Sound.blockMove();
+            Sound.playBlockMove();
         }
     }
 
@@ -293,7 +293,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
             // nicht stoppen, dann hätte das neue Tetromino gleich nach dem
             // Erscheinen ein erhöhtes Falltempo.
             keyRepeater.stop();
-            Sound.blockDrop();
+            Sound.playBlockDrop();
             softDrop = null;
             var range = grid.getFilledRowRange();
             if (range != null)
@@ -377,7 +377,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
             boolean success = tetromino.rotate();
             if (success)
             {
-                Sound.blockRotate();
+                Sound.playBlockRotate();
             }
             break;
         }

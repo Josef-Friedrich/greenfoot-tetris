@@ -1,55 +1,38 @@
 package de.pirckheimer_gymnasium.tetris.scenes;
 
-import de.pirckheimer_gymnasium.engine_pi.Game;
-import de.pirckheimer_gymnasium.engine_pi.Resources;
-import de.pirckheimer_gymnasium.engine_pi.sound.LoopedTrack;
+import de.pirckheimer_gymnasium.engine_pi.Jukebox;
 
 /**
  * @author Josef Friedrich
  */
 public class Sound
 {
-    private static void playMusic(String filename)
+    public static void playMusic(String filename)
     {
-        try
-        {
-            Game.getJukebox().playMusic(new LoopedTrack(
-                    Resources.SOUNDS.get("sounds/" + filename)));
-        }
-        catch (Exception e)
-        {
-            // e.printStackTrace();
-        }
+        Jukebox.playMusic("sounds/" + filename);
     }
 
-    private static void playSound(String filename)
+    public static void playSound(String filename)
     {
-        try
-        {
-            Game.getJukebox().playSound("sounds/" + filename);
-        }
-        catch (Exception e)
-        {
-            // e.printStackTrace();
-        }
+        Jukebox.playSound("sounds/" + filename);
     }
 
-    public static void korobeiniki()
+    public static void playKorobeiniki()
     {
         playMusic("Korobeiniki.mp3");
     }
 
-    public static void blockMove()
+    public static void playBlockMove()
     {
         playSound("Block_move.mp3");
     }
 
-    public static void blockRotate()
+    public static void playBlockRotate()
     {
         playSound("Block_rotate.mp3");
     }
 
-    public static void blockDrop()
+    public static void playBlockDrop()
     {
         playSound("Block_drop.mp3");
     }
