@@ -328,6 +328,14 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         overlay.setColor(Tetris.COLOR_SCHEME_GREEN.getLight());
         overlay.setVisible(false);
         periodicTask.pause();
+        if (range.getRowCount() < 4)
+        {
+            Sound.playRowClear1to3();
+        }
+        else
+        {
+            Sound.playRowClear4();
+        }
         repeat(0.167, 8, (counter) -> {
             // 1. grau
             // 2. Zeile sichtbar
@@ -361,14 +369,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
                 createNextTetromino();
                 periodicTask.resume();
                 setScores(range.getRowCount());
-                if (range.getRowCount() < 4)
-                {
-                    Sound.playRowClear1to3();
-                }
-                else
-                {
-                    Sound.playRowClear4();
-                }
+                Sound.playBlockDrop();
                 periodicTask.setInterval(caculateDownInterval());
                 isInAnimation = false;
                 break;
