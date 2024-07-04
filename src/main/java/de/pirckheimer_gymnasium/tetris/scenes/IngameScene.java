@@ -361,6 +361,14 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
                 createNextTetromino();
                 periodicTask.resume();
                 setScores(range.getRowCount());
+                if (range.getRowCount() < 4)
+                {
+                    Sound.playRowClear1to3();
+                }
+                else
+                {
+                    Sound.playRowClear4();
+                }
                 periodicTask.setInterval(caculateDownInterval());
                 isInAnimation = false;
                 break;

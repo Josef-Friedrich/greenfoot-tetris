@@ -26,6 +26,7 @@ public class TitleScene extends BaseScene
     public TitleScene()
     {
         super("title");
+        Sound.playTitle();
         delay(4, () -> {
             startIngameScene();
         });

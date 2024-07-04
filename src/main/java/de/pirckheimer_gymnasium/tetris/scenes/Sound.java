@@ -7,33 +7,49 @@ import de.pirckheimer_gymnasium.engine_pi.Jukebox;
  */
 public class Sound
 {
-    public static void playMusic(String filename)
+    private static void playMusic(String filename)
     {
         Jukebox.playMusic("sounds/" + filename);
     }
 
-    public static void playSound(String filename)
+    private static void playSound(String filename)
     {
         Jukebox.playSound("sounds/" + filename);
     }
 
+    public static void playTitle()
+    {
+        Jukebox.playIntroTrack("sounds/Title_intro.mp3",
+                "sounds/Title_loop.mp3");
+    }
+
     public static void playKorobeiniki()
     {
-        playMusic("Korobeiniki.mp3");
+        playMusic("A-Type-Music_korobeiniki.mp3");
     }
 
     public static void playBlockMove()
     {
-        playSound("Block_move.mp3");
+        playSound("Block_move.wav");
     }
 
     public static void playBlockRotate()
     {
-        playSound("Block_rotate.mp3");
+        playSound("Block_rotate.wav");
     }
 
     public static void playBlockDrop()
     {
-        playSound("Block_drop.mp3");
+        playSound("Block_drop.wav");
+    }
+
+    public static void playRowClear1to3()
+    {
+        playSound("Row_clear1-3.wav");
+    }
+
+    public static void playRowClear4()
+    {
+        playSound("Row_clear4.wav");
     }
 }
