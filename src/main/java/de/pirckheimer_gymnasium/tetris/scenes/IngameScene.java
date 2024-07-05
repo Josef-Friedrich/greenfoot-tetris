@@ -312,6 +312,18 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         }
     }
 
+    private void rotate()
+    {
+        if (isInAnimation)
+        {
+            return;
+        }
+        if (tetromino.rotate())
+        {
+            Sound.playBlockRotate();
+        }
+    }
+
     /**
      * Tilgt gefüllte Zeilen und führt eine Animation aus.
      *
@@ -383,11 +395,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         switch (keyEvent.getKeyCode())
         {
         case KeyEvent.VK_SPACE:
-            boolean success = tetromino.rotate();
-            if (success)
-            {
-                Sound.playBlockRotate();
-            }
+            rotate();
             break;
         }
         if (Game.isDebug())
