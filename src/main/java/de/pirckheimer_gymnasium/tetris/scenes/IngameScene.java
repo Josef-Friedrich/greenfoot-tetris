@@ -142,7 +142,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         // Blockgitter um eine Zeile höher.
         grid = new Grid(Tetris.GRID_WIDTH, Tetris.HEIGHT + 1);
         createNextTetromino();
-        score = new NumberDisplay(this, 13, 14, 4);
+        score = new NumberDisplay(this, 11, 14, 6);
         level = new NumberDisplay(this, 12, 10, 4);
         clearedLines = new NumberDisplay(this, 12, 7, 4);
         periodicTask = repeat(caculateDownInterval(), (counter) -> {
