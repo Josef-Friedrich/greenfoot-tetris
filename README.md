@@ -163,10 +163,38 @@ GBS-Dateien: [ocremix.org](https://ocremix.org/chip/265) [zophar.net](https://ww
 | Toréador Song             | Georges Bizet            | Hirokazu Tanaka |
 | 2 Player ~ End of Round   | Hirokazu Tanaka          | Hirokazu Tanaka |
 | 2 Player ~ Results        | Hirokazu Tanaka          | Hirokazu Tanaka |
-
 [^vgmp-recording]
 
 [^vgmp-recording]: https://www.vgmpf.com/Wiki/index.php?title=Tetris_(GB)#Recording
+
+* [2-Player_End-of-Round.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/2-Player_End-of-Round.mp3)
+* [2-Player_Results.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/2-Player_Results.mp3)
+* [A-Type-Music_V1.0.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/A-Type-Music_V1.0.mp3)
+* [A-Type-Music_V1.1-Korobeiniki.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/A-Type-Music_V1.1-Korobeiniki.mp3)
+* [Block_drop.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Block_drop.mp3)
+* [Block_move.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Block_move.mp3)
+* [Block_rotate.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Block_rotate.mp3)
+* [B-Type-Music.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/B-Type-Music.mp3)
+* [C-Type-Music-French-Suite.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/C-Type-Music-French-Suite.mp3)
+* [Game-Over.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Game-Over.mp3)
+* [High-beep.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/High-beep.mp3)
+* [High-Score-Intro.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/High-Score-Intro.mp3)
+* [High-Score-Loop.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/High-Score-Loop.mp3)
+* [Low-beep.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Low-beep.mp3)
+* [Pause.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Pause.mp3)
+* [Rocket-Blastoff.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Rocket-Blastoff.mp3)
+* [Row_clear4.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Row_clear4.mp3)
+* [Row_clear.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Row_clear.mp3)
+* [Success.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Success.mp3)
+* [Title-Intro.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Title-Intro.mp3)
+* [Title-Loop.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Title-Loop.mp3)
+* [Toreador-Song.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Toreador-Song.mp3)
+* [Trepak-1.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Trepak-1.mp3)
+* [Trepak-2.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Trepak-2.mp3)
+* [Trepak-3.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Trepak-3.mp3)
+* [Trepak-4.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Trepak-4.mp3)
+* [Trepak-5.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Trepak-5.mp3)
+* [Trepak-6.mp3](https://github.com/engine-pi/tetris/raw/main/misc/sounds/Trepak-6.mp3)
 
 https://github.com/niuhuan/gbc-swing/blob/master/src/main/java/gbc/Speaker.java
 
