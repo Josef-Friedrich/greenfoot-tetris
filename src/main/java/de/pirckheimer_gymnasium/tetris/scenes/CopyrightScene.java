@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 
 import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
 import de.pirckheimer_gymnasium.tetris.Tetris;
+import de.pirckheimer_gymnasium.tetris.text.TextField;
 
 /**
  * Das ist der erste Bildschirm, der beim Starten des Spiels angezeigt wird.
@@ -30,7 +31,10 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
 {
     public CopyrightScene()
     {
-        super("copyright");
+        super(null);
+        setBackgroundColor(Tetris.COLOR_SCHEME_GREEN.getWhite());
+        new TextField(this, -2, 17, 20, 18).write("Tetris auf der Engine PI",
+                Tetris.COLOR_SCHEME_GREEN.getBlack());
         delay(4, () -> startTitleScene());
     }
 
@@ -50,6 +54,6 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
 
     public static void main(String[] args)
     {
-        Tetris.start(new CopyrightScene());
+        Tetris.start(new CopyrightScene(), true);
     }
 }

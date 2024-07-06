@@ -16,25 +16,48 @@
  */
 package de.pirckheimer_gymnasium.tetris.scenes;
 
+import static de.pirckheimer_gymnasium.tetris.text.TextAlignment.CENTER;
+
+import java.awt.event.KeyEvent;
+
+import de.pirckheimer_gymnasium.engine_pi.Vector;
+import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
+import de.pirckheimer_gymnasium.engine_pi.event.MouseButton;
+import de.pirckheimer_gymnasium.engine_pi.event.MouseClickListener;
 import de.pirckheimer_gymnasium.tetris.Tetris;
+import de.pirckheimer_gymnasium.tetris.text.TextLine;
 
 /**
  * @author Josef Friedrich
  */
 public class TitleScene extends BaseScene
+        implements KeyStrokeListener, MouseClickListener
 {
     public TitleScene()
     {
-        super("title");
+        super("title_blank");
         Sound.playTitle();
-        delay(4, () -> {
-            startIngameScene();
-        });
+        new TextLine(this, -2, 3, 20).write("press any key",
+                Tetris.COLOR_SCHEME_GREEN.getBlack(), CENTER);
+        new TextLine(this, -2, 1, 20).write("©2024 J.Friedrich",
+                Tetris.COLOR_SCHEME_GREEN.getBlack(), CENTER);
     }
 
-    public void startIngameScene()
+    private void startIngameScene()
     {
         Tetris.start(new IngameScene());
+    }
+
+    @Override
+    public void onKeyDown(KeyEvent e)
+    {
+        startIngameScene();
+    }
+
+    @Override
+    public void onMouseDown(Vector position, MouseButton button)
+    {
+        startIngameScene();
     }
 
     public static void main(String[] args)

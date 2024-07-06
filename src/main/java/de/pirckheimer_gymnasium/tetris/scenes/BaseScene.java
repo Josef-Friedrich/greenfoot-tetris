@@ -45,8 +45,8 @@ public class BaseScene extends Scene
             // Dadurch stimmen die Engine-Omega-Koordination mit den Indexen im
             // zweidimensionen Block-Array überein.
             background.setPosition(-2, 0);
-            getCamera().setFocus(background);
             add(background);
         }
+        getCamera().setPostion(8, 9);;
     }
 }

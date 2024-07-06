@@ -83,6 +83,14 @@ public class TextLine
         }
     }
 
+    /**
+     * Schreibt eine Textzeile.
+     *
+     * @param text      Die Zeichenkette, die geschrieben werden soll.
+     * @param color     Die Farbe, in der der Text gesetzt werden soll.
+     * @param alignment Die Textausrichtung, in der die Textzeile gesetzt werden
+     *                  soll.
+     */
     public void write(String text, Color color, TextAlignment alignment)
     {
         // Die Zeichen löschen, die in einem früheren Aufruf eingezeichnet
@@ -116,6 +124,18 @@ public class TextLine
                     x + i, y);
             charIndex++;
         }
+    }
+
+    /**
+     * Schreibt eine Textzeile.
+     *
+     * @param text  Die Zeichenkette, die geschrieben werden soll.
+     * @param color Die Farbe, in der der Text gesetzt werden soll.
+     */
+    public void write(String text, Color color)
+    {
+        System.out.println(text);
+        write(text, color, TextAlignment.CENTER);
     }
 
     /**
