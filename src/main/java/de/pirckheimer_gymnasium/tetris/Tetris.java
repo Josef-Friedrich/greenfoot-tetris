@@ -43,7 +43,7 @@ public class Tetris
 
     /**
      * Die Skalierung des Spiels. Wird zum Beispiel 4 eingestellt, so wird ein
-     * {@code 8x8} Block auf {@code 32x32} vergrößert.omega
+     * {@code 8x8} Block auf {@code 32x32} vergrößert.
      */
     public static final int SCALE = 4;
 
@@ -59,7 +59,7 @@ public class Tetris
             .createGreenColorScheme();
 
     /**
-     * Aktivert und deaktiviert den Debug-Modus der Engine-Omega und des Spiels
+     * Aktivert und deaktiviert den Debug-Modus der Engine Pi und des Spiels
      * Tetris.
      *
      * Die Methode ist eine Hüll-Methode um {@link Game#setDebug(boolean)}.

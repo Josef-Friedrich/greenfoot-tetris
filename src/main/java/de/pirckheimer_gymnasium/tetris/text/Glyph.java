@@ -49,7 +49,14 @@ class Glyph
     {
         this.scene = scene;
         BufferedImage bufferedImage = null;
-        bufferedImage = Resources.IMAGES.get(getImagePath(glyph));
+        try
+        {
+            bufferedImage = Resources.IMAGES.get(getImagePath(glyph));
+        }
+        catch (Exception e)
+        {
+            // Ignore
+        }
         if (bufferedImage != null)
         {
             bufferedImage = convertColorspace(bufferedImage,

@@ -16,10 +16,14 @@
  */
 package de.pirckheimer_gymnasium.tetris;
 
+import static de.pirckheimer_gymnasium.tetris.Tetris.COLOR_SCHEME_GRAY;
+import static de.pirckheimer_gymnasium.tetris.Tetris.COLOR_SCHEME_GREEN;
+
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 
 import de.pirckheimer_gymnasium.engine_pi.Resources;
-import de.pirckheimer_gymnasium.engine_pi.util.ImageUtil;
+import de.pirckheimer_gymnasium.engine_pi.util.ColorUtil;
 
 /**
  * Eine Spezialisierung von {@link Image}.
@@ -33,6 +37,19 @@ public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
     public Image(String pathname)
     {
         super(Image.get(pathname), Tetris.SCALE * Tetris.BLOCK_SIZE);
+    }
+
+    /**
+     * @TODO remove when engine pi v0.24.0 is releaded.
+     */
+    private static String[] encodeColors(Color[] colors)
+    {
+        String[] output = new String[colors.length];
+        for (int i = 0; i < output.length; i++)
+        {
+            output[i] = ColorUtil.encode(colors[1]);
+        }
+        return output;
     }
 
     /**
@@ -50,13 +67,12 @@ public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
      *
      * @param pathname Der relative Pfad zu {@code src/main/resources}.
      *
-     * @return Das vergrößerte und eingefärbtes Bild.
+     * @return Das vergrößerte und eingefärbte Bild.
      */
     public static BufferedImage get(String pathname)
     {
-        BufferedImage image = Resources.IMAGES.get(pathname);
-        return ImageUtil.scale(ImageUtil.replaceColors(image,
-                Tetris.COLOR_SCHEME_GRAY.getColors(),
-                Tetris.COLOR_SCHEME_GREEN.getColors()), Tetris.SCALE);
+        return Resources.IMAGES.get(pathname, Tetris.SCALE,
+                encodeColors(COLOR_SCHEME_GRAY.getColors()),
+                encodeColors(COLOR_SCHEME_GREEN.getColors()));
     }
 }

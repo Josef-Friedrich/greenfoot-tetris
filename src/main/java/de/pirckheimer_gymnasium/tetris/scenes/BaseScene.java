@@ -42,7 +42,7 @@ public class BaseScene extends Scene
             // im Hauptspiel die linke untere Ecke des Blockrasters an der
             // Position
             // (0,0) steht.
-            // Dadurch stimmen die Engine-Omega-Koordination mit den Indexen im
+            // Dadurch stimmen die Engine-Pi-Koordination mit den Indexen im
             // zweidimensionen Block-Array überein.
             background.setPosition(-2, 0);
             add(background);
