@@ -19,13 +19,13 @@ package de.pirckheimer_gymnasium.tetris.scenes;
 import java.awt.event.KeyEvent;
 
 import de.pirckheimer_gymnasium.engine_pi.Vector;
+import de.pirckheimer_gymnasium.engine_pi.actor.ImageFontText;
 import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
 import de.pirckheimer_gymnasium.engine_pi.event.MouseButton;
 import de.pirckheimer_gymnasium.engine_pi.event.MouseClickListener;
 import de.pirckheimer_gymnasium.engine_pi.util.TextAlignment;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.text.Font;
-import de.pirckheimer_gymnasium.engine_pi.actor.ImageFontText;
 
 /**
  * @author Josef Friedrich

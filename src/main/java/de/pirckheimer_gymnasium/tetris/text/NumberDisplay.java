@@ -17,22 +17,27 @@
 package de.pirckheimer_gymnasium.tetris.text;
 
 import de.pirckheimer_gymnasium.engine_pi.Scene;
-import de.pirckheimer_gymnasium.tetris.Tetris;
+import de.pirckheimer_gymnasium.engine_pi.actor.ImageFontText;
+import de.pirckheimer_gymnasium.engine_pi.util.TextAlignment;
 
-public class NumberDisplay extends TextLine
+public class NumberDisplay
 {
     private int number;
 
+    private ImageFontText font;
+
     public NumberDisplay(Scene scene, int x, int y, int maxDigits)
     {
-        super(scene, x, y, maxDigits);
+        font = new ImageFontText(Font.getImageFont(), "0".repeat(maxDigits),
+                maxDigits, TextAlignment.RIGHT);
+        font.setPosition(x, y);
+        scene.add(font);
         set(0);
     }
 
     public void write(int number)
     {
-        super.write(String.valueOf(number),
-                Tetris.COLOR_SCHEME_GREEN.getBlack(), TextAlignment.RIGHT);
+        font.setContent(String.valueOf(number));
     }
 
     public void set(int number)

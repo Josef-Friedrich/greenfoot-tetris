@@ -18,9 +18,11 @@ package de.pirckheimer_gymnasium.tetris.scenes;
 
 import java.awt.event.KeyEvent;
 
+import de.pirckheimer_gymnasium.engine_pi.actor.ImageFontText;
 import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
+import de.pirckheimer_gymnasium.engine_pi.util.TextAlignment;
 import de.pirckheimer_gymnasium.tetris.Tetris;
-import de.pirckheimer_gymnasium.tetris.text.TextField;
+import de.pirckheimer_gymnasium.tetris.text.Font;
 
 /**
  * Das ist der erste Bildschirm, der beim Starten des Spiels angezeigt wird.
@@ -33,8 +35,9 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
     {
         super(null);
         setBackgroundColor(Tetris.COLOR_SCHEME_GREEN.getWhite());
-        new TextField(this, -2, 17, 20, 18).write("Tetris auf der Engine PI",
-                Tetris.COLOR_SCHEME_GREEN.getBlack());
+        ImageFontText text = new ImageFontText(Font.getImageFont(),
+                "Tetris auf der Engine PI", 20, TextAlignment.CENTER);
+        add(text);
         delay(4, this::startTitleScene);
     }
 
