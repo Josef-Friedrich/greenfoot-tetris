@@ -16,16 +16,16 @@
  */
 package de.pirckheimer_gymnasium.tetris.scenes;
 
-import static de.pirckheimer_gymnasium.tetris.text.TextAlignment.CENTER;
-
 import java.awt.event.KeyEvent;
 
 import de.pirckheimer_gymnasium.engine_pi.Vector;
 import de.pirckheimer_gymnasium.engine_pi.event.KeyStrokeListener;
 import de.pirckheimer_gymnasium.engine_pi.event.MouseButton;
 import de.pirckheimer_gymnasium.engine_pi.event.MouseClickListener;
+import de.pirckheimer_gymnasium.engine_pi.util.TextAlignment;
 import de.pirckheimer_gymnasium.tetris.Tetris;
-import de.pirckheimer_gymnasium.tetris.text.TextLine;
+import de.pirckheimer_gymnasium.tetris.text.Font;
+import de.pirckheimer_gymnasium.engine_pi.actor.ImageFontText;
 
 /**
  * @author Josef Friedrich
@@ -37,10 +37,16 @@ public class TitleScene extends BaseScene
     {
         super("title_blank");
         Sound.playTitle();
-        new TextLine(this, -2, 3, 20).write("press any key",
-                Tetris.COLOR_SCHEME_GREEN.getBlack(), CENTER);
-        new TextLine(this, -2, 1, 20).write("©2024 J.Friedrich",
-                Tetris.COLOR_SCHEME_GREEN.getBlack(), CENTER);
+        addCenteredText("press any key", 3);
+        addCenteredText("©2024 J.Friedrich", 1);
+    }
+
+    private void addCenteredText(String content, int y)
+    {
+        ImageFontText actor = new ImageFontText(Font.getImageFont(), content,
+                20, TextAlignment.CENTER);
+        actor.setPosition(-2, y);
+        add(actor);
     }
 
     private void startIngameScene()
