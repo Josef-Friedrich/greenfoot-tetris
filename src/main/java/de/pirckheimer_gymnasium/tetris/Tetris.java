@@ -59,10 +59,12 @@ public class Tetris
             .createGreenColorScheme();
 
     /**
-     * Aktivert und deaktiviert den Debug-Modus der Engine Pi und des Spiels
+     * Aktiviert und deaktiviert den Debug-Modus der Engine Pi und des Spiels
      * Tetris.
      *
+     * <p>
      * Die Methode ist eine Hüll-Methode um {@link Game#setDebug(boolean)}.
+     * </p>
      *
      * @param value ist dieser Wert true, wird Tetris ab sofort im Debug-Modus
      *              ausgeführt.
@@ -73,7 +75,7 @@ public class Tetris
     }
 
     /**
-     * Startet das Spiel mit der angegebenen Szene und bietet darüberhinaus die
+     * Startet das Spiel mit der angegebenen Szene und bietet darüber hinaus die
      * Möglichkeit an, den Debug-Modus zu aktivieren oder zu deaktivieren.
      *
      * @param scene Die Szene, mit der das Spiel gestartet werden soll.

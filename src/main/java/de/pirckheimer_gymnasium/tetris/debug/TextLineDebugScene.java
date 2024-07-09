@@ -32,11 +32,7 @@ import de.pirckheimer_gymnasium.tetris.text.TextLine;
  */
 public class TextLineDebugScene extends Scene
 {
-    private int LINE_WIDTH = 18;
-
-    private String TEXT = "Hello, World.";
-
-    private Color COLOR = Tetris.COLOR_SCHEME_GREEN.getDark();
+    private final Color COLOR = Tetris.COLOR_SCHEME_GREEN.getDark();
 
     public TextLineDebugScene()
     {
@@ -48,7 +44,9 @@ public class TextLineDebugScene extends Scene
 
     private void createTextLine(int y, TextAlignment alignment)
     {
+        int LINE_WIDTH = 18;
         TextLine line = new TextLine(this, -9, y, LINE_WIDTH);
+        String TEXT = "Hello, World.";
         line.write(TEXT, COLOR, alignment);
     }
 

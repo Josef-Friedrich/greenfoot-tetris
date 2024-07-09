@@ -32,7 +32,7 @@ import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
 public class SingleTetrominoDebugScene extends Scene
         implements KeyStrokeListener
 {
-    private Text rotation;
+    private final Text rotation;
 
     Tetromino tetromino;
 

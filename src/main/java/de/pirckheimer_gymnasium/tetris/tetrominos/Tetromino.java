@@ -147,7 +147,7 @@ public abstract class Tetromino
     }
 
     /**
-     * Überprüft, ob die gegebene Kooordinate mit einem der vier eigenen Blöcke
+     * Überprüft, ob die gegebene Koordinate mit einem der vier eigenen Blöcke
      * des Tetrominos übereinstimmt.
      */
     public boolean isOwnBlockPosition(int x, int y)
@@ -178,13 +178,13 @@ public abstract class Tetromino
     /**
      * Diese Methode wird benötigt, um Tetrominos außerhalb des Grids zu
      * rotieren und dann in die gewünschte Endposition zu bringen. So können wir
-     * ein vorbelegtes Gitter erzeugen, um den Algorithmus zu testen wie
+     * ein vorbelegtes Gitter erzeugen, um den Algorithmus zu testen, wie
      * ausgefüllte Reihen aus dem Gitter gelöscht werden. Die Tetrominos werden
      * zunächst ohne Gitter erzeugt ({@code grid = null}), dann rotiert und an
      * die gewünschte Position geschoben und schließlich wird diese Methode
      * aufgerufen und die Blöcke werden dem Gitter hinzugefügt.
      *
-     * @param grid
+     * @param grid Ein Blockgitter.
      */
     public void addGrid(Grid grid)
     {
@@ -195,8 +195,10 @@ public abstract class Tetromino
     /**
      * Fügt alle Blöcke des Tetrominos in das Blockgitter ein.
      *
+     * <p>
      * Die Blöcke können nicht einzeln im Gitter verschoben werden, da sie sich
      * sonst gegenseitig überschreiben würden.
+     * </p>
      *
      * @see #removeBlocksFromGrid()
      */
@@ -215,8 +217,10 @@ public abstract class Tetromino
     /**
      * Entfernt alle Blöcke des Tetrominos aus dem Blockgitter.
      *
+     * <p>
      * Die Blöcke können nicht einzeln im Gitter verschoben werden, da sie sich
      * sonst gegenseitig überschreiben würden.
+     * </p>
      *
      * @see #addBlocksToGrid()
      */
@@ -345,14 +349,13 @@ public abstract class Tetromino
      * Probleme dieser Implementation:
      *
      * <ul>
-     * <item>Das I-Tetromino schaut einen Block über den 3x3-Block
-     * hinaus.</item>
+     * <li>Das I-Tetromino schaut einen Block über den 3x3-Block hinaus.</li>
      *
-     * <item>In den 3x3-Feld dürfen sind an gewissen Position Blöcke befinden
-     * und das Tetromino kann sich trotzdem bewegen.</item>
+     * <li>In den 3x3-Feld dürfen sind an gewissen Position Blöcke befinden und
+     * das Tetromino kann sich trotzdem bewegen.</li>
      * </ul>
      *
-     * @return
+     * @return Wahr, falls sich das Tetromino drehen kann.
      */
     private boolean checkRotation()
     {
@@ -373,9 +376,11 @@ public abstract class Tetromino
      * Führt die eigentliche Rotation des Tetrominos durch, d. h. sie bewegt
      * einzelnen Blöcke an neue Positionen.
      *
+     * <p>
      * Es handelt sich um eine abstrakte Einschubmethode, die nach dem
-     * Schablonenmethode-Entwurfsmuster (engl. template method) von den
+     * Schablonen-Methode-Entwurfsmuster (englisch template method) von den
      * Unterklassen - den einzelnen Tetrominos - implementiert werden müssen.
+     * </p>
      *
      * @see #rotate
      */
@@ -385,8 +390,8 @@ public abstract class Tetromino
      * Führt eine Rechtsdrehung durch.
      *
      * <p>
-     * Es handelt sich um eine Schablonenmethode (engl. template method) nach
-     * dem gleichnamigen Entwurfsmuster. Diese Methode ruft die abstrakte
+     * Es handelt sich um eine Schablonen-Methode (englisch template method)
+     * nach dem gleichnamigen Entwurfsmuster. Diese Methode ruft die abstrakte
      * Methoden {@link #doRotation()} auf, die erst in den Unterklassen der
      * einzelnen Tetrominos definiert werden.
      * </p>
@@ -446,32 +451,16 @@ public abstract class Tetromino
     public static Tetromino create(Scene scene, Grid grid, String name, int x,
             int y)
     {
-        switch (name)
+        return switch (name)
         {
-        case "L":
-            return new L(scene, grid, x, y);
-
-        case "J":
-            return new J(scene, grid, x, y);
-
-        case "I":
-            return new I(scene, grid, x, y);
-
-        case "O":
-            return new O(scene, grid, x, y);
-
-        case "Z":
-            return new Z(scene, grid, x, y);
-
-        case "S":
-            return new S(scene, grid, x, y);
-
-        case "T":
-            return new T(scene, grid, x, y);
-
-        default:
-            return new L(scene, grid, x, y);
-        }
+        case "J" -> new J(scene, grid, x, y);
+        case "I" -> new I(scene, grid, x, y);
+        case "O" -> new O(scene, grid, x, y);
+        case "Z" -> new Z(scene, grid, x, y);
+        case "S" -> new S(scene, grid, x, y);
+        case "T" -> new T(scene, grid, x, y);
+        default -> new L(scene, grid, x, y);
+        };
     }
 
     /**

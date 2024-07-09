@@ -40,7 +40,7 @@ public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
     }
 
     /**
-     * @TODO remove when engine pi v0.24.0 is releaded.
+     * TODO remove when engine pi v0.24.0 is released.
      */
     private static String[] encodeColors(Color[] colors)
     {

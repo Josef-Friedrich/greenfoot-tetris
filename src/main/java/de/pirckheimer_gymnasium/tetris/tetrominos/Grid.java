@@ -34,7 +34,7 @@ public class Grid
      * Die erste Dimension ist die x-Koordinate, die zweite die y-Koordinate.
      * </p>
      */
-    private Block[][] grid;
+    private final Block[][] grid;
 
     public Grid(int width, int height)
     {
@@ -103,7 +103,7 @@ public class Grid
      *
      * @param y Die y-Koordinate ({@code 0} ist die unterste Zeile).
      *
-     * @return Wahr, wenn die angegeben Zeile mit Blöcken ausgefüllt ist.
+     * @return Wahr, wenn die angegebene Zeile mit Blöcken ausgefüllt ist.
      */
     private boolean isRowFull(int y)
     {
@@ -142,7 +142,7 @@ public class Grid
     /**
      * Löscht alle Blöcke aus einer Zeile.
      *
-     * @param y Die y-Koordinate der Zeile aus der Blöche gelöscht werden
+     * @param y Die y-Koordinate der Zeile aus der Blöcke gelöscht werden
      *          sollen.
      */
     public void clearRow(int y)

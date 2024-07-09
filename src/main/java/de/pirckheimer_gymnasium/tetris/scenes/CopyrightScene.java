@@ -35,7 +35,7 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
         setBackgroundColor(Tetris.COLOR_SCHEME_GREEN.getWhite());
         new TextField(this, -2, 17, 20, 18).write("Tetris auf der Engine PI",
                 Tetris.COLOR_SCHEME_GREEN.getBlack());
-        delay(4, () -> startTitleScene());
+        delay(4, this::startTitleScene);
     }
 
     public void startTitleScene()

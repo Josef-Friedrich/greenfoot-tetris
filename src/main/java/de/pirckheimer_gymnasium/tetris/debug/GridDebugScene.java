@@ -329,7 +329,7 @@ public class GridDebugScene extends BaseScene
     public void onFrameUpdate(double pastTime)
     {
         // Markiert eine Zeile über der sich die Maus befindet. Diese kann dann
-        // durch einen Linkklick getilgt werden.
+        // durch einen Link-Klick getilgt werden.
         Vector position = Game.getMousePosition();
         ROW_OVERLAY.setY((int) position.getY());
         // Markiert die Zeilen, die getilgt werden können.

@@ -29,9 +29,9 @@ public class Block
 
     private int y;
 
-    private Image image;
+    private final Image image;
 
-    private String name;
+    private final String name;
 
     /**
      * Eine Referenz auf die {@link Scene Szene}, in der der Block angezeigt
@@ -42,7 +42,7 @@ public class Block
      * einzufügen ({@link Scene#add}) bzw. aus der {@link Scene Szene} zu
      * entfernen ({@link Scene#remove}).
      */
-    private Scene scene;
+    private final Scene scene;
 
     /**
      * @param scene     Eine Referenz auf die {@link Scene Szene}, in der der
@@ -79,7 +79,7 @@ public class Block
     /**
      * Gibt den ersten Buchstaben des Blocknamens zurück.
      *
-     * @return Der erste Buchstaben des Blocknamens des Blocks z. B. {@code 'L'}
+     * @return Der erste Buchstabe des Blocknamens des Blocks z. B. {@code 'L'}
      *         oder {@code 'I'}.
      */
     public char getChar()

@@ -47,6 +47,6 @@ public class BaseScene extends Scene
             background.setPosition(-2, 0);
             add(background);
         }
-        getCamera().setPostion(8, 9);;
+        getCamera().setPostion(8, 9);
     }
 }

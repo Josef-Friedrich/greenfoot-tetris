@@ -29,9 +29,9 @@ public class SoftDrop
     /**
      * Die y-Koordinate, bei der die Soft-Drop-Bewegung gestartet wurde.
      */
-    private int y;
+    private final int y;
 
-    private Tetromino tetromino;
+    private final Tetromino tetromino;
 
     public SoftDrop(Tetromino tetromino)
     {

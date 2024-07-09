@@ -22,7 +22,7 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
  *
  * <p>
  * Im Attribut {@link #from} steht der <b>kleinere</b> Wert. Ist nur eine Zeile
- * ausgefüllt, so steht in {@link from} und {@link to} der gleiche Wert.
+ * ausgefüllt, so steht in {@link #from} und {@link #to} der gleiche Wert.
  * </p>
  *
  * @author Josef Friedrich

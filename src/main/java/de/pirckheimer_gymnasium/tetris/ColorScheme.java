@@ -33,7 +33,7 @@ import de.pirckheimer_gymnasium.engine_pi.util.ColorUtil;
  */
 public class ColorScheme
 {
-    private Color[] colors;
+    private final Color[] colors;
 
     /**
      * Erzeugt eine <b>neues Farbschema</b> durch Angabe von
@@ -141,8 +141,8 @@ public class ColorScheme
     }
 
     /**
-     * Erzeugt ein grünes Farbschema. Diese vier grünen Farben wurde mit Hilfe
-     * eines Youtube-Video ermittelt, das das Gameboy-Display abgefilmt zeigt.
+     * Erzeugt ein grünes Farbschema. Diese vier grünen Farben wurden mithilfe
+     * eines Youtube-Videos ermittelt, das das Gameboy-Display abgefilmt zeigt.
      *
      * @return Ein grünes Farbschema.
      */

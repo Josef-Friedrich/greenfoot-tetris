@@ -32,7 +32,7 @@ import de.pirckheimer_gymnasium.tetris.tetrominos.Tetromino;
  */
 public class TetrominoDebugScene extends Scene implements KeyStrokeListener
 {
-    private Text rotation;
+    private final Text rotation;
 
     Tetromino[] t;
 
@@ -42,9 +42,10 @@ public class TetrominoDebugScene extends Scene implements KeyStrokeListener
     {
         rotation = new Text("0", 2);
         rotation.setColor(Color.WHITE);
-        rotation.setPosition(2, Tetris.HEIGHT / 2);
+        rotation.setPosition(2, (double) Tetris.HEIGHT / 2);
         grid = new Grid(Tetris.WIDTH, Tetris.HEIGHT);
-        getCamera().setPostion(Tetris.WIDTH / 2, Tetris.HEIGHT / 2);
+        getCamera().setPostion((double) Tetris.WIDTH / 2,
+                (double) Tetris.HEIGHT / 2);
         add(rotation);
         t = new Tetromino[7];
         // L I J

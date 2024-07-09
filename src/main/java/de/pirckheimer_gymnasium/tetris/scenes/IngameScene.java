@@ -38,7 +38,7 @@ import de.pirckheimer_gymnasium.tetris.text.NumberDisplay;
  */
 public class IngameScene extends BaseScene implements KeyStrokeListener
 {
-    private Grid grid;
+    private final Grid grid;
 
     /**
      * Der Zufallsgenerator wird benötigt, um zufällig neue Tetrominos zu
@@ -47,7 +47,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      *
      * @see #createNextTetromino()
      */
-    private static Random random = new Random();
+    private static final Random random = new Random();
 
     /**
      * Die Nummer des nächsten Tetrominos.
@@ -69,20 +69,20 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      * Die Gesamtpunktezahl. Diese Nummernanzeige ist mit SCORE beschriftet und
      * ist oben rechts platziert.
      */
-    private NumberDisplay score;
+    private final NumberDisplay score;
 
     /**
      * In welchem Level wir uns gerade befinden. Das erste Level ist 0. Diese
      * Nummernanzeige ist mit LEVEL beschriftet und ist rechts in der Mitte
      * platziert.
      */
-    private NumberDisplay level;
+    private final NumberDisplay level;
 
     /**
      * Wie viele Zeilen bisher getilgt wurden. Diese Nummernanzeige ist mit
      * LINES beschriftet und ist unter der Level-Anzeige platziert.
      */
-    private NumberDisplay clearedLines;
+    private final NumberDisplay clearedLines;
 
     /**
      * Ein Feld, das die Anzahl an Einzelbilder enthält, nach denen eine
@@ -154,9 +154,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         keyRepeater = new PressedKeyRepeater();
         keyRepeater.addListener(KeyEvent.VK_DOWN, () -> {
             softDrop = new SoftDrop(tetromino);
-        }, () -> {
-            moveDown();
-        }, () -> {
+        }, this::moveDown, () -> {
             softDrop = null;
         });
         keyRepeater.addListener(KeyEvent.VK_RIGHT, this::moveRight);
@@ -190,9 +188,6 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      * https://tetris.wiki/Scoring
      *
      * @param lines Die Anzahl an getilgten Zeilen.
-     *
-     * @return Eine Punkteanzahl zu der Gesamtpunktezahl hinzugezählt werden
-     *         muss.
      */
     private void setScores(int lines)
     {
@@ -222,7 +217,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      * das aktuelle Tetromino von einer Zeile zur darunterliegenden bewegt.
      *
      * <p>
-     * Wir bereichnen das Intervall mit Hilfe des Dreisatzes, hier mit konkreten
+     * Wir berechnen das Intervall mit Hilfe des Dreisatzes, hier mit konkreten
      * Werte für das 0-te Level:
      * </p>
      *
@@ -392,11 +387,9 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
     @Override
     public void onKeyDown(KeyEvent keyEvent)
     {
-        switch (keyEvent.getKeyCode())
+        if (keyEvent.getKeyCode() == KeyEvent.VK_SPACE)
         {
-        case KeyEvent.VK_SPACE:
             rotate();
-            break;
         }
         if (Game.isDebug())
         {
