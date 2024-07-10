@@ -107,16 +107,6 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
     private final int[] GB_FRAMES_PER_ROW = { 53, 49, 45, 41, 37, 33, 28, 22,
             17, 11, 10, 9, 8, 7, 6, 6, 5, 5, 4, 4, 3 };
 
-    /**
-     * Die Bildwiederholungsrate des originalen Gameboys pro Sekunde.
-     *
-     * <p>
-     * Quelle: <a href=
-     * "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
-     * </p>
-     */
-    private final double GB_FRAME_RATE = 59.73;
-
     protected PressedKeyRepeater keyRepeater;
 
     PeriodicTaskExecutor periodicTask;
@@ -145,7 +135,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
         score = new NumberDisplay(this, 11, 14, 6);
         level = new NumberDisplay(this, 12, 10, 4);
         clearedLines = new NumberDisplay(this, 12, 7, 4);
-        periodicTask = repeat(caculateDownInterval(), (counter) -> {
+        periodicTask = repeat(calculateDownInterval(), (counter) -> {
             if (softDrop == null)
             {
                 moveDown();
@@ -184,8 +174,8 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
 
     /**
      * Setzt drei verschiedene Zahlen, die den Spielstand angeben.
-     *
-     * https://tetris.wiki/Scoring
+     * <p>Siehe
+     * <a href="https://tetris.wiki/Scoring">Tetris-Wiki</a>.</p>
      *
      * @param lines Die Anzahl an getilgten Zeilen.
      */
@@ -230,8 +220,12 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      * {@code interval / GB_FRAMES_PER_ROW[level] = 1 / GB_FRAME_RATE} gibt
      * {@code interval = 1 / GB_FRAME_RATE * GB_FRAMES_PER_ROW[level] }
      */
-    private double caculateDownInterval()
+    private double calculateDownInterval()
     {
+         // Die Bildwiederholungsrate des originalen Gameboys pro Sekunde.
+         // Quelle: <a href=
+         // "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
+        double GB_FRAME_RATE = 59.73;
         return 1.0 / GB_FRAME_RATE * GB_FRAMES_PER_ROW[level.get()];
     }
 
@@ -283,7 +277,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
                 score.add(softDrop.getDistance());
             }
             // Wir stoppen alle Tastenwiederholer (z. B. ausgelöst durch einen
-            // Softdrop), wenn sich ein Tetromino nicht
+            // Soft drop), wenn sich ein Tetromino nicht
             // mehr weiter nach unten bewegen kann. Würden wir den Wiederholer
             // nicht stoppen, dann hätte das neue Tetromino gleich nach dem
             // Erscheinen ein erhöhtes Falltempo.
@@ -377,7 +371,7 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
                 periodicTask.resume();
                 setScores(range.getRowCount());
                 Sound.playBlockDrop();
-                periodicTask.setInterval(caculateDownInterval());
+                periodicTask.setInterval(calculateDownInterval());
                 isInAnimation = false;
                 break;
             }
