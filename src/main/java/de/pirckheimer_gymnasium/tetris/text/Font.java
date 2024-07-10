@@ -13,8 +13,8 @@ public class Font
     {
         if (imageFont == null)
         {
-            imageFont = new ImageFont("glyphs",
-                    ImageFontCaseSensitivity.TO_UPPER)
+            imageFont = new ImageFont("glyphs")
+                    .setCaseSensitivity(ImageFontCaseSensitivity.TO_UPPER)
                     .setColor(COLOR_SCHEME_GREEN.getBlack());
         }
         return imageFont;
