@@ -101,8 +101,8 @@ public class Tetris
         }
         else
         {
-            Game.start(BLOCK_SIZE * WIDTH * SCALE, BLOCK_SIZE * HEIGHT * SCALE,
-                    scene);
+            Game.start(scene, BLOCK_SIZE * WIDTH * SCALE,
+                    BLOCK_SIZE * HEIGHT * SCALE);
         }
     }
 
