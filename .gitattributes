@@ -1,2 +1,2 @@
-misc/* linguist-vendored
+misc/** linguist-vendored
 *.asm linguist-vendored
