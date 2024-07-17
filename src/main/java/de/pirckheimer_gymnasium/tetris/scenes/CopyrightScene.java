@@ -41,22 +41,24 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
                 "Bullet-Proof\n" + //
                 "software and\n" + //
                 "sub-licensed to\n" + //
-                "Nintendo\n" + //
+                "Nintendo.\n" + //
                 "\n" + //
-                "© 1989 Bullet-Proof\n" + //
+                "©1989 Bullet-Proof\n" + //
                 "software\n" + //
-                "© Nintendo\n" + //
+                "©1989 Nintendo\n" + //
                 "\n" + //
-                "All rights reserved\n" + //
+                "All rights reserved.\n" + //
                 "\n" + //
                 "original concept\n" + //
                 "design and programm\n" + //
-                "by Alexey Pazhitonov\"";
-        ImageFontText text = new ImageFontText(Font.getFont(), origText, 20,
+                // Im Original: by Alexey Pazhitnov."
+                // ." kann mit ImageFont nicht als ein Zeichen dargestellt werden.
+                "by Alexey Pazhitnov\"\n" + "\n";
+        ImageFontText text = new ImageFontText(Font.getFont(), origText, 21,
                 TextAlignment.CENTER);
         text.setPosition(-2, 0);
         add(text);
-        delay(4, this::startTitleScene);
+        // delay(4, this::startTitleScene);
     }
 
     public void startTitleScene()
