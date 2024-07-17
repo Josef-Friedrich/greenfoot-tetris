@@ -58,7 +58,7 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
                 TextAlignment.CENTER);
         text.setPosition(-2, 0);
         add(text);
-        // delay(4, this::startTitleScene);
+        delay(4, this::startTitleScene);
     }
 
     public void startTitleScene()
