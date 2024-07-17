@@ -28,7 +28,7 @@ public class NumberDisplay
 
     public NumberDisplay(Scene scene, int x, int y, int maxDigits)
     {
-        font = new ImageFontText(Font.getImageFont(), "0", maxDigits,
+        font = new ImageFontText(Font.getFont(), "0", maxDigits,
                 TextAlignment.RIGHT);
         font.setPosition(x, y);
         scene.add(font);
