@@ -25,7 +25,8 @@ import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.text.Font;
 
 /**
- * Das ist der erste Bildschirm, der beim Starten des Spiels angezeigt wird.
+ * Der erste Bildschirm, der beim Starten des Spiels angezeigt wird. Zeigt einen
+ * Copyright-Hinweis.
  *
  * @author Josef Friedrich
  */
