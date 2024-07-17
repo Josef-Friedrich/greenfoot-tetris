@@ -9,7 +9,7 @@ build:
 	mvn compile
 
 format:
-	mvn formatter:format
+	mvn process-sources
 
 package:
 	mvn package
