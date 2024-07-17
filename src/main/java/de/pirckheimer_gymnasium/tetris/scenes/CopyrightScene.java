@@ -25,8 +25,8 @@ import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.text.Font;
 
 /**
- * Der erste Bildschirm, der beim Starten des Spiels angezeigt wird. Zeigt einen
- * Copyright-Hinweis.
+ * Das ist der <b>erste Bildschirm</b>, der beim Starten des Spiels angezeigt
+ * wird. Zeigt einen <b>Copyright</b>-Hinweis.
  *
  * @author Josef Friedrich
  */
@@ -36,8 +36,25 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
     {
         super(null);
         setBackgroundColor(Tetris.COLOR_SCHEME_GREEN.getWhite());
-        ImageFontText text = new ImageFontText(Font.getImageFont(),
-                "Tetris auf der Engine PI", 20, TextAlignment.CENTER);
+        String origText = "\"TM and ©1987 ELORG,\n" + //
+                "Tetris licensed to\n" + //
+                "Bullet-Proof\n" + //
+                "software and\n" + //
+                "sub-licensed to\n" + //
+                "Nintendo\n" + //
+                "\n" + //
+                "© 1989 Bullet-Proof\n" + //
+                "software\n" + //
+                "© Nintendo\n" + //
+                "\n" + //
+                "All rights reserved\n" + //
+                "\n" + //
+                "original concept\n" + //
+                "design and programm\n" + //
+                "by Alexey Pazhitonov\"";
+        ImageFontText text = new ImageFontText(Font.getFont(), origText, 20,
+                TextAlignment.CENTER);
+        text.setPosition(-2, 0);
         add(text);
         delay(4, this::startTitleScene);
     }
@@ -58,6 +75,6 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
 
     public static void main(String[] args)
     {
-        Tetris.start(new CopyrightScene(), true);
+        Tetris.start(new CopyrightScene());
     }
 }

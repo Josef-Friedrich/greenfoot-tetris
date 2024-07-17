@@ -31,13 +31,47 @@
 
   <build>
     <plugins>
+      <!--
+      https://code.revelc.net/formatter-maven-plugin/examples.html#basic-configuration-using-external-resource -->
       <plugin>
         <groupId>net.revelc.code.formatter</groupId>
         <artifactId>formatter-maven-plugin</artifactId>
-        <version>2.23.0</version>
+        <version>2.24.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>format</goal>
+            </goals>
+            <configuration>
+              <configFile>eclipse-formatter.xml</configFile>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>de.pirckheimer-gymnasium</groupId>
+            <artifactId>engine-pi</artifactId>
+            <version>0.26.0</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <!--
+      https://maven.apache.org/plugins/maven-javadoc-plugin/examples/stylesheet-configuration.html -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>3.7.0</version>
         <configuration>
-          <configFile>${project.basedir}/.eclipse-formatter/school.xml</configFile>
+          <stylesheetfile>javadoc-stylesheet.css</stylesheetfile>
         </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>de.pirckheimer-gymnasium</groupId>
+            <artifactId>engine-pi</artifactId>
+            <version>0.26.0</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <!-- https://maven.apache.org/plugins/maven-assembly-plugin/usage.html -->
