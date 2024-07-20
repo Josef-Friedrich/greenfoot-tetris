@@ -18,7 +18,8 @@ package de.pirckheimer_gymnasium.tetris.tetrominos;
 
 import de.pirckheimer_gymnasium.engine_pi.Scene;
 import de.pirckheimer_gymnasium.engine_pi.Vector;
-import de.pirckheimer_gymnasium.tetris.Image;
+import de.pirckheimer_gymnasium.engine_pi.actor.Image;
+import de.pirckheimer_gymnasium.tetris.ImageLoader;
 
 /**
  * @author Josef Friedrich
@@ -59,7 +60,7 @@ public class Block
     {
         this.scene = scene;
         name = imageName;
-        image = new Image("blocks/" + imageName + ".png");
+        image = ImageLoader.get("blocks/" + imageName + ".png");
         image.setPosition(x, y);
         this.x = x;
         this.y = y;

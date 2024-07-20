@@ -174,8 +174,9 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
 
     /**
      * Setzt drei verschiedene Zahlen, die den Spielstand angeben.
-     * <p>Siehe
-     * <a href="https://tetris.wiki/Scoring">Tetris-Wiki</a>.</p>
+     * <p>
+     * Siehe <a href="https://tetris.wiki/Scoring">Tetris-Wiki</a>.
+     * </p>
      *
      * @param lines Die Anzahl an getilgten Zeilen.
      */
@@ -222,9 +223,9 @@ public class IngameScene extends BaseScene implements KeyStrokeListener
      */
     private double calculateDownInterval()
     {
-         // Die Bildwiederholungsrate des originalen Gameboys pro Sekunde.
-         // Quelle: <a href=
-         // "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
+        // Die Bildwiederholungsrate des originalen Gameboys pro Sekunde.
+        // Quelle: <a href=
+        // "https://harddrop.com/wiki/Tetris_%28Game_Boy%29">harddrop.com</a>
         double GB_FRAME_RATE = 59.73;
         return 1.0 / GB_FRAME_RATE * GB_FRAMES_PER_ROW[level.get()];
     }

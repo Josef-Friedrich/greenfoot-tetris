@@ -52,7 +52,8 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
                 "original concept\n" + //
                 "design and programm\n" + //
                 // Im Original: by Alexey Pazhitnov."
-                // ." kann mit ImageFont nicht als ein Zeichen dargestellt werden.
+                // ." kann mit ImageFont nicht als ein Zeichen dargestellt
+                // werden.
                 "by Alexey Pazhitnov\"\n" + "\n";
         ImageFontText text = new ImageFontText(Font.getFont(), origText, 21,
                 TextAlignment.CENTER);

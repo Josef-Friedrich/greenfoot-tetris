@@ -42,12 +42,6 @@ public class Tetris
     public static final int HEIGHT = 18;
 
     /**
-     * Die Skalierung des Spiels. Wird zum Beispiel 4 eingestellt, so wird ein
-     * {@code 8x8} Block auf {@code 32x32} vergrößert.
-     */
-    public static final int SCALE = 4;
-
-    /**
      * Das Spielfeld hat rechts einen Abstand zum Bildschirmrand von 8 Blöcken.
      */
     public static final int GRID_WIDTH = 10;
@@ -94,15 +88,15 @@ public class Tetris
     public static void start(Scene scene)
     {
         Game.setTitle("Tetris im Gameboy-Stil auf der Engine Pi");
-        scene.getCamera().setMeter(Tetris.SCALE * Tetris.BLOCK_SIZE);
+        Game.setPixelMultiplication(4);
+        scene.getCamera().setMeter(Tetris.BLOCK_SIZE);
         if (Game.isRunning())
         {
             Game.transitionToScene(scene);
         }
         else
         {
-            Game.start(scene, BLOCK_SIZE * WIDTH * SCALE,
-                    BLOCK_SIZE * HEIGHT * SCALE);
+            Game.start(scene, BLOCK_SIZE * WIDTH, BLOCK_SIZE * HEIGHT);
         }
     }
 

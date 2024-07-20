@@ -18,7 +18,7 @@
     <dependency>
       <groupId>de.pirckheimer-gymnasium</groupId>
       <artifactId>engine-pi</artifactId>
-      <version>0.26.0</version>
+      <version>0.27.0</version>
     </dependency>
 
     <dependency>
@@ -51,7 +51,7 @@
           <dependency>
             <groupId>de.pirckheimer-gymnasium</groupId>
             <artifactId>engine-pi</artifactId>
-            <version>0.26.0</version>
+            <version>0.27.0</version>
           </dependency>
         </dependencies>
       </plugin>

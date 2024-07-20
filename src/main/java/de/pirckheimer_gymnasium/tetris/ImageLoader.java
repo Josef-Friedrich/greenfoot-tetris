@@ -22,21 +22,13 @@ import static de.pirckheimer_gymnasium.tetris.Tetris.COLOR_SCHEME_GREEN;
 import java.awt.image.BufferedImage;
 
 import de.pirckheimer_gymnasium.engine_pi.Resources;
+import de.pirckheimer_gymnasium.engine_pi.actor.Image;
 
 /**
- * Eine Spezialisierung von {@link Image}.
- *
- * <p>
  * Bereitet die Bilder für die Verwendung in Tetris vor.
- * </p>
  */
-public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
+public class ImageLoader
 {
-    public Image(String pathname)
-    {
-        super(Image.get(pathname), Tetris.SCALE * Tetris.BLOCK_SIZE);
-    }
-
     /**
      * Gibt ein vergrößertes und eingefärbtes Bild zurück.
      *
@@ -54,9 +46,14 @@ public class Image extends de.pirckheimer_gymnasium.engine_pi.actor.Image
      *
      * @return Das vergrößerte und eingefärbte Bild.
      */
-    public static BufferedImage get(String pathname)
+    public static BufferedImage getBuffered(String pathname)
     {
-        return Resources.IMAGES.get(pathname, Tetris.SCALE,
-                COLOR_SCHEME_GRAY.getColors(), COLOR_SCHEME_GREEN.getColors());
+        return Resources.IMAGES.get(pathname, 1, COLOR_SCHEME_GRAY.getColors(),
+                COLOR_SCHEME_GREEN.getColors());
+    }
+
+    public static Image get(String pathname)
+    {
+        return new Image(getBuffered(pathname), Tetris.BLOCK_SIZE);
     }
 }

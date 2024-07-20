@@ -16,13 +16,13 @@ public class Font
             font = new ImageFont("glyphs")
                     .setCaseSensitivity(ImageFontCaseSensitivity.TO_UPPER)
                     .setColor(COLOR_SCHEME_GREEN.getBlack());
-        font.addMapping('-', "dash");
-        font.addMapping(',', "comma");
-        font.addMapping(':', "colon");
-        font.addMapping('.', "dot");
-        font.addMapping('"', "quotes");
-        font.addMapping('©', "copyright");
-       // font.addMapping(';', "dot-and-quotes");
+            font.addMapping('-', "dash");
+            font.addMapping(',', "comma");
+            font.addMapping(':', "colon");
+            font.addMapping('.', "dot");
+            font.addMapping('"', "quotes");
+            font.addMapping('©', "copyright");
+            // font.addMapping(';', "dot-and-quotes");
         }
         return font;
     }

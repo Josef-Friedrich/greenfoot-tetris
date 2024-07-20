@@ -17,7 +17,8 @@
 package de.pirckheimer_gymnasium.tetris.scenes;
 
 import de.pirckheimer_gymnasium.engine_pi.Scene;
-import de.pirckheimer_gymnasium.tetris.Image;
+import de.pirckheimer_gymnasium.engine_pi.actor.Image;
+import de.pirckheimer_gymnasium.tetris.ImageLoader;
 
 /**
  * Die Basisszene setzt ein Hintergrundbild an die Position (-2,0) und
@@ -36,7 +37,8 @@ public class BaseScene extends Scene
     {
         if (imageFilename != null)
         {
-            background = new Image("fullscreen/" + imageFilename + ".png");
+            background = ImageLoader
+                    .get("fullscreen/" + imageFilename + ".png");
             // Wir setzten alle Hintergrundbilder auf die Position (-2, 0),
             // damit
             // im Hauptspiel die linke untere Ecke des Blockrasters an der
