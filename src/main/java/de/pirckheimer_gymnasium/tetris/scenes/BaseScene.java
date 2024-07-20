@@ -16,6 +16,7 @@
  */
 package de.pirckheimer_gymnasium.tetris.scenes;
 
+import de.pirckheimer_gymnasium.engine_pi.Game;
 import de.pirckheimer_gymnasium.engine_pi.Scene;
 import de.pirckheimer_gymnasium.engine_pi.actor.Image;
 import de.pirckheimer_gymnasium.tetris.ImageLoader;
@@ -28,6 +29,12 @@ import de.pirckheimer_gymnasium.tetris.ImageLoader;
  */
 public class BaseScene extends Scene
 {
+
+    static
+    {
+        Game.setPixelMultiplication(4);
+    }
+
     /**
      * Das Hintergrundbild
      */

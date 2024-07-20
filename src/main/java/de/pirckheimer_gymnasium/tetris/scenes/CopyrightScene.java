@@ -24,6 +24,8 @@ import de.pirckheimer_gymnasium.engine_pi.util.TextAlignment;
 import de.pirckheimer_gymnasium.tetris.Tetris;
 import de.pirckheimer_gymnasium.tetris.text.Font;
 
+import static de.pirckheimer_gymnasium.tetris.Tetris.COLOR_SCHEME_GREEN;
+
 /**
  * Das ist der <b>erste Bildschirm</b>, der beim Starten des Spiels angezeigt
  * wird. Zeigt einen <b>Copyright</b>-Hinweis.
@@ -35,7 +37,7 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
     public CopyrightScene()
     {
         super(null);
-        setBackgroundColor(Tetris.COLOR_SCHEME_GREEN.getWhite());
+        setBackgroundColor(COLOR_SCHEME_GREEN.getWhite());
         String origText = "\"TM and ©1987 ELORG,\n" + //
                 "Tetris licensed to\n" + //
                 "Bullet-Proof\n" + //
@@ -55,8 +57,10 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
                 // ." kann mit ImageFont nicht als ein Zeichen dargestellt
                 // werden.
                 "by Alexey Pazhitnov\"\n" + "\n";
+
+
         ImageFontText text = new ImageFontText(Font.getFont(), origText, 21,
-                TextAlignment.CENTER);
+                TextAlignment.CENTER, COLOR_SCHEME_GREEN.getBlack(), 1, 32);
         text.setPosition(-2, 0);
         add(text);
         delay(4, this::startTitleScene);

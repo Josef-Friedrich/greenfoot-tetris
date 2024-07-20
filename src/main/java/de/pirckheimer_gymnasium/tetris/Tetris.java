@@ -88,7 +88,6 @@ public class Tetris
     public static void start(Scene scene)
     {
         Game.setTitle("Tetris im Gameboy-Stil auf der Engine Pi");
-        Game.setPixelMultiplication(4);
         scene.getCamera().setMeter(Tetris.BLOCK_SIZE);
         if (Game.isRunning())
         {

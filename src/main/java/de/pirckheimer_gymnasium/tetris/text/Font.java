@@ -2,11 +2,16 @@ package de.pirckheimer_gymnasium.tetris.text;
 
 import static de.pirckheimer_gymnasium.tetris.Tetris.COLOR_SCHEME_GREEN;
 
+import de.pirckheimer_gymnasium.engine_pi.Game;
 import de.pirckheimer_gymnasium.engine_pi.actor.ImageFont;
 import de.pirckheimer_gymnasium.engine_pi.actor.ImageFontCaseSensitivity;
 
 public class Font
 {
+    static {
+        Game.setPixelMultiplication(4);
+    }
+
     private static ImageFont font;
 
     public static ImageFont getFont()
@@ -15,7 +20,9 @@ public class Font
         {
             font = new ImageFont("glyphs")
                     .setCaseSensitivity(ImageFontCaseSensitivity.TO_UPPER)
+                    .setGlyphHeight(8 * Game.getPixelMultiplication()).setGlyphWidth(8 * Game.getPixelMultiplication())
                     .setColor(COLOR_SCHEME_GREEN.getBlack());
+
             font.addMapping('-', "dash");
             font.addMapping(',', "comma");
             font.addMapping(':', "colon");

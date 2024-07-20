@@ -21,6 +21,7 @@ import static de.pirckheimer_gymnasium.tetris.Tetris.COLOR_SCHEME_GREEN;
 
 import java.awt.image.BufferedImage;
 
+import de.pirckheimer_gymnasium.engine_pi.Game;
 import de.pirckheimer_gymnasium.engine_pi.Resources;
 import de.pirckheimer_gymnasium.engine_pi.actor.Image;
 import de.pirckheimer_gymnasium.engine_pi.util.ImageUtil;
@@ -30,6 +31,7 @@ import de.pirckheimer_gymnasium.engine_pi.util.ImageUtil;
  */
 public class ImageLoader
 {
+
     /**
      * Gibt ein vergrößertes und eingefärbtes Bild zurück.
      *
@@ -52,6 +54,6 @@ public class ImageLoader
         BufferedImage image = Resources.IMAGES.get(pathname);
         image = ImageUtil.replaceColors(image, COLOR_SCHEME_GRAY.getColors(),
                 COLOR_SCHEME_GREEN.getColors());
-        return new Image(image, Tetris.BLOCK_SIZE);
+        return new Image(image, Tetris.BLOCK_SIZE * Game.getPixelMultiplication());
     }
 }
