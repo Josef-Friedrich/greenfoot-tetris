@@ -31,7 +31,6 @@ import de.pirckheimer_gymnasium.engine_pi.util.ImageUtil;
  */
 public class ImageLoader
 {
-
     /**
      * Gibt ein vergrößertes und eingefärbtes Bild zurück.
      *
@@ -54,6 +53,7 @@ public class ImageLoader
         BufferedImage image = Resources.IMAGES.get(pathname);
         image = ImageUtil.replaceColors(image, COLOR_SCHEME_GRAY.getColors(),
                 COLOR_SCHEME_GREEN.getColors());
-        return new Image(image, Tetris.BLOCK_SIZE * Game.getPixelMultiplication());
+        return new Image(image,
+                Tetris.BLOCK_SIZE * Game.getPixelMultiplication());
     }
 }

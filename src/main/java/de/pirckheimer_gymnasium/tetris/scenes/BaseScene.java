@@ -29,10 +29,9 @@ import de.pirckheimer_gymnasium.tetris.ImageLoader;
  */
 public class BaseScene extends Scene
 {
-
     static
     {
-        Game.setPixelMultiplication(4);
+        Game.setPixelMultiplication(5);
     }
 
     /**

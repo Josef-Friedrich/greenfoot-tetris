@@ -57,10 +57,8 @@ public class CopyrightScene extends BaseScene implements KeyStrokeListener
                 // ." kann mit ImageFont nicht als ein Zeichen dargestellt
                 // werden.
                 "by Alexey Pazhitnov\"\n" + "\n";
-
-
         ImageFontText text = new ImageFontText(Font.getFont(), origText, 21,
-                TextAlignment.CENTER, COLOR_SCHEME_GREEN.getBlack(), 1, 32);
+                TextAlignment.CENTER);
         text.setPosition(-2, 0);
         add(text);
         delay(4, this::startTitleScene);
