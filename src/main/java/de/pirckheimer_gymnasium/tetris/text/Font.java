@@ -13,7 +13,7 @@ public class Font
     {
         if (font == null)
         {
-            font = new ImageFont("glyphs")
+            font = new ImageFont("image-font")
                     .setCaseSensitivity(ImageFontCaseSensitivity.TO_UPPER)
                     .setColor(COLOR_SCHEME_GREEN.getBlack())
                     .addMapping('\uE000', "e000_quotation-mark-and-dot");
