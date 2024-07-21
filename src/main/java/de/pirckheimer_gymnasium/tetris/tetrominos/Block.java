@@ -60,7 +60,7 @@ public class Block
     {
         this.scene = scene;
         name = imageName;
-        image = ImageLoader.get("blocks/" + imageName + ".png");
+        image = ImageLoader.get("images/blocks/" + imageName + ".png");
         image.setPosition(x, y);
         this.x = x;
         this.y = y;
