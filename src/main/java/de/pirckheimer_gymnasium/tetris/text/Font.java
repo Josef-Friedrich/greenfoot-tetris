@@ -15,14 +15,11 @@ public class Font
         {
             font = new ImageFont("glyphs")
                     .setCaseSensitivity(ImageFontCaseSensitivity.TO_UPPER)
-                    .setColor(COLOR_SCHEME_GREEN.getBlack());
-            font.addMapping('-', "dash");
-            font.addMapping(',', "comma");
-            font.addMapping(':', "colon");
-            font.addMapping('.', "dot");
-            font.addMapping('"', "quotes");
-            font.addMapping('©', "copyright");
-            // font.addMapping(';', "dot-and-quotes");
+                    .setColor(COLOR_SCHEME_GREEN.getBlack())
+                    .addMapping('-', "dash").addMapping(',', "comma")
+                    .addMapping(':', "colon").addMapping('.', "dot")
+                    .addMapping('"', "quotes").addMapping('©', "copyright")
+                    .addMapping('\uE000', "dot-and-quotes");
         }
         return font;
     }

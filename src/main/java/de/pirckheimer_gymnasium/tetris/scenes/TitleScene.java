@@ -38,7 +38,7 @@ public class TitleScene extends BaseScene
         super("title_blank");
         Sound.playTitle();
         addCenteredText("press any key", 3);
-        addCenteredText("©2024 J.Friedrich", 1);
+        addCenteredText("©2024 PGN-DEVS", 1);
     }
 
     private void addCenteredText(String content, int y)
