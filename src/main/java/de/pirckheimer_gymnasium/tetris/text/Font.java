@@ -16,10 +16,7 @@ public class Font
             font = new ImageFont("glyphs")
                     .setCaseSensitivity(ImageFontCaseSensitivity.TO_UPPER)
                     .setColor(COLOR_SCHEME_GREEN.getBlack())
-                    .addMapping('-', "dash").addMapping(',', "comma")
-                    .addMapping(':', "colon").addMapping('.', "dot")
-                    .addMapping('"', "quotes").addMapping('©', "copyright")
-                    .addMapping('\uE000', "dot-and-quotes");
+                    .addMapping('\uE000', "e000_quotation-mark-and-dot");
         }
         return font;
     }
